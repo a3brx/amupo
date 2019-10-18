@@ -6,7 +6,7 @@ using namespace std;
 ///                             Creates a new date equal to the actual date
 /// ----------------------------------------------------------------------------------------------------
 Date::Date() {
-    time_t t = time(0);
+    time_t t = time(nullptr);
     year = localtime(&t)->tm_year + 1900;
     month = localtime(&t)->tm_mon + 1;
     day = localtime(&t)->tm_mday;
@@ -16,7 +16,7 @@ Date::Date() {
 ///                                Creates a new date in the actual month
 /// ----------------------------------------------------------------------------------------------------
 Date::Date(unsigned char d) {
-    time_t t = time(0);
+    time_t t = time(nullptr);
     unsigned short y = localtime(&t)->tm_year + 1900;
     unsigned char m = localtime(&t)->tm_mon + 1;
     if (!validDate(d, m, y))
@@ -30,7 +30,7 @@ Date::Date(unsigned char d) {
 ///                                Creates a new date in the actual year
 /// ----------------------------------------------------------------------------------------------------
 Date::Date(unsigned char d, unsigned char m) {
-    time_t t = time(0);
+    time_t t = time(nullptr);
     unsigned short  y = localtime(&t)->tm_year + 1900;
     if (!validDate(d, m, y))
         throw InvalidDate(d, month, year);
@@ -53,7 +53,7 @@ Date::Date(unsigned char d, unsigned char m, unsigned short y) {
 /// ----------------------------------------------------------------------------------------------------
 ///                      Creates a new date from a string in the format DD-MM-YYYY
 /// ----------------------------------------------------------------------------------------------------
-Date::Date(string s) {
+Date::Date(const string & s) {
     unsigned char d = stoi(s.substr(0, 2));
     unsigned char m = stoi(s.substr(3, 2));
     unsigned short y = stoi(s.substr(6, 4));
@@ -110,14 +110,6 @@ void Date::setYear(unsigned short y) {
     if (!validDate(day, month, y))
         throw InvalidDate(day, month, y);
     year = y;
-}
-
-/// ----------------------------------------------------------------------------------------------------
-///                                  Outputs the date in a nice format
-/// ----------------------------------------------------------------------------------------------------
-ostream& operator<<(ostream& out, const Date& date) {
-    out << date.day << "/" << date.month << "/" << date.year;
-    return out;
 }
 
 /// ----------------------------------------------------------------------------------------------------
@@ -211,9 +203,17 @@ bool Date::operator!= (const Date param) const {
 }
 
 /// ----------------------------------------------------------------------------------------------------
+///                                  Outputs the date in a nice format
+/// ----------------------------------------------------------------------------------------------------
+ostream& operator<<(ostream & out, const Date & date) {
+    out << date.day << "/" << date.month << "/" << date.year;
+    return out;
+}
+
+/// ----------------------------------------------------------------------------------------------------
 ///                                Returns true if a year is a leap year
 /// ----------------------------------------------------------------------------------------------------
-bool bissextile(unsigned year) {
+bool bissextile(unsigned short year) {
     if (year % 4 == 0){
         if (year % 100 != 0 || year % 400 == 0) {
             return true;
@@ -238,7 +238,7 @@ bool validDate(unsigned char d, unsigned char m, unsigned short y) {
 /// ----------------------------------------------------------------------------------------------------
 ///                       Returns the days of a specific month in a non leap year
 /// ----------------------------------------------------------------------------------------------------
-unsigned short daysMonth(unsigned char month) {
+unsigned char daysMonth(unsigned char month) {
     if (month < 8){
         if (month % 2 == 1){
             return 31;
@@ -259,7 +259,7 @@ unsigned short daysMonth(unsigned char month) {
 /// ----------------------------------------------------------------------------------------------------
 ///                                 Returns the days of a specific year
 /// ----------------------------------------------------------------------------------------------------
-unsigned daysYear(unsigned short year) {
+unsigned short daysYear(unsigned short year) {
     if (bissextile(year)){
         return 366;
     }else{
@@ -275,7 +275,7 @@ unsigned abs(const Date date) {
     unsigned char m = date.getMonth();
     unsigned char d = date.getDay();
     unsigned total = 0;
-    for (unsigned i = epoch; i < y; i++){
+    for (unsigned i = EPOCH; i < y; i++){
         total += daysYear(i);
     }
     for (unsigned i = 1; i < m; ++i){
@@ -292,7 +292,7 @@ unsigned abs(const Date date) {
 ///                   Returns the date that is after a number of days since the epoch
 /// ----------------------------------------------------------------------------------------------------
 Date date(unsigned days) {
-    unsigned short y = epoch;
+    unsigned short y = EPOCH;
     unsigned char m = 1;
     while (days > daysYear(y)){
         days -= daysYear(y++);

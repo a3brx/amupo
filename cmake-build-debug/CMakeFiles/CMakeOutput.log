@@ -1,0 +1,85 @@
+The system is: Windows - 10.0.17763 - AMD64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: C:/Programs/MinGW/bin/gcc.exe 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.exe"
+
+The C compiler identification is GNU, found in "Z:/Amigo_dos_museus/cmake-build-debug/CMakeFiles/3.14.5/CompilerIdC/a.exe"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: C:/Programs/MinGW/bin/g++.exe 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.exe"
+
+The CXX compiler identification is GNU, found in "Z:/Amigo_dos_museus/cmake-build-debug/CMakeFiles/3.14.5/CompilerIdCXX/a.exe"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: Z:/Amigo_dos_museus/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Programs/MinGW/bin/mingw32-make.exe cmTC_8739f/fast 
+C:/Programs/MinGW/bin/mingw32-make.exe -f CMakeFiles\cmTC_8739f.dir\build.make CMakeFiles/cmTC_8739f.dir/build
+mingw32-make.exe[1]: Entering directory 'Z:/Amigo_dos_museus/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_8739f.dir/testCCompiler.c.obj
+C:\Programs\MinGW\bin\gcc.exe    -o CMakeFiles\cmTC_8739f.dir\testCCompiler.c.obj   -c Z:\Amigo_dos_museus\cmake-build-debug\CMakeFiles\CMakeTmp\testCCompiler.c
+Linking C executable cmTC_8739f.exe
+"C:\Program Files\JetBrains\CLion 2019.2.1\bin\cmake\win\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_8739f.dir\link.txt --verbose=1
+"C:\Program Files\JetBrains\CLion 2019.2.1\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_8739f.dir/objects.a
+C:\Programs\MinGW\bin\ar.exe cr CMakeFiles\cmTC_8739f.dir/objects.a @CMakeFiles\cmTC_8739f.dir\objects1.rsp
+C:\Programs\MinGW\bin\gcc.exe      -Wl,--whole-archive CMakeFiles\cmTC_8739f.dir/objects.a -Wl,--no-whole-archive  -o cmTC_8739f.exe -Wl,--out-implib,libcmTC_8739f.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cmTC_8739f.dir\linklibs.rsp
+mingw32-make.exe[1]: Leaving directory 'Z:/Amigo_dos_museus/cmake-build-debug/CMakeFiles/CMakeTmp'
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: C:/Programs/MinGW/bin/g++.exe 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.exe"
+
+The CXX compiler identification is GNU, found in "Z:/Amigo_dos_museus/cmake-build-debug/CMakeFiles/3.14.5/CompilerIdCXX/a.exe"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: C:/Programs/MinGW/bin/g++.exe 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.exe"
+
+The CXX compiler identification is GNU, found in "Z:/Amigo_dos_museus/cmake-build-debug/CMakeFiles/3.14.5/CompilerIdCXX/a.exe"
+
+Determining if the CXX compiler works passed with the following output:
+Change Dir: Z:/Amigo_dos_museus/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Programs/MinGW/bin/mingw32-make.exe cmTC_0e4bf/fast 
+C:/Programs/MinGW/bin/mingw32-make.exe -f CMakeFiles\cmTC_0e4bf.dir\build.make CMakeFiles/cmTC_0e4bf.dir/build
+mingw32-make.exe[1]: Entering directory 'Z:/Amigo_dos_museus/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_0e4bf.dir/testCXXCompiler.cxx.obj
+C:\Programs\MinGW\bin\g++.exe     -o CMakeFiles\cmTC_0e4bf.dir\testCXXCompiler.cxx.obj -c Z:\Amigo_dos_museus\cmake-build-debug\CMakeFiles\CMakeTmp\testCXXCompiler.cxx
+Linking CXX executable cmTC_0e4bf.exe
+"C:\Program Files\JetBrains\CLion 2019.2.1\bin\cmake\win\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_0e4bf.dir\link.txt --verbose=1
+"C:\Program Files\JetBrains\CLion 2019.2.1\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_0e4bf.dir/objects.a
+C:\Programs\MinGW\bin\ar.exe cr CMakeFiles\cmTC_0e4bf.dir/objects.a @CMakeFiles\cmTC_0e4bf.dir\objects1.rsp
+C:\Programs\MinGW\bin\g++.exe      -Wl,--whole-archive CMakeFiles\cmTC_0e4bf.dir/objects.a -Wl,--no-whole-archive  -o cmTC_0e4bf.exe -Wl,--out-implib,libcmTC_0e4bf.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cmTC_0e4bf.dir\linklibs.rsp
+mingw32-make.exe[1]: Leaving directory 'Z:/Amigo_dos_museus/cmake-build-debug/CMakeFiles/CMakeTmp'
+
+
