@@ -1,6 +1,4 @@
 #pragma once
-#include <vector>
-#include <string>
 #include "Address.h"
 
 using namespace std;
@@ -9,5 +7,16 @@ class Museum{
     private:
     Address address;
     unsigned capacity;
-}
+    
+    public:
+    Museum();
+    Museum(Address adr, unsigned cap = 0);
+
+    Address getAddress();
+    unsigned getCapacity();
+    void setAddress(Address adr);
+    void setCapacity(unsigned cap);
+
+    friend ostream & operator<<(ostream & out, const Museum & mus);
+};
 
