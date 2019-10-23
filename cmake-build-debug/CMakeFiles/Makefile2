@@ -70,7 +70,7 @@ CMAKE_BINARY_DIR = Z:\Amigo_dos_museus\cmake-build-debug
 CMakeFiles/amigo_dos_museus.dir/all:
 	$(MAKE) -f CMakeFiles\amigo_dos_museus.dir\build.make CMakeFiles/amigo_dos_museus.dir/depend
 	$(MAKE) -f CMakeFiles\amigo_dos_museus.dir\build.make CMakeFiles/amigo_dos_museus.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=Z:\Amigo_dos_museus\cmake-build-debug\CMakeFiles --progress-num=1,2,3 "Built target amigo_dos_museus"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=Z:\Amigo_dos_museus\cmake-build-debug\CMakeFiles --progress-num=1,2,3,4 "Built target amigo_dos_museus"
 .PHONY : CMakeFiles/amigo_dos_museus.dir/all
 
 # Include target in all.
@@ -80,7 +80,7 @@ all: CMakeFiles/amigo_dos_museus.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/amigo_dos_museus.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start Z:\Amigo_dos_museus\cmake-build-debug\CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start Z:\Amigo_dos_museus\cmake-build-debug\CMakeFiles 4
 	$(MAKE) -f CMakeFiles\Makefile2 CMakeFiles/amigo_dos_museus.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start Z:\Amigo_dos_museus\cmake-build-debug\CMakeFiles 0
 .PHONY : CMakeFiles/amigo_dos_museus.dir/rule

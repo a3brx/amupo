@@ -86,6 +86,12 @@
 		<Unit filename="Z:/Amigo_dos_museus/Date.h">
 			<Option target="amigo_dos_museus"/>
 		</Unit>
+		<Unit filename="Z:/Amigo_dos_museus/Table.cpp">
+			<Option target="amigo_dos_museus"/>
+		</Unit>
+		<Unit filename="Z:/Amigo_dos_museus/Table.h">
+			<Option target="amigo_dos_museus"/>
+		</Unit>
 		<Unit filename="Z:/Amigo_dos_museus/main.cpp">
 			<Option target="amigo_dos_museus"/>
 		</Unit>

@@ -149,6 +149,33 @@ Date.cpp.s:
 	$(MAKE) -f CMakeFiles\amigo_dos_museus.dir\build.make CMakeFiles/amigo_dos_museus.dir/Date.cpp.s
 .PHONY : Date.cpp.s
 
+Table.obj: Table.cpp.obj
+
+.PHONY : Table.obj
+
+# target to build an object file
+Table.cpp.obj:
+	$(MAKE) -f CMakeFiles\amigo_dos_museus.dir\build.make CMakeFiles/amigo_dos_museus.dir/Table.cpp.obj
+.PHONY : Table.cpp.obj
+
+Table.i: Table.cpp.i
+
+.PHONY : Table.i
+
+# target to preprocess a source file
+Table.cpp.i:
+	$(MAKE) -f CMakeFiles\amigo_dos_museus.dir\build.make CMakeFiles/amigo_dos_museus.dir/Table.cpp.i
+.PHONY : Table.cpp.i
+
+Table.s: Table.cpp.s
+
+.PHONY : Table.s
+
+# target to generate assembly for a file
+Table.cpp.s:
+	$(MAKE) -f CMakeFiles\amigo_dos_museus.dir\build.make CMakeFiles/amigo_dos_museus.dir/Table.cpp.s
+.PHONY : Table.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -188,6 +215,9 @@ help:
 	@echo ... Date.obj
 	@echo ... Date.i
 	@echo ... Date.s
+	@echo ... Table.obj
+	@echo ... Table.i
+	@echo ... Table.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
