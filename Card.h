@@ -22,14 +22,23 @@ class Card{
 };
 
 class SilverCard:public Card{
+    private:
     static float cost;
+    public:
     float getCost();
+    void setCost(float cost);
 };
 class UniCard:public Card{
+    private:
     static float cost;
+    public:
     float getCost();
+    void setCost(float cost);
 };
 class IndividualCard:public Card{
+    private:
     static float cost;
+    public:
     float getCost();
+    void setCost(float cost);
 };
