@@ -22,20 +22,14 @@ class Card{
 };
 
 class SilverCard:public Card{
-    private:
-    const float cost=30;
-    public:
+    static float cost;
     float getCost();
 };
 class UniCard:public Card{
-    private:
-    const float cost=32.45;
-    public:
+    static float cost;
     float getCost();
 };
 class IndividualCard:public Card{
-    private:
-    const float cost=54.90;
-    public:
+    static float cost;
     float getCost();
 };

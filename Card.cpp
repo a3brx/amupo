@@ -31,12 +31,18 @@ void Card::setAddress(Address ad){
 void Card::setContact(unsigned cont){
     contact=cont;
 }
+
+float SilverCard::cost = 30;
 float SilverCard::getCost(){
     return cost;
 }
+
+float UniCard::cost = 32.45;
 float UniCard::getCost(){
     return cost;
 }
+
+float IndividualCard::cost = 52.9;
 float IndividualCard::getCost(){
     return cost;
 }
