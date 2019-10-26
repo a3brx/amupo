@@ -27,7 +27,7 @@ void Table<Printable>::setContent(vector<vector<Printable>> c) {
 }
 
 template <class Printable>
-ostream & operator<<(ostream & out, Table<Printable> const & table) {
+ostream & operator<< <Printable>(ostream & out, const Table<Printable> & table) {
     vector<unsigned> sizes;
     for(auto col : table.getHeader()){
         ostringstream aux;

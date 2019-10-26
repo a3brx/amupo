@@ -17,7 +17,8 @@ class Table{
 		vector<vector<Printable>> getContent() const;
 		void setHeader(vector<Printable>);
 		void setContent(vector<vector<Printable>>);
-		friend ostream & operator<<(ostream & out, Table<Printable> const & table);
+		template <>
+		friend ostream & operator<< <Printable>(ostream & out, const Table<Printable> & table);
 };
 //string normalize(string s, unsigned n);
 //string str(Table table);
