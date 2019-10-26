@@ -1,4 +1,3 @@
-#pragma once
 #include "Address.h"
 
 Address::Address():doorNumber(0){

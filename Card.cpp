@@ -1,4 +1,3 @@
-#pragma once
 #include "Card.h"
 
 Card::Card(string n,Date aqdate,Date bday,Address ad,unsigned cont): aquisitionDate(aqdate), birthday(bday) {
