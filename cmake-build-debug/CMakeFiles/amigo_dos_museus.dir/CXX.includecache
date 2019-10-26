@@ -6,11 +6,39 @@
 
 #IncludeRegexTransform: 
 
-Z:/Amigo_dos_museus/Table.cpp
-Table.h
-Z:/Amigo_dos_museus/Table.h
+C:/Users/up201806667/CLionProjects/Amigo_dos_museus/Address.h
+iostream
+-
+string
+-
 
-Z:/Amigo_dos_museus/Table.h
+C:/Users/up201806667/CLionProjects/Amigo_dos_museus/Card.h
+Address.h
+C:/Users/up201806667/CLionProjects/Amigo_dos_museus/Address.h
+Date.h
+C:/Users/up201806667/CLionProjects/Amigo_dos_museus/Date.h
+
+C:/Users/up201806667/CLionProjects/Amigo_dos_museus/Date.h
+ctime
+-
+iostream
+-
+string
+-
+
+C:/Users/up201806667/CLionProjects/Amigo_dos_museus/Event.h
+Museum.h
+C:/Users/up201806667/CLionProjects/Amigo_dos_museus/Museum.h
+Date.h
+C:/Users/up201806667/CLionProjects/Amigo_dos_museus/Date.h
+iostream
+C:/Users/up201806667/CLionProjects/Amigo_dos_museus/iostream
+
+C:/Users/up201806667/CLionProjects/Amigo_dos_museus/Museum.h
+Address.h
+C:/Users/up201806667/CLionProjects/Amigo_dos_museus/Address.h
+
+C:/Users/up201806667/CLionProjects/Amigo_dos_museus/Table.h
 iostream
 -
 vector
@@ -19,4 +47,20 @@ string
 -
 sstream
 -
+
+C:/Users/up201806667/CLionProjects/Amigo_dos_museus/main.cpp
+iostream
+-
+Address.h
+C:/Users/up201806667/CLionProjects/Amigo_dos_museus/Address.h
+Card.h
+C:/Users/up201806667/CLionProjects/Amigo_dos_museus/Card.h
+Date.h
+C:/Users/up201806667/CLionProjects/Amigo_dos_museus/Date.h
+Event.h
+C:/Users/up201806667/CLionProjects/Amigo_dos_museus/Event.h
+Museum.h
+C:/Users/up201806667/CLionProjects/Amigo_dos_museus/Museum.h
+Table.h
+C:/Users/up201806667/CLionProjects/Amigo_dos_museus/Table.h
 

@@ -47,10 +47,10 @@ RM = "C:\Program Files\JetBrains\CLion 2019.2.1\bin\cmake\win\bin\cmake.exe" -E 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = Z:\Amigo_dos_museus
+CMAKE_SOURCE_DIR = C:\Users\up201806667\CLionProjects\Amigo_dos_museus
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = Z:\Amigo_dos_museus\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\up201806667\CLionProjects\Amigo_dos_museus\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -79,9 +79,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start Z:\Amigo_dos_museus\cmake-build-debug\CMakeFiles Z:\Amigo_dos_museus\cmake-build-debug\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\up201806667\CLionProjects\Amigo_dos_museus\cmake-build-debug\CMakeFiles C:\Users\up201806667\CLionProjects\Amigo_dos_museus\cmake-build-debug\CMakeFiles\progress.marks
 	$(MAKE) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start Z:\Amigo_dos_museus\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\up201806667\CLionProjects\Amigo_dos_museus\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -122,6 +122,33 @@ amigo_dos_museus/fast:
 	$(MAKE) -f CMakeFiles\amigo_dos_museus.dir\build.make CMakeFiles/amigo_dos_museus.dir/build
 .PHONY : amigo_dos_museus/fast
 
+Address.obj: Address.cpp.obj
+
+.PHONY : Address.obj
+
+# target to build an object file
+Address.cpp.obj:
+	$(MAKE) -f CMakeFiles\amigo_dos_museus.dir\build.make CMakeFiles/amigo_dos_museus.dir/Address.cpp.obj
+.PHONY : Address.cpp.obj
+
+Address.i: Address.cpp.i
+
+.PHONY : Address.i
+
+# target to preprocess a source file
+Address.cpp.i:
+	$(MAKE) -f CMakeFiles\amigo_dos_museus.dir\build.make CMakeFiles/amigo_dos_museus.dir/Address.cpp.i
+.PHONY : Address.cpp.i
+
+Address.s: Address.cpp.s
+
+.PHONY : Address.s
+
+# target to generate assembly for a file
+Address.cpp.s:
+	$(MAKE) -f CMakeFiles\amigo_dos_museus.dir\build.make CMakeFiles/amigo_dos_museus.dir/Address.cpp.s
+.PHONY : Address.cpp.s
+
 Date.obj: Date.cpp.obj
 
 .PHONY : Date.obj
@@ -148,33 +175,6 @@ Date.s: Date.cpp.s
 Date.cpp.s:
 	$(MAKE) -f CMakeFiles\amigo_dos_museus.dir\build.make CMakeFiles/amigo_dos_museus.dir/Date.cpp.s
 .PHONY : Date.cpp.s
-
-Table.obj: Table.cpp.obj
-
-.PHONY : Table.obj
-
-# target to build an object file
-Table.cpp.obj:
-	$(MAKE) -f CMakeFiles\amigo_dos_museus.dir\build.make CMakeFiles/amigo_dos_museus.dir/Table.cpp.obj
-.PHONY : Table.cpp.obj
-
-Table.i: Table.cpp.i
-
-.PHONY : Table.i
-
-# target to preprocess a source file
-Table.cpp.i:
-	$(MAKE) -f CMakeFiles\amigo_dos_museus.dir\build.make CMakeFiles/amigo_dos_museus.dir/Table.cpp.i
-.PHONY : Table.cpp.i
-
-Table.s: Table.cpp.s
-
-.PHONY : Table.s
-
-# target to generate assembly for a file
-Table.cpp.s:
-	$(MAKE) -f CMakeFiles\amigo_dos_museus.dir\build.make CMakeFiles/amigo_dos_museus.dir/Table.cpp.s
-.PHONY : Table.cpp.s
 
 main.obj: main.cpp.obj
 
@@ -212,12 +212,12 @@ help:
 	@echo ... edit_cache
 	@echo ... amigo_dos_museus
 	@echo ... rebuild_cache
+	@echo ... Address.obj
+	@echo ... Address.i
+	@echo ... Address.s
 	@echo ... Date.obj
 	@echo ... Date.i
 	@echo ... Date.s
-	@echo ... Table.obj
-	@echo ... Table.i
-	@echo ... Table.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

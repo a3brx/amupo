@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/amigo_dos_museus.dir/main.cpp.obj"
   "CMakeFiles/amigo_dos_museus.dir/Date.cpp.obj"
-  "CMakeFiles/amigo_dos_museus.dir/Table.cpp.obj"
+  "CMakeFiles/amigo_dos_museus.dir/Address.cpp.obj"
   "amigo_dos_museus.pdb"
   "amigo_dos_museus.exe"
   "amigo_dos_museus.exe.manifest"

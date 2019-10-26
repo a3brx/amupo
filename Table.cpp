@@ -25,24 +25,3 @@ template <class Printable>
 void Table<Printable>::setContent(vector<vector<Printable>> c) {
     content = c;
 }
-
-template <class Printable>
-ostream & operator<< <Printable>(ostream & out, const Table<Printable> & table) {
-    vector<unsigned> sizes;
-    for(auto col : table.getHeader()){
-        ostringstream aux;
-        aux << col;
-        sizes.push_back(aux.str().size());
-    }
-    for(auto row: table.getContent()){
-        for(unsigned i = 0; i < sizes.size(); ++i){
-            ostringstream aux;
-            aux << row.at(i);
-            if(aux.str().size() > sizes.at(i))
-                sizes.at(i) = aux.str().size();
-        }
-    }
-    for(auto x : sizes)
-        cout << x << endl;
-    return out;
-}

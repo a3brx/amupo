@@ -1,3 +1,3 @@
-Z:/Amigo_dos_museus/cmake-build-debug/CMakeFiles/edit_cache.dir
-Z:/Amigo_dos_museus/cmake-build-debug/CMakeFiles/amigo_dos_museus.dir
-Z:/Amigo_dos_museus/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/up201806667/CLionProjects/Amigo_dos_museus/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/up201806667/CLionProjects/Amigo_dos_museus/cmake-build-debug/CMakeFiles/amigo_dos_museus.dir
+C:/Users/up201806667/CLionProjects/Amigo_dos_museus/cmake-build-debug/CMakeFiles/rebuild_cache.dir
