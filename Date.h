@@ -43,6 +43,10 @@ bool validDate(unsigned char d, unsigned char m, unsigned short y);
 unsigned char daysMonth(unsigned char month);
 unsigned short daysYear(unsigned short year);
 unsigned abs(const Date date);
+/// ----------------------------------------------------------------------------------------------------
+///                   Returns the date that is after a number of days since the epoch
+/// @param days Number of days since the epoch
+/// ----------------------------------------------------------------------------------------------------
 Date date(unsigned days);
 
 class InvalidDate : exception{
