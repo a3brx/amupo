@@ -4,18 +4,18 @@
 class Card{
     private:
     string name;
-    const Date aquisitionDate;
+    const Date acquisitionDate;
     const Date birthday;
     Address address;
     unsigned contact;
     public:
-    Card(string n,Date aqdate,Date bday,Address ad,unsigned cont);
+    Card(string n, Date acqdate, Date bday, Address ad, unsigned cont);
     string getName() const;
-    Date getAquisitionDate() const;
+    Date getAcquisitionDate() const;
     Date getBirthday() const;
-    Address getAdress() const;
+    Address getAddress() const;
     unsigned getContact() const;
-    virtual float getCost() const;
+    virtual float getCost() const = 0;
     void setName(string n);
     void setAddress(Address ad);
     void setContact(unsigned cont);

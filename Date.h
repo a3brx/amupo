@@ -15,10 +15,10 @@ private:
     unsigned short year;
 public:
     Date();
-    Date(unsigned char d);
+    explicit Date(unsigned char d);
     Date(unsigned char d, unsigned char m);
     Date(unsigned char d, unsigned char m, unsigned short y);
-    Date(const string & s);
+    explicit Date(const string & s);
     unsigned char getDay() const;
     unsigned char getMonth() const;
     unsigned short getYear() const;

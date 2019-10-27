@@ -12,7 +12,7 @@ class Event{
 
     public:
     Event();
-    Event(Museum mus, Date d, float p, unsigned sold = 0);  //por data como soldTickets(nao me lembro do nome)
+    Event(Museum mus, Date d, float p, unsigned sold);  //por data como soldTickets(nao me lembro do nome)
 
     Museum getMuseum();
     Date getDate();

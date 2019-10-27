@@ -1,6 +1,6 @@
 #include "Card.h"
 
-Card::Card(string n,Date aqdate,Date bday,Address ad,unsigned cont): aquisitionDate(aqdate), birthday(bday) {
+Card::Card(string n, Date acqdate, Date bday, Address ad, unsigned cont): acquisitionDate(acqdate), birthday(bday) {
     name=n;
     address=ad;
     contact=cont;
@@ -9,26 +9,26 @@ Card::Card(string n,Date aqdate,Date bday,Address ad,unsigned cont): aquisitionD
 string Card::getName() const{
     return name;
 }
-Date Card::getAquisitionDate() const{
-    return aquisitionDate;
+Date Card::getAcquisitionDate() const{
+    return acquisitionDate;
 }
 Date Card::getBirthday() const{
     return birthday;
 }
-Address Card::getAdress() const{
+Address Card::getAddress() const{
     return address;
 }
 unsigned Card::getContact() const{
     return contact;
 }
 void Card::setName(string n){
-    name=n;
+    name = move(n);
 }
 void Card::setAddress(Address ad){
-    address=ad;
+    address = move(ad);
 }
 void Card::setContact(unsigned cont){
-    contact=cont;
+    contact = cont;
 }
 
 float SilverCard::cost = 30;

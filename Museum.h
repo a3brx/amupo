@@ -10,7 +10,7 @@ class Museum{
     
     public:
     Museum();
-    Museum(Address adr, unsigned cap = 0);
+    Museum(Address adr, unsigned cap);
 
     Address getAddress();
     unsigned getCapacity();

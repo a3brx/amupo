@@ -5,6 +5,7 @@
 
 class System{
     private:
-    vector<Museum> museums;
+    vector<*Event> events;
     vector<*Card> cards;
+    vector<*Museum> museums;
 }
