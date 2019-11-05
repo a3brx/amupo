@@ -7,109 +7,109 @@ using namespace std;
 // ----------------------------------------------------------------------------------------------------
 Date::Date() {
     time_t t = time(nullptr);
-    year = localtime(&t)->tm_year + 1900;
-    month = localtime(&t)->tm_mon + 1;
-    day = localtime(&t)->tm_mday;
+    this->year = localtime(&t)->tm_year + 1900;
+    this->month = localtime(&t)->tm_mon + 1;
+    this->day = localtime(&t)->tm_mday;
 }
 
 // ----------------------------------------------------------------------------------------------------
 //                                Creates a new date in the actual month
 // ----------------------------------------------------------------------------------------------------
-Date::Date(unsigned char d) {
+Date::Date(unsigned char day) {
     time_t t = time(nullptr);
-    unsigned short y = localtime(&t)->tm_year + 1900;
-    unsigned char m = localtime(&t)->tm_mon + 1;
-    if (!validDate(d, m, y))
-        throw InvalidDate(d, month, year);
-    year = y;
-    month = m;
-    day = d;
+    unsigned short year = localtime(&t)->tm_year + 1900;
+    unsigned char month = localtime(&t)->tm_mon + 1;
+    if (!validDate(day, month, year))
+        throw InvalidDate(day, this->month, this->year);
+    this->year = year;
+    this->month = month;
+    this->day = day;
 }
 
 // ----------------------------------------------------------------------------------------------------
 //                                Creates a new date in the actual year
 // ----------------------------------------------------------------------------------------------------
-Date::Date(unsigned char d, unsigned char m) {
+Date::Date(unsigned char day, unsigned char month) {
     time_t t = time(nullptr);
-    unsigned short  y = localtime(&t)->tm_year + 1900;
-    if (!validDate(d, m, y))
-        throw InvalidDate(d, month, year);
-    year = y;
-    month = m;
-    day = d;
+    unsigned short  year = localtime(&t)->tm_year + 1900;
+    if (!validDate(day, month, year))
+        throw InvalidDate(day, this->month, this->year);
+    this->year = year;
+    this->month = month;
+    this->day = day;
 }
 
 // ----------------------------------------------------------------------------------------------------
 //                                          Creates a new date
 // ----------------------------------------------------------------------------------------------------
-Date::Date(unsigned char d, unsigned char m, unsigned short y) {
-    if (!validDate(d, m, y))
-        throw InvalidDate(d, month, year);
-    year = y;
-    month = m;
-    day = d;
+Date::Date(unsigned char day, unsigned char month, unsigned short year) {
+    if (!validDate(day, month, year))
+        throw InvalidDate(day, this->month, this->year);
+    this->year = year;
+    this->month = month;
+    this->day = day;
 }
 
 // ----------------------------------------------------------------------------------------------------
 //                      Creates a new date from a string in the format DD-MM-YYYY
 // ----------------------------------------------------------------------------------------------------
 Date::Date(const string & s) {
-    unsigned char d = stoi(s.substr(0, 2));
-    unsigned char m = stoi(s.substr(3, 2));
-    unsigned short y = stoi(s.substr(6, 4));
-    if (!validDate(d, m, y))
-        throw InvalidDate(d, month, year);
-    year = y;
-    month = m;
-    day = d;
+    unsigned char day = stoi(s.substr(0, 2));
+    unsigned char month = stoi(s.substr(3, 2));
+    unsigned short year = stoi(s.substr(6, 4));
+    if (!validDate(day, month, year))
+        throw InvalidDate(day, this->month, this->year);
+    this->year = year;
+    this->month = month;
+    this->day = day;
 }
 
 // ----------------------------------------------------------------------------------------------------
 //                                       Returns the date's day
 // ----------------------------------------------------------------------------------------------------
 unsigned char Date::getDay() const {
-    return day;
+    return this->day;
 }
 
 // ----------------------------------------------------------------------------------------------------
 //                                      Returns the date's month
 // ----------------------------------------------------------------------------------------------------
 unsigned char Date::getMonth() const {
-    return month;
+    return this->month;
 }
 
 // ----------------------------------------------------------------------------------------------------
 //                                       Returns the date's year
 // ----------------------------------------------------------------------------------------------------
 unsigned short Date::getYear() const {
-    return year;
+    return this->year;
 }
 
 // ----------------------------------------------------------------------------------------------------
 //                                    Sets the date's day if possible
 // ----------------------------------------------------------------------------------------------------
-void Date::setDay(unsigned char d) {
-    if (!validDate(d, month, year))
-        throw InvalidDate(d, month, year);
-    day = d;
+void Date::setDay(unsigned char day) {
+    if (!validDate(day, this->month, this->year))
+        throw InvalidDate(day, this->month, this->year);
+    this->day = day;
 }
 
 // ----------------------------------------------------------------------------------------------------
 //                                   Sets the date's month if possible
 // ----------------------------------------------------------------------------------------------------
-void Date::setMonth(unsigned char m) {
-    if (!validDate(day, m, year))
-        throw InvalidDate(day, m, year);
-    month = m;
+void Date::setMonth(unsigned char month) {
+    if (!validDate(this->day, month, this->year))
+        throw InvalidDate(this->day, month, this->year);
+    this->month = month;
 }
 
 // ----------------------------------------------------------------------------------------------------
 //                                   Sets the date's year if possible
 // ----------------------------------------------------------------------------------------------------
-void Date::setYear(unsigned short y) {
-    if (!validDate(day, month, y))
-        throw InvalidDate(day, month, y);
-    year = y;
+void Date::setYear(unsigned short year) {
+    if (!validDate(this->day, this->month, year))
+        throw InvalidDate(this->day, this->month, year);
+    this->year = year;
 }
 
 // ----------------------------------------------------------------------------------------------------
@@ -132,7 +132,7 @@ Date Date::operator-(unsigned n) const {
 //                             Returns the number of days between two dates
 // ----------------------------------------------------------------------------------------------------
 int Date::operator-(const Date param) const {
-    Date x(day, month, year);
+    Date x(this->day, this->month, this->year);
     unsigned actual = abs(x);
     int res = actual - abs(param);
     return res;
@@ -144,9 +144,9 @@ int Date::operator-(const Date param) const {
 void Date::operator+=(unsigned n) {
     unsigned aux = abs(* this);
     Date res = date(aux + n);
-    day = res.getDay();
-    month = res.getMonth();
-    year = res.getYear();
+    this->day = res.getDay();
+    this->month = res.getMonth();
+    this->year = res.getYear();
 }
 
 // ----------------------------------------------------------------------------------------------------
@@ -161,9 +161,9 @@ void Date::operator-=(unsigned n) {
 // ----------------------------------------------------------------------------------------------------
 bool Date::operator==(const Date param) const {
     bool res = true;
-    res = res && (year == param.getYear());
-    res = res && (month == param.getMonth());
-    res = res && (day == param.getDay());
+    res = res && (this->year == param.getYear());
+    res = res && (this->month == param.getMonth());
+    res = res && (this->day == param.getDay());
     return res;
 }
 
@@ -225,14 +225,14 @@ bool bissextile(unsigned short year) {
 // ----------------------------------------------------------------------------------------------------
 //                                   Returns true if a date is valid
 // ----------------------------------------------------------------------------------------------------
-bool validDate(unsigned char d, unsigned char m, unsigned short y) {
-    if (d <= 0 || m <= 0 || y == 0){
+bool validDate(unsigned char day, unsigned char month, unsigned short year) {
+    if (day <= 0 || month <= 0 || year == 0){
         return false;
     }
-    if (d == 29 && m == 2){
-        return bissextile(y);
+    if (day == 29 && month == 2){
+        return bissextile(year);
     }
-    return d <= daysMonth(m);
+    return day <= daysMonth(month);
 }
 
 // ----------------------------------------------------------------------------------------------------
@@ -271,20 +271,20 @@ unsigned short daysYear(unsigned short year) {
 //                         Returns the number of days of a date since the epoch
 // ----------------------------------------------------------------------------------------------------
 unsigned abs(const Date date) {
-    unsigned short y = date.getYear();
-    unsigned char m = date.getMonth();
-    unsigned char d = date.getDay();
+    unsigned short year = date.getYear();
+    unsigned char month = date.getMonth();
+    unsigned char day = date.getDay();
     unsigned total = 0;
-    for (unsigned i = EPOCH; i < y; i++){
+    for (unsigned i = EPOCH; i < year; i++){
         total += daysYear(i);
     }
-    for (unsigned i = 1; i < m; ++i){
+    for (unsigned i = 1; i < month; ++i){
         total += daysMonth(i);
     }
-    if (bissextile(y)){
+    if (bissextile(year)){
         total++;
     }
-    total += d;
+    total += day;
     return total;
 }
 
@@ -292,32 +292,32 @@ unsigned abs(const Date date) {
 //                   Returns the date that is after a number of days since the epoch
 // ----------------------------------------------------------------------------------------------------
 Date date(unsigned days) {
-    unsigned short y = EPOCH;
-    unsigned char m = 1;
-    while (days > daysYear(y)){
-        days -= daysYear(y++);
+    unsigned short year = EPOCH;
+    unsigned char month = 1;
+    while (days > daysYear(year)){
+        days -= daysYear(year++);
     }
     if (days > 31){
-        days -= daysMonth(m++);
+        days -= daysMonth(month++);
         if (days > 28){
-            if (bissextile(y)){
-                days -= daysMonth(m++) + 1;
+            if (bissextile(year)){
+                days -= daysMonth(month++) + 1;
             }else{
-                days -= daysMonth(m++);
+                days -= daysMonth(month++);
             }
-            while(days > daysMonth(m)){
-                days -= daysMonth(m++);
+            while(days > daysMonth(month)){
+                days -= daysMonth(month++);
             }
         }else{
-            if (bissextile(y)){
+            if (bissextile(year)){
                 days--;
             }
         }
     }else{
-        if (bissextile(y)){
+        if (bissextile(year)){
             days--;
         }
     }
-    Date result(days, m, y);
+    Date result(days, month, year);
     return result;
 }

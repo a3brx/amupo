@@ -20,19 +20,19 @@ public:
     Date();
 
     /// @brief Constructs a Date in the actual month.
-    /// @param d The day of the Date.
-    explicit Date(unsigned char d);
+    /// @param day The day of the Date.
+    explicit Date(unsigned char day);
 
     /// @brief Constructs a Date in the actual year.
-    /// @param d The day of the Date.
-    /// @param m The month of the Date.
-    Date(unsigned char d, unsigned char m);
+    /// @param day The day of the Date.
+    /// @param month The month of the Date.
+    Date(unsigned char day, unsigned char month);
 
     /// @brief Constructs a Date with the parameters.
-    /// @param d The day of the Date.
-    /// @param m The month of the Date.
-    /// @param y The year of the Date.
-    Date(unsigned char d, unsigned char m, unsigned short y);
+    /// @param day The day of the Date.
+    /// @param month The month of the Date.
+    /// @param year The year of the Date.
+    Date(unsigned char day, unsigned char month, unsigned short year);
 
     /// @brief Constructs a Date from a string.
     /// @param s A string in the format "DD-MM-YYYY".
@@ -51,16 +51,16 @@ public:
     unsigned short getYear() const;
 
     /// @brief Sets the day of a Date.
-    /// @param d The day to be attributed to the Date.
-    void setDay(unsigned char d);
+    /// @param day The day to be attributed to the Date.
+    void setDay(unsigned char day);
 
     /// @brief Sets the month of a Date.
-    /// @param m The month to be attributed to the Date.
-    void setMonth(unsigned char m);
+    /// @param month The month to be attributed to the Date.
+    void setMonth(unsigned char month);
 
     /// @brief Sets the year of a Date.
-    /// @param y The year to be attributed to the Date.
-    void setYear(unsigned short y);
+    /// @param year The year to be attributed to the Date.
+    void setYear(unsigned short year);
 
     /// @brief Returns a Date that is n days after another.
     /// @param n The number of days after the Date.
@@ -111,7 +111,7 @@ public:
     friend ostream &operator<<(ostream & out, const Date & date);
 };
 bool bissextile(unsigned short year);
-bool validDate(unsigned char d, unsigned char m, unsigned short y);
+bool validDate(unsigned char day, unsigned char month, unsigned short year);
 unsigned char daysMonth(unsigned char month);
 unsigned short daysYear(unsigned short year);
 unsigned abs(const Date date);
