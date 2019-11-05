@@ -1,11 +1,11 @@
 #include <iostream>
-#include "Address.h"
-#include "Card.h"
-#include "Date.h"
-#include "Event.h"
-#include "Museum.h"
-//#include "System.h"
-#include "Table.h"
+#include "Address/Address.h"
+#include "Card/Card.h"
+#include "Date/Date.h"
+#include "Event/Event.h"
+#include "Museum/Museum.h"
+//#include "System/System.h"
+#include "Table/Table.h"
 
 using namespace std;
 
