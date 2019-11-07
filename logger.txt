@@ -18,5 +18,6 @@ se passares como argumento qualquer string que tenha um espaço. Por exemplo: sp
 vai ser split e trimmed.
 -o valid && basicamente altera o valor do valid para false caso a segunda condição seja falsa assim tu podes testar
 se é um valid address retornando apenas o valid.
+-mudei o valid address de forma a usar a util isnum() que permite substituir todos os for loops.
 
-COMMIT 23:42
+COMMIT 23:48

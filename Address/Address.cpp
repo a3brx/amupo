@@ -80,18 +80,13 @@ istream & operator>>(istream &in, Address &address) {
 
 bool validAddress(Address address){
     bool valid= true;
-    for(size_t i = 0;i<to_string(address.getDoorNumber()).size();i++)
-        (valid && isdigit(to_string(address.getDoorNumber()).at(i)));
-    for(size_t i = 0;i<address.getStreet().size();i++)
-        (valid && (!isdigit(address.getStreet().at(i))));
-    for(size_t i = 0;i<address.getLocality().size();i++)
-        (valid && (!isdigit(address.getLocality().at(i))));
-    string f4=split(address.getPostalCode()).at(0);
-    for(size_t i = 0;i<f4.size();i++)
-        (valid && isdigit(f4.at(i)));
-    string s3=split(address.getPostalCode()).at(1);
-    for(size_t i = 0;i<s3.size();i++)
-        (valid && isdigit(s3.at(i)));
+    valid && !isnum(to_string(address.getDoorNumber()));
+    valid && !isnum(address.getStreet());
+    valid && !isnum(address.getLocality());
+    vector<string> splitPC=split(address.getPostalCode());
+    valid && isnum(splitPC.at(0));
+    valid && isnum(splitPC.at(1));
+    return valid;
 
 
 }
