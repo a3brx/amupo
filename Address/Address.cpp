@@ -4,6 +4,13 @@
 
 
 using namespace std;
+
+Address::Address(){
+    this->street="";
+    this->postalCode="0000-000";
+    this->doorNumber=0;
+    this->locality="";
+}
 Address::Address(string st,string pC,unsigned short dN,string local){
     this->street = move(st);
     this->postalCode = move(pC);
