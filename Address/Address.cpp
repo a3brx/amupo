@@ -1,5 +1,6 @@
 #include "Address.h"
 #include "../System/System.h"
+#include "../utils/utils.h"
 #include <utility>
 
 
@@ -58,18 +59,11 @@ ostream & operator<<(ostream & out, const Address & address){
 istream & operator>>(istream &in, Address &address) {
     string aux;
     getline(in,aux);
-    unsigned pos = 0;
-    pos = aux.find('/');
-    address.street = aux.substr(0, pos);
-    aux = aux.substr(pos+1);
-    pos = aux.find('/');
-    address.doorNumber = stoul(aux.substr(0,pos));
-    aux = aux.substr(pos+1);
-    pos = aux.find('/');
-    address.postalCode = aux.substr(0,pos);
-    aux = aux.substr(pos+1);
-    if(aux.find('/') != string::npos)throw InvalidInput("Address");
-    address.locality = aux.substr(0,pos);
+    vector<string> auxe=split(aux,"/ ");
+    address.street = auxe.at(0);
+    address.doorNumber = stoi(auxe.at(1));
+    address.postalCode = auxe.at(2);
+    address.locality = auxe.at(4);
     return in;
 }
 
