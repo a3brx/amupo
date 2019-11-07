@@ -22,7 +22,7 @@ string trim(string toTrim){
 
 vector<string> split(string toSplit){
     vector<string> splitVec;
-    string toremovechars = " .-_*^`'+";
+    string toremovechars = " .-_*^`'+&%$#:;,/|=(){}[]?!«»<>";
     for(size_t i;i<toSplit.size();i++){
         if(toremovechars.find(toSplit.at(i))!=string::npos){
             splitVec.push_back(trim(toSplit.substr(0,toSplit.at(i))));
