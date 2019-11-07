@@ -35,11 +35,11 @@ public:
     void updateMuseum();                                        //Pedir input
     void updateMuseum(Museum* oldMuseum, Museum* newMuseum);
     void deleteMuseum();            //Pedir input
+};
 
-
-    class InvalidInput : exception {
-    public:
-        string type;
-        InvalidInput(string type) : type(move(type)) {};
-    };
+class InvalidInput : exception {
+private:
+    string type;
+public:
+    InvalidInput(string type) : type(move(type)) {};
 };

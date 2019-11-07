@@ -68,3 +68,13 @@ class IndividualCard:public Card{
 ///@param card The address pointing to a card.
 ///@return True if the cards is properly created.
 bool validCard(Card *card);
+
+class InvalidCard : exception{
+private:
+    unsigned char day;
+    unsigned char month;
+    unsigned short year;
+public:
+    InvalidCard(unsigned char d, unsigned char m, unsigned short y):
+            day(d), month(m), year(y) {};
+};

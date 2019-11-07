@@ -10,8 +10,6 @@ class Address{
     unsigned short doorNumber;
     string locality;
     public:
-    //Constructor(s)
-    Address();
     /// @brief Constructs an Address with the parameters.
     /// @param st The street of the Address.
     /// @param pC The postal code of the Address.
@@ -52,3 +50,5 @@ class Address{
     friend istream & operator>>(istream &in, Address & address);
 
 };
+
+bool validAddress(Address address);

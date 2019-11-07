@@ -53,6 +53,6 @@ bool validCard(Card *card) {
     valid && validDate(card->getAcquisitionDate().getDay(),card->getAcquisitionDate().getMonth(),card->getAcquisitionDate().getYear());
     valid && validDate(card->getBirthday().getDay(),card->getBirthday().getMonth(),card->getBirthday().getYear());
     for(size_t i;i<card->getName().size();i++)(valid && (!isdigit(card->getName().at(i))));
-    //valid && validAddress(Address);
+    valid && validAddress(card->getAddress());
     return valid;
 }

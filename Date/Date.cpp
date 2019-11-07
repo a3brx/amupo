@@ -220,7 +220,7 @@ istream &operator>>(istream &in, Date &date) {
     pos = aux.find('/');
     date.month = stoul(aux.substr(0,pos));
     aux = aux.substr(pos);
-    if (aux.find('/') != string::npos) throwInvalidInput("Date");
+    //eif (aux.find('/') != string::npos) throwInvalidInput("Date");
     date.year = stoul(aux.substr(0,pos));
     return in;
 }
