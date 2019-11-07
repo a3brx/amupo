@@ -7,3 +7,7 @@ JP
 -operator>> Date changed
 -validAddress não está completa
 -Construtor e destrutor do sistema
+
+COMMIT 19:24
+
+--------------------------------------------------------------
