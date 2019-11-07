@@ -7,10 +7,14 @@
 #include "../Museum/Museum.h"
 //#include "System/System.h"
 #include "../Table/Table.h"
+#include "../utils/utils.h"
 
 using namespace std;
 
 int main(){
-    MainMenu();
+    string teste="ola*eu$  sou muito #+fixe";
+    vector<string> vec=split(teste);
+    for(int i;i<vec.size();i++)cout<<vec.at(i);
+    //MainMenu();
     return 0;
 }
