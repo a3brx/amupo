@@ -47,3 +47,12 @@ float IndividualCard::cost = 52.9;
 float IndividualCard::getCost(){
     return cost;
 }
+
+bool validCard(Card *card) {
+    bool valid = true;
+    valid && validDate(card->getAcquisitionDate().getDay(),card->getAcquisitionDate().getMonth(),card->getAcquisitionDate().getYear());
+    valid && validDate(card->getBirthday().getDay(),card->getBirthday().getMonth(),card->getBirthday().getYear());
+    for(size_t i;i<card->getName().size();i++)(valid && (!isdigit(card->getName().at(i))));
+    //valid && validAddress(Address);
+    return valid;
+}

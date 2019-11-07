@@ -13,7 +13,7 @@ class Address{
     //Constructor(s)
     Address();
     Address(string st,string pC,unsigned short dN,string local);
-    /*Address(string postalCode,unsigned short doorNumber); future implementation*/
+    //Address(string postalCode,unsigned short doorNumber); future implementation
     //get methods
     string getStreet() const;
     string getPostalCode() const;

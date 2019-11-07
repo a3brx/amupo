@@ -42,3 +42,4 @@ class IndividualCard:public Card{
     float getCost();
     void setCost(float cost);
 };
+bool validCard(Card *card);
