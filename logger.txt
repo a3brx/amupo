@@ -2,4 +2,8 @@
 JP
 -Added trimSplit
 -Não percebi o uso do valid && na funcao validAddress. Não se pode omitir isso?
-
+-upper() foi para o utils
+-class InvalidAddress added
+-operator>> Date changed
+-validAddress não está completa
+-Construtor e destrutor do sistema
