@@ -12,10 +12,10 @@
 using namespace std;
 
 int main(){
-    string teste="ola*eu$  sou muito #+fixe";
+    string teste="Teste    *da*'}#Split/Function  .";
     vector<string> vec=split(teste);
     for(int i=0;i<vec.size();i++)
-        cout<<vec.at(i);
+        cout<<vec.at(i)<<endl;
     //MainMenu();
     return 0;
 }
