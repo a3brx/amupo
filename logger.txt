@@ -1,0 +1,5 @@
+11/7/2019
+JP
+-Added trimSplit
+-Não percebi o uso do valid && na funcao validAddress. Não se pode omitir isso?
+
