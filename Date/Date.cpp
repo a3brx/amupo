@@ -1,4 +1,6 @@
 #include "Date.h"
+#include "../utils/utils.h"
+#include <vector>
 
 using namespace std;
 
@@ -211,17 +213,13 @@ ostream& operator<<(ostream & out, const Date & date) {
 }
 
 istream &operator>>(istream &in, Date &date) {
+    if (!validDate(date)) throw InvalidDate(date.day,date.month, date.year);
     string aux;
     getline(in,aux);
-    unsigned pos = 0;
-    pos = aux.find('/');
-    date.day = stoul(aux.substr(0, pos));
-    aux = aux.substr(pos);
-    pos = aux.find('/');
-    date.month = stoul(aux.substr(0,pos));
-    aux = aux.substr(pos);
-    //eif (aux.find('/') != string::npos) throwInvalidInput("Date");
-    date.year = stoul(aux.substr(0,pos));
+    vector<string> auxe = trimSplit(aux,"/");
+    date.day = stoul(auxe[0]);
+    date.month = stoul(auxe[1]);
+    date.year = stoul(auxe[2]);
     return in;
 }
 
@@ -248,6 +246,16 @@ bool validDate(unsigned char day, unsigned char month, unsigned short year) {
         return bissextile(year);
     }
     return day <= daysMonth(month);
+}
+
+bool validDate(Date d) {
+    if (d.day <= 0 || d.month <= 0 || d.year == 0){
+        return false;
+    }
+    if (d.day == 29 && d.month == 2){
+        return bissextile(d.year);
+    }
+    return d.day <= daysMonth(d.month);
 }
 
 // ----------------------------------------------------------------------------------------------------

@@ -110,9 +110,12 @@ public:
     bool operator!=(const Date param) const;
     friend ostream &operator<<(ostream & out, const Date & date);
     friend istream &operator>>(istream & in, Date & date);
+
+    friend bool validDate(Date d);
 };
 bool bissextile(unsigned short year);
 bool validDate(unsigned char day, unsigned char month, unsigned short year);
+bool validDate(Date d);
 unsigned char daysMonth(unsigned char month);
 unsigned short daysYear(unsigned short year);
 unsigned abs(const Date date);
