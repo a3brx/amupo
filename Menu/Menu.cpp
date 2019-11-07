@@ -1,4 +1,6 @@
 #include "Menu.h"
+#include "../utils/utils.h"
+
 using namespace std;
 
 /*
@@ -28,15 +30,7 @@ bool clear() {
 }
 */
 
-string upper(const string & s) {
-    string ns;
-    for (char i : s)
-        if (i >= 'a' && i <= 'z')
-            ns.push_back(i - 32);
-        else
-            ns.push_back(i);
-    return ns;
-}
+
 
 string Menu::readOption() const {
     string input;
@@ -46,6 +40,7 @@ string Menu::readOption() const {
 }
 
 bool Menu::validOption(const string & option) const {
+    if (option.size() != 1) return false;
     vector<vector<string>> o = getOptions();
     vector<string> v;
     v.reserve(o.size());

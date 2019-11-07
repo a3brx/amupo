@@ -16,6 +16,9 @@ int main(){
     vector<string> vec=split(teste);
     for(int i=0;i<vec.size();i++)
         cout<<vec.at(i)<<endl;
+
+    //System();
     //MainMenu();
+    //~System()
     return 0;
 }

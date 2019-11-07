@@ -11,6 +11,9 @@ private:
     vector<Card*> cards;
     vector<Museum*> museums;
 public:
+    System();                                               //Ler ficheiros no inicio
+    ~System();                                              //Escrever nos ficheiros no fim
+
     void createEvent();                                     //Ler do input, dar nome ao event
     void createEvent(Event ev);
     Event* readEvent();                                     //Pesquisa
