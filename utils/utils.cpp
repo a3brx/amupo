@@ -56,9 +56,8 @@ vector<string> split(string toSplit,string splitPoint){
 }
 
 bool isnum(string toConvert){
-    string nums="0123456789";
     for(size_t i=0;i<toConvert.size();i++){
-        if(nums.find(toConvert.at(i))==string::npos)return false;
+        if(!isdigit(toConvert.at(i)))return false;
     }
     return true;
 }
