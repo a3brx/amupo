@@ -24,7 +24,7 @@ vector<string> split(string toSplit){
     vector<string> splitVec;
     string temp="";
     string toremovechars = " .-_*^`'+&%$#:;,/|=(){}[]?!«»<>";
-    for(size_t i=0;i<toSplit.size()+1;i++){
+    for(size_t i=0;i<toSplit.size();i++){
         if(toremovechars.find(toSplit.at(i))!=string::npos){
             if(temp=="")continue;
             splitVec.push_back(trim(temp));
@@ -33,6 +33,7 @@ vector<string> split(string toSplit){
             temp+=toSplit.at(i);
         }
     }
+    if(temp!="")splitVec.push_back(trim(temp));
     return splitVec;
 }
 
@@ -40,7 +41,7 @@ vector<string> split(string toSplit){
 vector<string> split(string toSplit,string splitPoint){
     vector<string> splitVec;
     string temp="";
-    for(size_t i=0;i<toSplit.size()+1;i++){
+    for(size_t i=0;i<toSplit.size();i++){
         if(splitPoint.find(toSplit.at(i))!=string::npos){
             if(temp=="")continue;
             splitVec.push_back(trim(temp));
@@ -49,6 +50,7 @@ vector<string> split(string toSplit,string splitPoint){
             temp+=toSplit.at(i);
         }
     }
+    if(temp!="")splitVec.push_back(trim(temp));
     return splitVec;
 }
 
