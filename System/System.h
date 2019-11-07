@@ -18,7 +18,7 @@ public:
     void updateEvent();                                     //Pedir input
     void updateEvent(Event* oldEvent, Event* newEvent);
     void deleteEvent();                                     //Pedir input
-    void deleteEvent(string name)
+    void deleteEvent(string name);
 
     void createCard();                                      //Ler do input
     void createCard(Card *card);
