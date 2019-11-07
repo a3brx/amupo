@@ -70,7 +70,7 @@ istream & operator>>(istream &in, Address &address) {
     if (!validAddress(address)) throw InvalidAddress(address);
     string aux;
     getline(in,aux);
-    vector<string> auxe = trimSplit(aux,"/");
+    vector<string> auxe = split(aux,"/ ");
     address.street = auxe.at(0);
     address.doorNumber = stoi(auxe.at(1));
     address.postalCode = auxe.at(2);
@@ -80,15 +80,13 @@ istream & operator>>(istream &in, Address &address) {
 
 bool validAddress(Address address){
     bool valid= true;
-    valid && !isnum(to_string(address.getDoorNumber()));
-    valid && !isnum(address.getStreet());
-    valid && !isnum(address.getLocality());
+    valid = valid && !isnum(to_string(address.getDoorNumber()));
+    valid = valid && !isnum(address.getStreet());
+    valid = valid && !isnum(address.getLocality());
     vector<string> splitPC=split(address.getPostalCode());
-    valid && isnum(splitPC.at(0));
-    valid && isnum(splitPC.at(1));
+    valid = valid && isnum(splitPC.at(0));
+    valid = valid && isnum(splitPC.at(1));
     return valid;
-
-
 }
 
 
