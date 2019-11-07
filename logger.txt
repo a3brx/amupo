@@ -11,3 +11,12 @@ JP
 COMMIT 19:24
 
 --------------------------------------------------------------
+11/7/2019
+JR
+-Comentei a trimSplit porque a split ja faz isso e a split overloaded pode fazer se assim quiseres nomeadamente,
+se passares como argumento qualquer string que tenha um espaço. Por exemplo: split(string,"&= ."), neste caso a string ja
+vai ser split e trimmed.
+-o valid && basicamente altera o valor do valid para false caso a segunda condição seja falsa assim tu podes testar
+se é um valid address retornando apenas o valid.
+
+COMMIT 23:42

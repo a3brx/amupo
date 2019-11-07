@@ -62,9 +62,9 @@ bool isnum(string toConvert){
     return true;
 }
 
-vector<string> trimSplit(string str, string splitPoint) {
+/*vector<string> trimSplit(string str, string splitPoint) {
     return split(trim(str), splitPoint);
-}
+}*/
 
 string upper(const string & s) {
     string ns;

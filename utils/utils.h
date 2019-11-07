@@ -35,10 +35,10 @@ vector<string> split(string toSplit,string splitPoint);
 ///@return Returns true if the string is convertible to number;
 bool isnum(string toConvert);
 
-///@brief Trims and splits a string
+/*///@brief Trims and splits a string
 ///@param str String to be trimmed and split
 ///@return Vector of Strings
-vector<string> trimSplit(string str, string splitPoint);
+vector<string> trimSplit(string str, string splitPoint);*/
 
 ///@brief Uppercase a string
 ///@param s String to be uppercase
