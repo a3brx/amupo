@@ -25,3 +25,7 @@ vector<string> split(string toSplit);
 ///@param splitPoint Set of char that decides how the string should be split.
 ///@return Vector of strings.
 vector<string> split(string toSplit,string splitPoint);
+///@brief Recognizes if a string is a number.
+///@param toConvert String to check if it's a number.
+///@return Returns true if the string is convertible to number;
+bool isnum(string toConvert);

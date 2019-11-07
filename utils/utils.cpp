@@ -54,3 +54,10 @@ vector<string> split(string toSplit,string splitPoint){
     return splitVec;
 }
 
+bool isnum(string toConvert){
+    string nums="0123456789";
+    for(size_t i=0;i<toConvert.size();i++){
+        if(nums.find(toConvert.at(i))==string::npos)return false;
+    }
+    return true;
+}
