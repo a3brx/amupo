@@ -210,6 +210,21 @@ ostream& operator<<(ostream & out, const Date & date) {
     return out;
 }
 
+istream &operator>>(istream &in, Date &date) {
+    string aux;
+    getline(in,aux);
+    unsigned pos = 0;
+    pos = aux.find('/');
+    date.day = stoul(aux.substr(0, pos));
+    aux = aux.substr(pos);
+    pos = aux.find('/');
+    date.month = stoul(aux.substr(0,pos));
+    aux = aux.substr(pos);
+    if (aux.find('/') != string::npos) throwInvalidInput("Date");
+    date.year = stoul(aux.substr(0,pos));
+    return in;
+}
+
 // ----------------------------------------------------------------------------------------------------
 //                                Returns true if a year is a leap year
 // ----------------------------------------------------------------------------------------------------

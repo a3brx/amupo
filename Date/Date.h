@@ -109,6 +109,7 @@ public:
     /// @return Returns true if the dates are different, false otherwise.
     bool operator!=(const Date param) const;
     friend ostream &operator<<(ostream & out, const Date & date);
+    friend istream &operator>>(istream & in, Date & date);
 };
 bool bissextile(unsigned short year);
 bool validDate(unsigned char day, unsigned char month, unsigned short year);

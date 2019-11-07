@@ -6,7 +6,11 @@ using namespace std;
 
 Museum::Museum(): address(Address()), capacity(0) {}
 
-Museum::Museum(Address adr, unsigned cap = 0): address(move(adr)), capacity(cap) {}
+Museum::Museum(Address adr, unsigned cap = 0, string name = ""): address(move(adr)), capacity(cap) {}
+
+string Museum::getName() {
+    return this->name;
+}
 
 Address Museum::getAddress() {
     return this->address;
@@ -14,6 +18,10 @@ Address Museum::getAddress() {
 
 unsigned Museum::getCapacity() {
     return this->capacity;
+}
+
+void Museum::setName(string name) {
+    this->name = name;
 }
 
 void Museum::setAddress(Address adr) {
@@ -28,3 +36,10 @@ ostream & operator<<(ostream & out, const Museum & mus) {
     out << "Address: " << mus.address << ", Capacity: " << mus.capacity;
     return out;
 }
+
+istream & operator>>(istream & in, Museum &museum) {
+    in >> museum.name >> museum.address >> museum.capacity;
+    return in;
+}
+
+

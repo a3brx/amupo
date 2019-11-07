@@ -1,6 +1,9 @@
 #include "Address.h"
 
 #include <utility>
+#include "System.h"
+
+using namespace std;
 
 Address::Address():doorNumber(0){
     this->street="";
@@ -52,6 +55,23 @@ ostream & operator<<(ostream & out, const Address & address){
     return out;
 }
 
+istream & operator>>(istream &in, Address &address) {
+    string aux;
+    getline(in,aux);
+    unsigned pos = 0;
+    pos = aux.find(',');
+    address.street = aux.substr(0, pos);
+    aux = aux.substr(pos);
+    pos = aux.find(',');
+    address.doorNumber = stoul(aux.substr(0,pos));
+    aux = aux.substr(pos);
+    pos = aux.find(',');
+    address.postalCode = aux.substr(0,pos);
+    aux = aux.substr(pos);
+    if (aux.find(',') != string::npos) throwInvalidInput("Address");
+    address.locality = aux.substr(0,pos);
+    return in;
+}
 
 
 

@@ -27,4 +27,6 @@ class Address{
     //operators
     bool operator==(const Address& param) const;
     friend ostream & operator<<(ostream & out, const Address & address);
+    friend istream & operator>>(istream &in, Address & address);
+
 };
