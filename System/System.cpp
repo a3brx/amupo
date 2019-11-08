@@ -12,8 +12,9 @@ System::System(string fileName) {
     getline(file,namecards);
     getline(file,namemuseus);
     file.close();
-    Card *c;
+    Client *c;
     Museum *m;
+    Event *e;
     file.open(namemuseus);
     while(!file.eof()){
         file>>*m;
@@ -28,7 +29,6 @@ System::System(string fileName) {
     file.close();
     file.open(nameevents);
     while(!file.eof()){
-        Event e;
         file>>*e;
         this->events.push_back(e);
     }

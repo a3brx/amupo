@@ -1,17 +1,10 @@
 #pragma once
-#include "../Address/Address.h"
-#include "../Date/Date.h"
-#include "../utils/utils.h"
+#include "../Person/Person.h"
 #include <vector>
-class Card{
-    unsigned code;
-    string name;
+class Client:public Person{
     const Date acquisitionDate;
-    const Date birthday;
-    Address address;
-    unsigned contact;
     public:
-    Card(string n, Date acqdate, Date bday, Address ad, unsigned cont);
+    Client(string n, Date acqdate, Date bday, Address ad, unsigned cont);
 
     ///@brief Gets the code of card owner.
     ///@return The code attribute of the card.
@@ -55,34 +48,34 @@ class Card{
     ///@param cont The contact to be attributed to the card.
     void setContact(unsigned cont);
 
-    friend istream & operator>>(istream & in, Card *card);
+    friend istream & operator>>(istream & in, Client *card);
 };
 
-class SilverCard:public Card{
+class SilverClient: public Client{
     private:
     static float cost;
     public:
-    SilverCard(string n, Date acqdate, Date bday, Address ad, unsigned cont);
+    SilverClient(string n, Date acqdate, Date bday, Address ad, unsigned cont);
     float getCost();
     ///@brief Sets the Cost of the SilverCard.
     ///@param cost The cost to be attributed to the card.
     void setCost(float cost);
 };
-class UniCard:public Card{
+class UniClient: public Client{
     private:
     static float cost;
     public:
-    UniCard(string n, Date acqdate, Date bday, Address ad, unsigned cont);
+    UniClient(string n, Date acqdate, Date bday, Address ad, unsigned cont);
     float getCost();
     ///@brief Sets the Cost of the UniCard.
     ///@param cost The cost to be attributed to the card.
     void setCost(float cost);
 };
-class IndividualCard:public Card{
+class IndividualClient: public Client{
     private:
     static float cost;
     public:
-    IndividualCard(string n, Date acqdate, Date bday, Address ad, unsigned cont);
+    IndividualClient(string n, Date acqdate, Date bday, Address ad, unsigned cont);
     float getCost();
     ///@brief Sets the Cost of the IndividualCard.
     ///@param cost The cost to be attributed to the card.
@@ -91,14 +84,14 @@ class IndividualCard:public Card{
 ///@brief Tests if a card has its attributes set right.
 ///@param card The address pointing to a card.
 ///@return True if the cards is properly created.
-bool validCard(Card *card);
+bool validCard(Client *card);
 
-class InvalidCard : exception{
+class InvalidClient : exception{
 private:
     unsigned char day;
     unsigned char month;
     unsigned short year;
 public:
-    InvalidCard(unsigned char d, unsigned char m, unsigned short y):
+    InvalidClient(unsigned char d, unsigned char m, unsigned short y):
             day(d), month(m), year(y) {};
 };

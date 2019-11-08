@@ -81,12 +81,12 @@ istream & operator>>(istream &in, Address &address) {
 Address::Address(string adrs) {
 //rua nosao, 12 1237-543 Vila Nova de Gaia
     vector<string> vecStr = trim(split(adrs, ","));
-    this->street = vecStr[0];
-    adrs = vecStr[1];
+    this->street = vecStr.at(0);
+    adrs = vecStr.at(1);
     vecStr = trim(split(adrs, " "));
-    this->doorNumber = stoi(vecStr[0]);
-    this->postalCode = vecStr[1];
-    vecStr.erase(vecStr.begin(),vecStr.begin()++)
+    this->doorNumber = stoi(vecStr.at(0));
+    this->postalCode = vecStr.at(1);
+    vecStr.erase(vecStr.begin(),++vecStr.begin());
     this->locality = join(vecStr);
 }
 

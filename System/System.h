@@ -3,14 +3,14 @@
 #include <vector>
 #include <fstream>
 #include "../Event/Event.h"
-#include "../Card/Card.h"
+#include "../Card/Client.h"
 #include "../Museum/Museum.h"
 
 class System{
 private:
     string fileName;
     vector<Event*> events;
-    vector<Card*> cards;
+    vector<Client*> cards;
     vector<Museum*> museums;
 public:
     System(string fileName);                                               //Ler ficheiros no inicio
@@ -26,11 +26,11 @@ public:
     void deleteEvent(string name);
 
     void createCard();                                      //Ler do input
-    void createCard(Card *card);
-    Card* readCard();                                       //Pesquisa
-    vector<Card*> readCards();                              //Mostra Tabela com todos Cards
+    void createCard(Client *card);
+    Client* readCard();                                       //Pesquisa
+    vector<Client*> readCards();                              //Mostra Tabela com todos Cards
     void updateCard();                                      //Pedir input
-    void updateCard(Card* oldCard, Card* newCard);
+    void updateCard(Client* oldCard, Client* newCard);
     void deleteCard();              //Pedir input
     void deleteCard(string name);
 
