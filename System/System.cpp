@@ -17,8 +17,11 @@ System::System(string fileName) {
     Event *e;
     file.open(namemuseus);
     while(!file.eof()){
-        file>>*m;
+        cout << "A" << endl;
+        file >> m;
+        cout << "B" << endl;
         this->museums.push_back(new Museum(*m));
+        cout << "C" << endl;
     }
     file.close();
     file.open(namecards);

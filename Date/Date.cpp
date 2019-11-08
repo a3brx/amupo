@@ -213,12 +213,9 @@ ostream& operator<<(ostream & out, const Date & date) {
 }
 
 istream &operator>>(istream &in, Date &date) {
-    in >> date.day;
-    in.ignore(1);
-    date.month;
-    in.ignore(1);
-    date.year;
-    if (!validDate(date)) throw InvalidDate(date.day,date.month, date.year);
+    string input;
+    cin >> input;
+    date = Date(input);
     return in;
 }
 
@@ -245,16 +242,6 @@ bool validDate(unsigned char day, unsigned char month, unsigned short year) {
         return bissextile(year);
     }
     return day <= daysMonth(month);
-}
-
-bool validDate(Date d) {
-    if (d.day <= 0 || d.month <= 0 || d.year == 0){
-        return false;
-    }
-    if (d.day == 29 && d.month == 2){
-        return bissextile(d.year);
-    }
-    return d.day <= daysMonth(d.month);
 }
 
 // ----------------------------------------------------------------------------------------------------

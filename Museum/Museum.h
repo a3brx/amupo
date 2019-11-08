@@ -23,6 +23,6 @@ class Museum{
     void setCapacity(unsigned cap);
 
     friend ostream & operator<<(ostream & out, const Museum & mus);
-    friend istream & operator>>(istream & in, Museum &museum);
+    friend istream & operator>>(istream & in, Museum *museum);
 };
 

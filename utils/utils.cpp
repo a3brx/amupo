@@ -1,7 +1,9 @@
 #include "utils.h"
 
+#include <utility>
+
 string ltrim(string toTrim){
-    size_t found=toTrim.find_first_not_of(" ");
+    size_t found=toTrim.find_first_not_of(' ');
     if (found!=string::npos)
     {
         toTrim=toTrim.substr(found);
@@ -10,7 +12,7 @@ string ltrim(string toTrim){
 }
 
 string rtrim(string toTrim){
-    size_t found=toTrim.find_last_not_of(" ");
+    size_t found=toTrim.find_last_not_of(' ');
     if (found!=string::npos)
     {
         toTrim=toTrim.substr(0,found+1);
@@ -19,19 +21,19 @@ string rtrim(string toTrim){
 }
 
 string trim(string toTrim){
-    return rtrim(ltrim(toTrim));
+    return rtrim(ltrim(move(toTrim)));
 }
 
 vector<string> trim(vector<string> toTrim){
-    for(size_t i=0;i<toTrim.size();i++){
-        toTrim.at(i)=rtrim(ltrim(toTrim.at(i)));
+    for(auto & i : toTrim){
+        i=rtrim(ltrim(i));
     }
     return toTrim;
 }
 
 void trim(vector<string> *toTrim){
-    for(size_t i=0;i<toTrim->size();i++){
-        toTrim->at(i)=rtrim(ltrim(toTrim->at(i)));
+    for(auto & i : *toTrim){
+        i=rtrim(ltrim(i));
     }
 }
 
@@ -68,9 +70,9 @@ vector<string> split(const string& toSplit,const string& splitPoint){
     return splitVec;
 }
 
-bool isnum(string toConvert){
-    for(size_t i=0;i<toConvert.size();i++){
-        if(!isdigit(toConvert.at(i)))return false;
+bool isnum(const string& toConvert){
+    for(char i : toConvert){
+        if(!isdigit(i))return false;
     }
     return true;
 }

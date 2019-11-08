@@ -13,8 +13,8 @@
 using namespace std;
 
 int main(){
-    string test="teste.txt";
-    System system=System(test);
+    string test="../Database/teste.txt";
+    System system(test);
     //MainMenu();
     return 0;
 }

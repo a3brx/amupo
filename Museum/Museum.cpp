@@ -35,8 +35,10 @@ ostream & operator<<(ostream & out, const Museum & mus) {
     return out;
 }
 
-istream & operator>>(istream & in, Museum &museum) {
-    in >> museum.name >> museum.capacity >> museum.address;
+istream & operator>>(istream & in, Museum * museum) {
+    in >> museum->name;
+    in >> museum->capacity;
+    in >> museum->address;
     return in;
 }
 
