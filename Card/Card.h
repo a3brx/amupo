@@ -11,6 +11,8 @@ class Card{
     public:
     Card(string n, Date acqdate, Date bday, Address ad, unsigned cont);
 
+    Card();
+
     ///@brief Gets the code of card owner.
     ///@return The code attribute of the card.
     unsigned getCode() const;
@@ -52,12 +54,15 @@ class Card{
     ///@brief Sets the Contact of the card.
     ///@param cont The contact to be attributed to the card.
     void setContact(unsigned cont);
+
+    friend istream & operator>>(istream & in, Card &card);
 };
 
 class SilverCard:public Card{
     private:
     static float cost;
     public:
+    SilverCard(Card c);
     float getCost();
     ///@brief Sets the Cost of the SilverCard.
     ///@param cost The cost to be attributed to the card.
@@ -67,6 +72,7 @@ class UniCard:public Card{
     private:
     static float cost;
     public:
+    UniCard(Card c);
     float getCost();
     ///@brief Sets the Cost of the UniCard.
     ///@param cost The cost to be attributed to the card.
@@ -76,6 +82,7 @@ class IndividualCard:public Card{
     private:
     static float cost;
     public:
+    IndividualCard(Card c);
     float getCost();
     ///@brief Sets the Cost of the IndividualCard.
     ///@param cost The cost to be attributed to the card.

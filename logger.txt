@@ -27,3 +27,6 @@ COMMIT 23:48
 JR
 -Função trim overloaded para dar trim a vetores de strings pode retornar um vetor trimmed ou o vetor pode ser passado por
 referência.
+
+Primeira tentativa a criar o codigo que le os ficheiros do system mas encontrei vários problemas nomeadamente com os construtores
+do card.

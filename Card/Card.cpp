@@ -48,6 +48,21 @@ void Card::setContact(unsigned cont){
     contact = cont;
 }
 
+istream &operator>>(istream &in, Card &card) {
+
+
+
+
+    return in;
+}
+
+Card::Card() {
+    this->code=0;
+    this->name="";
+    this->address=Address();
+    contact=0;
+}
+
 float SilverCard::cost = 30;
 float SilverCard::getCost(){
     return cost;
@@ -61,6 +76,10 @@ float UniCard::getCost(){
 float IndividualCard::cost = 52.9;
 float IndividualCard::getCost(){
     return cost;
+}
+
+IndividualCard::IndividualCard(Card c) {
+
 }
 
 bool validCard(Card *card) {
