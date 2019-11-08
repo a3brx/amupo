@@ -68,19 +68,24 @@ float SilverCard::getCost(){
     return cost;
 }
 
+SilverCard::SilverCard(string n, Date acqdate, Date bday, Address ad, unsigned cont) : Card(n, acqdate, bday, ad,
+                                                                                            cont) {}
+
 float UniCard::cost = 32.45;
 float UniCard::getCost(){
     return cost;
 }
+
+UniCard::UniCard(string n, Date acqdate, Date bday, Address ad, unsigned cont) : Card(n, acqdate, bday, ad, cont) {}
 
 float IndividualCard::cost = 52.9;
 float IndividualCard::getCost(){
     return cost;
 }
 
-IndividualCard::IndividualCard(Card c) {
+IndividualCard::IndividualCard(string n, Date acqdate, Date bday, Address ad, unsigned cont) : Card(n, acqdate, bday,
+                                                                                                    ad, cont) {}
 
-}
 
 bool validCard(Card *card) {
     bool valid = true;

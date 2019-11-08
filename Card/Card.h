@@ -62,7 +62,7 @@ class SilverCard:public Card{
     private:
     static float cost;
     public:
-    SilverCard(Card c);
+    SilverCard(string n, Date acqdate, Date bday, Address ad, unsigned cont);
     float getCost();
     ///@brief Sets the Cost of the SilverCard.
     ///@param cost The cost to be attributed to the card.
@@ -72,7 +72,7 @@ class UniCard:public Card{
     private:
     static float cost;
     public:
-    UniCard(Card c);
+    UniCard(string n, Date acqdate, Date bday, Address ad, unsigned cont);
     float getCost();
     ///@brief Sets the Cost of the UniCard.
     ///@param cost The cost to be attributed to the card.
@@ -82,7 +82,7 @@ class IndividualCard:public Card{
     private:
     static float cost;
     public:
-    IndividualCard(Card c);
+    IndividualCard(string n, Date acqdate, Date bday, Address ad, unsigned cont);
     float getCost();
     ///@brief Sets the Cost of the IndividualCard.
     ///@param cost The cost to be attributed to the card.
