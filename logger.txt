@@ -1,4 +1,4 @@
-11/7/2019
+7/11/2019
 JP
 -Added trimSplit
 -Não percebi o uso do valid && na funcao validAddress. Não se pode omitir isso?
@@ -11,7 +11,7 @@ JP
 COMMIT 19:24
 
 --------------------------------------------------------------
-11/7/2019
+7/11/2019
 JR
 -Comentei a trimSplit porque a split ja faz isso e a split overloaded pode fazer se assim quiseres nomeadamente,
 se passares como argumento qualquer string que tenha um espaço. Por exemplo: split(string,"&= ."), neste caso a string ja
@@ -21,3 +21,9 @@ se é um valid address retornando apenas o valid.
 -mudei o valid address de forma a usar a util isnum() que permite substituir todos os for loops.
 
 COMMIT 23:48
+
+--------------------------------------------------------------
+8/11/2019
+JR
+-Função trim overloaded para dar trim a vetores de strings pode retornar um vetor trimmed ou o vetor pode ser passado por
+referência.

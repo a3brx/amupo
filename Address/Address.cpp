@@ -70,11 +70,11 @@ istream & operator>>(istream &in, Address &address) {
     if (!validAddress(address)) throw InvalidAddress(address);
     string aux;
     getline(in,aux);
-    vector<string> auxe = split(aux,"/ ");
+    vector<string> auxe = trim(split(aux,"/"));
     address.street = auxe.at(0);
     address.doorNumber = stoi(auxe.at(1));
     address.postalCode = auxe.at(2);
-    address.locality = auxe.at(4);
+    address.locality =auxe.at(4);
     return in;
 }
 

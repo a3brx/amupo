@@ -19,6 +19,15 @@ string rtrim(string toTrim);
 ///@return String trimmed.
 string trim(string toTrim);
 
+///@brief Removes all spaces to the left and to the right of the elements of the vector.
+///@param toTrim Vector to have its elements trimmed.
+///@return Vector trimmed.
+vector<string> trim(vector<string> toTrim);
+
+///@brief Removes all spaces to the left and to the right of the elements of the vector.
+///@param toTrim Vector to have its elements trimmed.
+void trim(vector<string> *toTrim);
+
 ///@brief Creates a vector split by the string the user entered.
 ///@param toSplit String to be separated.
 ///@return Vector of strings

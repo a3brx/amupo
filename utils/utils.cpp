@@ -22,6 +22,19 @@ string trim(string toTrim){
     return ltrim(rtrim(toTrim));
 }
 
+vector<string> trim(vector<string> toTrim){
+    for(size_t i=0;i<toTrim.size();i++){
+        toTrim.at(i)=ltrim(rtrim(toTrim.at(i)));
+    }
+    return toTrim;
+}
+
+void trim(vector<string> *toTrim){
+    for(size_t i=0;i<toTrim->size();i++){
+        toTrim->at(i)=ltrim(rtrim(toTrim->at(i)));
+    }
+}
+
 vector<string> split(string toSplit){
     vector<string> splitVec;
     string temp="";
