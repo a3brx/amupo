@@ -1,27 +1,25 @@
 #pragma once
 #include <iostream>
 #include <string>
+
 using namespace std;
-//Teste1
+
 class Address{
-    private:
+private:
     string street;
     string postalCode;
     unsigned short doorNumber;
     string locality;
 
-    public:
-    Address();
-
+public:
     /// @brief Constructs an Address with the parameters.
     /// @param st The street of the Address.
     /// @param pC The postal code of the Address.
     /// @param dN The door number of the Address.
     /// @param local The local of the Address.
     Address(string st,string pC,unsigned short dN,string local);
-    //Address(string postalCode,unsigned short doorNumber); future implementation
 
-    Address(string adrs);
+    explicit Address(string adrs);
 
     ///@brief Gets the street of address.
     ///@return The street attribute of the address.
@@ -61,20 +59,21 @@ class Address{
     /// @return Returns true if two objects of type Date are equal.
     bool operator==(const Address& param) const;
     friend ostream & operator<<(ostream & out, const Address & address);
-    friend istream & operator>>(istream &in, Address & address);
+    friend istream & operator>>(istream & in, Address * address);
 
     friend class InvalidAddress;
 };
 
-bool validAddress(Address address);
-
-class InvalidAddress : exception {
+class InvalidAddress : public exception {
 public:
-    string street;
+    const string street;
     string postalCode;
     unsigned short doorNumber{};
     string locality;
     InvalidAddress() = default;
-    InvalidAddress(Address ad) : street(ad.street), postalCode(ad.postalCode),
-        doorNumber(ad.doorNumber), locality(ad.locality) {}
+    explicit InvalidAddress(const Address& address) :
+        street(address.street),
+        postalCode(address.postalCode),
+        doorNumber(address.doorNumber),
+        locality(address.locality) {}
 };

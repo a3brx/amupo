@@ -6,19 +6,24 @@
 
 using namespace std;
 
-Address::Address(){
-    this->street="";
-    this->postalCode="0000-000";
-    this->doorNumber=0;
-    this->locality="";
-}
-
 Address::Address(string st,string pC,unsigned short dN,string local){
     this->street = move(st);
     this->postalCode = move(pC);
     this->doorNumber=dN;
     this->locality = move(local);
 
+}
+
+Address::Address(string adrs) {
+//rua nosao, 12 1237-543 Vila Nova de Gaia
+    vector<string> vecStr = trim(split(adrs, ","));
+    this->street = vecStr.at(0);
+    adrs = vecStr.at(1);
+    vecStr = trim(split(adrs, " "));
+    this->doorNumber = stoi(vecStr.at(0));
+    this->postalCode = vecStr.at(1);
+    vecStr.erase(vecStr.begin(),++vecStr.begin());
+    this->locality = join(vecStr);
 }
 
 string Address::getStreet() const{
@@ -67,34 +72,9 @@ ostream & operator<<(ostream & out, const Address & address){
     return out;
 }
 
-istream & operator>>(istream &in, Address &address) {
+istream & operator>>(istream & in, Address * address) {
     string aux;
     getline(in,aux);
-    address = Address(aux);
+    address = new Address(aux);
     return in;
 }
-
-Address::Address(string adrs) {
-//rua nosao, 12 1237-543 Vila Nova de Gaia
-    vector<string> vecStr = trim(split(adrs, ","));
-    this->street = vecStr.at(0);
-    adrs = vecStr.at(1);
-    vecStr = trim(split(adrs, " "));
-    this->doorNumber = stoi(vecStr.at(0));
-    this->postalCode = vecStr.at(1);
-    vecStr.erase(vecStr.begin(),++vecStr.begin());
-    this->locality = join(vecStr);
-}
-
-bool validAddress(Address address){
-    bool valid= true;
-    valid = valid && !isnum(to_string(address.getDoorNumber()));
-    valid = valid && !isnum(address.getStreet());
-    valid = valid && !isnum(address.getLocality());
-    vector<string> splitPC=split(address.getPostalCode());
-    valid = valid && isnum(splitPC.at(0));
-    valid = valid && isnum(splitPC.at(1));
-    return valid;
-}
-
-
