@@ -1,5 +1,7 @@
 #include "../Person/Person.h"
 
+#include <utility>
+
 
 
 string Person::getName() const{
@@ -30,9 +32,7 @@ void Person::setContact(unsigned cont){
     contact = cont;
 }
 
-Person::Person(string n, Date bday, Address ad, unsigned cont):birthday(bday) {
-    this->address=ad;
-    this->name=n;
+Person::Person(string n, Date bday, Address ad, unsigned cont) : name(move(n)), birthday(bday), address(move(ad)) {
     this->contact=cont;
 }
 

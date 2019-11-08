@@ -19,7 +19,7 @@ public:
     /// @param local The local of the Address.
     Address(string st,string pC,unsigned short dN,string local);
 
-    explicit Address(string adrs);
+    Address(string adrs);
 
     ///@brief Gets the street of address.
     ///@return The street attribute of the address.
