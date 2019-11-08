@@ -10,7 +10,7 @@ class System{
 private:
     string fileName;
     vector<Event*> events;
-    vector<Client*> cards;
+    vector<Person*> persons;
     vector<Museum*> museums;
 public:
     System(string fileName);                                               //Ler ficheiros no inicio

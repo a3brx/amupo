@@ -11,11 +11,17 @@ System::System(string fileName) {
     getline(file,nameevents);
     getline(file,namecards);
     getline(file,namemuseus);
+    vector<string> aux=split(fileName,"/");
+    aux.pop_back();
+    string path=join(aux,'/');
+    nameevents=(path+nameevents);
+    namecards=path+namecards;
+    namemuseus=path+namemuseus;
     file.close();
-    Client *c;
+    Person *c;
     Museum *m;
     Event *e;
-    file.open(namemuseus);
+    /*file.open(namemuseus);
     while(!file.eof()){
         cout << "A" << endl;
         file >> m;
@@ -23,19 +29,21 @@ System::System(string fileName) {
         this->museums.push_back(new Museum(*m));
         cout << "C" << endl;
     }
-    file.close();
+    file.close();*/
     file.open(namecards);
     while(!file.eof()){
+        cout<<"A"<<endl;
         file>>c;
-        this->cards.push_back(c);
+        cout<<"B"<<endl;
+        this->persons.push_back(c);
     }
-    file.close();
+    file.close();/*
     file.open(nameevents);
     while(!file.eof()){
         file>>*e;
         this->events.push_back(e);
     }
-    file.close();
+    file.close();*/
 }
 
 System::~System() {

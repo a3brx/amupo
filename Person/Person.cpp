@@ -45,15 +45,19 @@ Date Client::getAcquisitionDate() const{
 Client::Client(string n, Date acqdate, Date bday, Address ad, unsigned cont) : Person(n, bday, move(ad), cont), acquisitionDate(acqdate) {}
 
 istream &operator>>(istream &in, Person *person) {
-   signed char type;
+   signed short type;
    in>>type;
    string aux;
    getline(in,aux,'\n');
+   Address *ad;
+   //in >> ad;
+   //cout<<*ad;
    vector<string> auxvec=trim(split(aux,"|"));
+    cout<<"asas"<<endl;
    switch (type) {
        case -1:
-           person=new Person(auxvec.at(0), Date(auxvec.at(1)), Address(auxvec.at(3)),
-                             stoi(auxvec.at(4)));
+           person=new Person(auxvec.at(0), Date(auxvec.at(1)),Address(auxvec.at(2)),stoi(auxvec.at(3)));
+           break;
        case 0:
            person = new IndividualClient(auxvec.at(0), Date(auxvec.at(1)), Date(auxvec.at(2)), Address(auxvec.at(3)),
                                        stoi(auxvec.at(4)));
