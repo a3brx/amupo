@@ -14,7 +14,7 @@ using namespace std;
 
 int main(){
     string test="teste.txt";
-//    System system=System(test);
+    System system=System(test);
     //MainMenu();
     return 0;
 }

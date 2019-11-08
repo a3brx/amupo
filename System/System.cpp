@@ -35,3 +35,7 @@ System::System(string fileName) {
     file.close();
 }
 
+System::~System() {
+
+}
+
