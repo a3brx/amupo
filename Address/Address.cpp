@@ -78,6 +78,18 @@ istream & operator>>(istream &in, Address &address) {
     return in;
 }
 
+Address::Address(string adrs) {
+//rua nosao, 12 1237-543 Vila Nova de Gaia
+    vector<string> vecStr = trim(split(adrs, ","));
+    this->street = vecStr[0];
+    adrs = vecStr[1];
+    vecStr = trim(split(adrs, " "));
+    this->doorNumber = stoi(vecStr[0]);
+    this->postalCode = vecStr[1];
+    vecStr.erase(vecStr.begin(),vecStr.begin()++)
+    this->locality = join(vecStr);
+}
+
 bool validAddress(Address address){
     bool valid= true;
     valid = valid && !isnum(to_string(address.getDoorNumber()));

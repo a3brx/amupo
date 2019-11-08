@@ -21,6 +21,8 @@ class Address{
     Address(string st,string pC,unsigned short dN,string local);
     //Address(string postalCode,unsigned short doorNumber); future implementation
 
+    Address(string adrs);
+
     ///@brief Gets the street of address.
     ///@return The street attribute of the address.
     string getStreet() const;
