@@ -44,7 +44,7 @@ Date Client::getAcquisitionDate() const{
 
 Client::Client(string n, Date acqdate, Date bday, Address ad, unsigned cont) : Person(n, bday, move(ad), cont), acquisitionDate(acqdate) {}
 
-istream &operator>>(istream &in, Client *card) {
+istream &operator>>(istream &in, Person *person) {
 //    int type;
 //    in>>type;
 //    string aux;

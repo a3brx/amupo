@@ -49,8 +49,14 @@ bool isnum(string toConvert);
 ///@param str String to be trimmed and split
 ///@return Vector of Strings
 vector<string> trimSplit(string str, string splitPoint);*/
-template <class T>
-string join(vector<T> vecToJoin);
+template<class T>
+string join(vector<T> vecToJoin) {
+    stringstream res;
+    for (auto elem :vecToJoin) {
+        res << elem << " ";
+    }
+    return res.str();
+}
 
 ///@brief Uppercase a string
 ///@param s String to be uppercase
