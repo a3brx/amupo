@@ -1,6 +1,8 @@
 #pragma once
 #include "../Address/Address.h"
 #include "../Date/Date.h"
+#include "../utils/utils.h"
+#include <vector>
 class Card{
     unsigned code;
     string name;
@@ -10,8 +12,6 @@ class Card{
     unsigned contact;
     public:
     Card(string n, Date acqdate, Date bday, Address ad, unsigned cont);
-
-    Card();
 
     ///@brief Gets the code of card owner.
     ///@return The code attribute of the card.
@@ -55,7 +55,7 @@ class Card{
     ///@param cont The contact to be attributed to the card.
     void setContact(unsigned cont);
 
-    friend istream & operator>>(istream & in, Card &card);
+    friend istream & operator>>(istream & in, Card *card);
 };
 
 class SilverCard:public Card{

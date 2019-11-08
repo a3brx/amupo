@@ -88,3 +88,12 @@ string upper(const string & s) {
             ns.push_back(i);
     return ns;
 }
+
+template<class T>
+string join(vector<T> vecToJoin) {
+    stringstream res;
+    for(auto elem :vecToJoin){
+        res << elem << " ";
+    }
+    return res.str();
+}

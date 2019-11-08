@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <sstream>
 using namespace std;
 
 ///@brief Removes all spaces to the left of the string.
@@ -48,6 +49,8 @@ bool isnum(string toConvert);
 ///@param str String to be trimmed and split
 ///@return Vector of Strings
 vector<string> trimSplit(string str, string splitPoint);*/
+template <class T>
+string join(vector<T> vecToJoin);
 
 ///@brief Uppercase a string
 ///@param s String to be uppercase

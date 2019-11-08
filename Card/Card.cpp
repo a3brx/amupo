@@ -48,20 +48,29 @@ void Card::setContact(unsigned cont){
     contact = cont;
 }
 
-istream &operator>>(istream &in, Card &card) {
+istream &operator>>(istream &in, Card *card) {
+    int type;
+    in>>type;
+    string aux;
+    string name;
+    in >> name >>
+    getline(in,aux,'\n');
+    vector<string> auxvec=trim(split(aux,"|"));
+    switch (type) {
+        case 0:
+            card = new IndividualCard(auxvec.at(0),Date(auxvec.at(1)),Date(auxvec.at(2)),Address(auxvec.at(3)),stoi(auxvec.at(4)));
+        case 1:
+            card = new SilverCard(auxvec.at(0),Date(auxvec.at(1)),Date(auxvec.at(2)),Address(auxvec.at(3)),stoi(auxvec.at(4)));
+        case 2:
+            card = new UniCard(auxvec.at(0),Date(auxvec.at(1)),Date(auxvec.at(2)),Address(auxvec.at(3)),stoi(auxvec.at(4)));
 
-
+    }
 
 
     return in;
 }
 
-Card::Card() {
-    this->code=0;
-    this->name="";
-    this->address=Address();
-    contact=0;
-}
+
 
 float SilverCard::cost = 30;
 float SilverCard::getCost(){

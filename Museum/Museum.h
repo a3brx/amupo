@@ -11,7 +11,6 @@ class Museum{
     unsigned capacity;
     
     public:
-    Museum();
     Museum(Address adr, unsigned cap, string name); //verificar nome quando se adiciona ao sistema
                                         //verificar morada ao adiciona
 

@@ -4,8 +4,6 @@
 
 using namespace std;
 
-Museum::Museum(): address(Address()), capacity(0) {}
-
 Museum::Museum(Address adr, unsigned cap = 0, string name = ""): address(move(adr)), capacity(cap) {}
 
 unsigned Museum::getCode() {
