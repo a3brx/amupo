@@ -213,13 +213,12 @@ ostream& operator<<(ostream & out, const Date & date) {
 }
 
 istream &operator>>(istream &in, Date &date) {
+    in >> date.day;
+    in.ignore(1);
+    date.month;
+    in.ignore(1);
+    date.year;
     if (!validDate(date)) throw InvalidDate(date.day,date.month, date.year);
-    string aux;
-    getline(in,aux);
-    vector<string> auxe = trim(split(aux,"/"));
-    date.day = stoul(auxe[0]);
-    date.month = stoul(auxe[1]);
-    date.year = stoul(auxe[2]);
     return in;
 }
 

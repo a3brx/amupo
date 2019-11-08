@@ -33,7 +33,8 @@ class Event{
     void sellTicket(unsigned quantity);
 
     friend ostream & operator<<(ostream & out, const Event & event);
-    friend istream & operator>>(istream in, Event & event);
+
+    friend istream &operator>>(istream &in, Event &event);
 
 };
 

@@ -39,12 +39,12 @@ void Museum::setCapacity(unsigned cap) {
 }
 
 ostream & operator<<(ostream & out, const Museum & mus) {
-    out << "Address: " << mus.address << ", Capacity: " << mus.capacity;
+    out << mus.name << mus.capacity << mus.address;
     return out;
 }
 
 istream & operator>>(istream & in, Museum &museum) {
-    in >> museum.name >> museum.address >> museum.capacity;
+    in >> museum.name >> museum.capacity >> museum.address;
     return in;
 }
 

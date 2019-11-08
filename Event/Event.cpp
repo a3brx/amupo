@@ -65,14 +65,12 @@ void Event::sellTicket(unsigned int quantity = 1) {
 }
 
 ostream & operator<<(ostream & out, const Event & event) {
-    out << "Museum: " << event.museum << ", Date: " << event.date
-        << ", soldTickets: " << event.soldTickets << ", price: " 
-        << event.price;
+    out << event.name << event.date << event.soldTickets << event.price << event.museum;
     return out;
 }
 
-istream & operator>>(istream in, Event & event) {
-    in >> event.name >> event.museum >> event.date >> event.soldTickets >> event.price;
+istream &operator>>(istream &in, Event &event) {
+    in >> event.name >> event.date >> event.soldTickets >> event.price >> event.museum;
     return in;
 }
 

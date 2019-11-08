@@ -62,7 +62,7 @@ bool Address::operator==(const Address& param) const{
 }
 
 ostream & operator<<(ostream & out, const Address & address){
-    out<<address.street<<"/"<<address.postalCode<<"/"<<address.doorNumber<<"/"<<address.locality;
+    out << address.street << ", " << address.doorNumber << " " << address.postalCode << " " << address.locality;
     return out;
 }
 
