@@ -67,7 +67,6 @@ ostream & operator<<(ostream & out, const Address & address){
 }
 
 istream & operator>>(istream &in, Address &address) {
-    if (!validAddress(address)) throw InvalidAddress(address);
     string aux;
     getline(in,aux);
     vector<string> auxe = trim(split(aux,"/"));
@@ -75,6 +74,7 @@ istream & operator>>(istream &in, Address &address) {
     address.doorNumber = stoi(auxe.at(1));
     address.postalCode = auxe.at(2);
     address.locality =auxe.at(4);
+    if (!validAddress(address)) throw InvalidAddress(address);
     return in;
 }
 

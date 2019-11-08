@@ -216,7 +216,7 @@ istream &operator>>(istream &in, Date &date) {
     if (!validDate(date)) throw InvalidDate(date.day,date.month, date.year);
     string aux;
     getline(in,aux);
-    vector<string> auxe = trimSplit(aux,"/");
+    vector<string> auxe = trim(split(aux,"/"));
     date.day = stoul(auxe[0]);
     date.month = stoul(auxe[1]);
     date.year = stoul(auxe[2]);

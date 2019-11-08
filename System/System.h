@@ -1,17 +1,19 @@
 #pragma once
 #include <utility>
 #include <vector>
+#include <fstream>
 #include "../Event/Event.h"
 #include "../Card/Card.h"
 #include "../Museum/Museum.h"
 
 class System{
 private:
+    string fileName;
     vector<Event*> events;
     vector<Card*> cards;
     vector<Museum*> museums;
 public:
-    System();                                               //Ler ficheiros no inicio
+    System(string fileName);                                               //Ler ficheiros no inicio
     ~System();                                              //Escrever nos ficheiros no fim
 
     void createEvent();                                     //Ler do input, dar nome ao event
