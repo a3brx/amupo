@@ -14,7 +14,6 @@ class Event{
     float price;
 
     public:
-    Event();
     Event(Museum mus, Date d, float p, unsigned sold, string name);  //por data como soldTickets(nao me lembro do nome)
 
     unsigned getCode();
@@ -40,15 +39,14 @@ class Event{
 
 class OverBookedEvent : exception {
 private:
-    Museum mus;
-    unsigned sldTckts;
+    Museum museum;
+    unsigned soldTickets;
 public:
-    OverBookedEvent() = default;
-    OverBookedEvent(Museum mus, unsigned soldTickets) : mus(move(mus)), sldTckts(soldTickets) {}
-    Museum getMus() {return mus;}
-    unsigned getSoldTickets() {return sldTckts;}
+    OverBookedEvent(Museum museum, unsigned soldTickets) : museum(move(museum)), soldTickets(soldTickets) {}
+    Museum getMuseum() {return museum;}
+    unsigned getSoldTickets() {return soldTickets;}
     friend ostream & operator<<(ostream& out, const OverBookedEvent& ev) {
-        out << "OverBookedEvent\nMuseum: " << ev.mus << "\nSoldTickets" << ev.sldTckts;
+        out << "OverBookedEvent\nMuseum: " << ev.museum << "\nSoldTickets" << ev.soldTickets;
         return out;
     }
 };

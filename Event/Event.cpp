@@ -4,8 +4,6 @@
 
 using namespace std;
 
-Event::Event(): name(), museum(Museum()), date(Date()), soldTickets(0), price(0) {}
-
 Event::Event(Museum mus, Date d, float p, unsigned sold = 0, string name = ""): museum(move(mus)), date(d), price(p) {
     if (soldTickets > mus.getCapacity()) throw OverBookedEvent(mus,sold);
     soldTickets = sold;
@@ -60,7 +58,7 @@ void Event::setPrice(float p) {
 }
 
 void Event::sellTicket(unsigned int quantity = 1) {
-    if (soldTickets > museum.getCapacity()) throw OverBookedEvent();
+    if (this->soldTickets > this->museum.getCapacity()) throw OverBookedEvent(this->museum, this->soldTickets);
     this->soldTickets += quantity;
 }
 
