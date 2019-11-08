@@ -35,36 +35,36 @@ void trim(vector<string> *toTrim){
     }
 }
 
-vector<string> split(string toSplit){
+vector<string> split(const string& toSplit){
     vector<string> splitVec;
-    string temp="";
+    string temp;
     string toremovechars = " .-_*^`'+&%$#:;,/|=(){}[]?!«»<>";
-    for(size_t i=0;i<toSplit.size();i++){
-        if(toremovechars.find(toSplit.at(i))!=string::npos){
-            if(temp=="")continue;
+    for(char i : toSplit){
+        if(toremovechars.find(i)!=string::npos){
+            if(temp.empty())continue;
             splitVec.push_back(trim(temp));
             temp="";
         }else{
-            temp+=toSplit.at(i);
+            temp+=i;
         }
     }
-    if(temp!="")splitVec.push_back(trim(temp));
+    if(!temp.empty())splitVec.push_back(trim(temp));
     return splitVec;
 }
 
-vector<string> split(string toSplit,string splitPoint){
+vector<string> split(const string& toSplit,const string& splitPoint){
     vector<string> splitVec;
-    string temp="";
-    for(size_t i=0;i<toSplit.size();i++){
-        if(splitPoint.find(toSplit.at(i))!=string::npos){
-            if(temp=="")continue;
+    string temp;
+    for(char i : toSplit){
+        if(splitPoint.find(i)!=string::npos){
+            if(temp.empty())continue;
             splitVec.push_back(trim(temp));
             temp="";
         }else{
-            temp+=toSplit.at(i);
+            temp+=i;
         }
     }
-    if(temp!="")splitVec.push_back(trim(temp));
+    if(!temp.empty())splitVec.push_back(trim(temp));
     return splitVec;
 }
 
