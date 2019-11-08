@@ -33,7 +33,7 @@ System::System(string fileName) {
     file.open(namecards);
     while(!file.eof()){
         cout<<"A"<<endl;
-        file>>c;
+        file>>&c;
         cout<<"B"<<endl;
         this->persons.push_back(c);
     }

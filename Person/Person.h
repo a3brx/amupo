@@ -39,7 +39,7 @@ public:
     ///@param cont The contact to be attributed to the card.
     void setContact(unsigned cont);
 
-    friend istream & operator>>(istream & in, Person *person);
+    friend istream & operator>>(istream & in, Person **person);
 
 };
 
