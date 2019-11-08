@@ -45,23 +45,24 @@ Date Client::getAcquisitionDate() const{
 Client::Client(string n, Date acqdate, Date bday, Address ad, unsigned cont) : Person(n, bday, move(ad), cont), acquisitionDate(acqdate) {}
 
 istream &operator>>(istream &in, Person *person) {
-//    int type;
-//    in>>type;
-//    string aux;
-//    string name;
-//    in >> name >>
-//       getline(in,aux,'\n');
-//    vector<string> auxvec=trim(split(aux,"|"));
-//    switch (type) {
-//        case 0:
-//            card = new IndividualClient(auxvec.at(0), Date(auxvec.at(1)), Date(auxvec.at(2)), Address(auxvec.at(3)), stoi(auxvec.at(4)));
-//        case 1:
-//            card = new SilverClient(auxvec.at(0), Date(auxvec.at(1)), Date(auxvec.at(2)), Address(auxvec.at(3)), stoi(auxvec.at(4)));
-//        case 2:
-//            card = new UniClient(auxvec.at(0), Date(auxvec.at(1)), Date(auxvec.at(2)), Address(auxvec.at(3)), stoi(auxvec.at(4)));
-//
-//    }
-//
+   signed char type;
+   in>>type;
+   string aux;
+   getline(in,aux,'\n');
+   vector<string> auxvec=trim(split(aux,"|"));
+   switch (type) {
+       case -1:
+           person=new Person(auxvec.at(0), Date(auxvec.at(1)), Address(auxvec.at(3)),
+                             stoi(auxvec.at(4)));
+       case 0:
+           person = new IndividualClient(auxvec.at(0), Date(auxvec.at(1)), Date(auxvec.at(2)), Address(auxvec.at(3)),
+                                       stoi(auxvec.at(4)));
+       case 1:
+           person = new SilverClient(auxvec.at(0), Date(auxvec.at(1)), Date(auxvec.at(2)), Address(auxvec.at(3)),
+                                   stoi(auxvec.at(4)));
+       case 2:
+           person = new UniClient(auxvec.at(0), Date(auxvec.at(1)), Date(auxvec.at(2)), Address(auxvec.at(3)),stoi(auxvec.at(4)));
+   }
 
     return in;
 }
