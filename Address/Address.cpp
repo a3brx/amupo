@@ -22,7 +22,7 @@ Address::Address(string adrs) {
     vecStr = trim(split(adrs, " "));
     this->doorNumber = stoi(vecStr.at(0));
     this->postalCode = vecStr.at(1);
-    vecStr.erase(vecStr.begin(),++vecStr.begin());
+    vecStr.erase(vecStr.begin(),vecStr.begin() += 2);
     this->locality = join(vecStr);
 }
 
@@ -72,9 +72,9 @@ ostream & operator<<(ostream & out, const Address & address){
     return out;
 }
 
-istream & operator>>(istream & in, Address * address) {
+istream & operator>>(istream & in, Address ** address) {
     string aux;
     getline(in,aux);
-    address = new Address(aux);
+    *address = new Address(aux);
     return in;
 }

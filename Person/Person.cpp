@@ -50,10 +50,9 @@ istream &operator>>(istream &in, Person *person) {
    string aux;
    getline(in,aux,'\n');
    Address *ad;
-   //in >> ad;
-   //cout<<*ad;
+   in >> &ad;
+   cout << *ad;
    vector<string> auxvec=trim(split(aux,"|"));
-    cout<<"asas"<<endl;
    switch (type) {
        case -1:
            person=new Person(auxvec.at(0), Date(auxvec.at(1)),Address(auxvec.at(2)),stoi(auxvec.at(3)));

@@ -10,7 +10,6 @@ private:
     string postalCode;
     unsigned short doorNumber;
     string locality;
-
 public:
     /// @brief Constructs an Address with the parameters.
     /// @param st The street of the Address.
@@ -59,7 +58,7 @@ public:
     /// @return Returns true if two objects of type Date are equal.
     bool operator==(const Address& param) const;
     friend ostream & operator<<(ostream & out, const Address & address);
-    friend istream & operator>>(istream & in, Address * address);
+    friend istream & operator>>(istream & in, Address ** address);
 
     friend class InvalidAddress;
 };
