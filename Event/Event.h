@@ -4,29 +4,28 @@
 #include "../Museum/Museum.h"
 #include "../Date/Date.h"
 #include "iostream"
+#include "../Person/Person.h"
+#include "../Ticket/Ticket.h"
 
 class Event{
-    unsigned code;
-    string name;            //so se da nome ao event ao adicionalo ao sistema para ver se ha dois iguais
+    string name;            //so se da nome ao event ao adiciona-lo ao sistema para ver se ha dois iguais
     Museum museum;
     Date date;
-    unsigned soldTickets;
+    vector<Ticket> soldTickets;
     float price;
 
-    public:
-    Event(Museum mus, Date d, float p, unsigned sold, string name);  //por data como soldTickets(nao me lembro do nome)
 
-    unsigned getCode();
+    public:
+    Event(Museum mus, Date d, float p, string name);  //por data como soldTickets(nao me lembro do nome)
     string getName();
     Museum getMuseum();
     Date getDate();
-    unsigned getSoldTickets();
+    vector<Ticket> getSoldTickets();
     float getPrice();
-    void setCode(unsigned c);
     void setName(string nm);
     void setMuseum(Museum mus);
     void setDate(Date d);
-    void setSoldTickets(unsigned sold);
+    void setSoldTickets(vector<Ticket> sold);
     void setPrice(float p);
 
     void sellTicket(unsigned quantity);
