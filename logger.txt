@@ -24,6 +24,15 @@ COMMIT 23:48
 
 --------------------------------------------------------------
 8/11/2019
+JP
+-Adicionei atributo code a todos as classes evento museu e card. Isto serve para podermos ter um parametro de ordenação nos vetores, e podermos usar binarySearch nas pesquisas. O valor em code e atribuido por a variavel global correspondente para cada classe que e incrementada sempre que adicionamos um novo objeto ao vetor correspondente.
+-Mudei os classDiagram no visio, pus o system direito.
+-O construtor system le todos os ficheiros. Cada objeto está escrito numa linha só no respetivo ficheiro. Fica pouco legível para nós mas é mais facil de implementar.(Ainda a implementar)
+
+COMMIT 11:26
+
+--------------------------------------------------------------
+8/11/2019
 JR
 -Função trim overloaded para dar trim a vetores de strings pode retornar um vetor trimmed ou o vetor pode ser passado por
 referência.
