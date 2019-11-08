@@ -17,7 +17,7 @@ public:
     ~System();                                              //Escrever nos ficheiros no fim
 
     void createEvent();                                     //Ler do input, dar nome ao event
-    void createEvent(Event ev);
+    void createEvent(Event *ev);
     Event* readEvent();                                     //Pesquisa
     vector<Event*> readEvents();                            //Mostra Tabela com todos Events
     void updateEvent();                                     //Pedir input
@@ -32,6 +32,7 @@ public:
     void updateCard();                                      //Pedir input
     void updateCard(Card* oldCard, Card* newCard);
     void deleteCard();              //Pedir input
+    void deleteCard(string name);
 
     void createMuseum();                                        //Ler do input
     void createMuseum(Museum *mus);
@@ -40,6 +41,9 @@ public:
     void updateMuseum();                                        //Pedir input
     void updateMuseum(Museum* oldMuseum, Museum* newMuseum);
     void deleteMuseum();            //Pedir input
+    void deleteMuseum(string name);
+
+    void calcBudget();
 };
 
 class InvalidInput : exception {

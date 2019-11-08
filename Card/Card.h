@@ -2,7 +2,7 @@
 #include "../Address/Address.h"
 #include "../Date/Date.h"
 class Card{
-    private:
+    unsigned code;
     string name;
     const Date acquisitionDate;
     const Date birthday;
@@ -10,28 +10,45 @@ class Card{
     unsigned contact;
     public:
     Card(string n, Date acqdate, Date bday, Address ad, unsigned cont);
+
+    ///@brief Gets the code of card owner.
+    ///@return The code attribute of the card.
+    unsigned getCode() const;
+
     ///@brief Gets the name of card owner.
     ///@return The name attribute of the card.
     string getName() const;
+
     ///@brief Gets the acquistion date of the card.
     ///@return The Acquisition date attribute of the card.
     Date getAcquisitionDate() const;
+
     ///@brief Gets the birthday date of the card owner.
     ///@return The Birthday date attribute of the card.
     Date getBirthday() const;
+
     ///@brief Gets the Address of the card.
     ///@return The Address attribute of the card.
     Address getAddress() const;
+
     ///@brief Gets the contact date of the card.
     ///@return The Contact attribute of the card.
     unsigned getContact() const;
+
     virtual float getCost() const = 0;
+
+    ///@brief Sets the code of the card.
+    ///@param c The code to be attributed to the card.
+    void setCode(unsigned c);
+
     ///@brief Sets the name of the card.
     ///@param n The name to be attributed to the card.
     void setName(string n);
+
     ///@brief Sets the Address of the card.
     ///@param ad The address to be attributed to the card.
     void setAddress(Address ad);
+
     ///@brief Sets the Contact of the card.
     ///@param cont The contact to be attributed to the card.
     void setContact(unsigned cont);

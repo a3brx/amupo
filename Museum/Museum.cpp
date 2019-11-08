@@ -8,6 +8,10 @@ Museum::Museum(): address(Address()), capacity(0) {}
 
 Museum::Museum(Address adr, unsigned cap = 0, string name = ""): address(move(adr)), capacity(cap) {}
 
+unsigned Museum::getCode() {
+    return this->code;
+}
+
 string Museum::getName() {
     return this->name;
 }
@@ -18,6 +22,10 @@ Address Museum::getAddress() {
 
 unsigned Museum::getCapacity() {
     return this->capacity;
+}
+
+void Museum::setCode(unsigned cd) {
+    this->code = cd;
 }
 
 void Museum::setName(string name) {
@@ -41,5 +49,8 @@ istream & operator>>(istream & in, Museum &museum) {
     in >> museum.name >> museum.address >> museum.capacity;
     return in;
 }
+
+
+
 
 

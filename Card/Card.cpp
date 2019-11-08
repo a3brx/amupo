@@ -8,27 +8,42 @@ Card::Card(string n, Date acqdate, Date bday, Address ad, unsigned cont): acquis
     contact = cont;
 }
 
+unsigned Card::getCode() const {
+    return this->code;
+}
+
 string Card::getName() const{
     return name;
 }
+
 Date Card::getAcquisitionDate() const{
     return acquisitionDate;
 }
+
 Date Card::getBirthday() const{
     return birthday;
 }
+
 Address Card::getAddress() const{
     return address;
 }
+
+void Card::setCode(unsigned c) {
+    this->code = c;
+}
+
 unsigned Card::getContact() const{
     return contact;
 }
+
 void Card::setName(string n){
     name = move(n);
 }
+
 void Card::setAddress(Address ad){
     address = move(ad);
 }
+
 void Card::setContact(unsigned cont){
     contact = cont;
 }

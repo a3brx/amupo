@@ -11,6 +11,10 @@ Event::Event(Museum mus, Date d, float p, unsigned sold = 0, string name = ""): 
     soldTickets = sold;
 }
 
+unsigned Event::getCode(){
+    return this->code;
+}
+
 string Event::getName() {
     return this->name;
 }
@@ -29,6 +33,10 @@ unsigned Event::getSoldTickets() {
 
 float Event::getPrice() {
     return this->price;
+}
+
+void Event::setCode(unsigned c) {
+    this->code = c;
 }
 
 void Event::setName(string nm) {
@@ -67,6 +75,8 @@ istream & operator>>(istream in, Event & event) {
     in >> event.name >> event.museum >> event.date >> event.soldTickets >> event.price;
     return in;
 }
+
+
 
 
 
