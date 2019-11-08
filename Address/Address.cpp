@@ -69,12 +69,7 @@ ostream & operator<<(ostream & out, const Address & address){
 istream & operator>>(istream &in, Address &address) {
     string aux;
     getline(in,aux);
-    vector<string> auxe = trim(split(aux,"/"));
-    address.street = auxe.at(0);
-    address.doorNumber = stoi(auxe.at(1));
-    address.postalCode = auxe.at(2);
-    address.locality =auxe.at(4);
-    if (!validAddress(address)) throw InvalidAddress(address);
+    address = Address(aux);
     return in;
 }
 

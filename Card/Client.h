@@ -6,10 +6,6 @@ class Client:public Person{
     public:
     Client(string n, Date acqdate, Date bday, Address ad, unsigned cont);
 
-    ///@brief Gets the code of card owner.
-    ///@return The code attribute of the card.
-    unsigned getCode() const;
-
     ///@brief Gets the name of card owner.
     ///@return The name attribute of the card.
     string getName() const;
@@ -32,10 +28,6 @@ class Client:public Person{
 
     virtual float getCost() const = 0;
 
-    ///@brief Sets the code of the card.
-    ///@param c The code to be attributed to the card.
-    void setCode(unsigned c);
-
     ///@brief Sets the name of the card.
     ///@param n The name to be attributed to the card.
     void setName(string n);
@@ -56,30 +48,30 @@ class SilverClient: public Client{
     static float cost;
     public:
     SilverClient(string n, Date acqdate, Date bday, Address ad, unsigned cont);
-    float getCost();
+    float getCost() const;
     ///@brief Sets the Cost of the SilverCard.
     ///@param cost The cost to be attributed to the card.
-    void setCost(float cost);
+    static void setCost(float cost);
 };
 class UniClient: public Client{
     private:
     static float cost;
     public:
     UniClient(string n, Date acqdate, Date bday, Address ad, unsigned cont);
-    float getCost();
+    float getCost() const;
     ///@brief Sets the Cost of the UniCard.
     ///@param cost The cost to be attributed to the card.
-    void setCost(float cost);
+    static void setCost(float cost);
 };
 class IndividualClient: public Client{
     private:
     static float cost;
     public:
     IndividualClient(string n, Date acqdate, Date bday, Address ad, unsigned cont);
-    float getCost();
+    float getCost() const;
     ///@brief Sets the Cost of the IndividualCard.
     ///@param cost The cost to be attributed to the card.
-    void setCost(float cost);
+    static void setCost(float cost);
 };
 ///@brief Tests if a card has its attributes set right.
 ///@param card The address pointing to a card.

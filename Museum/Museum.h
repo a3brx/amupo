@@ -5,7 +5,6 @@ using namespace std;
 
 class Museum{
     private:
-    unsigned code;
     string name;
     Address address;
     unsigned capacity;

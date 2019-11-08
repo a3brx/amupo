@@ -8,10 +8,6 @@ Client::Client(string n, Date acqdate, Date bday, Address ad, unsigned cont): ac
     contact = cont;
 }
 
-unsigned Client::getCode() const {
-    return this->code;
-}
-
 string Client::getName() const{
     return name;
 }
@@ -28,9 +24,6 @@ Address Client::getAddress() const{
     return address;
 }
 
-void Client::setCode(unsigned c) {
-    this->code = c;
-}
 
 unsigned Client::getContact() const{
     return contact;
@@ -73,27 +66,39 @@ istream &operator>>(istream &in, Client *card) {
 
 
 float SilverClient::cost = 30;
-float SilverClient::getCost(){
+float SilverClient::getCost() const{
     return cost;
 }
 
 SilverClient::SilverClient(string n, Date acqdate, Date bday, Address ad, unsigned cont) : Client(n, acqdate, bday, ad,
                                                                                                   cont) {}
 
+void SilverClient::setCost(float cost) {
+    SilverClient::cost = cost;
+}
+
 float UniClient::cost = 32.45;
-float UniClient::getCost(){
+float UniClient::getCost() const{
     return cost;
 }
 
 UniClient::UniClient(string n, Date acqdate, Date bday, Address ad, unsigned cont) : Client(n, acqdate, bday, ad, cont) {}
 
+void UniClient::setCost(float cost) {
+    UniClient::cost = cost;
+}
+
 float IndividualClient::cost = 52.9;
-float IndividualClient::getCost(){
+float IndividualClient::getCost() const{
     return cost;
 }
 
 IndividualClient::IndividualClient(string n, Date acqdate, Date bday, Address ad, unsigned cont) : Client(n, acqdate, bday,
                                                                                                           ad, cont) {}
+
+void IndividualClient::setCost(float cost) {
+    IndividualClient::cost = cost;
+}
 
 
 bool validCard(Client *card) {
