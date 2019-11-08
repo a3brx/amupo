@@ -1,6 +1,6 @@
 #include <iostream>
 #include "../Address/Address.h"
-#include "../Card/Client.h"
+#include "../Person/Person.h"
 #include "../Date/Date.h"
 #include "../Event/Event.h"
 #include "../Menu/Menu.h"
@@ -15,6 +15,5 @@ int main(){
     string test="teste.txt";
     System system=System(test);
     //MainMenu();
-    //~System()
     return 0;
 }

@@ -18,6 +18,7 @@ Address::Address(string st,string pC,unsigned short dN,string local){
     this->postalCode = move(pC);
     this->doorNumber=dN;
     this->locality = move(local);
+
 }
 
 string Address::getStreet() const{

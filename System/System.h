@@ -3,7 +3,7 @@
 #include <vector>
 #include <fstream>
 #include "../Event/Event.h"
-#include "../Card/Client.h"
+#include "../Person/Person.h"
 #include "../Museum/Museum.h"
 
 class System{

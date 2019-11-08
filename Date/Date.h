@@ -1,5 +1,3 @@
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "readability-avoid-const-params-in-decls"
 #pragma once
 
 #include <ctime>
@@ -130,4 +128,3 @@ public:
     InvalidDate(unsigned char d, unsigned char m, unsigned short y):
         day(d), month(m), year(y) {};
 };
-#pragma clang diagnostic pop
