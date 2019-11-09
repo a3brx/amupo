@@ -14,8 +14,7 @@ using namespace std;
 
 int main(){
     string test="../database/files.txt";
-    System system(test);
-
-    //MainMenu();
+    System sys(test);
+    MainMenu m(&sys);
     return 0;
 }

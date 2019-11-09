@@ -3,12 +3,14 @@
 #include <string>
 #include <algorithm>
 #include "../Table/Table.h"
+#include "../System/System.h"
 
 class Menu {
 protected:
     char nextMenu;
+    System *sys;
 public:
-    Menu();
+    Menu(System *system);
     virtual vector<vector<string>> getOptions() const = 0;
     bool validOption(const string & option) const;
     string readOption() const;
@@ -18,24 +20,24 @@ public:
 
 class MainMenu : public Menu {
 public:
-    MainMenu();
+    MainMenu(System *system);
     vector<vector<string>> getOptions() const override;
 };
 
 class EventMenu : public Menu {
 public:
-    EventMenu();
+    EventMenu(System *system);
     vector<vector<string>> getOptions() const override;
 };
 
-class ClientMenu : public Menu {
+class PersonMenu : public Menu {
 public:
-    ClientMenu();
+    PersonMenu(System *system);
     vector<vector<string>> getOptions() const override;
 };
 
 class MuseumMenu : public Menu {
 public:
-    MuseumMenu();
+    MuseumMenu(System *system);
     vector<vector<string>> getOptions() const override;
 };

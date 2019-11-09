@@ -1,4 +1,6 @@
 #include "Menu.h"
+
+#include <utility>
 #include "../utils/utils.h"
 
 using namespace std;
@@ -67,23 +69,24 @@ char Menu::getNext() const {
     return this->nextMenu;
 }
 
-Menu::Menu() {
+Menu::Menu(System *system) {
     this->nextMenu = 'Q';
+    this->sys = system;
 }
 
-MainMenu::MainMenu() {
+MainMenu::MainMenu(System *system) : Menu(system) {
     Menu *call;
     do {
         char o = this->option();
         switch (o) {
             case 'E':
-                call = new EventMenu();
+                call = new EventMenu(system);
                 break;
             case 'C':
-                call = new ClientMenu();
+                call = new PersonMenu(system);
                 break;
             case 'M':
-                call = new MuseumMenu();
+                call = new MuseumMenu(system);
                 break;
             case 'Q':
                 return;
@@ -94,10 +97,10 @@ MainMenu::MainMenu() {
 }
 
 vector<vector<string>> MainMenu::getOptions() const {
-    return vector<vector<string>>({{"E", "Event Menu"}, {"C", "Client Menu"}, {"M", "Museum Menu"}, {"Q", "Quit Program"}});
+    return vector<vector<string>>({{"E", "Event Menu"}, {"P", "Person Menu"}, {"M", "Museum Menu"}, {"Q", "Quit Program"}});
 }
 
-EventMenu::EventMenu() {
+EventMenu::EventMenu(System *system) : Menu(system) {
     while(true) {
         this->nextMenu = this->option();
         switch (this->nextMenu) {
@@ -115,10 +118,13 @@ vector<vector<string>> EventMenu::getOptions() const {
     return vector<vector<string>>({{"C", "Create Event"}, {"R", "Read Events"}, {"U", "Update Event"}, {"D", "Delete Event"}, {"M", "Main Menu"}, {"Q", "Quit Program"}});
 }
 
-ClientMenu::ClientMenu() {
+PersonMenu::PersonMenu(System *system) : Menu(system) {
     while(true) {
         this->nextMenu = this->option();
         switch (this->nextMenu) {
+            case 'R':
+                sys->readPeople();
+                break;
             case 'M':
                 return;
             case 'Q':
@@ -129,11 +135,11 @@ ClientMenu::ClientMenu() {
     }
 }
 
-vector<vector<string>> ClientMenu::getOptions() const {
-    return vector<vector<string>>({{"C", "Create Client"}, {"R", "Read Clients"}, {"U", "Update Client"}, {"D", "Delete Client"}, {"M", "Main Menu"}, {"Q", "Quit Program"}});
+vector<vector<string>> PersonMenu::getOptions() const {
+    return vector<vector<string>>({{"C", "Create Person"}, {"R", "Read People"}, {"U", "Update Person"}, {"D", "Delete Person"}, {"M", "Main Menu"}, {"Q", "Quit Program"}});
 }
 
-MuseumMenu::MuseumMenu() {
+MuseumMenu::MuseumMenu(System *system) : Menu(system) {
     while(true) {
         this->nextMenu = this->option();
         switch (this->nextMenu) {
