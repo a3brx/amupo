@@ -5,33 +5,6 @@
 
 using namespace std;
 
-#if defined(_WIN32)
-#define PLATFORM_NAME "windows" // Windows
-#elif defined(_WIN64)
-#define PLATFORM_NAME "windows" // Windows
-#elif defined(__CYGWIN__) && !defined(_WIN32)
-    #define PLATFORM_NAME "windows" // Windows (Cygwin POSIX under Microsoft Window)
-#elif defined(__linux__)
-    #define PLATFORM_NAME "linux"
-#else
-	#define PLATFORM_NAME "other"
-#endif
-
-bool clear() {
-    if (PLATFORM_NAME == "linux") {
-        cout << "\033[2J\033[1;1H";
-    }
-    else if (PLATFORM_NAME == "windows") {
-        system("cls");
-    }
-    else {
-        return false;
-    }
-    return true;
-}
-
-
-
 string Menu::readOption() const {
     string input;
     getline(cin, input);
@@ -52,10 +25,12 @@ bool Menu::validOption(const string & option) const {
 
 char Menu::option() const {
     Table<string> options({"Letter", "Option"}, this->getOptions());
+    clear();
     cout << options;
     cout << "Choose a option: ";
     string o = this->readOption();
     while (!validOption(o)){
+        clear();
         cout << options;
         cout << "'" << o << "' is not a valid option, choose a valid option: ";
         o = this->readOption();
@@ -144,9 +119,6 @@ MuseumMenu::MuseumMenu(System *system) : Menu(system) {
         switch (this->nextMenu) {
             case 'R' : {
                 clear();
-                cout << sys->getMuseums().size();
-                cout << sys->getMuseums().size();
-                cout << sys->getMuseums().size();
                 sys->readMuseums();
             } break;
             case 'M':

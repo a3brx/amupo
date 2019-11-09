@@ -3,7 +3,12 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <utility>
 using namespace std;
+
+bool clear();
+
+void pause();
 
 ///@brief Removes all spaces to the left of the string.
 ///@param toTrim String to be left trimmed.
