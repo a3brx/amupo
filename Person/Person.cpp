@@ -42,7 +42,7 @@ Date Client::getAcquisitionDate() const{
     return acquisitionDate;
 }
 
-Client::Client(string name, Date acquisitionDate, Date birthday, Address address, unsigned contact) : Person(n, birthday, move(address), contact), acquisitionDate(acquisitionDate) {}
+Client::Client(string name, Date acquisitionDate, Date birthday, Address address, unsigned contact) : Person(name, birthday, move(address), contact), acquisitionDate(acquisitionDate) {}
 
 istream &operator>>(istream &in, Person **person) {
    signed short type;

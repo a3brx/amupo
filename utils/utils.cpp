@@ -72,7 +72,7 @@ vector<string> split(const string& toSplit,const string& splitPoint){
 
 bool isnum(const string& toConvert){
     for(char i : toConvert){
-        if(!isdigit(i))return false;
+        if(!isdigit(i)) return false;
     }
     return true;
 }

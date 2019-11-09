@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 #include <utility>
-#include "../System/System.h"
+#include "../utils/utils.h"
 
 using namespace std;
 
@@ -19,7 +19,7 @@ public:
     /// @param postalCode The postal code of the Address.
     /// @param doorNumber The door number of the Address.
     /// @param locality The local of the Address.
-    Address(string street, string postalCode, unsigned short doorNumber, string locality);
+    Address(string street, const string & postalCode, unsigned short doorNumber, string locality);
 
     Address(string addressString);
 
@@ -73,9 +73,9 @@ public:
     unsigned short doorNumber{};
     string locality;
     InvalidAddress() = default;
-    explicit InvalidAddress(const Address& address) :
-        street(address.street),
-        postalCode(address.postalCode),
-        doorNumber(address.doorNumber),
-        locality(address.locality) {}
+    explicit InvalidAddress(string street, string postalCode, unsigned short doorNumber, string locality) :
+        street(street),
+        postalCode(postalCode),
+        doorNumber(doorNumber),
+        locality(locality) {}
 };
