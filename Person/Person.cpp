@@ -72,6 +72,14 @@ istream &operator>>(istream &in, Person ** person) {
     return in;
 }
 
+bool Person::operator==(Person person) {
+    bool equal =true;
+    equal = (equal && (this->name==person.getName()));
+    equal = (equal && (this->birthday==person.getBirthday()));
+    /*equal = (equal && (this->contact==person.getContact()));
+    equal = (equal && (this->address==person.getAddress()));*/
+    return equal;
+}
 
 
 float SilverClient::cost = 30;

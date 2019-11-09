@@ -39,6 +39,7 @@ public:
     void sellTicket();
 
     vector<Person*> getPeople() const;
+    Person * findPerson(string name,Date birthday) const;
     void createPerson();                                      //Ler do input
     void createPerson(Client *card);
     Person* readPerson() const;                                       //Pesquisa

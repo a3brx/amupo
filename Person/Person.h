@@ -39,6 +39,7 @@ public:
     void setContact(unsigned contact);
 
     friend istream & operator>>(istream & in, Person **person);
+    bool operator==(Person person);
 };
 
 class Client:public Person{

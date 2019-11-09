@@ -36,3 +36,8 @@ COMMIT 11:26
 JR
 -Função trim overloaded para dar trim a vetores de strings pode retornar um vetor trimmed ou o vetor pode ser passado por
 referência.
+--------------------------------------------------------------
+9/11/2019
+JR
+O operator== precisa de ser friend para eu lhe passar uma string e uma Date (nome e dia de nascimento) mas eu nao consigo aceder
+ao this-> porque a função passa a ser friend como querem fazer ?
