@@ -24,16 +24,16 @@ void Person::setName(string n){
     name = move(n);
 }
 
-void Person::setAddress(Address ad){
-    address = move(ad);
+void Person::setAddress(Address address){
+    address = move(address);
 }
 
-void Person::setContact(unsigned cont){
-    contact = cont;
+void Person::setContact(unsigned contact){
+    contact = contact;
 }
 
-Person::Person(string n, Date bday, Address ad, unsigned cont) : name(move(n)), birthday(bday), address(move(ad)) {
-    this->contact=cont;
+Person::Person(string name, Date birthday, Address address, unsigned contact) : name(move(name)), birthday(birthday), address(move(address)) {
+    this->contact=contact;
 }
 
 
@@ -42,31 +42,31 @@ Date Client::getAcquisitionDate() const{
     return acquisitionDate;
 }
 
-Client::Client(string n, Date acqdate, Date bday, Address ad, unsigned cont) : Person(n, bday, move(ad), cont), acquisitionDate(acqdate) {}
+Client::Client(string name, Date acquisitionDate, Date birthday, Address address, unsigned contact) : Person(n, birthday, move(address), contact), acquisitionDate(acquisitionDate) {}
 
 istream &operator>>(istream &in, Person **person) {
    signed short type;
-   in>>type;
+   in >> type;
    string aux;
    getline(in,aux);
    Address *ad;
    in >> &ad;
-   vector<string> auxvec=trim(split(aux,"|"));
+   vector<string> auxvec = trim(split(aux,"|"));
    switch (type) {
        case -1:
-           *person=new Person(auxvec.at(0), Date(auxvec.at(1)),*ad,stoi(auxvec.at(2)));
+           *person=new Person(auxvec.at(0), Date(auxvec.at(1)), *ad, stoi(auxvec.at(2)));
            break;
        case 0:
-           *person = new IndividualClient(auxvec.at(0), Date(auxvec.at(1)), Date(auxvec.at(2)), *ad,
-                                       stoi(auxvec.at(3)));
+           *person = new IndividualClient(auxvec.at(0), Date(auxvec.at(1)), Date(auxvec.at(2)), *ad, stoi(auxvec.at(3)));
            break;
        case 1:
-           *person = new SilverClient(auxvec.at(0), Date(auxvec.at(1)), Date(auxvec.at(2)), Address(auxvec.at(3)),
-                                   stoi(auxvec.at(4)));
+           *person = new SilverClient(auxvec.at(0), Date(auxvec.at(1)), Date(auxvec.at(2)), *ad, stoi(auxvec.at(3)));
            break;
        case 2:
-           *person = new UniClient(auxvec.at(0), Date(auxvec.at(1)), Date(auxvec.at(2)), Address(auxvec.at(3)),stoi(auxvec.at(4)));
+           *person = new UniClient(auxvec.at(0), Date(auxvec.at(1)), Date(auxvec.at(2)), *ad, stoi(auxvec.at(3)));
            break;
+       default:
+               break;
    }
 
     return in;

@@ -1,6 +1,4 @@
 #include "Date.h"
-#include "../utils/utils.h"
-#include <vector>
 
 using namespace std;
 
@@ -208,7 +206,7 @@ bool Date::operator!= (const Date param) const {
 //                                  Outputs the date in a nice format
 // ----------------------------------------------------------------------------------------------------
 ostream& operator<<(ostream & out, const Date & date) {
-    out << date.day << "/" << date.month << "/" << date.year;
+    out << (short) date.day << "/" << (short) date.month << "/" << date.year;
     return out;
 }
 

@@ -2,6 +2,7 @@
 #include <utility>
 #include <vector>
 #include <fstream>
+#include "../Table/Table.h"
 #include "../Event/Event.h"
 #include "../Person/Person.h"
 #include "../Museum/Museum.h"
@@ -10,11 +11,10 @@ class System{
 private:
     string fileName;
     vector<Event*> events;
-    vector<Person*> persons;
+    vector<Person*> people;
     vector<Museum*> museums;
 public:
-    System(string fileName);                                               //Ler ficheiros no inicio
-    ~System();                                              //Escrever nos ficheiros no fim
+    System(const string& fileName);                                               //Ler ficheiros no inicio
 
     void createEvent();                                     //Ler do input, dar nome ao event
     void createEvent(Event *ev);
@@ -25,14 +25,14 @@ public:
     void deleteEvent();                                     //Pedir input
     void deleteEvent(string name);
 
-    void createCard();                                      //Ler do input
-    void createCard(Client *card);
-    Client* readCard();                                       //Pesquisa
-    vector<Client*> readCards();                              //Mostra Tabela com todos Cards
-    void updateCard();                                      //Pedir input
-    void updateCard(Client* oldCard, Client* newCard);
-    void deleteCard();              //Pedir input
-    void deleteCard(string name);
+    void createPerson();                                      //Ler do input
+    void createPerson(Client *card);
+    Person* readPerson();                                       //Pesquisa
+    void readPeople();                              //Mostra Tabela com todos Cards
+    void updatePerson();                                      //Pedir input
+    void updatePerson(Person* oldPerson, Person* newPerson);
+    void deletePerson();                                        //Pedir input
+    void deletePerson(string name);
 
     void createMuseum();                                        //Ler do input
     void createMuseum(Museum *mus);

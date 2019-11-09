@@ -2,6 +2,7 @@
 
 #include <ctime>
 #include <iostream>
+#include <vector>
 #include <string>
 
 #define EPOCH 1900

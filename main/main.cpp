@@ -13,7 +13,7 @@
 using namespace std;
 
 int main(){
-    string test="../Database/teste.txt";
+    string test="../database/files.txt";
     System system(test);
 
     //MainMenu();

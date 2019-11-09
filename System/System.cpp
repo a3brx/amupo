@@ -3,25 +3,24 @@
 
 using namespace std;
 
-System::System(string fileName) {
-    this->fileName=fileName;
+System::System(const string & fileName) {
+    this->fileName = fileName;
     ifstream file;
-    string namemuseus , namecards, nameevents;
-    file.open(fileName);
-    getline(file,nameevents);
-    getline(file,namecards);
-    getline(file,namemuseus);
-    vector<string> aux=split(fileName,"/");
+    vector<string> aux = split(fileName,"/");
     aux.pop_back();
-    string path=join(aux,'/');
-    nameevents=(path+nameevents);
-    namecards=path+namecards;
-    namemuseus=path+namemuseus;
+    string path = join(aux,'/');
+    string museumsFile, peopleFile, eventsFile, ticketsFile;
+
+    file.open(fileName);
+    file >> eventsFile >> peopleFile >> eventsFile >> ticketsFile;
+    eventsFile = path + eventsFile;
+    peopleFile = path + peopleFile;
+    museumsFile = path + museumsFile;
+    ticketsFile = path + ticketsFile;
     file.close();
-    Person *c;
+
+    /*file.open(museumsFile);
     Museum *m;
-    Event *e;
-    /*file.open(namemuseus);
     while(!file.eof()){
         cout << "A" << endl;
         file >> m;
@@ -30,15 +29,18 @@ System::System(string fileName) {
         cout << "C" << endl;
     }
     file.close();*/
-    file.open(namecards);
+
+    file.open(peopleFile);
+    Person *c;
     while(!file.eof()){
-        cout<<"A"<<endl;
-        file>>&c;
-        cout<<"B"<<endl;
-        this->persons.push_back(c);
+        file >> &c;
+        this->people.push_back(c);
     }
-    file.close();/*
-    file.open(nameevents);
+    file.close();
+    readPeople();
+
+    /*file.open(eventsFile);
+    Event *e;
     while(!file.eof()){
         file>>*e;
         this->events.push_back(e);
@@ -46,7 +48,16 @@ System::System(string fileName) {
     file.close();*/
 }
 
-System::~System() {
-
+void System::readPeople() {
+    vector<string> header = {"Name", "Birthday", "Address", "Contact"};
+    vector<vector<string>> content;
+    for(auto person : this->people) {
+        stringstream address, birthday;
+        address << person->getAddress();
+        birthday << person->getBirthday();
+        vector<string> aux = {person->getName(), birthday.str(), address.str(), to_string(person->getContact())};
+        content.push_back(aux);
+    }
+    Table<string> data(header, content);
+    cout << data;
 }
-
