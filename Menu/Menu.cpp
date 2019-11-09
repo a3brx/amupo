@@ -5,7 +5,6 @@
 
 using namespace std;
 
-/*
 #if defined(_WIN32)
 #define PLATFORM_NAME "windows" // Windows
 #elif defined(_WIN64)
@@ -30,7 +29,6 @@ bool clear() {
     }
     return true;
 }
-*/
 
 
 
@@ -82,7 +80,7 @@ MainMenu::MainMenu(System *system) : Menu(system) {
             case 'E':
                 call = new EventMenu(system);
                 break;
-            case 'C':
+            case 'P':
                 call = new PersonMenu(system);
                 break;
             case 'M':
@@ -122,9 +120,10 @@ PersonMenu::PersonMenu(System *system) : Menu(system) {
     while(true) {
         this->nextMenu = this->option();
         switch (this->nextMenu) {
-            case 'R':
+            case 'R' : {
+                clear();
                 sys->readPeople();
-                break;
+            } break;
             case 'M':
                 return;
             case 'Q':
@@ -143,6 +142,13 @@ MuseumMenu::MuseumMenu(System *system) : Menu(system) {
     while(true) {
         this->nextMenu = this->option();
         switch (this->nextMenu) {
+            case 'R' : {
+                clear();
+                cout << sys->getMuseums().size();
+                cout << sys->getMuseums().size();
+                cout << sys->getMuseums().size();
+                sys->readMuseums();
+            } break;
             case 'M':
                 return;
             case 'Q':
