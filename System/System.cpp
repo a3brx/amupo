@@ -3,6 +3,16 @@
 
 using namespace std;
 
+Ticket::Ticket(Event *event, Person *person):person(person),event(event) {}
+
+const Event *Ticket::getEvent() const {
+    return this->event;
+}
+
+const Person *Ticket::getPerson() const {
+    return this->person;
+}
+
 System::System(const string & fileName) {
     this->fileName = fileName;
     ifstream file;
@@ -35,13 +45,16 @@ System::System(const string & fileName) {
     }
     file.close();
 
-    /*file.open(eventsFile);
+    file.open(eventsFile);
     Event *e;
     while(!file.eof()){
-        file>>*e;
+        file >> &e;
         this->events.push_back(e);
+        string museumName;
+        getline(file, museumName);
+        //this->events.back()->setMuseum();
     }
-    file.close();*/
+    file.close();
 }
 
 void System::readPeople() const {
@@ -56,21 +69,22 @@ void System::readPeople() const {
     }
     Table<string> data(header, content);
     cout << data;
+    pause();
 }
 
 void System::readEvents() const {
     vector<string> header = {"Name", "Place", "Date", "Sold Tickets", "Price"};
     vector<vector<string>> content;
     for (auto event : this->events) {
-        stringstream museum, date;
-        museum << event->getMuseum();
+        stringstream date;
         date << event->getDate();
-        vector<string> aux = {event->getName(), museum.str(), date.str(), to_string(event->getSoldTickets().size()),
+        vector<string> aux = {event->getName(), event->getMuseum()->getName(), date.str(), to_string(event->getSoldTickets().size()),
                               to_string(event->getPrice())};
         content.push_back(aux);
     }
     Table<string> data(header, content);
     cout << data;
+    pause();
 }
 
 void System::readMuseums() const {
@@ -84,8 +98,18 @@ void System::readMuseums() const {
     }
     Table<string> data(header, content);
     cout << data;
+    pause();
 }
 
 vector<Museum *> System::getMuseums() const {
     return this->museums;
 }
+
+/*
+Ticket * System::sellTicket(Person *person) {
+    if (this->soldTickets.size() >= this->museum->getCapacity()) throw OverBookedEvent(this->museum, this->soldTickets.size());
+    auto * aux = new Ticket(this, person);
+    this->soldTickets.push_back(aux);
+    return aux;
+}
+ */

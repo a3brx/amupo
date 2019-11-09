@@ -6,23 +6,10 @@
 #include "iostream"
 #include "../Person/Person.h"
 
-class Event;
-
-class Ticket{
-private:
-    const Event *event ;
-    const Person *person;
-public:
-    Ticket(Event * event, Person * person);
-    const Event *getEvent() const;
-    const Person *getPerson() const;
-};
-
 class Event{
     string name;            //so se da nome ao event ao adiciona-lo ao sistema para ver se ha dois iguais
     Museum * museum;
     Date date;
-    vector<Ticket*> soldTickets;
     float price;
 
 
@@ -31,14 +18,11 @@ class Event{
     string getName();
     Museum * getMuseum();
     Date getDate();
-    vector<Ticket*> getSoldTickets();
     float getPrice();
     void setName(string nm);
     void setMuseum(Museum * museum);
     void setDate(Date d);
     void setPrice(float p);
-
-    Ticket * sellTicket(Person * person);
 
     friend ostream & operator<<(ostream & out, const Event & event);
 
@@ -63,14 +47,11 @@ public:
 class InvalidEvent : exception {
 private:
     string name;            //so se da nome ao event ao adiciona-lo ao sistema para ver se ha dois iguais
-    string musName;
     Date date;
     float price;
 public:
-    InvalidEvent(string nm, string musName, Date dt, float price) : name(nm), musName(musName), date(dt),
+    InvalidEvent(string nm, Date dt, float price) : name(nm), date(dt),
                                                                     price(price) {}
-
-    string getMuseum() { return musName; }
 
     string getName() { return name; }
 
@@ -79,7 +60,7 @@ public:
     float getPrice() { return price; }
 
     friend ostream &operator<<(ostream &out, InvalidEvent &ev) {
-        out << "Invalid Event!\n" << ev.name << endl << ev.musName << endl << ev.date << endl << ev.price;
+        out << "Invalid Event!\n" << ev.name << endl << ev.date << endl << ev.price;
         return out;
     }
 };

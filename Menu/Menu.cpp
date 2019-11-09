@@ -77,6 +77,10 @@ EventMenu::EventMenu(System *system) : Menu(system) {
     while(true) {
         this->nextMenu = this->option();
         switch (this->nextMenu) {
+            case 'R' : {
+                clear();
+                sys->readEvents();
+            } break;
             case 'M':
                 return;
             case 'Q':
