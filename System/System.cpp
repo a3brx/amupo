@@ -58,6 +58,21 @@ void System::readPeople() const {
     cout << data;
 }
 
+void System::readEvents() const {
+    vector<string> header = {"Name", "Place", "Date", "Sold Tickets", "Price"};
+    vector<vector<string>> content;
+    for (auto event : this->events) {
+        stringstream museum, date;
+        museum << event->getMuseum();
+        date << event->getDate();
+        vector<string> aux = {event->getName(), museum.str(), date.str(), to_string(event->getSoldTickets().size()),
+                              to_string(event->getPrice())};
+        content.push_back(aux);
+    }
+    Table<string> data(header, content);
+    cout << data;
+}
+
 void System::readMuseums() const {
     vector<string> header = {"Name", "Capacity", "Address"};
     vector<vector<string>> content;

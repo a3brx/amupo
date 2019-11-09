@@ -20,7 +20,7 @@ public:
     void createEvent();                                     //Ler do input, dar nome ao event
     void createEvent(Event *ev);
     Event* readEvent() const;                                     //Pesquisa
-    vector<Event*> readEvents() const;                            //Mostra Tabela com todos Events
+    void readEvents() const;                            //Mostra Tabela com todos Events
     void updateEvent();                                     //Pedir input
     void updateEvent(Event* oldEvent, Event* newEvent);
     void deleteEvent();                                     //Pedir input

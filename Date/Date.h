@@ -126,4 +126,13 @@ private:
 public:
     InvalidDate(unsigned char d, unsigned char m, unsigned short y):
         day(d), month(m), year(y) {};
+
+    InvalidDate(string s) {
+        unsigned char day = stoi(s.substr(0, 2));
+        unsigned char month = stoi(s.substr(3, 2));
+        unsigned short year = stoi(s.substr(6, 4));
+        this->year = year;
+        this->month = month;
+        this->day = day;
+    }
 };
