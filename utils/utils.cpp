@@ -99,9 +99,11 @@ vector<string> split(const string& toSplit,const string& splitPoint){
     return splitVec;
 }
 
-bool isnum(const string& toConvert){
-    for(char i : toConvert){
-        if(!isdigit(i)) return false;
+bool isnum(const string & toConvert) {
+    try {
+        stof(toConvert);
+    } catch (...) {
+        return false;
     }
     return true;
 }

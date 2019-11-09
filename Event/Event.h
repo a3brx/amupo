@@ -42,7 +42,7 @@ class Event{
 
     friend ostream & operator<<(ostream & out, const Event & event);
 
-    friend istream &operator>>(istream &in, Event &event);
+    friend istream &operator>>(istream &in, Event **event);
 
 };
 
@@ -56,6 +56,30 @@ public:
     unsigned getSoldTickets() {return soldTickets;}
     friend ostream & operator<<(ostream& out, const OverBookedEvent& ev) {
         out << "OverBookedEvent\nMuseum: " << * ev.museum << "\nSoldTickets" << ev.soldTickets;
+        return out;
+    }
+};
+
+class InvalidEvent : exception {
+private:
+    string name;            //so se da nome ao event ao adiciona-lo ao sistema para ver se ha dois iguais
+    string musName;
+    Date date;
+    float price;
+public:
+    InvalidEvent(string nm, string musName, Date dt, float price) : name(nm), musName(musName), date(dt),
+                                                                    price(price) {}
+
+    string getMuseum() { return musName; }
+
+    string getName() { return name; }
+
+    Date getDate() { return date; }
+
+    float getPrice() { return price; }
+
+    friend ostream &operator<<(ostream &out, InvalidEvent &ev) {
+        out << "Invalid Event!\n" << ev.name << endl << ev.musName << endl << ev.date << endl << ev.price;
         return out;
     }
 };

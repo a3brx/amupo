@@ -48,7 +48,7 @@ vector<string> split(const string& toSplit,const string& splitPoint);
 ///@brief Recognizes if a string is a number.
 ///@param toConvert String to check if it's a number.
 ///@return Returns true if the string is convertible to number;
-bool isnum(const string& toConvert);
+bool isnum(const string & toConvert);
 
 /*///@brief Trims and splits a string
 ///@param str String to be trimmed and split
