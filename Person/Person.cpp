@@ -44,7 +44,7 @@ Date Client::getAcquisitionDate() const{
 
 Client::Client(string name, Date acquisitionDate, Date birthday, Address address, unsigned contact) : Person(name, birthday, move(address), contact), acquisitionDate(acquisitionDate) {}
 
-istream &operator>>(istream &in, Person **person) {
+istream &operator>>(istream &in, Person ** person) {
    signed short type;
    in >> type;
    string aux;
@@ -54,7 +54,7 @@ istream &operator>>(istream &in, Person **person) {
    vector<string> auxvec = trim(split(aux,"|"));
    switch (type) {
        case -1:
-           *person=new Person(auxvec.at(0), Date(auxvec.at(1)), *ad, stoi(auxvec.at(2)));
+           *person = new Person(auxvec.at(0), Date(auxvec.at(1)), *ad, stoi(auxvec.at(2)));
            break;
        case 0:
            *person = new IndividualClient(auxvec.at(0), Date(auxvec.at(1)), Date(auxvec.at(2)), *ad, stoi(auxvec.at(3)));

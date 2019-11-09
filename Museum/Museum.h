@@ -12,17 +12,14 @@ class Museum{
     public:
     Museum(Address adr, unsigned cap, string name); //verificar nome quando se adiciona ao sistema
                                         //verificar morada ao adiciona
-
-    unsigned getCode();
     string getName();
     Address getAddress();
     unsigned getCapacity();
-    void setCode(unsigned cd);
     void setName(string name);
     void setAddress(Address adr);
     void setCapacity(unsigned cap);
 
-    friend ostream & operator<<(ostream & out, const Museum & mus);
-    friend istream & operator>>(istream & in, Museum *museum);
+    friend ostream & operator<<(ostream & out, const Museum & museum);
+    friend istream & operator>>(istream & in, Museum ** museum);
 };
 

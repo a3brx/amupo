@@ -16,28 +16,31 @@ private:
 public:
     System(const string& fileName);                                               //Ler ficheiros no inicio
 
+    vector<Event*> getEvents() const;
     void createEvent();                                     //Ler do input, dar nome ao event
     void createEvent(Event *ev);
-    Event* readEvent();                                     //Pesquisa
-    vector<Event*> readEvents();                            //Mostra Tabela com todos Events
+    Event* readEvent() const;                                     //Pesquisa
+    vector<Event*> readEvents() const;                            //Mostra Tabela com todos Events
     void updateEvent();                                     //Pedir input
     void updateEvent(Event* oldEvent, Event* newEvent);
     void deleteEvent();                                     //Pedir input
     void deleteEvent(string name);
 
+    vector<Person*> getPeople() const;
     void createPerson();                                      //Ler do input
     void createPerson(Client *card);
-    Person* readPerson();                                       //Pesquisa
-    void readPeople();                              //Mostra Tabela com todos Cards
+    Person* readPerson() const;                                       //Pesquisa
+    void readPeople() const;                              //Mostra Tabela com todos Cards
     void updatePerson();                                      //Pedir input
     void updatePerson(Person* oldPerson, Person* newPerson);
     void deletePerson();                                        //Pedir input
     void deletePerson(string name);
 
+    vector<Museum*> getMuseums() const;
     void createMuseum();                                        //Ler do input
     void createMuseum(Museum *mus);
-    Museum* readMuseum();                                       //Pesquisa
-    vector<Museum*> readMuseums();                              //Mostra Tabela com todos Museums
+    Museum* readMuseum() const;                                       //Pesquisa
+    void readMuseums() const;                              //Mostra Tabela com todos Museums
     void updateMuseum();                                        //Pedir input
     void updateMuseum(Museum* oldMuseum, Museum* newMuseum);
     void deleteMuseum();            //Pedir input

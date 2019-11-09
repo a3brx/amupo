@@ -55,7 +55,7 @@ ostream & operator<<(ostream & out, const Event & event) {
 }
 
 istream &operator>>(istream &in, Event &event) {
-    in >> event.name >> event.date >> event.price >> event.museum;
+    in >> event.name >> event.date >> event.price >> &event.museum;
     return in;
 }
 

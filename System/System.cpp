@@ -12,32 +12,28 @@ System::System(const string & fileName) {
     string museumsFile, peopleFile, eventsFile, ticketsFile;
 
     file.open(fileName);
-    file >> eventsFile >> peopleFile >> eventsFile >> ticketsFile;
+    file >> eventsFile >> peopleFile >> museumsFile >> ticketsFile;
     eventsFile = path + eventsFile;
     peopleFile = path + peopleFile;
     museumsFile = path + museumsFile;
     ticketsFile = path + ticketsFile;
     file.close();
 
-    /*file.open(museumsFile);
+    file.open(museumsFile);
     Museum *m;
     while(!file.eof()){
-        cout << "A" << endl;
-        file >> m;
-        cout << "B" << endl;
-        this->museums.push_back(new Museum(*m));
-        cout << "C" << endl;
-    }
-    file.close();*/
-
-    file.open(peopleFile);
-    Person *c;
-    while(!file.eof()){
-        file >> &c;
-        this->people.push_back(c);
+        file >> &m;
+        this->museums.push_back(m);
     }
     file.close();
-    readPeople();
+
+    file.open(peopleFile);
+    Person *p;
+    while(!file.eof()){
+        file >> &p;
+        this->people.push_back(p);
+    }
+    file.close();
 
     /*file.open(eventsFile);
     Event *e;
@@ -48,7 +44,7 @@ System::System(const string & fileName) {
     file.close();*/
 }
 
-void System::readPeople() {
+void System::readPeople() const {
     vector<string> header = {"Name", "Birthday", "Address", "Contact"};
     vector<vector<string>> content;
     for(auto person : this->people) {
@@ -60,4 +56,21 @@ void System::readPeople() {
     }
     Table<string> data(header, content);
     cout << data;
+}
+
+void System::readMuseums() const {
+    vector<string> header = {"Name", "Capacity", "Address"};
+    vector<vector<string>> content;
+    for(auto museum : this->museums) {
+        stringstream address;
+        address << museum->getAddress();
+        vector<string> aux = {museum->getName(), to_string(museum->getCapacity()),  address.str()};
+        content.push_back(aux);
+    }
+    Table<string> data(header, content);
+    cout << data;
+}
+
+vector<Museum *> System::getMuseums() const {
+    return this->museums;
 }
