@@ -1,5 +1,6 @@
 #include "Event.h"
 
+
 #include <utility>
 
 using namespace std;
@@ -54,8 +55,22 @@ ostream & operator<<(ostream & out, const Event & event) {
     return out;
 }
 
-istream &operator>>(istream &in, Event &event) {
-    in >> event.name >> event.date >> event.price >> &event.museum;
+istream &operator>>(istream &in, Event **event) {
+    string aux, name, date, price, musName;
+    getline(in, aux);
+    vector<string> vecAux = trim(split(aux, "|"));
+    name = vecAux.at(0);
+    date = vecAux.at(1);
+    price = vecAux.at(2);
+    musName = vecAux.at(3);
+    if (!isnum(price)) throw InvalidEvent(name, musName, Date(date), stof(price));
+    try {
+        Date dt = Date(date);
+        *event = new Event(nullptr, dt, stof(price), name);
+    }
+    catch (InvalidDate) {
+        throw InvalidDate(date);
+    }
     return in;
 }
 

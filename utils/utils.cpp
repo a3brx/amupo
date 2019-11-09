@@ -70,12 +70,24 @@ vector<string> split(const string& toSplit,const string& splitPoint){
     return splitVec;
 }
 
-bool isnum(const string& toConvert){
-    for(char i : toConvert){
-        if(!isdigit(i)) return false;
-    }
+bool isnum(string toConvert) {
+    toConvert = trim(toConvert);
+    stringstream str;
+    str.str(toConvert);
+    if (str.peek() == '-') str.ignore(1);
+    bool point = false;
+    bool anyDigit = false;
+    while (str.peek() != str.eof())
+        if (!point && str.peek() == '.') {
+            point = true;
+            str.ignore(1);
+            continue;
+        }
+    if (!isdigit(str.peek())) return false;
+    anyDigit = true;
     return true;
 }
+
 
 /*vector<string> trimSplit(string str, string splitPoint) {
     return split(trim(str), splitPoint);
