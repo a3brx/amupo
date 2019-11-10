@@ -48,7 +48,7 @@ vector<string> split(const string& toSplit,const string& splitPoint);
 ///@brief Recognizes if a string is a number.
 ///@param toConvert String to check if it's a number.
 ///@return Returns true if the string is convertible to number;
-bool isnum(const string & toConvert);
+bool isNum(const string &toConvert);
 
 /*///@brief Trims and splits a string
 ///@param str String to be trimmed and split
@@ -67,3 +67,7 @@ string join(vector<T> vecToJoin, char character = ' ') {
 ///@param s String to be uppercase
 ///@return Uppercased string
 string upper(const string & s);
+
+string strPrecision(string num, unsigned decimalDigits = 2);
+
+

@@ -11,10 +11,12 @@ public:
     Ticket(Event *event, Person *person);
 
     Event *getEvent() const;
-
     Person *getPerson() const;
 
     friend bool operator==(Ticket &left, Ticket &right);
+
+    friend ostream &operator<<(ostream &out, Ticket &ticket);
+
 };
 
 

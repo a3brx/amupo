@@ -1,5 +1,5 @@
 #include "Event.h"
-
+#include "../System/System.h"
 #include <utility>
 
 using namespace std;
@@ -50,14 +50,18 @@ istream &operator>>(istream &in, Event **event) {
     name = vecAux.at(0);
     date = vecAux.at(1);
     price = vecAux.at(2);
-    if (!isnum(price)) throw InvalidEvent(name, Date(date), stof(price));
     try {
         Date dt = Date(date);
+        if (!isNum(price)) throw InvalidInput("Some Event's ticket price is not a number!");
         *event = new Event(nullptr, dt, stof(price), name);
     }
     catch (InvalidDate) {
         throw InvalidDate(date);
     }
+    catch (InvalidEvent) {
+        throw InvalidEvent(name, Date(date), stof(price));
+    }
+
     return in;
 }
 

@@ -20,3 +20,11 @@ bool operator==(Ticket &left, Ticket &right) {
     return true;
 }
 
+ostream &operator<<(ostream &out, Ticket &ticket) {
+    out << ticket.getPerson()->getName() << ", " << ticket.getPerson()->getBirthday() << " | "
+        << ticket.getEvent()->getName() << ", " << ticket.getEvent()->getDate();
+    return out;
+}
+
+
+

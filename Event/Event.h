@@ -6,6 +6,7 @@
 #include "iostream"
 #include "../Person/Person.h"
 
+
 class Event{
     string name;            //so se da nome ao event ao adiciona-lo ao sistema para ver se ha dois iguais
     Museum * museum;
@@ -55,12 +56,10 @@ public:
     InvalidEvent(string nm, Date dt, float price) : name(nm), date(dt),
                                                                     price(price) {}
 
+    InvalidEvent() {};
     string getName() { return name; }
-
     Date getDate() { return date; }
-
     float getPrice() { return price; }
-
     friend ostream &operator<<(ostream &out, InvalidEvent &ev) {
         out << "Invalid Event!\n" << ev.name << endl << ev.date << endl << ev.price;
         return out;

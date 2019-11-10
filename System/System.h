@@ -53,6 +53,7 @@ public:
     void deleteMuseum(string name);
 
     void calcBudget();
+
 };
 
 class InvalidInput : exception {

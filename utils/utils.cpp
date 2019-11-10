@@ -99,13 +99,12 @@ vector<string> split(const string& toSplit,const string& splitPoint){
     return splitVec;
 }
 
-bool isnum(const string & toConvert) {
-    try {
-        stof(toConvert);
-    } catch (...) {
-        return false;
-    }
-    return true;
+bool isNum(const string &toConvert) {
+    float f;
+    stringstream st;
+    st.str(toConvert);
+    st >> f;
+    return st.eof() && !st.fail();
 }
 
 /*vector<string> trimSplit(string str, string splitPoint) {
@@ -120,4 +119,15 @@ string upper(const string & s) {
         else
             ns.push_back(i);
     return ns;
+}
+
+string strPrecision(string num, unsigned decimalDigits) {
+    bool afterPoint = false;
+    string newNum;
+    for (auto car : num) {
+        newNum.push_back(car);
+        if (afterPoint) decimalDigits--;
+        if (car == '.') afterPoint = true;
+        if (decimalDigits == 0) return newNum;
+    }
 }

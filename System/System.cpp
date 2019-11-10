@@ -51,6 +51,36 @@ System::System(const string & fileName) {
         }
         if (this->events.back()->getMuseum() == nullptr) throw InvalidInput("Museum name does not exist!");
     }
+
+    file.close();
+
+    file.open(ticketsFile);
+    string auxStr;
+    vector<string> vecPerson, vecEvent;
+    Ticket *ticket;
+    while (!file.eof()) {
+        getline(file, auxStr);
+        try {
+            aux = trim(split(auxStr, "|"));
+            vecPerson = trim(split(aux.at(0), ","));
+            vecEvent = trim(split(aux.at(1), ","));
+            Person *tempP;
+            Event *tempE;
+            for (auto person : people) {
+                tempP = new Person(vecPerson.at(0), Date(vecPerson.at(1)), Address(), 0);
+                if (*tempP == *person) tempP = person;
+            }
+            for (auto event : events) {
+                tempE = new Event(nullptr, Date(vecEvent.at(1)), 0, vecEvent.at(0));
+                if (*tempE == *event) tempE = event;
+            }
+            ticket = new Ticket(tempE, tempP);
+            this->soldTickets.push_back(ticket);
+        }
+        catch (...) {
+            throw InvalidInput("Error reading tickets!");
+        }
+    }
     file.close();
 }
 
@@ -80,7 +110,7 @@ void System::readEvents() const {
         }
         date << event->getDate();
         vector<string> aux = {event->getName(), event->getMuseum()->getName(), date.str(), to_string(sold),
-                              to_string(event->getPrice())};
+                              strPrecision(to_string(event->getPrice()))};
         content.push_back(aux);
     }
     Table<string> data(header, content);

@@ -9,7 +9,7 @@ bool validPostalCode(const string & postalCode){
     vector<string> parts = split(postalCode, "-");
     if(parts.size() != 2)
         return false;
-    if(!isnum(parts.at(0)) || !isnum(parts.at(1)))
+    if (!isNum(parts.at(0)) || !isNum(parts.at(1)))
         return false;
     return !(parts.at(0).size() != 4 || parts.at(1).size() != 3);
 }
