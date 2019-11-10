@@ -12,9 +12,9 @@ class Event{
     Date date;
     float price;
 
-
     public:
     Event(Museum * mus, Date date, float price, string name);  //por data como soldTickets(nao me lembro do nome)
+    Event(const Event &ev);
     string getName();
     Museum * getMuseum();
     Date getDate();
@@ -25,9 +25,11 @@ class Event{
     void setPrice(float p);
 
     friend ostream & operator<<(ostream & out, const Event & event);
-
     friend istream &operator>>(istream &in, Event **event);
 
+    friend bool operator==(Event &left, Event &right);
+
+    friend bool operator!=(Event &left, Event &right);
 };
 
 class OverBookedEvent : exception {

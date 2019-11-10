@@ -21,6 +21,7 @@ public:
     /// @param locality The local of the Address.
     Address(string street, const string & postalCode, unsigned short doorNumber, string locality);
 
+    Address() = default;
     Address(string addressString);
 
     ///@brief Gets the street of address.

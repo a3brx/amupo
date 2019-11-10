@@ -3,7 +3,7 @@ project(amigo_dos_museus)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(amigo_dos_museus main/main.cpp Date/Date.cpp Address/Address.cpp Event/Event.cpp Museum/Museum.cpp System/System.cpp Menu/Menu.cpp utils/utils.cpp Person/Person.cpp)
+add_executable(amigo_dos_museus main/main.cpp Date/Date.cpp Address/Address.cpp Event/Event.cpp Museum/Museum.cpp System/System.cpp Menu/Menu.cpp utils/utils.cpp Person/Person.cpp Ticket/Ticket.cpp)
 
 # Doxygen Build
 find_package(Doxygen)

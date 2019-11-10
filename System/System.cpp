@@ -1,17 +1,9 @@
 #include "System.h"
 #include <sstream>
+#include <algorithm>
 
 using namespace std;
 
-Ticket::Ticket(Event *event, Person *person):person(person),event(event) {}
-
-const Event *Ticket::getEvent() const {
-    return this->event;
-}
-
-const Person *Ticket::getPerson() const {
-    return this->person;
-}
 
 System::System(const string & fileName) {
     this->fileName = fileName;
@@ -52,7 +44,12 @@ System::System(const string & fileName) {
         this->events.push_back(e);
         string museumName;
         getline(file, museumName);
-        //this->events.back()->setMuseum();
+        for (auto museum : museums) {
+            if (museumName == museum->getName()) {
+                this->events.back()->setMuseum(museum);
+            }
+        }
+        if (this->events.back()->getMuseum() == nullptr) throw InvalidInput("Museum name does not exist!");
     }
     file.close();
 }
@@ -77,8 +74,12 @@ void System::readEvents() const {
     vector<vector<string>> content;
     for (auto event : this->events) {
         stringstream date;
+        unsigned sold = 0;
+        for (auto ticket : soldTickets) {
+            if (*(ticket->getEvent()) == *(event)) sold++;
+        }
         date << event->getDate();
-        vector<string> aux = {event->getName(), event->getMuseum()->getName(), date.str(), to_string(event->getSoldTickets().size()),
+        vector<string> aux = {event->getName(), event->getMuseum()->getName(), date.str(), to_string(sold),
                               to_string(event->getPrice())};
         content.push_back(aux);
     }
@@ -113,3 +114,6 @@ Ticket * System::sellTicket(Person *person) {
     return aux;
 }
  */
+string InvalidInput::getMsg() {
+    return this->msg;
+}

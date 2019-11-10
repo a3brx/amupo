@@ -6,16 +6,9 @@
 #include "../Event/Event.h"
 #include "../Person/Person.h"
 #include "../Museum/Museum.h"
+#include "../Ticket/Ticket.h"
 
-class Ticket{
-private:
-    const Event *event ;
-    const Person *person;
-public:
-    Ticket(Event * event, Person * person);
-    const Event *getEvent() const;
-    const Person *getPerson() const;
-};
+
 
 class System{
 private:
@@ -64,7 +57,9 @@ public:
 
 class InvalidInput : exception {
 private:
-    string type;
+    string msg;
 public:
-    InvalidInput(string type) : type(move(type)) {};
+    InvalidInput(string msg) : msg(move(msg)) {};
+
+    string getMsg();
 };

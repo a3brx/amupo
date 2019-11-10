@@ -39,7 +39,7 @@ void Event::setPrice(float p) {
 }
 
 ostream & operator<<(ostream & out, const Event & event) {
-    out << event.name << event.date << event.soldTickets.size() << event.price << event.museum;
+    out << event.name << event.date << event.price << endl << event.museum->getName();
     return out;
 }
 
@@ -59,6 +59,23 @@ istream &operator>>(istream &in, Event **event) {
         throw InvalidDate(date);
     }
     return in;
+}
+
+bool operator==(Event &left, Event &right) {
+    if (left.name != right.name) return false;
+    if (left.date != right.date) return false;
+    return true;
+}
+
+bool operator!=(Event &left, Event &right) {
+    return !(left == right);
+}
+
+Event::Event(const Event &ev) {
+    this->name = ev.name;
+    this->date = ev.date;
+    this->museum = ev.museum;
+    this->price = ev.price;
 }
 
 

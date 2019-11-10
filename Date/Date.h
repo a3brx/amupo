@@ -18,6 +18,8 @@ public:
     /// @brief Constructs a Date equal to the actual date.
     Date();
 
+    Date(const Date &date);
+
     /// @brief Constructs a Date in the actual month.
     /// @param day The day of the Date.
     explicit Date(unsigned char day);
@@ -107,6 +109,7 @@ public:
     /// @param param A Date object.
     /// @return Returns true if the dates are different, false otherwise.
     bool operator!=(const Date param) const;
+
     friend ostream &operator<<(ostream & out, const Date & date);
     friend istream &operator>>(istream & in, Date & date);
 };

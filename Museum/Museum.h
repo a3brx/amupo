@@ -21,5 +21,7 @@ class Museum{
 
     friend ostream & operator<<(ostream & out, const Museum & museum);
     friend istream & operator>>(istream & in, Museum ** museum);
+
+    friend bool museumSetter(Museum a);
 };
 

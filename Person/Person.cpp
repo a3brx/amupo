@@ -1,5 +1,4 @@
 #include "../Person/Person.h"
-
 #include <utility>
 
 
@@ -36,7 +35,25 @@ Person::Person(string name, Date birthday, Address address, unsigned contact) : 
     this->contact=contact;
 }
 
+Person::Person(const Person &person) : birthday(person.getBirthday()) {
+    this->name = person.name;
+    this->address = person.address;
+    this->contact = person.contact;
+}
 
+bool Person::operator==(Person person) {
+    bool equal = true;
+    equal = (equal && (this->name == person.getName()));
+    equal = (equal && (this->birthday == person.getBirthday()));
+    /*equal = (equal && (this->contact==person.getContact()));
+    equal = (equal && (this->address==person.getAddress()));*/
+
+    return equal;
+}
+
+bool Person::operator!=(Person person) {
+    return !(*this == person);
+}
 
 Date Client::getAcquisitionDate() const{
     return acquisitionDate;
@@ -71,16 +88,6 @@ istream &operator>>(istream &in, Person ** person) {
 
     return in;
 }
-
-bool Person::operator==(Person person) {
-    bool equal =true;
-    equal = (equal && (this->name==person.getName()));
-    equal = (equal && (this->birthday==person.getBirthday()));
-    /*equal = (equal && (this->contact==person.getContact()));
-    equal = (equal && (this->address==person.getAddress()));*/
-    return equal;
-}
-
 
 float SilverClient::cost = 30;
 

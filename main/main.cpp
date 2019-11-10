@@ -7,8 +7,13 @@
 using namespace std;
 
 int main(){
-    string test="../database/files.txt";
-    System sys(test);
-    MainMenu m(&sys);
+    try {
+        string test = "../database/files.txt";
+        System sys(test);
+        MainMenu m(&sys);
+    }
+    catch (InvalidInput error) {
+        cout << error.getMsg() << endl;
+    }
     return 0;
 }

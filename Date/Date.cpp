@@ -217,6 +217,13 @@ istream &operator>>(istream &in, Date &date) {
     return in;
 }
 
+
+Date::Date(const Date &date) {
+    this->month = date.month;
+    this->year = date.year;
+    this->day = date.day;
+}
+
 // ----------------------------------------------------------------------------------------------------
 //                                Returns true if a year is a leap year
 // ----------------------------------------------------------------------------------------------------

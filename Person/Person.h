@@ -10,6 +10,8 @@ private:
     unsigned contact;
 public:
     Person(string name, Date birthday, Address address, unsigned contact);
+
+    Person(const Person &person);
     ///@brief Gets the name of person.
     ///@return The name attribute of person.
     string getName() const;
@@ -40,6 +42,8 @@ public:
 
     friend istream & operator>>(istream & in, Person **person);
     bool operator==(Person person);
+
+    bool operator!=(Person person);
 };
 
 class Client:public Person{
