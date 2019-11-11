@@ -18,7 +18,8 @@ private:
     vector<Museum*> museums;
     vector<Ticket*> soldTickets;
 public:
-    System(const string& fileName);                                               //Ler ficheiros no inicio
+    System(const string &fileName);                             //Ler ficheiros no inicio
+    ~System();
 
     vector<Event*> getEvents() const;
     void createEvent();                                     //Ler do input, dar nome ao event
@@ -54,6 +55,12 @@ public:
     void deleteMuseum(string name);
 
     void calcBudget();
+
+    Event *findEvent(string name, Date date);
+
+    Person *findPerson(string name, Date birthday);
+
+    Museum *findMuseum(string name);
 
 };
 

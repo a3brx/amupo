@@ -32,7 +32,7 @@ void Museum::setCapacity(unsigned cap) {
 }
 
 ostream & operator<<(ostream & out, const Museum & museum) {
-    out << museum.name << museum.capacity << museum.address;
+    out << museum.name << " | " << museum.capacity << endl << museum.address;
     return out;
 }
 

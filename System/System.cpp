@@ -44,11 +44,7 @@ System::System(const string & fileName) {
         this->events.push_back(e);
         string museumName;
         getline(file, museumName);
-        for (auto museum : museums) {
-            if (museumName == museum->getName()) {
-                this->events.back()->setMuseum(museum);
-            }
-        }
+        this->events.back()->setMuseum(this->findMuseum(museumName));
         if (this->events.back()->getMuseum() == nullptr) throw InvalidInput("Museum name does not exist!");
     }
 
@@ -64,17 +60,8 @@ System::System(const string & fileName) {
             aux = trim(split(auxStr, "|"));
             vecPerson = trim(split(aux.at(0), ","));
             vecEvent = trim(split(aux.at(1), ","));
-            Person *tempP;
-            Event *tempE;
-            for (auto person : people) {
-                tempP = new Person(vecPerson.at(0), Date(vecPerson.at(1)), Address(), 0);
-                if (*tempP == *person) tempP = person;
-            }
-            for (auto event : events) {
-                tempE = new Event(nullptr, Date(vecEvent.at(1)), 0, vecEvent.at(0));
-                if (*tempE == *event) tempE = event;
-            }
-            ticket = new Ticket(tempE, tempP);
+            ticket = new Ticket(this->findEvent(vecEvent.at(0), Date(vecEvent.at(1))),
+                                this->findPerson(vecPerson.at(0), Date(vecPerson.at(1)));
             this->soldTickets.push_back(ticket);
         }
         catch (...) {
@@ -136,6 +123,77 @@ vector<Museum *> System::getMuseums() const {
     return this->museums;
 }
 
+Event *System::findEvent(string name, Date date) {
+    Event *tempE = nullptr;
+    for (auto event : events) {
+        tempE = new Event(nullptr, date, 0, name);
+        if (*tempE == *event) tempE = event;
+    }
+    return tempE;
+}
+
+Person *System::findPerson(string name, Date birthday) {
+    Person *tempP = nullptr;
+    for (auto person : people) {
+        tempP = new Person(name, birthday, Address(), 0);
+        if (*tempP == *person) tempP = person;
+    }
+    return tempP;
+}
+
+Museum *System::findMuseum(string name) {
+    for (auto museum : museums) {
+        if (name == museum->getName()) {
+            return museum;
+        }
+    }
+    return nullptr;
+}
+
+System::~System() {
+    fstream file;
+    vector<string> aux = split(this->fileName, "/");
+    aux.pop_back();
+    string path = join(aux, '/');
+    string museumsFile, peopleFile, eventsFile, ticketsFile;
+
+    file.open(this->fileName);
+    file >> eventsFile >> peopleFile >> museumsFile >> ticketsFile;
+    eventsFile = path + eventsFile;
+    peopleFile = path + peopleFile;
+    museumsFile = path + museumsFile;
+    ticketsFile = path + ticketsFile;
+    file.close();
+
+    file.open(museumsFile);
+    auto itm = this->museums.begin(), itml = this->museums.end();
+    for (; itm != itml; itm++) {
+        file << *(*itm) << endl;
+    }
+    file.close();
+
+    file.open(peopleFile);
+    auto itp = this->people.begin(), itpl = this->people.end();
+    for (; itp != itpl; itp++) {
+        file << *(*itp) << endl;
+    }
+    file.close();
+
+    file.open(eventsFile);
+    auto ite = this->events.begin(), itel = this->events.end();
+    for (; ite != itel; ite++) {
+        file << *(*ite) << endl;
+    }
+    file.close();
+
+    file.open(ticketsFile);
+    auto itt = this->events.begin(), ittl = this->events.end();
+    for (; itt != ittl; itt++) {
+        file << *(*itt) << endl;
+    }
+    file.close();
+}
+
 Address System::readAddress() {
     string street,doornumber,postalcode,local;
     cout<<"Introduce the street name: ";
@@ -185,10 +243,6 @@ void System::createPerson(Person *person) {
     else{
         cout<<"Can't add the same person to the system twice!";
     }
-}
-
-Person *System::findPerson(string name, Date birthday) const {
-    return nullptr;
 }
 
 /*
