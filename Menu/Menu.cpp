@@ -99,6 +99,10 @@ PersonMenu::PersonMenu(System *system) : Menu(system) {
     while(true) {
         this->nextMenu = this->option();
         switch (this->nextMenu) {
+            case 'C' : {
+                clear();
+                sys->createPerson();
+            } break;
             case 'R' : {
                 clear();
                 sys->readPeople();

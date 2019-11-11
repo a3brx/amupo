@@ -30,11 +30,12 @@ public:
     void deleteEvent();                                     //Pedir input
     void deleteEvent(string name);
     void sellTicket();
+    Address readAddress();
 
     vector<Person*> getPeople() const;
-    Person * findPerson(string name,Date birthday) const;
-    void createPerson();                                      //Ler do input
-    void createPerson(Client *card);
+    Person *findPerson(string name,Date birthday) const;
+    Person  createPerson();                                     //Ler do input
+    void createPerson(Person *Person);
     Person* readPerson() const;                                       //Pesquisa
     void readPeople() const;                              //Mostra Tabela com todos Cards
     void updatePerson();                                      //Pedir input

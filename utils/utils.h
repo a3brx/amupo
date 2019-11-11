@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 #include <utility>
+#include <functional>
 using namespace std;
 
 bool clear();
@@ -50,10 +51,8 @@ vector<string> split(const string& toSplit,const string& splitPoint);
 ///@return Returns true if the string is convertible to number;
 bool isNum(const string &toConvert);
 
-/*///@brief Trims and splits a string
-///@param str String to be trimmed and split
-///@return Vector of Strings
-vector<string> trimSplit(string str, string splitPoint);*/
+bool isPostalCode(string toTest);
+
 template<class T>
 string join(vector<T> vecToJoin, char character = ' ') {
     stringstream res;
@@ -70,4 +69,4 @@ string upper(const string & s);
 
 string strPrecision(string num, unsigned decimalDigits = 2);
 
-
+string getInput(bool (__valid)(string), const string &message = "Choose a option: ", const string &fail = "Invalid input.");

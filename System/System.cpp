@@ -136,6 +136,61 @@ vector<Museum *> System::getMuseums() const {
     return this->museums;
 }
 
+Address System::readAddress() {
+    string street,doornumber,postalcode,local;
+    cout<<"Introduce the street name: ";
+    getline(cin,street);
+    do {
+        cout << "Introduce the door number: ";
+        getline(cin, doornumber);
+    }while(!isNum(doornumber));
+    getInput(isPostalCode, "Introduce a valid Postal Code (Format: XXXX-YYY): ", "Invalid postal code.");
+    cout<<"Introduce the local: ";
+    getline(cin,local);
+    return Address(street,postalcode,stoi(doornumber),local);
+}
+
+Person System::createPerson() {
+    string name,birthday,contact;
+    Date bday;
+    Address *address;
+    while (true) {
+        cout<<"Name: ";
+        getline(cin,name);
+        cout << "Introduce a birthday (Format: DD/MM/YYYY): ";
+        getline(cin, birthday);
+        try {
+
+            bday=Date(birthday);
+            *address=readAddress();
+            break;
+        } catch (InvalidDate) {
+           cout<<"Invalid Date"<<endl;
+        }/* catch (InvalidAddress) {
+            cout << "Invalid Address" << endl;
+        }*/
+    }
+    do {
+        cout << "contact: ";
+        getline(cin, contact);
+    }while(!isNum(contact) || contact.size()!=9);
+
+
+    return Person(name,bday,*address,(unsigned)stoi(contact));
+
+}
+
+void System::createPerson(Person *person) {
+    if(findPerson(person->getName(),person->getBirthday())== nullptr) this->people.push_back(person);
+    else{
+        cout<<"Can't add the same person to the system twice!";
+    }
+}
+
+Person *System::findPerson(string name, Date birthday) const {
+    return nullptr;
+}
+
 /*
 Ticket * System::sellTicket(Person *person) {
     if (this->soldTickets.size() >= this->museum->getCapacity()) throw OverBookedEvent(this->museum, this->soldTickets.size());

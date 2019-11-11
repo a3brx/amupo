@@ -107,9 +107,12 @@ bool isNum(const string &toConvert) {
     return st.eof() && !st.fail();
 }
 
-/*vector<string> trimSplit(string str, string splitPoint) {
-    return split(trim(str), splitPoint);
-}*/
+bool isPostalCode(string toTest){
+    vector<string> toTestVec=split(toTest,"-");
+    if(toTestVec.size()!=2) return false;
+    return isNum(toTestVec.at(0)) && isNum(toTestVec.at(1))
+    && toTestVec.at(0).size() == 4 && toTestVec.at(1).size() == 3;
+}
 
 string upper(const string & s) {
     string ns;
@@ -130,4 +133,17 @@ string strPrecision(string num, unsigned decimalDigits) {
         if (car == '.') afterPoint = true;
         if (decimalDigits == 0) return newNum;
     }
+}
+
+string getInput(bool (__valid)(string), const string &message, const string &fail){
+    string input;
+    cout << message;
+    getline(cin, input);
+    input = upper(input);
+    while (!__valid(input)){
+        cout << fail << endl << message;
+        getline(cin, input);
+        input = upper(input);
+    };
+    return input;
 }

@@ -54,11 +54,17 @@ Date::Date(unsigned char day, unsigned char month, unsigned short year) {
 //                      Creates a new date from a string in the format DD-MM-YYYY
 // ----------------------------------------------------------------------------------------------------
 Date::Date(const string & s) {
-    unsigned char day = stoi(s.substr(0, 2));
-    unsigned char month = stoi(s.substr(3, 2));
-    unsigned short year = stoi(s.substr(6, 4));
+    unsigned char day, month;
+    unsigned short year;
+    try {
+        day = stoi(s.substr(0, 2));
+        month = stoi(s.substr(3, 2));
+        year = stoi(s.substr(6, 4));
+    } catch (...) {
+        throw InvalidDate(day, month, year);
+    }
     if (!validDate(day, month, year))
-        throw InvalidDate(day, this->month, this->year);
+        throw InvalidDate(day, month, year);
     this->year = year;
     this->month = month;
     this->day = day;

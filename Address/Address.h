@@ -56,6 +56,7 @@ public:
     ///@param locality The locality to be attributed to the address.
     void setLocality(string locality);
 
+
     //operators
     /// @brief Compares two objects of type Date.
     /// @param param The address that is compared with the object.
