@@ -256,7 +256,7 @@ void System::deletePerson(string name, Date birthday) {
     if(toRemove == nullptr)
         return;
     auto toAdd = new Person(name, birthday, toRemove->getAddress(), toRemove->getContact());
-    //this->people.erase(toRemove);
+    this->people.erase(toRemove);
     this->createPerson(toAdd);
 }
 
