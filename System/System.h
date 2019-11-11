@@ -21,7 +21,7 @@ public:
     System(const string &fileName);                             //Ler ficheiros no inicio
     ~System();
 
-    Address readAddress();
+    static Address readAddress();
 
     vector<Event*> getEvents() const;
     vector<Person*> getPeople() const;
@@ -33,7 +33,7 @@ public:
 
     void createEvent();                                     //Ler do input, dar nome ao event
     void createEvent(Event *ev);
-    Person  createPerson();                                     //Ler do input
+    static Person createPerson();                                     //Ler do input
     void createPerson(Person *Person);
     void createMuseum();                                        //Ler do input
     void createMuseum(Museum *mus);
@@ -46,16 +46,16 @@ public:
     void readMuseums() const;                              //Mostra Tabela com todos Museums
 
     void updateEvent();                                     //Pedir input
-    void updateEvent(Event* oldEvent, Event* newEvent);
+    //void updateEvent(Event* oldEvent, Event* newEvent);
     void updatePerson();                                      //Pedir input
-    void updatePerson(Person* oldPerson, Person* newPerson);
+    //void updatePerson(Person* oldPerson, Person* newPerson);
     void updateMuseum();                                        //Pedir input
-    void updateMuseum(Museum* oldMuseum, Museum* newMuseum);
+    //void updateMuseum(Museum* oldMuseum, Museum* newMuseum);
 
     void deleteEvent();                                     //Pedir input
-    void deleteEvent(string name);
+    void deleteEvent(string name, Date date);
     void deletePerson();                                        //Pedir input
-    void deletePerson(string name);
+    void deletePerson(string name, Date birthday);
     void deleteMuseum();            //Pedir input
     void deleteMuseum(string name);
 

@@ -7,13 +7,19 @@
 using namespace std;
 
 int main(){
+    System *sys;
     try {
         string test = "../database/files.txt";
-        System sys(test);
-        MainMenu m(&sys);
-    }
-    catch (InvalidInput error) {
+        sys = new System(test);
+    } catch (InvalidInput &error) {
         cout << error.getMsg() << endl;
+        return 1;
+    }
+    try {
+        MainMenu m(sys);
+    } catch (exception &error) {
+        cout << "Error" << endl;
+        return 2;
     }
     return 0;
 }

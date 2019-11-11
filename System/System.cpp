@@ -239,10 +239,8 @@ Person System::createPerson() {
 }
 
 void System::createPerson(Person *person) {
-    if(findPerson(person->getName(),person->getBirthday())== nullptr) this->people.push_back(person);
-    else{
-        cout<<"Can't add the same person to the system twice!";
-    }
+    if(findPerson(person->getName(),person->getBirthday())== nullptr)
+        this->people.push_back(person);
 }
 
 vector<Event *> System::getEvents() const {
@@ -251,6 +249,26 @@ vector<Event *> System::getEvents() const {
 
 vector<Person *> System::getPeople() const {
     return this->people;
+}
+
+void System::deletePerson(string name, Date birthday) {
+    Person * toRemove = findPerson(name, birthday);
+    if(toRemove == nullptr)
+        return;
+    auto toAdd = new Person(name, birthday, toRemove->getAddress(), toRemove->getContact());
+    //this->people.erase(toRemove);
+    this->createPerson(toAdd);
+}
+
+void System::deletePerson() {
+    getInput([](string){return true;}, "Type the name of the Person: ");
+    getInput([](string a){
+        try{
+            Date temp(a);
+            return true;
+        }catch(...){
+            return false;}
+        }, "Type their birthday: ");
 }
 
 /*
