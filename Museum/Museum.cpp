@@ -32,7 +32,7 @@ void Museum::setCapacity(unsigned cap) {
 }
 
 ostream & operator<<(ostream & out, const Museum & museum) {
-    out << museum.name << " | " << museum.capacity << endl << museum.address;
+    out << museum.valid << "|" << museum.name << " | " << museum.capacity << endl << museum.address;
     return out;
 }
 
@@ -40,13 +40,20 @@ istream & operator>>(istream & in, Museum ** museum) {
     string line;
     getline(in, line);
     vector<string> aux = split(line, "|");
+    bool valid = (trim(aux.at(0)) == "1");
+    aux.erase(aux.begin());
     unsigned auxCapacity = stoi(aux.back());
     aux.pop_back();
     string auxName = trim(join(aux));
     Address *auxAddress;
     in >> &auxAddress;
     *museum = new Museum(*auxAddress, auxCapacity, auxName);
+    (*museum)->valid = valid;
     return in;
+}
+
+bool Museum::isValid() const {
+    return this->valid;
 }
 
 

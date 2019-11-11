@@ -4,7 +4,6 @@
 
 using namespace std;
 
-
 System::System(const string & fileName) {
     this->fileName = fileName;
     ifstream file;
@@ -61,7 +60,7 @@ System::System(const string & fileName) {
             vecPerson = trim(split(aux.at(0), ","));
             vecEvent = trim(split(aux.at(1), ","));
             ticket = new Ticket(this->findEvent(vecEvent.at(0), Date(vecEvent.at(1))),
-                                this->findPerson(vecPerson.at(0), Date(vecPerson.at(1)));
+                                this->findPerson(vecPerson.at(0), Date(vecPerson.at(1))));
             this->soldTickets.push_back(ticket);
         }
         catch (...) {
@@ -112,7 +111,8 @@ void System::readMuseums() const {
         stringstream address;
         address << museum->getAddress();
         vector<string> aux = {museum->getName(), to_string(museum->getCapacity()),  address.str()};
-        content.push_back(aux);
+        if(museum->isValid())
+            content.push_back(aux);
     }
     Table<string> data(header, content);
     cout << data;
@@ -123,7 +123,7 @@ vector<Museum *> System::getMuseums() const {
     return this->museums;
 }
 
-Event *System::findEvent(string name, Date date) {
+Event *System::findEvent(string name, Date date) const {
     Event *tempE = nullptr;
     for (auto event : events) {
         tempE = new Event(nullptr, date, 0, name);
@@ -132,7 +132,7 @@ Event *System::findEvent(string name, Date date) {
     return tempE;
 }
 
-Person *System::findPerson(string name, Date birthday) {
+Person *System::findPerson(string name, Date birthday) const {
     Person *tempP = nullptr;
     for (auto person : people) {
         tempP = new Person(name, birthday, Address(), 0);
@@ -141,7 +141,7 @@ Person *System::findPerson(string name, Date birthday) {
     return tempP;
 }
 
-Museum *System::findMuseum(string name) {
+Museum *System::findMuseum(string name) const {
     for (auto museum : museums) {
         if (name == museum->getName()) {
             return museum;
@@ -151,7 +151,7 @@ Museum *System::findMuseum(string name) {
 }
 
 System::~System() {
-    fstream file;
+    /*fstream file;
     vector<string> aux = split(this->fileName, "/");
     aux.pop_back();
     string path = join(aux, '/');
@@ -191,7 +191,7 @@ System::~System() {
     for (; itt != ittl; itt++) {
         file << *(*itt) << endl;
     }
-    file.close();
+    file.close();*/
 }
 
 Address System::readAddress() {
@@ -243,6 +243,14 @@ void System::createPerson(Person *person) {
     else{
         cout<<"Can't add the same person to the system twice!";
     }
+}
+
+vector<Event *> System::getEvents() const {
+    return this->events;
+}
+
+vector<Person *> System::getPeople() const {
+    return this->people;
 }
 
 /*

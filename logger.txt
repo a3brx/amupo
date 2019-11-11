@@ -42,5 +42,8 @@ JR
 O operator== precisa de ser friend para eu lhe passar uma string e uma Date (nome e dia de nascimento) mas eu nao consigo aceder
 ao this-> porque a função passa a ser friend como querem fazer ?
 
-AA
+A3
 Podes criar uma Data com a string( "Date(string)" ) e então compará-los com o operator== (que já deve existir na classe date
+-------------------------------------------------------------
+11/11/2019
+A3

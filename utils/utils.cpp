@@ -13,7 +13,7 @@
 #endif
 
 bool clear() {
-    if (PLATFORM_NAME == "linux") {
+    /*if (PLATFORM_NAME == "linux") {
         cout << "\033[2J\033[1;1H";
     }
     else if (PLATFORM_NAME == "windows") {
@@ -21,7 +21,7 @@ bool clear() {
     }
     else {
         return false;
-    }
+    }*/
     return true;
 }
 

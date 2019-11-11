@@ -5,6 +5,7 @@ using namespace std;
 
 class Museum{
     private:
+    bool valid = true;
     string name;
     Address address;
     unsigned capacity;
@@ -15,13 +16,12 @@ class Museum{
     string getName();
     Address getAddress();
     unsigned getCapacity();
+    bool isValid() const;
     void setName(string name);
     void setAddress(Address adr);
     void setCapacity(unsigned cap);
 
     friend ostream & operator<<(ostream & out, const Museum & museum);
     friend istream & operator>>(istream & in, Museum ** museum);
-
-    friend bool museumSetter(Museum a);
 };
 
