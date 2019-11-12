@@ -33,7 +33,6 @@ public:
 
     void createEvent();                                     //Ler do input, dar nome ao event
     void createEvent(Event *ev);
-
     void createPerson();                                     //Ler do input
     void createPerson(Person *Person);
     void createMuseum();                                        //Ler do input

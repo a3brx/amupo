@@ -38,7 +38,7 @@ void Event::setPrice(float p) {
 }
 
 ostream & operator<<(ostream & out, const Event & event) {
-    out << event.name << event.date << event.price << endl << event.museum->getName();
+    out << event.name << " | " << event.date << " | " << event.price << endl << event.museum->getName();
     return out;
 }
 

@@ -21,5 +21,6 @@ int main(){
         cout << "Error" << endl;
         return 2;
     }
+    delete sys;
     return 0;
 }

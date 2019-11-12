@@ -56,10 +56,25 @@ Date::Date(unsigned char day, unsigned char month, unsigned short year) {
 Date::Date(const string & s) {
     unsigned char day, month;
     unsigned short year;
+    vector<string> splitVec;
+    string temp;
+    string separators = "-/|";
+    for(char i : s){
+        if(separators.find(i) != string::npos){
+            if(temp.empty())
+                continue;
+            splitVec.push_back(temp);
+            temp = "";
+        }else{
+            temp += i;
+        }
+    }
+    splitVec.push_back(temp);
+    if(splitVec.size() != 3) throw InvalidDate(0, 0, 0);
     try {
-        day = stoi(s.substr(0, 2));
-        month = stoi(s.substr(3, 2));
-        year = stoi(s.substr(6, 4));
+        day = stoi(splitVec.at(0));
+        month = stoi(splitVec.at(1));
+        year = stoi(splitVec.at(2));
     } catch (...) {
         throw InvalidDate(day, month, year);
     }
