@@ -23,8 +23,6 @@ public:
     System(const string &fileName);                             //Ler ficheiros no inicio
     ~System();
 
-
-
     vector<Event*> getEvents() const;
     vector<Person*> getPeople() const;
     vector<Museum*> getMuseums() const;
@@ -65,6 +63,7 @@ public:
     static Address inputAddress();
 
     Museum inputMuseum();
+
 
     void sellTicket();
     void calcBudget();

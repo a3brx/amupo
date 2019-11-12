@@ -198,10 +198,16 @@ Address System::inputAddress() {
     string street, doornumber, postalcode, local;
     cout << "Introduce the street name: ";
     getline(cin, street);
-    do {
+    while (true) {
         cout << "Introduce the door number: ";
         getline(cin, doornumber);
-    } while (!isNum(doornumber));
+        if (!isNum(doornumber)) {
+            cout << "Invalid door number:" << endl;
+            getline(cin, doornumber);
+            continue;
+        }
+        break;
+    }
     getInput(isPostalCode, "Introduce a valid Postal Code (Format: XXXX-YYY): ", "Invalid postal code.");
     cout << "Introduce the local: ";
     getline(cin, local);
@@ -209,36 +215,36 @@ Address System::inputAddress() {
 }
 
 void System::createPerson() {
-    string name, birthday, contact;
-    Date bday;
-    Address *address;
-    while (true) {
-        cout << "Name: ";
-        getline(cin, name);
-        cout << "Introduce a birthday (Format: DD/MM/YYYY): ";
-        getline(cin, birthday);
-        try {
-            bday = Date(birthday);
-            *address = inputAddress();
-            break;
-        } catch (InvalidDate) {
-            cout << "Invalid Date" << endl;
-        }/* catch (InvalidAddress) {
-            cout << "Invalid Address" << endl;
-        }*/
-    }
-    do {
-        cout << "Contact: ";
-        getline(cin, contact);
-    } while (!isNum(contact) || contact.size() != 9);
-    if (bday - Date() > 65 * 365) {
-        SilverClient *tempS = new SilverClient(name, Date(), bday, *address, stoi(contact));
-        this->people.push_back(tempS);
-        return;
-    }
-
-    Person *temp = new Person(name, bday, *address, (unsigned) stoi(contact))
-    this->people.push_back(temp);
+//    string name, birthday, contact;
+//    Date bday;
+//    Address *address;
+//    while (true) {
+//        cout << "Name: ";
+//        getline(cin, name);
+//        cout << "Introduce a birthday (Format: DD/MM/YYYY): ";
+//        getline(cin, birthday);
+//        try {
+//            bday = Date(birthday);
+//            *address = inputAddress();
+//            break;
+//        } catch (InvalidDate) {
+//            cout << "Invalid Date" << endl;
+//        }/* catch (InvalidAddress) {
+//            cout << "Invalid Address" << endl;
+//        }*/
+//    }
+//    do {
+//        cout << "Contact: ";
+//        getline(cin, contact);
+//    } while (!isNum(contact) || contact.size() != 9);
+//    if (bday - Date() > 65 * 365) {
+//        SilverClient *tempS = new SilverClient(name, Date(), bday, *address, stoi(contact));
+//        this->people.push_back(tempS);
+//        return;
+//    }
+//
+//    Person *temp = new Person(name, bday, *address, (unsigned) stoi(contact));
+//    this->people.push_back(temp);
 }
 
 void System::createPerson(Person *person) {
@@ -323,36 +329,70 @@ void System::createEvent(Event *ev) {
 }
 
 void System::createEvent() {
-    string name, dateStr, price;
-    Date date;
-    Museum *mus;
-    while (true) {
-        cout << "Name: ";
-        getline(cin, name);
-        cout << "Introduce a date (Format: DD/MM/YYYY): ";
-        getline(cin, dateStr);
-        try {
-            date = Date(dateStr);
-            *mus = readMuseum();
-            break;
-        } catch (InvalidDate) {
-            cout << "Invalid Date" << endl;
-        } catch (InvalidMuseum) {
-            cout << "Invalid Museum" << endl;
-        }
-    }
-    do {
-        cout << "Price: ";
-        getline(cin, price);
-        if (!isNum(price) || price.size() != 9) break;
-        cout << "Invalid Price" << endl;
-    } while (true);
-
-    return Event(mus, date, (float) stof(price), name);
+//    string name, dateStr, price, musName;
+//    Date date;
+//    Museum *mus;
+//    while (true) {
+//        cout << "Name: ";
+//        getline(cin, name);
+//        cout << "Introduce a date (Format: DD/MM/YYYY): ";
+//        getline(cin, dateStr);
+//        try {
+//            date = Date(dateStr);
+//            if (findEvent(name,date) != events.end()){
+//                cout << "An Event with that name and date already exists\n Enter a new ";
+//                continue;
+//            }
+//            break;
+//        } catch (InvalidDate) {
+//            cout << "Invalid Date\nEnter a new date: ";
+//        }
+//    }
+//    while (true){
+//        cout << "Place of the event: ";
+//        getline(cin,musName);
+//        if (findMuseum(musName) == museums.end()) {
+//            cout << "That place doesn't exist\n";
+//            continue;
+//        }
+//        break;
+//    }
+//    while (true) {
+//        cout << "Price: ";
+//        getline(cin, price);
+//        if (!isNum(price) || price.size() != 9) break;
+//        cout << "Invalid Price\n";
+//    }
+//    Event *tempE = new Event(mus, date, (float) stof(price), name);
 }
 
-Museum System::inputMuseum() {
-
+void System::createMuseum() {
+//    string name, capStr;
+//    Address address;
+//    while (true) {
+//        cout << "Introduce the Museum name: ";
+//        getline(cin, name);
+//        if (findMuseum(name) != museums.end()) {
+//            cout << "Museum with that name already exists\nEnter a new name: ";
+//            getline(cin,name);
+//            continue;
+//        }
+//        break;
+//    }
+//    while(true) {
+//        cout << "Introduce the capacity of the Museum: ";
+//        getline(cin, capStr);
+//        if (!isNum(capStr)) {
+//            cout << "Invalid Capacity\nEnter a new capacity: ";
+//            getline(cin, capStr);
+//            continue;
+//        }
+//        break;
+//    }
+//    cout << "Museum's Address" << endl;
+//    address = inputAddress();
+//    Museum *tempM = new Museum(address, stoi(capStr), name);
+//    museums.push_back(tempM);
 }
 
 /*
