@@ -30,7 +30,7 @@ System::System(const string & fileName) {
 
     file.open(peopleFile);
     Person *p;
-    while(!file.eof()){
+    while (!file.eof()) {
         file >> &p;
         this->people.push_back(p);
     }
@@ -43,8 +43,8 @@ System::System(const string & fileName) {
         this->events.push_back(e);
         string museumName;
         getline(file, museumName);
-        this->events.back()->setMuseum(this->findMuseum(museumName));
-        if (this->events.back()->getMuseum() == nullptr) throw InvalidInput("Museum name does not exist!");
+        if ((this->findMuseum(museumName)) == museums.end()) throw InvalidInput("Museum name does not exist!");
+        this->events.back()->setMuseum(*(this->findMuseum(museumName)));
     }
 
     file.close();
@@ -59,8 +59,8 @@ System::System(const string & fileName) {
             aux = trim(split(auxStr, "|"));
             vecPerson = trim(split(aux.at(0), ","));
             vecEvent = trim(split(aux.at(1), ","));
-            ticket = new Ticket(this->findEvent(vecEvent.at(0), Date(vecEvent.at(1))),
-                                this->findPerson(vecPerson.at(0), Date(vecPerson.at(1))));
+            ticket = new Ticket(*this->findEvent(vecEvent.at(0), Date(vecEvent.at(1))),
+                                *this->findPerson(vecPerson.at(0), Date(vecPerson.at(1))));
             this->soldTickets.push_back(ticket);
         }
         catch (...) {
@@ -123,35 +123,34 @@ vector<Museum *> System::getMuseums() const {
     return this->museums;
 }
 
-Event *System::findEvent(string name, Date date) const {
-    Event *tempE = nullptr;
-    for (auto event : events) {
-        tempE = new Event(nullptr, date, 0, name);
-        if (*tempE == *event) tempE = event;
+vector<Event *>::iterator System::findEvent(string name, Date date) {
+    auto ite = this->events.begin(), itel = this->events.end();
+    Event temp(nullptr, date, 0, name);
+    for (; ite != itel; ite++) {
+        if (*(*ite) == temp) return ite;
     }
-    return tempE;
+    return itel;
 }
 
-Person *System::findPerson(string name, Date birthday) const {
-    Person *tempP = nullptr;
-    for (auto person : people) {
-        tempP = new Person(name, birthday, Address(), 0);
-        if (*tempP == *person) tempP = person;
+vector<Person *>::iterator System::findPerson(string name, Date birthday) {
+    auto itp = this->people.begin(), itpl = this->people.end();
+    Person temp(name, birthday, Address(), 0);
+    for (; itp != itpl; itp++) {
+        if (*(*itp) == temp) return itp;
     }
-    return tempP;
+    return itpl;
 }
 
-Museum *System::findMuseum(string name) const {
-    for (auto museum : museums) {
-        if (name == museum->getName()) {
-            return museum;
-        }
+vector<Museum *>::iterator System::findMuseum(string name) {
+    auto itm = this->museums.begin(), itml = this->museums.end();
+    for (; itm != itml; itm++) {
+        if ((*itm)->getName() == name) return itm;
     }
-    return nullptr;
+    return itml;
 }
 
 System::~System() {
-    /*fstream file;
+    fstream file;
     vector<string> aux = split(this->fileName, "/");
     aux.pop_back();
     string path = join(aux, '/');
@@ -191,7 +190,7 @@ System::~System() {
     for (; itt != ittl; itt++) {
         file << *(*itt) << endl;
     }
-    file.close();*/
+    file.close();
 }
 
 Address System::readAddress() {
@@ -239,7 +238,7 @@ Person System::createPerson() {
 }
 
 void System::createPerson(Person *person) {
-    if(findPerson(person->getName(),person->getBirthday())== nullptr)
+    if (*findPerson(person->getName(), person->getBirthday()) == nullptr)
         this->people.push_back(person);
 }
 
@@ -252,10 +251,10 @@ vector<Person *> System::getPeople() const {
 }
 
 void System::deletePerson(string name, Date birthday) {
-    Person * toRemove = findPerson(name, birthday);
-    if(toRemove == nullptr)
+    auto toRemove = findPerson(name, birthday);
+    if (toRemove == people.end())
         return;
-    auto toAdd = new Person(name, birthday, toRemove->getAddress(), toRemove->getContact());
+    auto toAdd = new Person(name, birthday, (*toRemove)->getAddress(), (*toRemove)->getContact());
     this->people.erase(toRemove);
     this->createPerson(toAdd);
 }
@@ -279,6 +278,3 @@ Ticket * System::sellTicket(Person *person) {
     return aux;
 }
  */
-string InvalidInput::getMsg() {
-    return this->msg;
-}

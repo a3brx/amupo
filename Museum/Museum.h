@@ -1,5 +1,6 @@
 #pragma once
 #include "../Address/Address.h"
+#include "../utils/InvalidInput.h"
 
 using namespace std;
 

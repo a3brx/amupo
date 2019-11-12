@@ -121,7 +121,7 @@ unsigned short daysYear(unsigned short year);
 unsigned abs(const Date date);
 Date date(unsigned days);
 
-class InvalidDate : exception{
+class InvalidDate : public exception {
 private:
     unsigned char day;
     unsigned char month;

@@ -76,8 +76,8 @@ public:
     string locality;
     InvalidAddress() = default;
     explicit InvalidAddress(string street, string postalCode, unsigned short doorNumber, string locality) :
-        street(street),
-        postalCode(postalCode),
-        doorNumber(doorNumber),
-        locality(locality) {}
+            street(street),
+            postalCode(postalCode),
+            doorNumber(doorNumber),
+            locality(locality) {}
 };

@@ -1,4 +1,6 @@
 #pragma once
+
+#include <ostream>
 #include "../Address/Address.h"
 #include "../Date/Date.h"
 
@@ -41,8 +43,9 @@ public:
     void setContact(unsigned contact);
 
     friend istream & operator>>(istream & in, Person **person);
-    bool operator==(Person person);
 
+    friend ostream &operator<<(ostream &out, Person &person);
+    bool operator==(Person person);
     bool operator!=(Person person);
 };
 
@@ -68,7 +71,9 @@ public:
     float getCost() const;
     ///@brief Sets the Cost of the SilverCard.
     ///@param cost The cost to be attributed to the card.
-    void setCost(float cost);
+    static void setCost(float cost);
+
+    friend ostream &operator<<(ostream &os, const SilverClient &client);
 };
 
 class UniClient: public Client{
@@ -79,7 +84,9 @@ public:
     float getCost() const;
     ///@brief Sets the Cost of the UniCard.
     ///@param cost The cost to be attributed to the card.
-    void setCost(float cost);
+    static void setCost(float cost);
+
+    friend ostream &operator<<(ostream &out, UniClient &client);
 };
 
 class IndividualClient: public Client{
@@ -90,15 +97,8 @@ public:
     float getCost() const;
     ///@brief Sets the Cost of the IndividualCard.
     ///@param cost The cost to be attributed to the card.
-    void setCost(float cost);
+    static void setCost(float cost);
+
+    friend ostream &operator<<(ostream &out, IndividualClient &client);
 };
 
-class InvalidClient : exception{
-private:
-    unsigned char day;
-    unsigned char month;
-    unsigned short year;
-public:
-    InvalidClient(unsigned char d, unsigned char m, unsigned short y):
-            day(d), month(m), year(y) {};
-};

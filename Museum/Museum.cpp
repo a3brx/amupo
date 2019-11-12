@@ -42,6 +42,7 @@ istream & operator>>(istream & in, Museum ** museum) {
     vector<string> aux = split(line, "|");
     bool valid = (trim(aux.at(0)) == "1");
     aux.erase(aux.begin());
+    if (!isNum(aux.back())) throw InvalidInput("Some Museum's Capacity is not a number!");
     unsigned auxCapacity = stoi(aux.back());
     aux.pop_back();
     string auxName = trim(join(aux));

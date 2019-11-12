@@ -77,22 +77,22 @@ EventMenu::EventMenu(System *system) : Menu(system) {
     while(true) {
         this->nextMenu = this->option();
         switch (this->nextMenu) {
-            case 'C' : {
-                clear();
-                sys->createEvent();
-            } break;
+//            case 'C' : {
+//                clear();
+//                sys->createEvent();
+//            } break;
             case 'R' : {
                 clear();
                 sys->readEvents();
             } break;
-            case 'U' : {
-                clear();
-                sys->updateEvent();
-            } break;
-            case 'D' : {
-                clear();
-                sys->deleteEvent();
-            } break;
+//            case 'U' : {
+//                clear();
+//                sys->updateEvent();
+//            } break;
+//            case 'D' : {
+//                clear();
+//                sys->deleteEvent();
+//            } break;
             case 'M':
                 return;
             case 'Q':
@@ -119,10 +119,10 @@ PersonMenu::PersonMenu(System *system) : Menu(system) {
                 clear();
                 sys->readPeople();
             } break;
-            case 'U' : {
-                clear();
-                sys->updatePerson();
-            } break;
+//            case 'U' : {
+//                clear();
+//                sys->updatePerson();
+//            } break;
             case 'D' : {
                 clear();
                 sys->deletePerson();
@@ -145,22 +145,22 @@ MuseumMenu::MuseumMenu(System *system) : Menu(system) {
     while(true) {
         this->nextMenu = this->option();
         switch (this->nextMenu) {
-            case 'C' : {
-                clear();
-                sys->createMuseum();
-            } break;
+//            case 'C' : {
+//                clear();
+//                sys->createMuseum();
+//            } break;
             case 'R' : {
                 clear();
                 sys->readMuseums();
             } break;
-            case 'U' : {
-                clear();
-                sys->updateMuseum();
-            } break;
-            case 'D' : {
-                clear();
-                sys->deleteMuseum();
-            } break;
+//            case 'U' : {
+//                clear();
+//                sys->updateMuseum();
+//            } break;
+//            case 'D' : {
+//                clear();
+//                sys->deleteMuseum();
+//            } break;
             case 'M':
                 return;
             case 'Q':
