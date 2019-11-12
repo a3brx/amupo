@@ -187,7 +187,7 @@ System::~System() {
     file.close();
 
     file.open(ticketsFile);
-    auto itt = this->events.begin(), ittl = this->events.end();
+    auto itt = this->soldTickets.begin(), ittl = this->soldTickets.end();
     for (; itt != ittl; itt++) {
         file << *(*itt) << endl;
     }
