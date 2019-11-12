@@ -79,7 +79,7 @@ EventMenu::EventMenu(System *system) : Menu(system) {
         switch (this->nextMenu) {
             case 'C' : {
                 clear();
-                sys->createEvent();
+                //sys->createEvent();
             } break;
             case 'R' : {
                 clear();
@@ -87,7 +87,7 @@ EventMenu::EventMenu(System *system) : Menu(system) {
             } break;
             case 'U' : {
                 clear();
-                sys->updateEvent();
+                //sys->updateEvent();
             } break;
             case 'D' : {
                 clear();
@@ -121,7 +121,7 @@ PersonMenu::PersonMenu(System *system) : Menu(system) {
             } break;
             case 'U' : {
                 clear();
-                sys->updatePerson();
+                //sys->updatePerson();
             } break;
             case 'D' : {
                 clear();
@@ -147,7 +147,7 @@ MuseumMenu::MuseumMenu(System *system) : Menu(system) {
         switch (this->nextMenu) {
             case 'C' : {
                 clear();
-                sys->createMuseum();
+                //sys->createMuseum();
             } break;
             case 'R' : {
                 clear();
@@ -155,7 +155,7 @@ MuseumMenu::MuseumMenu(System *system) : Menu(system) {
             } break;
             case 'U' : {
                 clear();
-                sys->updateMuseum();
+                //sys->updateMuseum();
             } break;
             case 'D' : {
                 clear();

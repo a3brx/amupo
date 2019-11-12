@@ -5,12 +5,12 @@
 
 using namespace std;
 
-System::System(const string & fileName) {
+System::System(const string &fileName) {
     this->fileName = fileName;
     ifstream file;
-    vector<string> aux = split(fileName,"/");
+    vector<string> aux = split(fileName, "/");
     aux.pop_back();
-    string path = join(aux,'/');
+    string path = join(aux, '/');
     string museumsFile, peopleFile, eventsFile, ticketsFile;
 
     file.open(fileName);
@@ -23,7 +23,7 @@ System::System(const string & fileName) {
 
     file.open(museumsFile);
     Museum *m;
-    while(!file.eof()){
+    while (!file.eof()) {
         file >> &m;
         this->museums.push_back(m);
     }
@@ -31,7 +31,7 @@ System::System(const string & fileName) {
 
     file.open(peopleFile);
     Person *p;
-    while(!file.eof()){
+    while (!file.eof()) {
         file >> &p;
         this->people.push_back(p);
     }
@@ -39,7 +39,7 @@ System::System(const string & fileName) {
 
     file.open(eventsFile);
     Event *e;
-    while(!file.eof()){
+    while (!file.eof()) {
         file >> &e;
         this->events.push_back(e);
         string museumName;
@@ -74,7 +74,7 @@ System::System(const string & fileName) {
 void System::readPeople() const {
     vector<string> header = {"Name", "Birthday", "Address", "Contact"};
     vector<vector<string>> content;
-    for(auto person : this->people) {
+    for (auto person : this->people) {
         stringstream address, birthday;
         address << person->getAddress();
         birthday << person->getBirthday();
@@ -105,14 +105,18 @@ void System::readEvents() const {
     pause();
 }
 
+Museum *System::readMuseum() const {
+    return nullptr;
+}
+
 void System::readMuseums() const {
     vector<string> header = {"Name", "Capacity", "Address"};
     vector<vector<string>> content;
-    for(auto museum : this->museums) {
+    for (auto museum : this->museums) {
         stringstream address;
         address << museum->getAddress();
-        vector<string> aux = {museum->getName(), to_string(museum->getCapacity()),  address.str()};
-        if(museum->isValid())
+        vector<string> aux = {museum->getName(), to_string(museum->getCapacity()), address.str()};
+        if (museum->isValid())
             content.push_back(aux);
     }
     Table<string> data(header, content);
@@ -124,7 +128,7 @@ vector<Museum *> System::getMuseums() const {
     return this->museums;
 }
 
-vector<Event*>::const_iterator System::findEvent(string name, const Date &date) const {
+vector<Event *>::const_iterator System::findEvent(string name, const Date &date) const {
     auto *tempE = new Event(nullptr, date, 0, move(name));
     for (auto event = events.begin(); event != events.end(); ++event) {
         if (*tempE == **event)
@@ -133,8 +137,8 @@ vector<Event*>::const_iterator System::findEvent(string name, const Date &date) 
     return events.end();
 }
 
-vector<Person*>::const_iterator System::findPerson(string name, const Date & birthday) const {
-    auto * tempP = new Person(move(name), birthday, Address(), 0);
+vector<Person *>::const_iterator System::findPerson(string name, const Date &birthday) const {
+    auto *tempP = new Person(move(name), birthday, Address(), 0);
     for (auto person = people.begin(); person != people.end(); ++person) {
         if (*tempP == **person)
             return person;
@@ -142,9 +146,9 @@ vector<Person*>::const_iterator System::findPerson(string name, const Date & bir
     return people.end();
 }
 
-vector<Museum*>::const_iterator System::findMuseum(const string &name) const {
+vector<Museum *>::const_iterator System::findMuseum(const string &name) const {
     for (auto museum = museums.begin(); museum != museums.end(); ++museum) {
-        if ((*museum)->getName() == name)
+        if (upper((*museum)->getName()) == upper(name))
             return museum;
     }
     return museums.end();
@@ -195,35 +199,35 @@ System::~System() {
 }
 
 Address System::readAddress() {
-    string street,doornumber,postalcode,local;
-    cout<<"Introduce the street name: ";
-    getline(cin,street);
+    string street, doornumber, postalcode, local;
+    cout << "Introduce the street name: ";
+    getline(cin, street);
     do {
         cout << "Introduce the door number: ";
         getline(cin, doornumber);
-    }while(!isNum(doornumber));
+    } while (!isNum(doornumber));
     getInput(isPostalCode, "Introduce a valid Postal Code (Format: XXXX-YYY): ", "Invalid postal code.");
-    cout<<"Introduce the local: ";
-    getline(cin,local);
-    return Address(street,postalcode,stoi(doornumber),local);
+    cout << "Introduce the local: ";
+    getline(cin, local);
+    return Address(street, postalcode, stoi(doornumber), local);
 }
 
 Person System::createPerson() {
-    string name,birthday,contact;
+    string name, birthday, contact;
     Date bday;
     Address *address;
     while (true) {
-        cout<<"Name: ";
-        getline(cin,name);
+        cout << "Name: ";
+        getline(cin, name);
         cout << "Introduce a birthday (Format: DD/MM/YYYY): ";
         getline(cin, birthday);
         try {
 
-            bday=Date(birthday);
-            *address=readAddress();
+            bday = Date(birthday);
+            *address = readAddress();
             break;
         } catch (InvalidDate) {
-           cout<<"Invalid Date"<<endl;
+            cout << "Invalid Date" << endl;
         }/* catch (InvalidAddress) {
             cout << "Invalid Address" << endl;
         }*/
@@ -231,15 +235,15 @@ Person System::createPerson() {
     do {
         cout << "contact: ";
         getline(cin, contact);
-    }while(!isNum(contact) || contact.size()!=9);
+    } while (!isNum(contact) || contact.size() != 9);
 
 
-    return Person(name,bday,*address,(unsigned)stoi(contact));
+    return Person(name, bday, *address, (unsigned) stoi(contact));
 
 }
 
 void System::createPerson(Person *person) {
-    if(findPerson(person->getName(),person->getBirthday()) == people.end())
+    if (findPerson(person->getName(), person->getBirthday()) == people.end())
         this->people.push_back(person);
 }
 
@@ -253,7 +257,7 @@ vector<Person *> System::getPeople() const {
 
 void System::deletePerson(const string &name, const Date &birthday) {
     auto toRemove = findPerson(name, birthday);
-    if(toRemove == people.end())
+    if (toRemove == people.end())
         return;
     auto toAdd = new Person(name, birthday, (*toRemove)->getAddress(), (*toRemove)->getContact());
     this->people.erase(toRemove);
@@ -261,47 +265,49 @@ void System::deletePerson(const string &name, const Date &birthday) {
 }
 
 void System::deletePerson() {
-    string name = getInput([](string){return true;}, "Type the name of the Person: ");
-    string date = getInput([](string a){
-        try{
+    string name = getInput([](string) { return true; }, "Type the name of the Person: ");
+    string date = getInput([](string a) {
+        try {
             Date temp(a);
             return true;
-        }catch(...){
-            return false;}
-        }, "Type their birthday: ", "Invalid Date.");
+        } catch (...) {
+            return false;
+        }
+    }, "Type their birthday: ", "Invalid Date.");
     deletePerson(name, Date(date));
 }
 
 void System::deleteEvent() {
-    string name = getInput([](string){return true;}, "Type the name of the Event: ");
-    string date = getInput([](string a){
-        try{
+    string name = getInput([](string) { return true; }, "Type the name of the Event: ");
+    string date = getInput([](string a) {
+        try {
             Date temp(a);
             return true;
-        }catch(...){
-            return false;}
+        } catch (...) {
+            return false;
+        }
     }, "Type its date: ", "Invalid Date.");
     deleteEvent(name, Date(date));
 }
 
 void System::deleteEvent(string name, const Date &date) {
     auto toRemove = findEvent(move(name), date);
-    if(toRemove == events.end())
+    if (toRemove == events.end())
         return;
-    for(auto ticket = soldTickets.begin(); ticket != soldTickets.end(); ticket++)
-        if((*ticket)->getEvent() == *toRemove)
+    for (auto ticket = soldTickets.begin(); ticket != soldTickets.end(); ticket++)
+        if ((*ticket)->getEvent() == *toRemove)
             soldTickets.erase(ticket);
     this->events.erase(toRemove);
 }
 
 void System::deleteMuseum() {
-    string name = getInput([](string){return true;}, "Type the name of the Museum: ");
+    string name = getInput([](string) { return true; }, "Type the name of the Museum: ");
     deleteMuseum(name);
 }
 
 void System::deleteMuseum(const string &name) {
     auto toRemove = findMuseum(name);
-    if(toRemove == museums.end())
+    if (toRemove == museums.end())
         return;
     (*toRemove)->valid = false;
 }

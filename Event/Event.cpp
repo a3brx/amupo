@@ -66,9 +66,8 @@ istream &operator>>(istream &in, Event **event) {
 }
 
 bool operator==(Event &left, Event &right) {
-    if (left.name != right.name) return false;
-    if (left.date != right.date) return false;
-    return true;
+    if (upper(left.name) != upper(right.name)) return false;
+    return !(left.date != right.date);
 }
 
 bool operator!=(Event &left, Event &right) {

@@ -256,6 +256,19 @@ bool validDate(unsigned char day, unsigned char month, unsigned short year) {
 }
 
 // ----------------------------------------------------------------------------------------------------
+//                                   Returns true if a date is valid
+// ----------------------------------------------------------------------------------------------------
+bool validDate(const string &date) {
+    try{
+        Date temp(date);
+        return true;
+    } catch (...) {
+        return false;
+    }
+}
+
+
+// ----------------------------------------------------------------------------------------------------
 //                       Returns the days of a specific month in a non leap year
 // ----------------------------------------------------------------------------------------------------
 unsigned char daysMonth(unsigned char month) {
