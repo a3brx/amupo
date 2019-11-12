@@ -39,10 +39,11 @@ ostream & operator<<(ostream & out, const Museum & museum) {
 istream & operator>>(istream & in, Museum ** museum) {
     string line;
     getline(in, line);
+    if (line.size() == 0) throw InvalidInput();
     vector<string> aux = split(line, "|");
     bool valid = (trim(aux.at(0)) == "1");
     aux.erase(aux.begin());
-    if (!isNum(aux.back())) throw InvalidInput("Some Museum's Capacity is not a number!");
+    if (!isNum(aux.back())) throw InvalidInput();
     unsigned auxCapacity = stoi(aux.back());
     aux.pop_back();
     string auxName = trim(join(aux));

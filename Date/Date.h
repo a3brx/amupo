@@ -115,7 +115,8 @@ public:
 };
 bool bissextile(unsigned short year);
 bool validDate(unsigned char day, unsigned char month, unsigned short year);
-bool validDate(const string& date);
+
+bool isDate(const string date);
 unsigned char daysMonth(unsigned char month);
 unsigned short daysYear(unsigned short year);
 unsigned abs(const Date date);

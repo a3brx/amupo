@@ -99,7 +99,7 @@ vector<string> split(const string& toSplit,const string& splitPoint){
     return splitVec;
 }
 
-bool isNum(const string &toConvert) {
+bool isNum(const string toConvert) {
     float f;
     stringstream st;
     st.str(toConvert);

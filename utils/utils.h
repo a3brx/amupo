@@ -49,7 +49,7 @@ vector<string> split(const string& toSplit,const string& splitPoint);
 ///@brief Recognizes if a string is a number.
 ///@param toConvert String to check if it's a number.
 ///@return Returns true if the string is convertible to number;
-bool isNum(const string &toConvert);
+bool isNum(const string toConvert);
 
 bool isPostalCode(string toTest);
 
@@ -70,3 +70,4 @@ string upper(const string & s);
 string strPrecision(string num, unsigned decimalDigits = 2);
 
 string getInput(bool (__valid)(string), const string &message = "Choose a option: ", const string &fail = "Invalid input.");
+

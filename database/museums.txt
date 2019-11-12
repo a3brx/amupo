@@ -7,4 +7,4 @@ Rua dos Biscainhos, 0 4700-415 Braga
 1 | Museu Nacional Machado de Castro | 400
 Largo Dr. Jose Rodrigues, 0 3000-248 Coimbra 
 1 | Museu do Teste | 3
-Rua da FEUP, 213 2132-123 Paranhos
+Rua da FEUP, 213 2132-123 Paranhos 

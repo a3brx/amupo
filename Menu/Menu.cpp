@@ -79,7 +79,7 @@ EventMenu::EventMenu(System *system) : Menu(system) {
         switch (this->nextMenu) {
             case 'C' : {
                 clear();
-//                sys->createEvent();
+                sys->createEvent();
             } break;
             case 'R' : {
                 clear();

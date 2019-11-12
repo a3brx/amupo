@@ -45,6 +45,7 @@ ostream & operator<<(ostream & out, const Event & event) {
 istream &operator>>(istream &in, Event **event) {
     string aux, name, date, price;
     getline(in, aux);
+    if (aux.size() == 0) throw InvalidInput();
     vector<string> vecAux = trim(split(aux, "|"));
     name = vecAux.at(0);
     date = vecAux.at(1);

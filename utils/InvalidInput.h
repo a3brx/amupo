@@ -8,5 +8,6 @@ private:
 public:
     InvalidInput(std::string msg) : msg(move(msg)) {};
 
+    InvalidInput() = default;
     std::string getMsg() { return this->msg; }
 };

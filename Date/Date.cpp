@@ -264,6 +264,7 @@ bool validDate(unsigned char day, unsigned char month, unsigned short year) {
     if (day <= 0 || month <= 0 || year == 0){
         return false;
     }
+    if (month > 12) return false;
     if (day == 29 && month == 2){
         return bissextile(year);
     }
@@ -273,7 +274,7 @@ bool validDate(unsigned char day, unsigned char month, unsigned short year) {
 // ----------------------------------------------------------------------------------------------------
 //                                   Returns true if a date is valid
 // ----------------------------------------------------------------------------------------------------
-bool validDate(const string &date) {
+bool isDate(const string date) {
     try{
         Date temp(date);
         return true;

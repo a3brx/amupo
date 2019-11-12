@@ -24,7 +24,12 @@ System::System(const string &fileName) {
     file.open(museumsFile);
     Museum *m;
     while (!file.eof()) {
-        file >> &m;
+        try {
+            file >> &m;
+        }
+        catch (InvalidInput) {
+            throw InvalidInput("Error reading museums!");
+        }
         this->museums.push_back(m);
     }
     file.close();
@@ -32,7 +37,12 @@ System::System(const string &fileName) {
     file.open(peopleFile);
     Person *p;
     while (!file.eof()) {
-        file >> &p;
+        try {
+            file >> &p;
+        }
+        catch (InvalidInput) {
+            throw InvalidInput("Error reading people!");
+        }
         this->people.push_back(p);
     }
     file.close();
@@ -40,7 +50,12 @@ System::System(const string &fileName) {
     file.open(eventsFile);
     Event *e;
     while (!file.eof()) {
-        file >> &e;
+        try {
+            file >> &e;
+        }
+        catch (InvalidInput) {
+            throw InvalidInput("Error reading events!");
+        }
         this->events.push_back(e);
         string museumName;
         getline(file, museumName);
@@ -57,6 +72,7 @@ System::System(const string &fileName) {
     while (!file.eof()) {
         getline(file, auxStr);
         try {
+            if (auxStr.size() == 0) throw InvalidInput();
             aux = trim(split(auxStr, "|"));
             vecPerson = trim(split(aux.at(0), ","));
             vecEvent = trim(split(aux.at(1), ","));
@@ -167,29 +183,53 @@ System::~System() {
 
     file.open(museumsFile);
     auto itm = this->museums.begin(), itml = this->museums.end();
+    bool firstTime = true;
     for (; itm != itml; itm++) {
-        file << *(*itm) << endl;
+        if (firstTime) {
+            file << *(*itm);
+            firstTime = false;
+            continue;
+        }
+        file << endl << *(*itm);
     }
     file.close();
 
     file.open(peopleFile);
     auto itp = this->people.begin(), itpl = this->people.end();
+    firstTime = true;
     for (; itp != itpl; itp++) {
-        file << *(*itp) << endl;
+        if (firstTime) {
+            file << *(*itp);
+            firstTime = false;
+            continue;
+        }
+        file << endl << *(*itp);
     }
     file.close();
 
     file.open(eventsFile);
     auto ite = this->events.begin(), itel = this->events.end();
+    firstTime = true;
     for (; ite != itel; ite++) {
-        file << *(*ite) << endl;
+        if (firstTime) {
+            file << *(*ite);
+            firstTime = false;
+            continue;
+        }
+        file << endl << *(*ite);
     }
     file.close();
 
     file.open(ticketsFile);
     auto itt = this->soldTickets.begin(), ittl = this->soldTickets.end();
+    firstTime = true;
     for (; itt != ittl; itt++) {
-        file << *(*itt) << endl;
+        if (firstTime) {
+            file << *(*itt);
+            firstTime = false;
+            continue;
+        }
+        file << endl << *(*itt);
     }
     file.close();
 }
@@ -331,41 +371,32 @@ void System::createEvent(Event *ev) {
 }
 
 void System::createEvent() {
-//    string name, dateStr, price, musName;
-//    Date date;
-//    Museum *mus;
-//    while (true) {
-//        cout << "Name: ";
-//        getline(cin, name);
-//        cout << "Introduce a date (Format: DD/MM/YYYY): ";
-//        getline(cin, dateStr);
-//        try {
-//            date = Date(dateStr);
-//            if (findEvent(name,date) != events.end()){
-//                cout << "An Event with that name and date already exists\n Enter a new ";
-//                continue;
-//            }
-//            break;
-//        } catch (InvalidDate) {
-//            cout << "Invalid Date\nEnter a new date: ";
-//        }
-//    }
-//    while (true){
-//        cout << "Place of the event: ";
-//        getline(cin,musName);
-//        if (findMuseum(musName) == museums.end()) {
-//            cout << "That place doesn't exist\n";
-//            continue;
-//        }
-//        break;
-//    }
-//    while (true) {
-//        cout << "Price: ";
-//        getline(cin, price);
-//        if (!isNum(price) || price.size() != 9) break;
-//        cout << "Invalid Price\n";
-//    }
-//    Event *tempE = new Event(mus, date, (float) stof(price), name);
+    string name, dateStr, price, musName;
+    Date date;
+    Museum *mus;
+    while (true) {
+        cout << "Name: ";
+        getline(cin, name);
+        date = Date(getInput(isDate, "Introduce a date (Format: DD/MM/YYYY): ", "Invalid Date"));
+        if (findEvent(name, date) != events.end()) {
+            cout << "An Event with that name and date already exists\n Enter a new ";
+            continue;
+        }
+        break;
+    }
+    while (true) {
+        cout << "Place of the event: ";
+        getline(cin, musName);
+        if (findMuseum(musName) == museums.end()) {
+            cout << "That place doesn't exist\n";
+            continue;
+        }
+        break;
+    }
+    mus = *(findMuseum(musName));
+    price = getInput(isNum, "Price: ", "Invalid Price");
+    Event *tempE = new Event(mus, date, (float) stof(price), name);
+    events.push_back(tempE);
 }
 
 void System::createMuseum() {

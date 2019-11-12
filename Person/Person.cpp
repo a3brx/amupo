@@ -64,6 +64,7 @@ Client::Client(string name, Date acquisitionDate, Date birthday, Address address
 istream &operator>>(istream &in, Person ** person) {
    signed short type;
    in >> type;
+    if (in.eof() || type == '\n') throw InvalidInput();
    string aux;
    getline(in,aux);
    Address *ad;
