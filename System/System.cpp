@@ -24,7 +24,12 @@ System::System(const string &fileName) {
     file.open(museumsFile);
     Museum *m;
     while (!file.eof()) {
-        file >> &m;
+        try {
+            file >> &m;
+        }
+        catch (InvalidInput) {
+            throw InvalidInput("Error reading museums!");
+        }
         this->museums.push_back(m);
     }
     file.close();
@@ -32,7 +37,12 @@ System::System(const string &fileName) {
     file.open(peopleFile);
     Person *p;
     while (!file.eof()) {
-        file >> &p;
+        try {
+            file >> &p;
+        }
+        catch (InvalidInput) {
+            throw InvalidInput("Error reading people!");
+        }
         this->people.push_back(p);
     }
     file.close();
@@ -40,7 +50,12 @@ System::System(const string &fileName) {
     file.open(eventsFile);
     Event *e;
     while (!file.eof()) {
-        file >> &e;
+        try {
+            file >> &e;
+        }
+        catch (InvalidInput) {
+            throw InvalidInput("Error reading events!");
+        }
         this->events.push_back(e);
         string museumName;
         getline(file, museumName);
@@ -57,6 +72,7 @@ System::System(const string &fileName) {
     while (!file.eof()) {
         getline(file, auxStr);
         try {
+            if (auxStr.size() == 0) throw InvalidInput();
             aux = trim(split(auxStr, "|"));
             vecPerson = trim(split(aux.at(0), ","));
             vecEvent = trim(split(aux.at(1), ","));
@@ -167,80 +183,118 @@ System::~System() {
 
     file.open(museumsFile);
     auto itm = this->museums.begin(), itml = this->museums.end();
+    bool firstTime = true;
     for (; itm != itml; itm++) {
-        file << *(*itm) << endl;
+        if (firstTime) {
+            file << *(*itm);
+            firstTime = false;
+            continue;
+        }
+        file << endl << *(*itm);
     }
     file.close();
 
     file.open(peopleFile);
     auto itp = this->people.begin(), itpl = this->people.end();
+    firstTime = true;
     for (; itp != itpl; itp++) {
-        file << *(*itp) << endl;
+        if (firstTime) {
+            file << *(*itp);
+            firstTime = false;
+            continue;
+        }
+        file << endl << *(*itp);
     }
     file.close();
 
     file.open(eventsFile);
     auto ite = this->events.begin(), itel = this->events.end();
+    firstTime = true;
     for (; ite != itel; ite++) {
-        file << *(*ite) << endl;
+        if (firstTime) {
+            file << *(*ite);
+            firstTime = false;
+            continue;
+        }
+        file << endl << *(*ite);
     }
     file.close();
 
     file.open(ticketsFile);
-    auto itt = this->events.begin(), ittl = this->events.end();
+    auto itt = this->soldTickets.begin(), ittl = this->soldTickets.end();
+    firstTime = true;
     for (; itt != ittl; itt++) {
-        file << *(*itt) << endl;
+        if (firstTime) {
+            file << *(*itt);
+            firstTime = false;
+            continue;
+        }
+        file << endl << *(*itt);
     }
     file.close();
 }
 
-Address System::readAddress() {
+void System::inputAddress(Address &address) {
     string street, doornumber, postalcode, local;
     cout << "Introduce the street name: ";
     getline(cin, street);
-    do {
+    address.setStreet(street);
+    while (true) {
         cout << "Introduce the door number: ";
         getline(cin, doornumber);
-    } while (!isNum(doornumber));
-    getInput(isPostalCode, "Introduce a valid Postal Code (Format: XXXX-YYY): ", "Invalid postal code.");
+        if (!isNum(doornumber)) {
+            cout << "Invalid door number\n";
+            continue;
+        }
+        break;
+    }
+    address.setDoorNumber(stoi(doornumber));
+    address.setPostalCode(
+            getInput(isPostalCode, "Introduce a valid Postal Code (Format: XXXX-YYY): ", "Invalid postal code."));
     cout << "Introduce the local: ";
     getline(cin, local);
-    return Address(street, postalcode, stoi(doornumber), local);
+    address.setLocality(local);
 }
 
-Person System::createPerson() {
-    string name, birthday, contact;
-    Date bday;
-    Address *address;
-    while (true) {
-        cout << "Name: ";
-        getline(cin, name);
-        cout << "Introduce a birthday (Format: DD/MM/YYYY): ";
-        getline(cin, birthday);
-        try {
-
-            bday = Date(birthday);
-            *address = readAddress();
-            break;
-        } catch (InvalidDate) {
-            cout << "Invalid Date" << endl;
-        }/* catch (InvalidAddress) {
-            cout << "Invalid Address" << endl;
-        }*/
-    }
-    do {
-        cout << "contact: ";
-        getline(cin, contact);
-    } while (!isNum(contact) || contact.size() != 9);
-
-
-    return Person(name, bday, *address, (unsigned) stoi(contact));
-
+void System::createPerson() {
+//    string name, birthday, contact;
+//    Date bday;
+//    Address *address;
+//    while (true) {
+//        cout << "Name: ";
+//        getline(cin, name);
+//        cout << "Introduce a birthday (Format: DD/MM/YYYY): ";
+//        getline(cin, birthday);
+//        try {
+//            bday = Date(birthday);
+//            *address = inputAddress();
+//            break;
+//        } catch (InvalidDate) {
+//            cout << "Invalid Date" << endl;
+//        }/* catch (InvalidAddress) {
+//            cout << "Invalid Address" << endl;
+//        }*/
+//    }
+//    do {
+//        cout << "Contact: ";
+//        getline(cin, contact);
+//    } while (!isNum(contact) || contact.size() != 9);
+//    if (bday - Date() > 65 * 365) {
+//        SilverClient *tempS = new SilverClient(name, Date(), bday, *address, stoi(contact));
+//        this->people.push_back(tempS);
+//        return;
+//    }
+//
+//    Person *temp = new Person(name, bday, *address, (unsigned) stoi(contact));
+//    this->people.push_back(temp);
 }
 
 void System::createPerson(Person *person) {
-    if (findPerson(person->getName(), person->getBirthday()) == people.end())
+    if (findPerson(person->getName(), person->getBirthday()) == people.end()) {
         this->people.push_back(person);
+        return;
+    }
+    throw ExistingPerson(*person);
 }
 
 vector<Event *> System::getEvents() const {
@@ -306,6 +360,70 @@ void System::deleteMuseum(const string &name) {
     if (toRemove == museums.end())
         return;
     (*toRemove)->valid = false;
+}
+
+void System::createEvent(Event *ev) {
+    if (findEvent(ev->getName(), ev->getDate()) == events.end()) {
+        this->events.push_back(ev);
+        return;
+    }
+    throw ExistingEvent(*ev);
+}
+
+void System::createEvent() {
+    string name, dateStr, price, musName;
+    Date date;
+    Museum *mus;
+    while (true) {
+        cout << "Name: ";
+        getline(cin, name);
+        date = Date(getInput(isDate, "Introduce a date (Format: DD/MM/YYYY): ", "Invalid Date"));
+        if (findEvent(name, date) != events.end()) {
+            cout << "An Event with that name and date already exists\n Enter a new ";
+            continue;
+        }
+        break;
+    }
+    while (true) {
+        cout << "Place of the event: ";
+        getline(cin, musName);
+        if (findMuseum(musName) == museums.end()) {
+            cout << "That place doesn't exist\n";
+            continue;
+        }
+        break;
+    }
+    mus = *(findMuseum(musName));
+    price = getInput(isNum, "Price: ", "Invalid Price");
+    Event *tempE = new Event(mus, date, (float) stof(price), name);
+    events.push_back(tempE);
+}
+
+void System::createMuseum() {
+    string name, capStr;
+    Address address;
+    while (true) {
+        cout << "Introduce the Museum name: ";
+        getline(cin, name);
+        if (findMuseum(name) != museums.end()) {
+            cout << "Museum with that name already exists\n";
+            continue;
+        }
+        break;
+    }
+    while (true) {
+        cout << "Introduce the capacity of the Museum: ";
+        getline(cin, capStr);
+        if (!isNum(capStr)) {
+            cout << "Invalid Capacity\n";
+            continue;
+        }
+        break;
+    }
+    cout << "Museum's Address" << endl;
+    inputAddress(address);
+    Museum *tempM = new Museum(address, stoi(capStr), name);
+    museums.push_back(tempM);
 }
 
 /*

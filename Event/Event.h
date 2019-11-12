@@ -61,6 +61,11 @@ public:
     float getPrice() const { return price; }
 };
 
+class ExistingEvent : public exception, public Event {
+public:
+    ExistingEvent(Event ev) : Event(ev) {}
+
+};
 
 
 

@@ -38,13 +38,14 @@ void Event::setPrice(float p) {
 }
 
 ostream & operator<<(ostream & out, const Event & event) {
-    out << event.name << event.date << event.price << endl << event.museum->getName();
+    out << event.name << " | " << event.date << " | " << event.price << endl << event.museum->getName();
     return out;
 }
 
 istream &operator>>(istream &in, Event **event) {
     string aux, name, date, price;
     getline(in, aux);
+    if (aux.size() == 0) throw InvalidInput();
     vector<string> vecAux = trim(split(aux, "|"));
     name = vecAux.at(0);
     date = vecAux.at(1);

@@ -3,6 +3,7 @@
 #include <ostream>
 #include "../Address/Address.h"
 #include "../Date/Date.h"
+#include "../utils/InvalidInput.h"
 
 class Person{
 private:
@@ -102,3 +103,7 @@ public:
     friend ostream &operator<<(ostream &out, IndividualClient &client);
 };
 
+class ExistingPerson : public exception, public Person {
+public:
+    ExistingPerson(Person p) : Person(p) {}
+};
