@@ -17,6 +17,7 @@ private:
     string fileName;
     vector<Event*> events;
     vector<Person*> people;
+    vector<Client *> clients;
     vector<Museum*> museums;
     vector<Ticket*> soldTickets;
 public:
@@ -29,12 +30,16 @@ public:
 
     vector<Event *>::const_iterator findEvent(string name, const Date& date) const;
     vector<Person*>::const_iterator findPerson(string name, const Date& birthday) const;
+
+    vector<Client *>::const_iterator findClient(string name, const Date &birthday) const;
     vector<Museum*>::const_iterator findMuseum(const string &name) const;
 
     void createEvent();                                     //Ler do input, dar nome ao event
     void createEvent(Event *ev);
     void createPerson();                                     //Ler do input
     void createPerson(Person *Person);
+
+    void createClient();
     void createMuseum();                                        //Ler do input
     void createMuseum(Museum *mus);
 

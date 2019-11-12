@@ -45,7 +45,9 @@ public:
 
     friend istream & operator>>(istream & in, Person **person);
 
-    friend ostream &operator<<(ostream &out, Person &person);
+    virtual void printData(ostream &out);
+
+    friend ostream &operator<<(ostream &out, Person *person);
     bool operator==(Person person);
     bool operator!=(Person person);
 };
@@ -60,6 +62,7 @@ public:
     ///@return The Acquisition date attribute of the card.
     Date getAcquisitionDate() const;
 
+    virtual void printData(ostream &out);
     virtual float getCost() const = 0;
 
 };
@@ -74,7 +77,9 @@ public:
     ///@param cost The cost to be attributed to the card.
     static void setCost(float cost);
 
-    friend ostream &operator<<(ostream &os, const SilverClient &client);
+    void printData(ostream &out);
+
+    friend istream &operator>>(istream &in, SilverClient **client);
 };
 
 class UniClient: public Client{
@@ -87,7 +92,9 @@ public:
     ///@param cost The cost to be attributed to the card.
     static void setCost(float cost);
 
-    friend ostream &operator<<(ostream &out, UniClient &client);
+    void printData(ostream &out);
+
+    friend istream &operator>>(istream &in, UniClient **client);
 };
 
 class IndividualClient: public Client{
@@ -100,7 +107,9 @@ public:
     ///@param cost The cost to be attributed to the card.
     static void setCost(float cost);
 
-    friend ostream &operator<<(ostream &out, IndividualClient &client);
+    void printData(ostream &out);
+
+    friend istream &operator>>(istream &in, IndividualClient **client);
 };
 
 class ExistingPerson : public exception, public Person {

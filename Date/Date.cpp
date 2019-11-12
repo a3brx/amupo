@@ -59,17 +59,7 @@ Date::Date(const string & s) {
     vector<string> splitVec;
     string temp;
     string separators = "-/|";
-    for(char i : s){
-        if(separators.find(i) != string::npos){
-            if(temp.empty())
-                continue;
-            splitVec.push_back(temp);
-            temp = "";
-        }else{
-            temp += i;
-        }
-    }
-    splitVec.push_back(temp);
+    splitVec = trim(split(s, separators));
     if(splitVec.size() != 3) throw InvalidDate(0, 0, 0);
     try {
         day = stoi(splitVec.at(0));

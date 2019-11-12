@@ -71,3 +71,6 @@ string strPrecision(string num, unsigned decimalDigits = 2);
 
 string getInput(bool (__valid)(string), const string &message = "Choose a option: ", const string &fail = "Invalid input.");
 
+bool isYorN(string toTest);
+
+

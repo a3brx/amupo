@@ -147,3 +147,7 @@ string getInput(bool (__valid)(string), const string &message, const string &fai
     };
     return input;
 }
+
+bool isYorN(string toTest) {
+    return (toTest == "1" or toTest == "0");
+}

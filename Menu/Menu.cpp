@@ -113,7 +113,7 @@ PersonMenu::PersonMenu(System *system) : Menu(system) {
         switch (this->nextMenu) {
             case 'C' : {
                 clear();
-                sys->createPerson();
+                sys->createClient();
             } break;
             case 'R' : {
                 clear();

@@ -1,7 +1,7 @@
 #include "../Person/Person.h"
 #include <utility>
 
-
+//Person
 
 string Person::getName() const{
     return name;
@@ -55,12 +55,6 @@ bool Person::operator!=(Person person) {
     return !(*this == person);
 }
 
-Date Client::getAcquisitionDate() const{
-    return acquisitionDate;
-}
-
-Client::Client(string name, Date acquisitionDate, Date birthday, Address address, unsigned contact) : Person(name, birthday, move(address), contact), acquisitionDate(acquisitionDate) {}
-
 istream &operator>>(istream &in, Person ** person) {
    signed short type;
    in >> type;
@@ -70,31 +64,40 @@ istream &operator>>(istream &in, Person ** person) {
    Address *ad;
    in >> &ad;
    vector<string> auxvec = trim(split(aux,"|"));
-   switch (type) {
-       case -1:
-           *person = new Person(auxvec.at(0), Date(auxvec.at(1)), *ad, stoi(auxvec.at(2)));
-           break;
-       case 0:
-           *person = new IndividualClient(auxvec.at(0), Date(auxvec.at(1)), Date(auxvec.at(2)), *ad, stoi(auxvec.at(3)));
-           break;
-       case 1:
-           *person = new SilverClient(auxvec.at(0), Date(auxvec.at(1)), Date(auxvec.at(2)), *ad, stoi(auxvec.at(3)));
-           break;
-       case 2:
-           *person = new UniClient(auxvec.at(0), Date(auxvec.at(1)), Date(auxvec.at(2)), *ad, stoi(auxvec.at(3)));
-           break;
-       default:
-               break;
-   }
-
+    *person = new Person(auxvec.at(0), Date(auxvec.at(1)), *ad, stoi(auxvec.at(2)));
     return in;
 }
 
-ostream &operator<<(ostream &out, Person &person) {
-    out << "-1 " << person.getName() << " | " << person.getBirthday() <<
-        " | " << person.getContact() << endl << person.getAddress();
+ostream &operator<<(ostream &out, Person *person) {
+    person->printData(out);
     return out;
 }
+
+void Person::printData(ostream &out) {
+    out << "-1 " << this->name << " | " << this->birthday <<
+        " | " << this->contact << endl << this->address;
+}
+
+
+//Client
+Date Client::getAcquisitionDate() const {
+    return acquisitionDate;
+}
+
+Client::Client(string name, Date acquisitionDate, Date birthday, Address address, unsigned contact) : Person(name,
+                                                                                                             birthday,
+                                                                                                             move(address),
+                                                                                                             contact),
+                                                                                                      acquisitionDate(
+                                                                                                              acquisitionDate) {}
+
+void Client::printData(ostream &out) {
+    out << this->getName() << " | " << this->getAcquisitionDate() <<
+        " | " << this->getBirthday() << " | " << this->getContact() << endl << this->getAddress();
+}
+
+
+//Silver
 
 float SilverClient::cost = 30;
 
@@ -104,16 +107,30 @@ float SilverClient::getCost() const {
 
 SilverClient::SilverClient(string n, Date acqdate, Date bday, Address ad, unsigned cont) : Client(n, acqdate, bday, ad,
                                                                                                   cont) {}
-
 void SilverClient::setCost(float cost) {
     SilverClient::cost = cost;
 }
 
-ostream &operator<<(ostream &out, const SilverClient &client) {
-    out << "2 " << client.getName() << " | " << client.getAcquisitionDate() << " | " << client.getBirthday() <<
-        " | " << client.getContact() << endl << client.getAddress();
-    return out;
+istream &operator>>(istream &in, SilverClient **client) {
+    signed short type;
+    in >> type;
+    if (in.eof() || type == '\n') throw InvalidInput();
+    string aux;
+    getline(in, aux);
+    Address *ad;
+    in >> &ad;
+    vector<string> auxvec = trim(split(aux, "|"));
+    *client = new SilverClient(auxvec.at(0), Date(auxvec.at(1)), Date(auxvec.at(2)), *ad, stoi(auxvec.at(3)));
+    return in;
 }
+
+void SilverClient::printData(ostream &out) {
+    out << "1 ";
+    Client::printData(out);
+}
+
+
+//Uni
 
 float UniClient::cost = 32.45;
 
@@ -127,12 +144,26 @@ void UniClient::setCost(float cost) {
     UniClient::cost = cost;
 }
 
-ostream &operator<<(ostream &out, UniClient &client) {
-    out << "1 " << client.getName() << " | " << client.getAcquisitionDate() << " | " << client.getBirthday() <<
-        " | " << client.getContact() << endl << client.getAddress();
-    return out;
+istream &operator>>(istream &in, UniClient **client) {
+    signed short type;
+    in >> type;
+    if (in.eof() || type == '\n') throw InvalidInput();
+    string aux;
+    getline(in, aux);
+    Address *ad;
+    in >> &ad;
+    vector<string> auxvec = trim(split(aux, "|"));
+    *client = new UniClient(auxvec.at(0), Date(auxvec.at(1)), Date(auxvec.at(2)), *ad, stoi(auxvec.at(3)));
+    return in;
 }
 
+void UniClient::printData(ostream &out) {
+    out << "2 ";
+    Client::printData(out);
+}
+
+
+//Individual
 
 float IndividualClient::cost = 52.9;
 
@@ -142,15 +173,25 @@ float IndividualClient::getCost() const {
 
 IndividualClient::IndividualClient(string n, Date acqdate, Date bday, Address ad, unsigned cont) : Client(n, acqdate, bday,
                                                                                                           ad, cont) {}
-
 void IndividualClient::setCost(float cost) {
     IndividualClient::cost = cost;
 }
 
-ostream &operator<<(ostream &out, IndividualClient &client) {
-    out << "0 " << client.getName() << " | " << client.getAcquisitionDate() << " | " << client.getBirthday() <<
-        " | " << client.getContact() << endl << client.getAddress();
-    return out;
+istream &operator>>(istream &in, IndividualClient **client) {
+    signed short type;
+    in >> type;
+    if (in.eof() || type == '\n') throw InvalidInput();
+    string aux;
+    getline(in, aux);
+    Address *ad;
+    in >> &ad;
+    vector<string> auxvec = trim(split(aux, "|"));
+    *client = new IndividualClient(auxvec.at(0), Date(auxvec.at(1)), Date(auxvec.at(2)), *ad, stoi(auxvec.at(3)));
+    return in;
 }
 
+void IndividualClient::printData(ostream &out) {
+    out << "0 ";
+    Client::printData(out);
+}
 

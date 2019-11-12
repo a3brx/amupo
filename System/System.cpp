@@ -35,15 +35,38 @@ System::System(const string &fileName) {
     file.close();
 
     file.open(peopleFile);
-    Person *p;
+
+    char peeked;
     while (!file.eof()) {
-        try {
-            file >> &p;
+        char type = file.peek();
+        switch (type) {
+            case '-':
+                Person *p;
+                file >> &p;
+                this->people.push_back(p);
+                break;
+            case '0':
+                IndividualClient *i;
+                file >> &i;
+                this->people.push_back(i);
+                this->clients.push_back(i);
+                break;
+            case '1':
+                SilverClient *s;
+                file >> &s;
+                this->people.push_back(s);
+                this->clients.push_back(s);
+                break;
+            case '2':
+                UniClient *u;
+                file >> &u;
+                this->people.push_back(u);
+                this->clients.push_back(u);
+                break;
+            default:
+                break;
         }
-        catch (InvalidInput) {
-            throw InvalidInput("Error reading people!");
-        }
-        this->people.push_back(p);
+
     }
     file.close();
 
@@ -166,6 +189,15 @@ vector<Museum *>::const_iterator System::findMuseum(const string &name) const {
     return museums.end();
 }
 
+vector<Client *>::const_iterator System::findClient(string name, const Date &birthday) const {
+    auto *tempP = new Person(move(name), birthday, Address(), 0);
+    for (auto person = clients.begin(); person != clients.end(); ++person) {
+        if (*tempP == **person)
+            return person;
+    }
+    return clients.end();
+}
+
 System::~System() {
     fstream file;
     vector<string> aux = split(this->fileName, "/");
@@ -199,11 +231,11 @@ System::~System() {
     firstTime = true;
     for (; itp != itpl; itp++) {
         if (firstTime) {
-            file << *(*itp);
+            file << (*itp);
             firstTime = false;
             continue;
         }
-        file << endl << *(*itp);
+        file << endl << *itp;
     }
     file.close();
 
@@ -239,15 +271,7 @@ void System::inputAddress(Address &address) {
     cout << "Introduce the street name: ";
     getline(cin, street);
     address.setStreet(street);
-    while (true) {
-        cout << "Introduce the door number: ";
-        getline(cin, doornumber);
-        if (!isNum(doornumber)) {
-            cout << "Invalid door number\n";
-            continue;
-        }
-        break;
-    }
+    doornumber = getInput(isNum, "Introduce the door number: ", "Invalid door number");
     address.setDoorNumber(stoi(doornumber));
     address.setPostalCode(
             getInput(isPostalCode, "Introduce a valid Postal Code (Format: XXXX-YYY): ", "Invalid postal code."));
@@ -256,37 +280,46 @@ void System::inputAddress(Address &address) {
     address.setLocality(local);
 }
 
-void System::createPerson() {
-//    string name, birthday, contact;
-//    Date bday;
-//    Address *address;
-//    while (true) {
-//        cout << "Name: ";
-//        getline(cin, name);
-//        cout << "Introduce a birthday (Format: DD/MM/YYYY): ";
-//        getline(cin, birthday);
-//        try {
-//            bday = Date(birthday);
-//            *address = inputAddress();
-//            break;
-//        } catch (InvalidDate) {
-//            cout << "Invalid Date" << endl;
-//        }/* catch (InvalidAddress) {
-//            cout << "Invalid Address" << endl;
-//        }*/
-//    }
-//    do {
-//        cout << "Contact: ";
-//        getline(cin, contact);
-//    } while (!isNum(contact) || contact.size() != 9);
-//    if (bday - Date() > 65 * 365) {
-//        SilverClient *tempS = new SilverClient(name, Date(), bday, *address, stoi(contact));
-//        this->people.push_back(tempS);
-//        return;
-//    }
-//
-//    Person *temp = new Person(name, bday, *address, (unsigned) stoi(contact));
-//    this->people.push_back(temp);
+void System::createClient() {
+    string name, birthday, contact;
+    Date bday;
+    Address address;
+    cout << "Name: ";
+    getline(cin, name);
+    birthday = getInput(isDate, "Introduce a birthday (Format: DD/MM/YYYY): ", "Invalid Date");
+    bday = Date(birthday);
+    auto it = findPerson(name, bday);
+    auto itc = findClient(name, bday);
+    if (itc != clients.end()) {
+        cout << "This client already exists!" << endl;
+        return;
+    }
+    if (it != people.end()) {
+        people.erase(it);
+        cout << "Deleted Person with name " << name << " to create a client profile";
+    }
+    inputAddress(address);
+    do {
+        cout << "Contact: ";
+        getline(cin, contact);
+    } while (!isNum(contact) || contact.size() != 9);
+    if (bday - Date() > 65 * 365) {
+        SilverClient *tempS = new SilverClient(name, Date(), bday, address, stoi(contact));
+        this->people.push_back(tempS);
+        cout << "Registered the client as Silver\n";
+        return;
+    }
+    bool uni = stoi(getInput(isYorN, "Does the client go to University? (1-True/0-False)", "Invalid Response"));
+    if (uni) {
+        UniClient *tempU = new UniClient(name, Date(), bday, address, stoi(contact));
+        this->people.push_back(tempU);
+        cout << "Registered the client as Uni\n";
+        return;
+    }
+    IndividualClient *tempI = new IndividualClient(name, Date(), bday, address, stoi(contact));
+    this->people.push_back(tempI);
+    cout << "Registered the client as Individual\n";
+    return;
 }
 
 void System::createPerson(Person *person) {
@@ -425,6 +458,7 @@ void System::createMuseum() {
     Museum *tempM = new Museum(address, stoi(capStr), name);
     museums.push_back(tempM);
 }
+
 
 /*
 Ticket * System::sellTicket(Person *person) {
