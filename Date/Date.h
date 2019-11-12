@@ -113,12 +113,35 @@ public:
     friend ostream &operator<<(ostream & out, const Date & date);
     friend istream &operator>>(istream & in, Date & date);
 };
+
+/// @param year The year to test.
+/// @return Returns true if the year was a leap year in the Gregorian calendar.
 bool bissextile(unsigned short year);
+
+/// @param day The day of the date.
+/// @param month The month of the date.
+/// @param year The year of the date.
+/// @return Returns true if tha date is possible in the Gregorian calendar.
 bool validDate(unsigned char day, unsigned char month, unsigned short year);
+
+/// @param date The date in the DD-MM-YYYY form.
+/// @return Returns true if tha date is possible in the Gregorian calendar.
 bool validDate(const string& date);
+
+/// @param month The month to verify.
+/// @return Returns the number of days of that month in a non-leap year.
 unsigned char daysMonth(unsigned char month);
+
+/// @param year The year to verify.
+/// @return Returns the number of days of that year (365 or 366).
 unsigned short daysYear(unsigned short year);
+
+/// @param date The date to calculate.
+/// @return Returns the number of days of a date since the epoch.
 unsigned abs(const Date date);
+
+/// @param days The number of days since the epoch.
+/// @return Returns the date that is after a number of days since the epoch
 Date date(unsigned days);
 
 class InvalidDate : public exception {
