@@ -1,6 +1,7 @@
 #include "System.h"
 #include <sstream>
 #include <algorithm>
+#include <utility>
 
 using namespace std;
 
@@ -60,7 +61,7 @@ System::System(const string & fileName) {
             vecPerson = trim(split(aux.at(0), ","));
             vecEvent = trim(split(aux.at(1), ","));
             ticket = new Ticket(this->findEvent(vecEvent.at(0), Date(vecEvent.at(1))),
-                                this->findPerson(vecPerson.at(0), Date(vecPerson.at(1))));
+                                *this->findPerson(vecPerson.at(0), Date(vecPerson.at(1))));
             this->soldTickets.push_back(ticket);
         }
         catch (...) {
@@ -123,31 +124,30 @@ vector<Museum *> System::getMuseums() const {
     return this->museums;
 }
 
-Event *System::findEvent(string name, Date date) const {
-    Event *tempE = nullptr;
-    for (auto event : events) {
-        tempE = new Event(nullptr, date, 0, name);
-        if (*tempE == *event) tempE = event;
+vector<Event*>::const_iterator System::findEvent(string name, const Date &date) const {
+    auto *tempE = new Event(nullptr, date, 0, move(name));
+    for (auto event = events.begin(); event != events.end(); ++event)) {
+        if (*tempE == **event)
+            return event;
     }
-    return tempE;
+    return events.end();
 }
 
-Person *System::findPerson(string name, Date birthday) const {
-    Person *tempP = nullptr;
-    for (auto person : people) {
-        tempP = new Person(name, birthday, Address(), 0);
-        if (*tempP == *person) tempP = person;
+vector<Person*>::const_iterator System::findPerson(string name, const Date & birthday) const {
+    auto * tempP = new Person(move(name), birthday, Address(), 0);
+    for (auto person = people.begin(); person != people.end(); ++person) {
+        if (*tempP == **person)
+            return person;
     }
-    return tempP;
+    return people.end();
 }
 
-Museum *System::findMuseum(string name) const {
-    for (auto museum : museums) {
-        if (name == museum->getName()) {
+vector<Museum*>::const_iterator *System::findMuseum(const string &name) const {
+    for (auto museum = museums.begin(); museum != museums.end(); ++museum) {
+        if ((*museum)->getName() == name)
             return museum;
-        }
     }
-    return nullptr;
+    return museums.end();
 }
 
 System::~System() {
@@ -239,7 +239,7 @@ Person System::createPerson() {
 }
 
 void System::createPerson(Person *person) {
-    if(findPerson(person->getName(),person->getBirthday())== nullptr)
+    if(findPerson(person->getName(),person->getBirthday()) == people.end())
         this->people.push_back(person);
 }
 
@@ -251,24 +251,47 @@ vector<Person *> System::getPeople() const {
     return this->people;
 }
 
-void System::deletePerson(string name, Date birthday) {
-    Person * toRemove = findPerson(name, birthday);
-    if(toRemove == nullptr)
+void System::deletePerson(const string &name, const Date &birthday) {
+    auto toRemove = findPerson(name, birthday);
+    if(toRemove == people.end())
         return;
-    auto toAdd = new Person(name, birthday, toRemove->getAddress(), toRemove->getContact());
+    auto toAdd = new Person(name, birthday, (*toRemove)->getAddress(), (*toRemove)->getContact());
     this->people.erase(toRemove);
     this->createPerson(toAdd);
 }
 
 void System::deletePerson() {
-    getInput([](string){return true;}, "Type the name of the Person: ");
-    getInput([](string a){
+    string name = getInput([](string){return true;}, "Type the name of the Person: ");
+    string date = getInput([](string a){
         try{
             Date temp(a);
             return true;
         }catch(...){
             return false;}
-        }, "Type their birthday: ");
+        }, "Type their birthday: ", "Invalid Date.");
+    deletePerson(name, Date(date));
+}
+
+void System::deleteEvent() {
+    string name = getInput([](string){return true;}, "Type the name of the Event: ");
+    string date = getInput([](string a){
+        try{
+            Date temp(a);
+            return true;
+        }catch(...){
+            return false;}
+    }, "Type its date: ", "Invalid Date.");
+    deleteEvent(name, Date(date));
+}
+
+void System::deleteEvent(string name, const Date &date) {
+    auto toRemove = findEvent(move(name), date);
+    if(toRemove == events.end())
+        return;
+    for(auto ticket = soldTickets.begin(); ticket != soldTickets.end(); ticket++)
+        if((*ticket)->getEvent() == *toRemove)
+            soldTickets.erase(ticket);
+    this->events.erase(toRemove);
 }
 
 /*

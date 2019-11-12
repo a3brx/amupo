@@ -27,9 +27,9 @@ public:
     vector<Person*> getPeople() const;
     vector<Museum*> getMuseums() const;
 
-    Event  * findEvent(string name, Date date) const;
-    Person * findPerson(string name, Date birthday) const;
-    Museum * findMuseum(string name) const;
+    vector<Event *>::const_iterator findEvent(string name, const Date& date) const;
+    vector<Person*>::const_iterator findPerson(string name, const Date& birthday) const;
+    vector<Museum*>::const_iterator findMuseum(const string &name) const;
 
     void createEvent();                                     //Ler do input, dar nome ao event
     void createEvent(Event *ev);
@@ -53,9 +53,9 @@ public:
     //void updateMuseum(Museum* oldMuseum, Museum* newMuseum);
 
     void deleteEvent();                                     //Pedir input
-    void deleteEvent(string name, Date date);
+    void deleteEvent(string name, const Date& date);
     void deletePerson();                                        //Pedir input
-    void deletePerson(string name, Date birthday);
+    void deletePerson(const string& name, const Date& birthday);
     void deleteMuseum();            //Pedir input
     void deleteMuseum(string name);
 
