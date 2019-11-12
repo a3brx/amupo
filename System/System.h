@@ -23,7 +23,7 @@ public:
     System(const string &fileName);                             //Ler ficheiros no inicio
     ~System();
 
-    static Address readAddress();
+
 
     vector<Event*> getEvents() const;
     vector<Person*> getPeople() const;
@@ -35,7 +35,8 @@ public:
 
     void createEvent();                                     //Ler do input, dar nome ao event
     void createEvent(Event *ev);
-    static Person createPerson();                                     //Ler do input
+
+    void createPerson();                                     //Ler do input
     void createPerson(Person *Person);
     void createMuseum();                                        //Ler do input
     void createMuseum(Museum *mus);
@@ -60,6 +61,10 @@ public:
     void deletePerson(const string& name, const Date& birthday);
     void deleteMuseum();            //Pedir input
     void deleteMuseum(const string& name);
+
+    static Address inputAddress();
+
+    Museum inputMuseum();
 
     void sellTicket();
     void calcBudget();

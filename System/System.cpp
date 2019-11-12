@@ -194,7 +194,7 @@ System::~System() {
     file.close();
 }
 
-Address System::readAddress() {
+Address System::inputAddress() {
     string street, doornumber, postalcode, local;
     cout << "Introduce the street name: ";
     getline(cin, street);
@@ -208,7 +208,7 @@ Address System::readAddress() {
     return Address(street, postalcode, stoi(doornumber), local);
 }
 
-Person System::createPerson() {
+void System::createPerson() {
     string name, birthday, contact;
     Date bday;
     Address *address;
@@ -218,9 +218,8 @@ Person System::createPerson() {
         cout << "Introduce a birthday (Format: DD/MM/YYYY): ";
         getline(cin, birthday);
         try {
-
             bday = Date(birthday);
-            *address = readAddress();
+            *address = inputAddress();
             break;
         } catch (InvalidDate) {
             cout << "Invalid Date" << endl;
@@ -229,18 +228,25 @@ Person System::createPerson() {
         }*/
     }
     do {
-        cout << "contact: ";
+        cout << "Contact: ";
         getline(cin, contact);
     } while (!isNum(contact) || contact.size() != 9);
+    if (bday - Date() > 65 * 365) {
+        SilverClient *tempS = new SilverClient(name, Date(), bday, *address, stoi(contact));
+        this->people.push_back(tempS);
+        return;
+    }
 
-
-    return Person(name, bday, *address, (unsigned) stoi(contact));
-
+    Person *temp = new Person(name, bday, *address, (unsigned) stoi(contact))
+    this->people.push_back(temp);
 }
 
 void System::createPerson(Person *person) {
-    if (findPerson(person->getName(), person->getBirthday()) == people.end())
+    if (findPerson(person->getName(), person->getBirthday()) == people.end()) {
         this->people.push_back(person);
+        return;
+    }
+    throw ExistingPerson(*person);
 }
 
 vector<Event *> System::getEvents() const {
@@ -306,6 +312,47 @@ void System::deleteMuseum(const string &name) {
     if (toRemove == museums.end())
         return;
     (*toRemove)->valid = false;
+}
+
+void System::createEvent(Event *ev) {
+    if (findEvent(ev->getName(), ev->getDate()) == events.end()) {
+        this->events.push_back(ev);
+        return;
+    }
+    throw ExistingEvent(*ev);
+}
+
+void System::createEvent() {
+    string name, dateStr, price;
+    Date date;
+    Museum *mus;
+    while (true) {
+        cout << "Name: ";
+        getline(cin, name);
+        cout << "Introduce a date (Format: DD/MM/YYYY): ";
+        getline(cin, dateStr);
+        try {
+            date = Date(dateStr);
+            *mus = readMuseum();
+            break;
+        } catch (InvalidDate) {
+            cout << "Invalid Date" << endl;
+        } catch (InvalidMuseum) {
+            cout << "Invalid Museum" << endl;
+        }
+    }
+    do {
+        cout << "Price: ";
+        getline(cin, price);
+        if (!isNum(price) || price.size() != 9) break;
+        cout << "Invalid Price" << endl;
+    } while (true);
+
+    return Event(mus, date, (float) stof(price), name);
+}
+
+Museum System::inputMuseum() {
+
 }
 
 /*

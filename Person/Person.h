@@ -102,3 +102,7 @@ public:
     friend ostream &operator<<(ostream &out, IndividualClient &client);
 };
 
+class ExistingPerson : public exception, public Person {
+public:
+    ExistingPerson(Person p) : Person(p) {}
+};
