@@ -44,7 +44,7 @@ System::System(const string & fileName) {
         this->events.push_back(e);
         string museumName;
         getline(file, museumName);
-        this->events.back()->setMuseum(this->findMuseum(museumName));
+        this->events.back()->setMuseum(*this->findMuseum(museumName));
         if (this->events.back()->getMuseum() == nullptr) throw InvalidInput("Museum name does not exist!");
     }
 
@@ -60,7 +60,7 @@ System::System(const string & fileName) {
             aux = trim(split(auxStr, "|"));
             vecPerson = trim(split(aux.at(0), ","));
             vecEvent = trim(split(aux.at(1), ","));
-            ticket = new Ticket(this->findEvent(vecEvent.at(0), Date(vecEvent.at(1))),
+            ticket = new Ticket(*this->findEvent(vecEvent.at(0), Date(vecEvent.at(1))),
                                 *this->findPerson(vecPerson.at(0), Date(vecPerson.at(1))));
             this->soldTickets.push_back(ticket);
         }
@@ -126,7 +126,7 @@ vector<Museum *> System::getMuseums() const {
 
 vector<Event*>::const_iterator System::findEvent(string name, const Date &date) const {
     auto *tempE = new Event(nullptr, date, 0, move(name));
-    for (auto event = events.begin(); event != events.end(); ++event)) {
+    for (auto event = events.begin(); event != events.end(); ++event) {
         if (*tempE == **event)
             return event;
     }
@@ -142,7 +142,7 @@ vector<Person*>::const_iterator System::findPerson(string name, const Date & bir
     return people.end();
 }
 
-vector<Museum*>::const_iterator *System::findMuseum(const string &name) const {
+vector<Museum*>::const_iterator System::findMuseum(const string &name) const {
     for (auto museum = museums.begin(); museum != museums.end(); ++museum) {
         if ((*museum)->getName() == name)
             return museum;
@@ -292,6 +292,18 @@ void System::deleteEvent(string name, const Date &date) {
         if((*ticket)->getEvent() == *toRemove)
             soldTickets.erase(ticket);
     this->events.erase(toRemove);
+}
+
+void System::deleteMuseum() {
+    string name = getInput([](string){return true;}, "Type the name of the Museum: ");
+    deleteMuseum(name);
+}
+
+void System::deleteMuseum(const string &name) {
+    auto toRemove = findMuseum(name);
+    if(toRemove == museums.end())
+        return;
+    (*toRemove)->valid = false;
 }
 
 /*

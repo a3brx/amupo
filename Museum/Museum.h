@@ -4,6 +4,7 @@
 using namespace std;
 
 class Museum{
+    friend class System;
     private:
     bool valid = true;
     string name;

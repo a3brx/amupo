@@ -57,7 +57,7 @@ public:
     void deletePerson();                                        //Pedir input
     void deletePerson(const string& name, const Date& birthday);
     void deleteMuseum();            //Pedir input
-    void deleteMuseum(string name);
+    void deleteMuseum(const string& name);
 
     void sellTicket();
     void calcBudget();
