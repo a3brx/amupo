@@ -89,6 +89,12 @@ istream &operator>>(istream &in, Person ** person) {
     return in;
 }
 
+ostream &operator<<(ostream &out, Person &person) {
+    out << "-1 " << person.getName() << " | " << person.getBirthday() <<
+        " | " << person.getContact() << endl << person.getAddress();
+    return out;
+}
+
 float SilverClient::cost = 30;
 
 float SilverClient::getCost() const {
@@ -96,9 +102,18 @@ float SilverClient::getCost() const {
 }
 
 SilverClient::SilverClient(string n, Date acqdate, Date bday, Address ad, unsigned cont) : Client(n, acqdate, bday, ad,
-
-
                                                                                                   cont) {}
+
+void SilverClient::setCost(float cost) {
+    SilverClient::cost = cost;
+}
+
+ostream &operator<<(ostream &out, const SilverClient &client) {
+    out << "2 " << client.getName() << " | " << client.getAcquisitionDate() << " | " << client.getBirthday() <<
+        " | " << client.getContact() << endl << client.getAddress();
+    return out;
+}
+
 float UniClient::cost = 32.45;
 
 float UniClient::getCost() const {
@@ -107,6 +122,15 @@ float UniClient::getCost() const {
 
 UniClient::UniClient(string n, Date acqdate, Date bday, Address ad, unsigned cont) : Client(n, acqdate, bday, ad, cont) {}
 
+void UniClient::setCost(float cost) {
+    UniClient::cost = cost;
+}
+
+ostream &operator<<(ostream &out, UniClient &client) {
+    out << "1 " << client.getName() << " | " << client.getAcquisitionDate() << " | " << client.getBirthday() <<
+        " | " << client.getContact() << endl << client.getAddress();
+    return out;
+}
 
 
 float IndividualClient::cost = 52.9;
@@ -117,5 +141,15 @@ float IndividualClient::getCost() const {
 
 IndividualClient::IndividualClient(string n, Date acqdate, Date bday, Address ad, unsigned cont) : Client(n, acqdate, bday,
                                                                                                           ad, cont) {}
+
+void IndividualClient::setCost(float cost) {
+    IndividualClient::cost = cost;
+}
+
+ostream &operator<<(ostream &out, IndividualClient &client) {
+    out << "0 " << client.getName() << " | " << client.getAcquisitionDate() << " | " << client.getBirthday() <<
+        " | " << client.getContact() << endl << client.getAddress();
+    return out;
+}
 
 

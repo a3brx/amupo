@@ -44,8 +44,8 @@ System::System(const string &fileName) {
         this->events.push_back(e);
         string museumName;
         getline(file, museumName);
-        this->events.back()->setMuseum(*this->findMuseum(museumName));
-        if (this->events.back()->getMuseum() == nullptr) throw InvalidInput("Museum name does not exist!");
+        if ((this->findMuseum(museumName)) == museums.end()) throw InvalidInput("Museum name does not exist!");
+        this->events.back()->setMuseum(*(this->findMuseum(museumName)));
     }
 
     file.close();
@@ -105,10 +105,6 @@ void System::readEvents() const {
     pause();
 }
 
-Museum *System::readMuseum() const {
-    return nullptr;
-}
-
 void System::readMuseums() const {
     vector<string> header = {"Name", "Capacity", "Address"};
     vector<vector<string>> content;
@@ -155,7 +151,7 @@ vector<Museum *>::const_iterator System::findMuseum(const string &name) const {
 }
 
 System::~System() {
-    /*fstream file;
+    fstream file;
     vector<string> aux = split(this->fileName, "/");
     aux.pop_back();
     string path = join(aux, '/');
@@ -195,7 +191,7 @@ System::~System() {
     for (; itt != ittl; itt++) {
         file << *(*itt) << endl;
     }
-    file.close();*/
+    file.close();
 }
 
 Address System::readAddress() {
@@ -320,6 +316,3 @@ Ticket * System::sellTicket(Person *person) {
     return aux;
 }
  */
-string InvalidInput::getMsg() {
-    return this->msg;
-}

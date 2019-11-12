@@ -1,11 +1,10 @@
 #pragma once
 #include <utility>
-
-#include "../Museum/Museum.h"
+#include <iostream>
+#include "../utils/InvalidInput.h"
+#include "../utils/utils.h"
 #include "../Date/Date.h"
-#include "iostream"
-#include "../Person/Person.h"
-
+#include "../Museum/Museum.h"
 
 class Event{
     string name;            //so se da nome ao event ao adiciona-lo ao sistema para ver se ha dois iguais
@@ -53,18 +52,15 @@ private:
     Date date;
     float price;
 public:
-    InvalidEvent(string nm, Date dt, float price) : name(nm), date(dt),
-                                                                    price(price) {}
+    InvalidEvent(string nm, Date dt, float price) : name(nm), date(dt), price(price) {}
 
-    InvalidEvent() {};
-    string getName() { return name; }
-    Date getDate() { return date; }
-    float getPrice() { return price; }
-    friend ostream &operator<<(ostream &out, InvalidEvent &ev) {
-        out << "Invalid Event!\n" << ev.name << endl << ev.date << endl << ev.price;
-        return out;
-    }
+    string getName() const { return this->name; }
+
+    Date getDate() const { return this->date; }
+
+    float getPrice() const { return price; }
 };
+
 
 
 

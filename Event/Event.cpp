@@ -1,5 +1,4 @@
 #include "Event.h"
-#include "../System/System.h"
 #include <utility>
 
 using namespace std;

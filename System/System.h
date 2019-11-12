@@ -2,11 +2,13 @@
 #include <utility>
 #include <vector>
 #include <fstream>
+#include <algorithm>
 #include "../Table/Table.h"
 #include "../Event/Event.h"
 #include "../Person/Person.h"
 #include "../Museum/Museum.h"
 #include "../Ticket/Ticket.h"
+#include "../utils/InvalidInput.h"
 
 
 
@@ -61,13 +63,4 @@ public:
 
     void sellTicket();
     void calcBudget();
-};
-
-class InvalidInput : exception {
-private:
-    string msg;
-public:
-    InvalidInput(string msg) : msg(move(msg)) {};
-
-    string getMsg();
 };
