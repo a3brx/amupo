@@ -147,7 +147,7 @@ MuseumMenu::MuseumMenu(System *system) : Menu(system) {
         switch (this->nextMenu) {
             case 'C' : {
                 clear();
-                //sys->createMuseum();
+                sys->createMuseum();
             } break;
             case 'R' : {
                 clear();

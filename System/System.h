@@ -60,7 +60,7 @@ public:
     void deleteMuseum();            //Pedir input
     void deleteMuseum(const string& name);
 
-    static Address inputAddress();
+    void inputAddress(Address &address);
 
     Museum inputMuseum();
 

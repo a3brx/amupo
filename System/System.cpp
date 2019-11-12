@@ -194,24 +194,26 @@ System::~System() {
     file.close();
 }
 
-Address System::inputAddress() {
+void System::inputAddress(Address &address) {
     string street, doornumber, postalcode, local;
     cout << "Introduce the street name: ";
     getline(cin, street);
+    address.setStreet(street);
     while (true) {
         cout << "Introduce the door number: ";
         getline(cin, doornumber);
         if (!isNum(doornumber)) {
-            cout << "Invalid door number:" << endl;
-            getline(cin, doornumber);
+            cout << "Invalid door number\n";
             continue;
         }
         break;
     }
-    getInput(isPostalCode, "Introduce a valid Postal Code (Format: XXXX-YYY): ", "Invalid postal code.");
+    address.setDoorNumber(stoi(doornumber));
+    address.setPostalCode(
+            getInput(isPostalCode, "Introduce a valid Postal Code (Format: XXXX-YYY): ", "Invalid postal code."));
     cout << "Introduce the local: ";
     getline(cin, local);
-    return Address(street, postalcode, stoi(doornumber), local);
+    address.setLocality(local);
 }
 
 void System::createPerson() {
@@ -367,32 +369,30 @@ void System::createEvent() {
 }
 
 void System::createMuseum() {
-//    string name, capStr;
-//    Address address;
-//    while (true) {
-//        cout << "Introduce the Museum name: ";
-//        getline(cin, name);
-//        if (findMuseum(name) != museums.end()) {
-//            cout << "Museum with that name already exists\nEnter a new name: ";
-//            getline(cin,name);
-//            continue;
-//        }
-//        break;
-//    }
-//    while(true) {
-//        cout << "Introduce the capacity of the Museum: ";
-//        getline(cin, capStr);
-//        if (!isNum(capStr)) {
-//            cout << "Invalid Capacity\nEnter a new capacity: ";
-//            getline(cin, capStr);
-//            continue;
-//        }
-//        break;
-//    }
-//    cout << "Museum's Address" << endl;
-//    address = inputAddress();
-//    Museum *tempM = new Museum(address, stoi(capStr), name);
-//    museums.push_back(tempM);
+    string name, capStr;
+    Address address;
+    while (true) {
+        cout << "Introduce the Museum name: ";
+        getline(cin, name);
+        if (findMuseum(name) != museums.end()) {
+            cout << "Museum with that name already exists\n";
+            continue;
+        }
+        break;
+    }
+    while (true) {
+        cout << "Introduce the capacity of the Museum: ";
+        getline(cin, capStr);
+        if (!isNum(capStr)) {
+            cout << "Invalid Capacity\n";
+            continue;
+        }
+        break;
+    }
+    cout << "Museum's Address" << endl;
+    inputAddress(address);
+    Museum *tempM = new Museum(address, stoi(capStr), name);
+    museums.push_back(tempM);
 }
 
 /*
