@@ -30,24 +30,18 @@ public:
 
     vector<Event *>::const_iterator findEvent(string name, const Date& date) const;
     vector<Person*>::const_iterator findPerson(string name, const Date& birthday) const;
-
     vector<Client *>::const_iterator findClient(string name, const Date &birthday) const;
     vector<Museum*>::const_iterator findMuseum(const string &name) const;
 
     void createEvent();                                     //Ler do input, dar nome ao event
     void createEvent(Event *ev);
-    void createPerson();                                     //Ler do input
     void createPerson(Person *Person);
-
     void createClient();
     void createMuseum();                                        //Ler do input
     void createMuseum(Museum *mus);
 
-    Event* readEvent() const;                                     //Pesquisa
     void readEvents() const;                            //Mostra Tabela com todos Events
-    Person* readPerson() const;                                       //Pesquisa
     void readPeople() const;                              //Mostra Tabela com todos Cards
-    Museum* readMuseum() const;                                       //Pesquisa
     void readMuseums() const;                              //Mostra Tabela com todos Museums
 
     void updateEvent();                                     //Pedir input
@@ -59,15 +53,13 @@ public:
 
     void deleteEvent();                                     //Pedir input
     void deleteEvent(string name, const Date& date);
-    void deletePerson();                                        //Pedir input
-    void deletePerson(const string& name, const Date& birthday);
+
+    void deleteClient();                                        //Pedir input
+    void deleteClient(const string &name, const Date &birthday);
     void deleteMuseum();            //Pedir input
     void deleteMuseum(const string& name);
 
     void inputAddress(Address &address);
-
-    Museum inputMuseum();
-
 
     void sellTicket();
     void calcBudget();

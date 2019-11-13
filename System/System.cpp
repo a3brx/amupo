@@ -338,17 +338,21 @@ vector<Person *> System::getPeople() const {
     return this->people;
 }
 
-void System::deletePerson(const string &name, const Date &birthday) {
-    auto toRemove = findPerson(name, birthday);
-    if (toRemove == people.end())
+void System::deleteClient(const string &name, const Date &birthday) {
+    auto toRemoveP = findPerson(name, birthday);
+    auto toRemoveC = findClient(name, birthday);
+    if (toRemoveP == people.end())
         return;
-    auto toAdd = new Person(name, birthday, (*toRemove)->getAddress(), (*toRemove)->getContact());
-    this->people.erase(toRemove);
+    if (toRemoveC == clients.end())
+        return;
+    auto toAdd = new Person(name, birthday, (*toRemoveP)->getAddress(), (*toRemoveP)->getContact());
+    this->clients.erase(toRemoveC);
+    this->people.erase(toRemoveP);
     this->createPerson(toAdd);
 }
 
-void System::deletePerson() {
-    string name = getInput([](string) { return true; }, "Type the name of the Person: ");
+void System::deleteClient() {
+    string name = getInput([](string) { return true; }, "Type the name of the Client: ");
     string date = getInput([](string a) {
         try {
             Date temp(a);
@@ -357,7 +361,7 @@ void System::deletePerson() {
             return false;
         }
     }, "Type their birthday: ", "Invalid Date.");
-    deletePerson(name, Date(date));
+    deleteClient(name, Date(date));
 }
 
 void System::deleteEvent() {
@@ -457,6 +461,14 @@ void System::createMuseum() {
     inputAddress(address);
     Museum *tempM = new Museum(address, stoi(capStr), name);
     museums.push_back(tempM);
+}
+
+void System::createMuseum(Museum *mus) {
+    if (findMuseum(mus->getName()) == museums.end()) {
+        this->museums.push_back(mus);
+        return;
+    }
+    throw ExistingMuseum(*mus);
 }
 
 
