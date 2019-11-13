@@ -62,14 +62,13 @@ public:
     void inputAddress(Address &address);
 
     vector<Ticket*> getTickets();
-    unsigned getEventSoldTickets(Event *ev);
+    unsigned getEventSoldTickets(Event *ev) const;
     vector<Ticket*> getEventTickets(Event *ev);
 
     void sellTicket();
     double calcBudget();
 
     void sellTicket(Event *event, Person *person);
-    void sellTicket();
     void setTicketsPrice(Ticket *ticket);
 
     double totalRevenue() const;
