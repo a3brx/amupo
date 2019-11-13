@@ -65,5 +65,5 @@ public:
     void inputAddress(Address &address);
 
     void sellTicket();
-    void calcBudget();
+    double calcBudget();
 };

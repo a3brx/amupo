@@ -546,6 +546,14 @@ void System::updatePerson() {
     }
 }
 
+double System::calcBudget() {
+    double total = 0;
+    for (auto ticket : soldTickets){
+        total += ticket->price;
+    }
+    return total;
+}
+
 /*
 Ticket * System::sellTicket(Person *person) {
     if (this->soldTickets.size() >= this->museum->getCapacity()) throw OverBookedEvent(this->museum, this->soldTickets.size());
