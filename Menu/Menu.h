@@ -7,6 +7,7 @@
 
 class Menu {
 protected:
+    friend class System;
     char nextMenu;
     System *sys;
 public:
@@ -54,3 +55,8 @@ public:
     vector<vector<string>> getOptions() const override;
 };
 
+class UpdateEventMenu:public Menu{
+public:
+    UpdateEventMenu(System *system);
+    vector<vector<string>> getOptions() const override;
+};

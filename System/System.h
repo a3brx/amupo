@@ -14,13 +14,14 @@
 
 class System{
 private:
+    friend class Menu;
     string fileName;
-    vector<Event*> events;
-    vector<Person*> people;
     vector<Client *> clients;
-    vector<Museum*> museums;
     vector<Ticket*> soldTickets;
 public:
+    vector<Person*> people;
+    vector<Event*> events;
+    vector<Museum*> museums;
     System(const string &fileName);                             //Ler ficheiros no inicio
     ~System();
 

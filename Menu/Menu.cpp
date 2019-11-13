@@ -94,7 +94,7 @@ EventMenu::EventMenu(System *system) : Menu(system) {
             } break;
             case 'U' : {
                 clear();
-                //sys->updateEvent();
+                new UpdateEventMenu(system);
             } break;
             case 'D' : {
                 clear();
@@ -132,7 +132,7 @@ PersonMenu::PersonMenu(System *system) : Menu(system) {
             } break;
             case 'U' : {
                 clear();
-                //sys->updatePerson();
+                new UpdatePersonMenu(system);
             } break;
             case 'D' : {
                 clear();
@@ -170,7 +170,7 @@ MuseumMenu::MuseumMenu(System *system) : Menu(system) {
             } break;
             case 'U' : {
                 clear();
-                //sys->updateMuseum();
+                new UpdateMuseumMenu(system);
             } break;
             case 'D' : {
                 clear();
@@ -198,8 +198,6 @@ UpdateMuseumMenu::UpdateMuseumMenu(System *system) : Menu(system) {
     string aux,aux2;
     cout<<"Please insert the name of the Museum you are looking to update:";
     getline(cin,aux);
-    //aux2=getInput(isDate, "Introduce a birthday (Format: DD/MM/YYYY): ", "Invalid Date");
-    //Date bday=Date(aux2);
     if(sys->findMuseum(aux)==sys->getMuseums().end()){
         cout<<"This museum doesn't exist!";
         pause();
@@ -243,7 +241,7 @@ UpdateMuseumMenu::UpdateMuseumMenu(System *system) : Menu(system) {
 }
 
 vector<vector<string>> UpdateMuseumMenu::getOptions() const {
-    return vector<vector<string>>({{"N", "Update Museum Name"}, {"A", "Update Museum Address"}, {"C", "Update Museum Capacity"}, {"R", "Return"}});
+    return vector<vector<string>>({{"N", "Update Name"}, {"A", "Update Address"}, {"C", "Update Capacity"}, {"R", "Return"}});
 }
 
 UpdatePersonMenu::UpdatePersonMenu(System *system) : Menu(system) {
@@ -252,7 +250,7 @@ UpdatePersonMenu::UpdatePersonMenu(System *system) : Menu(system) {
     getline(cin,aux);
     aux2=getInput(isDate, "Introduce a birthday (Format: DD/MM/YYYY): ", "Invalid Date");
     Date bday=Date(aux2);
-    if(sys->findPerson(aux,bday)==sys->getPeople().end()){
+    if(sys->findPerson(aux,bday)==sys->people.end()){
         cout<<"This person doesn't exist!";
         pause();
         clear();
@@ -267,7 +265,7 @@ UpdatePersonMenu::UpdatePersonMenu(System *system) : Menu(system) {
                 cout<<"Introduce the person name:";
                 getline(cin,name);
                 (*prs)->setName(name);
-                cout<<"Person name changed to : "<< name <<" successfully!";
+                cout<<"Person name changed to : "<< name <<" successfully!"<<endl;
                 pause();
                 clear();
             } break;
@@ -275,13 +273,14 @@ UpdatePersonMenu::UpdatePersonMenu(System *system) : Menu(system) {
                 Address ad;
                 sys->inputAddress(ad);
                 (*prs)->setAddress(ad);
-                cout<<"Person address changed successfully!";
+                cout<<"Person address changed successfully!"<<endl;
                 pause();
                 clear();
             } break;
             case 'C' : {
                 unsigned cont = stoi(getInput(isContact, "Enter the person new contact","Invalid contact!"));
                 (*prs)->setContact(cont);
+                cout<<"Person contact changed successfully!"<<endl;
                 pause();
                 clear();
             } break;
@@ -296,5 +295,71 @@ UpdatePersonMenu::UpdatePersonMenu(System *system) : Menu(system) {
 }
 
 vector<vector<string>> UpdatePersonMenu::getOptions() const {
-    return vector<vector<string>>({{"N", "Update Person Name"}, {"A", "Update Person Address"}, {"C", "Update Person Contact"}, {"R", "Return"}});
+    return vector<vector<string>>({{"N", "Update Name"}, {"A", "Update Address"}, {"C", "Update Contact"}, {"R", "Return"}});
+}
+
+UpdateEventMenu::UpdateEventMenu(System *system) : Menu(system) {
+    string aux,aux2;
+    cout<<"Please insert the name of the Event you are looking to update:";
+    getline(cin,aux);
+    aux2=getInput(isDate, "Introduce a start date (Format: DD/MM/YYYY): ", "Invalid Date");
+    Date bday=Date(aux2);
+    if(sys->findEvent(aux,bday)==sys->events.end()){
+        cout<<"This Event doesn't exist!";
+        pause();
+        clear();
+        return;
+    }
+    auto eve=sys->findEvent(aux,bday);
+    while(true) {
+        this->nextMenu = this->option();
+        switch (this->nextMenu) {
+            case 'N' : {
+                string name;
+                cout<<"Introduce the event name:";
+                getline(cin,name);
+                (*eve)->setName(name);
+                cout<<"Person name changed to : "<< name <<" successfully!";
+                pause();
+                clear();
+            } break;
+            case 'D' : {
+                Date dt=Date(getInput(isDate,"Introduce the new date: ","Invalid Date"));
+                (*eve)->setDate(dt);
+                cout<<"Person address changed successfully!";
+                pause();
+                clear();
+            } break;
+            case 'L' : {
+                cout<<"Introduce the museum name to which you want to change the event location: ";
+                string local;
+                getline(cin,local);
+                if(sys->findMuseum(local) == sys->museums.end()){
+                    cout<<"This museum doesn't exist!"<<endl;
+                    pause();
+                    clear();
+                    return;
+                }
+                Museum * mus = * sys->findMuseum(local);
+                (*eve)->setMuseum((mus));
+                Event *evt = (*eve);
+                cout<<"Event Location changed successfully"<<endl;
+                pause();
+                clear();
+            } break;
+            case 'P' : {
+                (*eve)->setPrice(100);
+            }break;
+            case 'R' : {
+                clear();
+                return;
+            }
+            default:
+                break;
+        }
+    }
+}
+
+vector<vector<string>> UpdateEventMenu::getOptions() const {
+    return vector<vector<string>>({{"N", "Update Name"}, {"D", "Update Date"}, {"L", "Update Location"},{"P", "Update Price"}, {"R", "Return"}});
 }

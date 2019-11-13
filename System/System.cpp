@@ -253,7 +253,7 @@ vector<Person *>::const_iterator System::findPerson(string name, const Date &bir
 
 vector<Museum *>::const_iterator System::findMuseum(const string &name) const {
     for (auto museum = museums.begin(); museum != museums.end(); ++museum) {
-        if (upper((*museum)->getName()) == upper(name))
+        if (trim(upper((*museum)->getName())) == trim(upper(name)))
             return museum;
     }
     return museums.end();
