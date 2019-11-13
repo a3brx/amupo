@@ -61,6 +61,9 @@ MainMenu::MainMenu(System *system) : Menu(system) {
             case 'M':
                 call = new MuseumMenu(system);
                 break;
+            case 'S':
+                sys->sellTicket();
+                break;
             case 'Q':
                 return;
             default:
@@ -70,7 +73,11 @@ MainMenu::MainMenu(System *system) : Menu(system) {
 }
 
 vector<vector<string>> MainMenu::getOptions() const {
-    return vector<vector<string>>({{"E", "Event Menu"}, {"P", "Person Menu"}, {"M", "Museum Menu"}, {"Q", "Quit Program"}});
+    return vector<vector<string>>({{"E", "Event Menu"},
+                                   {"P", "Person Menu"},
+                                   {"M", "Museum Menu"},
+                                   {"S", "Sell Tickets"},
+                                   {"Q", "Quit Program"}});
 }
 
 EventMenu::EventMenu(System *system) : Menu(system) {
@@ -125,7 +132,7 @@ PersonMenu::PersonMenu(System *system) : Menu(system) {
             } break;
             case 'D' : {
                 clear();
-                sys->deletePerson();
+                sys->deleteClient();
             } break;
             case 'M':
                 return;

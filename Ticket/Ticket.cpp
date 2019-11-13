@@ -21,9 +21,15 @@ bool operator==(Ticket &left, Ticket &right) {
 }
 
 ostream &operator<<(ostream &out, Ticket &ticket) {
-    out << ticket.getPerson()->getName() << ", " << ticket.getPerson()->getBirthday() << " | "
-        << ticket.getEvent()->getName() << ", " << ticket.getEvent()->getDate();
+    out << ticket.getPerson()->getName() << ", ";
+    out << ticket.getPerson()->getBirthday() << " | ";
+    out << ticket.getEvent()->getName();
+    out << ", " << ticket.getEvent()->getDate();
     return out;
+}
+
+void Ticket::setPrice(float price) {
+    this->price = price;
 }
 
 

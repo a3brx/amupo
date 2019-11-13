@@ -73,4 +73,4 @@ string getInput(bool (__valid)(string), const string &message = "Choose a option
 
 bool isYorN(string toTest);
 
-
+bool isContact(string toTest);

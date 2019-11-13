@@ -61,6 +61,12 @@ public:
 
     void inputAddress(Address &address);
 
+    unsigned getEventSoldTickets(Event *ev);
+
     void sellTicket();
+
+    void sellTicket(Event *event, Person *person);
+
+    void setTicketsPrice(Ticket *ticket);
     void calcBudget();
 };
