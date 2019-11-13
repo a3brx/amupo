@@ -61,10 +61,14 @@ public:
 
     unsigned getEventSoldTickets(Event *ev);
 
-    void sellTicket();
-    double calcBudget();
-
     void sellTicket(Event *event, Person *person);
-
+    void sellTicket();
     void setTicketsPrice(Ticket *ticket);
+
+    double totalRevenue();
+
+    double moneySpentPerson();
+
+    double eventRevenue();
+
 };

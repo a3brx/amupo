@@ -61,10 +61,8 @@ MainMenu::MainMenu(System *system) : Menu(system) {
             case 'S':
                 sys->sellTicket();
                 break;
-            case 'B': {
-                clear();
-                cout << "The total revenue is " << sys->calcBudget() << endl;
-                pause();
+            case 'F': {
+                call = new FinanceMenu(system);
                 break;
             }
             case 'Q':
@@ -79,8 +77,8 @@ vector<vector<string>> MainMenu::getOptions() const {
     return vector<vector<string>>({{"E", "Event Menu"},
                                    {"P", "Person Menu"},
                                    {"M", "Museum Menu"},
-                                   {"S", "Sell Tickets"},
-                                   {"B", "Calculate Revenue"},
+                                   {"S", "Sell Ticket"},
+                                   {"F", "Finances"},
                                    {"Q", "Quit Program"}});
 }
 
@@ -522,5 +520,43 @@ ReadMuseumMenu::ReadMuseumMenu(System *system) : Menu(system) {
 vector<vector<string>> ReadMuseumMenu::getOptions() const {
     return vector<vector<string>>({{"N", "Sort by Name"},
                                    {"C", "Sort by Capacity"},
+                                   {"R", "Return"}});
+}
+
+FinanceMenu::FinanceMenu(System *system) : Menu(system) {
+    this->nextMenu = this->option();
+    switch (this->nextMenu) {
+        case 'F' : {
+            double rev;
+            rev = sys->totalRevenue();
+            cout << "The total Revenue is " << rev << endl;
+            clear();
+        }
+            break;
+        case 'P' : {
+            double spent;
+            spent = sys->moneySpentPerson();
+            cout << "The total money spent by this Person is " << spent << endl;
+            clear();
+        }
+            break;
+        case 'E' : {
+            double rev;
+            rev = sys->eventRevenue();
+            cout << "The Event's revenue is " << rev << endl;
+            clear();
+        }
+            break;
+        case 'R':
+            return;
+        default:
+            break;
+    }
+}
+
+vector<vector<string>> FinanceMenu::getOptions() const {
+    return vector<vector<string>>({{"F", "Total Revenue"},
+                                   {"P", "Money spent by Someone"},
+                                   {"E", "Ticket Revenue of an Event"},
                                    {"R", "Return"}});
 }
