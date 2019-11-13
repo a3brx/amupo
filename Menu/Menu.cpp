@@ -280,7 +280,7 @@ UpdatePersonMenu::UpdatePersonMenu(System *system) : Menu(system) {
                 clear();
             } break;
             case 'C' : {
-                unsigned cont = getInput(isContact(), "Enter the person new contact","Invalid contact!");
+                unsigned cont = stoi(getInput(isContact, "Enter the person new contact","Invalid contact!"));
                 (*prs)->setContact(cont);
                 pause();
                 clear();

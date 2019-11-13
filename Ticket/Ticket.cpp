@@ -32,5 +32,9 @@ void Ticket::setPrice(float price) {
     this->price = price;
 }
 
+float Ticket::getPrice() const {
+    return this->price;
+}
+
 
 

@@ -590,7 +590,7 @@ void System::sellTicket(Event *event, Person *person) {
 double System::calcBudget() {
     double total = 0;
     for (auto ticket : soldTickets){
-        total += ticket->price;
+        total += ticket->getPrice();
     }
     return total;
 }

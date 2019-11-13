@@ -13,6 +13,7 @@ public:
 
     Event *getEvent() const;
     Person *getPerson() const;
+    float getPrice() const;
 
     void setPrice(float price);
 
