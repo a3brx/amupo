@@ -1,7 +1,4 @@
 #include "System.h"
-#include <sstream>
-#include <algorithm>
-#include <utility>
 
 using namespace std;
 
@@ -215,17 +212,8 @@ void System::readMuseum() const {
 }
 
 void System::readMuseums() const {
-    vector<string> header = {"Name", "Capacity", "Address"};
-    vector<vector<string>> content;
-    for (auto museum : this->museums) {
-        stringstream address;
-        address << museum->getAddress();
-        vector<string> aux = {museum->getName(), to_string(museum->getCapacity()), address.str()};
-        if (museum->isValid())
-            content.push_back(aux);
-    }
-    Table<string> data(header, content);
-    cout << data;
+    Table<string> read = toTable(this->museums);
+    cout << read;
     pause();
 }
 

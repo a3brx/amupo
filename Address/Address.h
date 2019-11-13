@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <utility>
+#include <vector>
 #include "../utils/utils.h"
 
 using namespace std;

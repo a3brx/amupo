@@ -1,4 +1,7 @@
 #pragma once
+
+#include <utility>
+#include "../Table/Table.h"
 #include "../Address/Address.h"
 #include "../utils/InvalidInput.h"
 
@@ -39,3 +42,5 @@ class InvalidMuseum : public exception, public Museum {
 public:
     InvalidMuseum(string name, Address add, unsigned cap) : Museum(add, cap, name) {}
 };
+
+Table<string> toTable(const vector<Museum *> &container);

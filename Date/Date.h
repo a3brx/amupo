@@ -19,6 +19,7 @@ public:
     /// @brief Constructs a Date equal to the actual date.
     Date();
 
+    /// @brief Constructs a Date equal to other date.
     Date(const Date &date);
 
     /// @brief Constructs a Date in the actual month.

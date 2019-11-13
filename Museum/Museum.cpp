@@ -1,7 +1,5 @@
 #include "Museum.h"
 
-#include <utility>
-
 using namespace std;
 
 Museum::Museum(Address adr, unsigned cap = 0, string name = ""): address(move(adr)), capacity(cap), name(move(name)) {
@@ -56,4 +54,16 @@ istream & operator>>(istream & in, Museum ** museum) {
 
 bool Museum::isValid() const {
     return this->valid;
+}
+
+Table<string> toTable(const vector<Museum *> &container){
+    vector<string> header = {"Name", "Capacity", "Address"};
+    vector<vector<string>> content;
+    for (auto museum : container) {
+        stringstream address;
+        address << museum->getAddress();
+        content.push_back({ museum->getName(), to_string(museum->getCapacity()), address.str() });
+    }
+    Table<string> data(header, content);
+    return data;
 }

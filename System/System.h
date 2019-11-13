@@ -3,6 +3,7 @@
 #include <vector>
 #include <fstream>
 #include <algorithm>
+#include <sstream>
 #include "../Table/Table.h"
 #include "../Event/Event.h"
 #include "../Person/Person.h"

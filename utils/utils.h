@@ -74,3 +74,12 @@ string getInput(bool (__valid)(string), const string &message = "Choose a option
 bool isYorN(string toTest);
 
 bool isContact(string toTest);
+
+template<class T, template<class, class = allocator<T>> class Container>
+Container<T> filter(const Container<T> &container, bool (filterFunction)(const T &)) {
+    Container<T> res;
+    for (auto it = container.begin(); it != container.end(); it++)
+        if (filterFunction(*it))
+            res.push_back(*it);
+    return res;
+};
