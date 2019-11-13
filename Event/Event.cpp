@@ -8,15 +8,15 @@ string Event::getName() {
     return this->name;
 }
 
-Museum * Event::getMuseum() {
+Museum * Event::getMuseum() const {
     return this->museum;
 }
 
-Date Event::getDate() {
+Date Event::getDate() const {
     return this->date;
 }
 
-float Event::getPrice() {
+float Event::getPrice() const {
     return this->price;
 }
 

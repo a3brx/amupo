@@ -62,20 +62,29 @@ public:
     vector<vector<string>> getOptions() const override;
 };
 
-class ReadEventMenu : public Menu{
+template<class T>
+class ReadMenu : public Menu {
+protected:
+    vector<T *> toRead;
 public:
-    ReadEventMenu(System *system);
+    explicit ReadMenu(System * system) :
+        Menu(system), toRead({}) {};
+};
+
+class ReadEventMenu : public ReadMenu<Event>{
+public:
+    explicit ReadEventMenu(System *system);
     vector<vector<string>> getOptions() const override;
 };
 
-class ReadPersonMenu : public Menu{
+class ReadPersonMenu : public ReadMenu<Person>{
 public:
-    ReadPersonMenu(System *system);
+    explicit ReadPersonMenu(System *system);
     vector<vector<string>> getOptions() const override;
 };
 
-class ReadMuseumMenu : public Menu{
+class ReadMuseumMenu : public ReadMenu<Museum>{
 public:
-    ReadMuseumMenu(System *system);
+    explicit ReadMuseumMenu(System *system);
     vector<vector<string>> getOptions() const override;
 };
