@@ -7,14 +7,16 @@ class Ticket {
 private:
     const Event *event;
     const Person *person;
+    float price;
 public:
     Ticket(Event *event, Person *person);
 
     Event *getEvent() const;
     Person *getPerson() const;
 
-    friend bool operator==(Ticket &left, Ticket &right);
+    void setPrice(float price);
 
+    friend bool operator==(Ticket &left, Ticket &right);
     friend ostream &operator<<(ostream &out, Ticket &ticket);
 
 };

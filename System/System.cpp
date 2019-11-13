@@ -99,8 +99,17 @@ System::System(const string &fileName) {
             aux = trim(split(auxStr, "|"));
             vecPerson = trim(split(aux.at(0), ","));
             vecEvent = trim(split(aux.at(1), ","));
-            ticket = new Ticket(*this->findEvent(vecEvent.at(0), Date(vecEvent.at(1))),
-                                *this->findPerson(vecPerson.at(0), Date(vecPerson.at(1))));
+            auto ite = findEvent(vecEvent.at(0), Date(vecEvent.at(1)));
+            auto itp = findPerson(vecPerson.at(0), Date(vecPerson.at(1)));
+            if (ite == events.end()) {
+                throw InvalidInput("Event of a Ticket not found!(While reading)");
+            }
+            if (itp == people.end()) {
+                throw InvalidInput("Person of a Ticket not found!(While reading)");
+            }
+            Event *ev = *this->findEvent(vecEvent.at(0), Date(vecEvent.at(1)));
+            Person *p = *this->findPerson(vecPerson.at(0), Date(vecPerson.at(1)));
+            ticket = new Ticket(ev, p);
             this->soldTickets.push_back(ticket);
         }
         catch (...) {
@@ -532,18 +541,50 @@ void System::createMuseum(Museum *mus) {
     throw ExistingMuseum(*mus);
 }
 
-void System::updatePerson() {
-    string aux,aux2;
-    cout<<"Please insert the name of the Person you are looking to update:";
-    getline(cin,aux);
-    aux2=getInput(isDate, "Introduce a birthday (Format: DD/MM/YYYY): ", "Invalid Date");
-    Date bday=Date(aux2);
-    if(findPerson(aux,bday)==people.end()){
-        return;
+void System::sellTicket() {
+    string buyerName, buyerDate, eventName, eventDate;
+    Date buyerDt, eventDt;
+    Person *buyer;
+    Event *event;
+    cout << "Name of the buyer: ";
+    getline(cin, buyerName);
+    buyerDate = getInput(isDate, "Introduce a birthday (Format: DD/MM/YYYY): ", "Invalid Date");
+    buyerDt = Date(buyerDate);
+    auto finderB = findPerson(buyerName, buyerDt);
+    if (finderB == people.end()) {
+        cout << "This is a new Person" << endl;
+        buyer->setContact(stoi(getInput(isContact, "Introduce the person's contact: ", "Invalid contact")));
+        Address address;
+        cout << "Person's Address" << endl;
+        inputAddress(address);
+        people.push_back(buyer);
+    } else {
+        buyer = *finderB;
     }
-    else{
+    while (true) {
+        cout << "Name of the Event: ";
+        getline(cin, eventName);
+        eventDate = getInput(isDate, "Introduce the event's date (Format: DD/MM/YYYY): ", "Invalid Date");
+        eventDt = Date(eventDate);
+        auto finderE = findEvent(eventName, eventDt);
+        if (finderE == events.end()) {
+            cout << "This event doesn't exist! Choose another one\n";
+            continue;
+        }
+        event = *finderE;
+        break;
+    }
+    sellTicket(event, buyer);
+}
 
+void System::sellTicket(Event *event, Person *person) {
+    unsigned newSoldTickets = getEventSoldTickets(event);
+    if (event->getMuseum()->capacity < newSoldTickets) {
+        throw OverBookedEvent(event->getMuseum(), newSoldTickets);
     }
+    Ticket *ticket = new Ticket(event, person);
+    this->soldTickets.push_back(ticket);
+    cout << "Ticket sold!" << endl;
 }
 
 double System::calcBudget() {
@@ -553,12 +594,23 @@ double System::calcBudget() {
     }
     return total;
 }
-
-/*
-Ticket * System::sellTicket(Person *person) {
-    if (this->soldTickets.size() >= this->museum->getCapacity()) throw OverBookedEvent(this->museum, this->soldTickets.size());
-    auto * aux = new Ticket(this, person);
-    this->soldTickets.push_back(aux);
-    return aux;
+unsigned System::getEventSoldTickets(Event *ev) {
+    unsigned counter = 0;
+    auto it = soldTickets.begin();
+    for (; it != soldTickets.end(); it++) {
+        if (*(*it)->getEvent() == *ev) {
+            counter++;
+        }
+    }
+    return counter;
 }
- */
+
+void System::setTicketsPrice(Ticket *ticket) {
+    float p;
+    p = ticket->getEvent()->getPrice();
+    if (findClient(ticket->getPerson()->getName(), ticket->getPerson()->getBirthday()) != clients.end()) {
+        p = p * 0.75;
+    }
+    ticket->setPrice(p);
+}
+

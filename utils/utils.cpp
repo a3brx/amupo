@@ -153,3 +153,8 @@ string getInput(bool (__valid)(string), const string &message, const string &fai
 bool isYorN(string toTest) {
     return (toTest == "1" or toTest == "0");
 }
+
+bool isContact(string toTest) {
+    return (isNum(toTest) && toTest.size() == 9);
+}
+
