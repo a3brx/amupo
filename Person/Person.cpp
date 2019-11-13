@@ -43,7 +43,7 @@ Person::Person(const Person &person) : birthday(person.getBirthday()) {
 
 bool Person::operator==(Person person) {
     bool equal = true;
-    equal = (equal && (this->name == person.getName()));
+    equal = (equal && (upper(this->name) == upper(person.getName())));
     equal = (equal && (this->birthday == person.getBirthday()));
     /*equal = (equal && (this->contact==person.getContact()));
     equal = (equal && (this->address==person.getAddress()));*/

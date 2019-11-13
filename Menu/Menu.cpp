@@ -93,6 +93,10 @@ EventMenu::EventMenu(System *system) : Menu(system) {
                 clear();
                 sys->deleteEvent();
             } break;
+            case 'V' : {
+                clear();
+                sys->readEvent();
+            } break;
             case 'M':
                 return;
             case 'Q':
@@ -104,7 +108,7 @@ EventMenu::EventMenu(System *system) : Menu(system) {
 }
 
 vector<vector<string>> EventMenu::getOptions() const {
-    return vector<vector<string>>({{"C", "Create Event"}, {"R", "Read Events"}, {"U", "Update Event"}, {"D", "Delete Event"}, {"M", "Main Menu"}, {"Q", "Quit Program"}});
+    return vector<vector<string>>({{"C", "Create Event"}, {"R", "Read Events"}, {"U", "Update Event"}, {"D", "Delete Event"}, {"V", "View Event"}, {"M", "Main Menu"}, {"Q", "Quit Program"}});
 }
 
 PersonMenu::PersonMenu(System *system) : Menu(system) {
@@ -125,7 +129,11 @@ PersonMenu::PersonMenu(System *system) : Menu(system) {
             } break;
             case 'D' : {
                 clear();
-                sys->deletePerson();
+                sys->deleteClient();
+            } break;
+            case 'V' : {
+                clear();
+                sys->readPerson();
             } break;
             case 'M':
                 return;
@@ -138,7 +146,7 @@ PersonMenu::PersonMenu(System *system) : Menu(system) {
 }
 
 vector<vector<string>> PersonMenu::getOptions() const {
-    return vector<vector<string>>({{"C", "Create Person"}, {"R", "Read People"}, {"U", "Update Person"}, {"D", "Delete Person"}, {"M", "Main Menu"}, {"Q", "Quit Program"}});
+    return vector<vector<string>>({{"C", "Create Person"}, {"R", "Read People"}, {"U", "Update Person"}, {"D", "Delete Person"}, {"V", "View Person"}, {"M", "Main Menu"}, {"Q", "Quit Program"}});
 }
 
 MuseumMenu::MuseumMenu(System *system) : Menu(system) {
@@ -161,6 +169,10 @@ MuseumMenu::MuseumMenu(System *system) : Menu(system) {
                 clear();
                 sys->deleteMuseum();
             } break;
+            case 'V' : {
+                clear();
+                sys->readMuseum();
+            } break;
             case 'M':
                 return;
             case 'Q':
@@ -172,7 +184,7 @@ MuseumMenu::MuseumMenu(System *system) : Menu(system) {
 }
 
 vector<vector<string>> MuseumMenu::getOptions() const {
-    return vector<vector<string>>({{"C", "Create Museum"}, {"R", "Read Museums"}, {"U", "Update Museum"}, {"D", "Delete Museum"}, {"M", "Main Menu"}, {"Q", "Quit Program"}});
+    return vector<vector<string>>({{"C", "Create Museum"}, {"R", "Read Museums"}, {"U", "Update Museum"}, {"D", "Delete Museum"}, {"V", "View Museum"}, {"M", "Main Menu"}, {"Q", "Quit Program"}});
 }
 
 UpdateMuseumMenu::UpdateMuseumMenu(System *system) : Menu(system) {
