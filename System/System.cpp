@@ -594,6 +594,7 @@ double System::calcBudget() {
     }
     return total;
 }
+
 unsigned System::getEventSoldTickets(Event *ev) {
     unsigned counter = 0;
     auto it = soldTickets.begin();
