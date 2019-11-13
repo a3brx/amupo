@@ -20,6 +20,7 @@ public:
     friend bool operator==(Ticket &left, Ticket &right);
     friend ostream &operator<<(ostream &out, Ticket &ticket);
 
+    Ticket(Ticket *pTicket);
 };
 
 

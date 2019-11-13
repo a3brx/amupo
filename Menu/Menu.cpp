@@ -263,8 +263,33 @@ UpdateMuseumMenu::UpdateMuseumMenu(System *system) : Menu(system) {
             }
                 break;
             case 'C' : {
+                string cap;
+                getline(cin,cap);
+                unsigned capu=stoi(getInput(isNum,"Introduce the new museum capacity:","Invalid capacity"));
+                if (capu>(*mus)->getCapacity()){
+                    (*mus)->setCapacity(capu);
+                }else{
+                    string yesno;
+                    cout<<"Are you sure you want to change the museum capacity to a lower one ?\nThis may lead to ticket refunds since there isn't enough capacity.";
+                    cout<<"Input Y to continue or press other key to cancel";
+                    getline(cin,yesno);
+                    if(yesno=="Y"){
+                        vector<Ticket*>::reverse_iterator its;
+                        for(its=sys->getTickets().rbegin();its!=sys->getTickets().rend();++its){
+                            if((sys->getEventSoldTickets((*its)->getEvent())>capu)
+                            && (*its)->getEvent()->getMuseum()->getName()==(*mus)->getName()){
+                                delete((*its));
+                            }
+                        }
+                    }else{
+                        cout<<"Operation canceled."<<endl;
+                        pause();
+                        clear();
+                    }
+                }
+                cout<<"Museum capacity change successfully!"<<endl;
+                pause();
                 clear();
-                //sys->updateMuseum();
             }
                 break;
             case 'R' : {
@@ -397,7 +422,8 @@ UpdateEventMenu::UpdateEventMenu(System *system) : Menu(system) {
             }
                 break;
             case 'P' : {
-                (*eve)->setPrice(100);
+                unsigned p=stoi(getInput(isNum,"Introduce the new ticket price.","Invalid input for ticket price"));
+                (*eve)->setPrice(p);
             }
                 break;
             case 'R' : {

@@ -47,6 +47,8 @@ public:
     void readPerson() const;
     void readPeople(const vector<Person *> &container) const; //Mostra Tabela com todos Cards
     void readMuseum() const;
+    void readMuseums() const;                              //Mostra Tabela com todos Museums
+
     void readMuseums(const vector<Museum *> &container) const;                              //Mostra Tabela com todos Museums
 
     void deleteEvent();                                     //Pedir input
@@ -59,10 +61,14 @@ public:
 
     void inputAddress(Address &address);
 
+    vector<Ticket*> getTickets();
     unsigned getEventSoldTickets(Event *ev) const;
+    vector<Ticket*> getEventTickets(Event *ev);
+
+    void sellTicket();
+    double calcBudget();
 
     void sellTicket(Event *event, Person *person);
-    void sellTicket();
     void setTicketsPrice(Ticket *ticket);
 
     double totalRevenue() const;

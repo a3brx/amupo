@@ -27,7 +27,7 @@ void Person::setAddress(Address address){
 }
 
 void Person::setContact(unsigned contact){
-    contact = contact;
+    this->contact = contact;
 }
 
 Person::Person(string name, Date birthday, Address address, unsigned contact) : name(move(name)), birthday(birthday), address(move(address)) {

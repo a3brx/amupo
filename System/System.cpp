@@ -541,6 +541,18 @@ unsigned System::getEventSoldTickets(Event *ev) const {
     return counter;
 }
 
+vector<Ticket*> System::getEventTickets(Event *ev) {
+    unsigned counter = 0;
+    vector<Ticket*> ticks;
+    auto it = soldTickets.begin();
+    for (; it != soldTickets.end(); it++) {
+        if (*(*it)->getEvent() == *ev) {
+            ticks.push_back(new Ticket (*it));
+        }
+    }
+    return ticks;
+}
+
 void System::setTicketsPrice(Ticket *ticket) {
     float p;
     p = ticket->getEvent()->getPrice();
@@ -548,6 +560,10 @@ void System::setTicketsPrice(Ticket *ticket) {
         p *= 0.75;
     }
     ticket->setPrice(p);
+}
+
+vector<Ticket *> System::getTickets() {
+    return this->soldTickets;
 }
 
 double System::moneySpentPerson() {
