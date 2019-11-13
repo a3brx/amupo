@@ -41,3 +41,16 @@ public:
     MuseumMenu(System *system);
     vector<vector<string>> getOptions() const override;
 };
+
+class UpdateMuseumMenu:public Menu{
+public:
+    UpdateMuseumMenu(System *system);
+    vector<vector<string>> getOptions() const override;
+};
+
+class UpdatePersonMenu:public Menu{
+public:
+    UpdatePersonMenu(System *system);
+    vector<vector<string>> getOptions() const override;
+};
+
