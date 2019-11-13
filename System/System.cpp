@@ -471,6 +471,20 @@ void System::createMuseum(Museum *mus) {
     throw ExistingMuseum(*mus);
 }
 
+void System::updatePerson() {
+    string aux,aux2;
+    cout<<"Please insert the name of the Person you are looking to update:";
+    getline(cin,aux);
+    aux2=getInput(isDate, "Introduce a birthday (Format: DD/MM/YYYY): ", "Invalid Date");
+    Date bday=Date(aux2);
+    if(findPerson(aux,bday)==people.end()){
+        return;
+    }
+    else{
+
+    }
+}
+
 
 /*
 Ticket * System::sellTicket(Person *person) {
