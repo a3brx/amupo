@@ -43,11 +43,11 @@ public:
     void createMuseum(Museum *mus);
 
     void readEvent() const;
-    void readEvents() const;                            //Mostra Tabela com todos Events
+    void readEvents(const vector<Event *> &container) const;                            //Mostra Tabela com todos Events
     void readPerson() const;
-    void readPeople() const;                              //Mostra Tabela com todos Cards
+    void readPeople(const vector<Person *> &container) const; //Mostra Tabela com todos Cards
     void readMuseum() const;
-    void readMuseums() const;                              //Mostra Tabela com todos Museums
+    void readMuseums(const vector<Museum *> &container) const;                              //Mostra Tabela com todos Museums
 
     void updateEvent();                                     //Pedir input
     //void updateEvent(Event* oldEvent, Event* newEvent);
@@ -66,12 +66,16 @@ public:
 
     void inputAddress(Address &address);
 
-    unsigned getEventSoldTickets(Event *ev);
+    unsigned getEventSoldTickets(Event *ev) const;
 
     void sellTicket();
-    double calcBudget();
+    double calcBudget() const;
 
     void sellTicket(Event *event, Person *person);
 
     void setTicketsPrice(Ticket *ticket);
 };
+
+Table<string> toTable(const vector<Event *> &container, const System * sys);
+Table<string> toTable(const vector<Client *> &container, const System * sys);
+Table<string> toTable(const vector<Person *> &container, const System * sys);

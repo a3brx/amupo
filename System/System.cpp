@@ -117,102 +117,51 @@ System::System(const string &fileName) {
 }
 
 void System::readPerson() const {
-    vector<string> header = {"Name", "Birthday", "Address", "Contact"};
-    vector<vector<string>> content;
-    string name = getInput([](string) { return true; }, "Type the name of the Client: ");
-    string birthday = getInput([](string a) {
-        try {
-            Date temp(a);
-            return true;
-        } catch (...) {
-            return false;
-        }
-    }, "Type their birthday: ", "Invalid Date.");
-    Person * client = * findPerson(name, Date(birthday));
-    stringstream address;
-    address << client->getAddress();
-    vector<string> aux = {client->getName(), birthday, address.str(), to_string(client->getContact())};
-    content.push_back(aux);
-    Table<string> data(header, content);
-    cout << data;
-    pause();
+    string name = getInput(isName, "Type the name of the Client: ", "Invalid name.");
+    string birthday = getInput(isDate, "Type its birthday: ", "Invalid Date.");
+    Person * personPtr = * findPerson(name, Date(birthday));
+    readPeople({personPtr});
 }
 
-void System::readPeople() const {
-    vector<string> header = {"Name", "Birthday", "Address", "Contact"};
-    vector<vector<string>> content;
-    for (auto client : this->clients) {
-        stringstream address, birthday;
-        address << client->getAddress();
-        birthday << client->getBirthday();
-        vector<string> aux = {client->getName(), birthday.str(), address.str(), to_string(client->getContact())};
-        content.push_back(aux);
+void System::readPeople(const vector<Person *> &container) const {
+    if(container.empty()){
+        cout << "The search is empty :(" << endl;
+        return;
     }
-    Table<string> data(header, content);
-    cout << data;
+    auto read = toTable(container, this);
+    cout << read;
     pause();
 }
 
 void System::readEvent() const {
-    vector<string> header = {"Name", "Place", "Date", "Sold Tickets", "Price"};
-    vector<vector<string>> content;
-    string name = getInput([](string) { return true; }, "Type the name of the Event: ");
-    string date = getInput([](string a) {
-        try {
-            Date temp(a);
-            return true;
-        } catch (...) {
-            return false;
-        }
-    }, "Type its date: ", "Invalid Date.");
-    auto event = * findEvent(name, Date(date));
-    unsigned sold = 0;
-    for (auto ticket : soldTickets) {
-        if (*(ticket->getEvent()) == *(event)) sold++;
-    }
-    vector<string> aux = {event->getName(), event->getMuseum()->getName(), date, to_string(sold), strPrecision(to_string(event->getPrice()))};
-    content.push_back(aux);
-    Table<string> data(header, content);
-    cout << data;
-    pause();
+    string name = getInput(notEmptyString, "Type the name of the Event: ", "Invalid name.");
+    string date = getInput(isDate, "Type its date: ", "Invalid Date.");
+    Event * eventPtr = * findEvent(name, Date(date));
+    readEvents({eventPtr});
 }
 
-void System::readEvents() const {
-    vector<string> header = {"Name", "Place", "Date", "Sold Tickets", "Price"};
-    vector<vector<string>> content;
-    for (auto event : this->events) {
-        stringstream date;
-        unsigned sold = 0;
-        for (auto ticket : soldTickets) {
-            if (*(ticket->getEvent()) == *(event)) sold++;
-        }
-        date << event->getDate();
-        vector<string> aux = {event->getName(), event->getMuseum()->getName(), date.str(), to_string(sold),
-                              strPrecision(to_string(event->getPrice()))};
-        content.push_back(aux);
+void System::readEvents(const vector<Event *> &container) const {
+    if(container.empty()){
+        cout << "The search is empty :(" << endl;
+        return;
     }
-    Table<string> data(header, content);
-    cout << data;
+    auto read = toTable(container, this);
+    cout << read;
     pause();
 }
 
 void System::readMuseum() const {
-    vector<string> header = {"Name", "Capacity", "Address"};
-    vector<vector<string>> content;
-    string name = getInput([](string) { return true; }, "Type the name of the Museum: ");
-    auto museum = * findMuseum(name);
-    stringstream address;
-    address << museum->getAddress();
-    vector<string> aux = {museum->getName(), to_string(museum->getCapacity()), address.str()};
-    if (museum->isValid())
-        content.push_back(aux);
-    Table<string> data(header, content);
-    cout << data;
-    pause();
+    string name = getInput(notEmptyString, "Type the name of the Museum: ", "Invalid name.");
+    Museum * museumPtr = * findMuseum(name);
+    readMuseums({museumPtr});
 }
 
-void System::readMuseums() const {
-    Table<string> read = toTable(this->museums);
+void System::readMuseums(const vector<Museum *> &container) const {
+    if(container.empty()){
+        cout << "The search is empty :(" << endl;
+        return;
+    }
+    auto read = toTable(container);
     cout << read;
     pause();
 }
@@ -575,7 +524,7 @@ void System::sellTicket(Event *event, Person *person) {
     cout << "Ticket sold!" << endl;
 }
 
-double System::calcBudget() {
+double System::calcBudget() const {
     double total = 0;
     for (auto ticket : soldTickets){
         total += ticket->getPrice();
@@ -583,7 +532,7 @@ double System::calcBudget() {
     return total;
 }
 
-unsigned System::getEventSoldTickets(Event *ev) {
+unsigned System::getEventSoldTickets(Event *ev) const {
     unsigned counter = 0;
     auto it = soldTickets.begin();
     for (; it != soldTickets.end(); it++) {
@@ -603,3 +552,44 @@ void System::setTicketsPrice(Ticket *ticket) {
     ticket->setPrice(p);
 }
 
+Table<string> toTable(const vector<Event *> &container, const System * sys){
+    vector<string> header = {"Name", "Museum", "Date", "Sold Tickets", "Price"};
+    vector<vector<string>> content;
+    for (auto event : container) {
+        stringstream date, price;
+        unsigned sold = sys->getEventSoldTickets(event);
+        date << event->getDate();
+        price << fixed << setprecision(2) << event->getPrice();
+        content.push_back({event->getName(), event->getMuseum()->getName(), date.str(), to_string(sold), price.str()});
+    }
+    Table<string> data(header, content);
+    return data;
+}
+
+Table<string> toTable(const vector<Client *> &container, const System * sys){
+    vector<string> header = {"Name", "Birthday", "Address", "Contact"};
+    vector<vector<string>> content;
+    for (auto client : container) {
+        stringstream address, birthday;
+        address << client->getAddress();
+        birthday << client->getBirthday();
+        vector<string> aux = {client->getName(), birthday.str(), address.str(), to_string(client->getContact())};
+        content.push_back(aux);
+    }
+    Table<string> data(header, content);
+    return data;
+}
+
+Table<string> toTable(const vector<Person *> &container, const System * sys){
+    vector<string> header = {"Name", "Birthday", "Address", "Contact"};
+    vector<vector<string>> content;
+    for (auto client : container) {
+        stringstream address, birthday;
+        address << client->getAddress();
+        birthday << client->getBirthday();
+        vector<string> aux = {client->getName(), birthday.str(), address.str(), to_string(client->getContact())};
+        content.push_back(aux);
+    }
+    Table<string> data(header, content);
+    return data;
+}

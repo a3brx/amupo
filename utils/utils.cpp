@@ -154,6 +154,18 @@ bool isYorN(string toTest) {
     return (toTest == "1" or toTest == "0");
 }
 
+bool notEmptyString(string toTest){
+    return toTest.size() > 0;
+}
+
+bool isName(string toTest){
+    for(auto x : upper(toTest)){
+        if(!(x >= 'A' && x <= 'Z') && x != ' ' && x != '-')
+            return false;
+    }
+    return split(toTest, " ").size() >= 2;
+}
+
 bool isContact(string toTest) {
     return (isNum(toTest) && toTest.size() == 9);
 }

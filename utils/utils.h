@@ -75,6 +75,10 @@ bool isYorN(string toTest);
 
 bool isContact(string toTest);
 
+bool isName(string toTest);
+
+bool notEmptyString(string toTest);
+
 template<class T, template<class, class = allocator<T>> class Container>
 Container<T> filter(const Container<T> &container, bool (filterFunction)(const T &)) {
     Container<T> res;

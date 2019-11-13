@@ -1,6 +1,7 @@
 #pragma once
 #include <utility>
 #include <iostream>
+#include <iomanip>
 #include "../utils/InvalidInput.h"
 #include "../utils/utils.h"
 #include "../Date/Date.h"
@@ -68,10 +69,3 @@ public:
     ExistingEvent(Event ev) : Event(ev) {}
 
 };
-
-
-
-
-
-
-
