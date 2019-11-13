@@ -79,3 +79,10 @@ public:
     ReadMuseumMenu(System *system);
     vector<vector<string>> getOptions() const override;
 };
+
+class FinanceMenu : public Menu {
+public:
+    FinanceMenu(System *system);
+
+    vector<vector<string>> getOptions() const override;
+};

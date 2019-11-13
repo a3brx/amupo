@@ -128,7 +128,7 @@ bool validDate(unsigned char day, unsigned char month, unsigned short year);
 
 /// @param date The date in the DD-MM-YYYY form.
 /// @return Returns true if tha date is possible in the Gregorian calendar.
-bool isDate(string date);
+bool isDate(const string& date);
 
 /// @param month The month to verify.
 /// @return Returns the number of days of that month in a non-leap year.

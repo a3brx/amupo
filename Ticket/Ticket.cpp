@@ -24,7 +24,7 @@ ostream &operator<<(ostream &out, Ticket &ticket) {
     out << ticket.getPerson()->getName() << ", ";
     out << ticket.getPerson()->getBirthday() << " | ";
     out << ticket.getEvent()->getName();
-    out << ", " << ticket.getEvent()->getDate();
+    out << ", " << ticket.getEvent()->getDate() << " | " << ticket.getPrice();
     return out;
 }
 

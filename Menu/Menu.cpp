@@ -61,10 +61,8 @@ MainMenu::MainMenu(System *system) : Menu(system) {
             case 'S':
                 sys->sellTicket();
                 break;
-            case 'B': {
-                clear();
-                cout << "The total budget is " << sys->calcBudget() << endl;
-                pause();
+            case 'F': {
+                call = new FinanceMenu(system);
                 break;
             }
             case 'Q':
@@ -79,8 +77,8 @@ vector<vector<string>> MainMenu::getOptions() const {
     return vector<vector<string>>({{"E", "Event Menu"},
                                    {"P", "Person Menu"},
                                    {"M", "Museum Menu"},
-                                   {"S", "Sell Tickets"},
-                                   {"B", "Calculate Budget"},
+                                   {"S", "Sell Ticket"},
+                                   {"F", "Finances"},
                                    {"Q", "Quit Program"}});
 }
 
@@ -347,7 +345,7 @@ UpdatePersonMenu::UpdatePersonMenu(System *system) : Menu(system) {
             }
                 break;
             case 'C' : {
-                unsigned cont = stoi(getInput(isContact, "Enter the person new contact", "Invalid contact!"));
+                unsigned cont = stoi(getInput(isContact, "Enter the person new contact: ", "Invalid contact!"));
                 (*prs)->setContact(cont);
                 cout << "Person contact changed successfully!" << endl;
                 pause();
@@ -464,17 +462,17 @@ ReadEventMenu::ReadEventMenu(System *system) : Menu(system) {
         case 'N' : {
             clear();
             sort(sys->events.begin(), sys->events.end(), compareName<Event *>);
-            sys->readEvents();
+            sys->readEvents(system->events);
         } break;
         case 'D' : {
             clear();
             sort(sys->events.begin(), sys->events.end(), compareDate);
-            sys->readEvents();
+            sys->readEvents(system->events);
         } break;
         case 'P' : {
             clear();
             sort(sys->events.begin(), sys->events.end(), comparePrice);
-            sys->readEvents();
+            sys->readEvents(system->events);
         } break;
         case 'R':
             return;
@@ -500,12 +498,12 @@ ReadPersonMenu::ReadPersonMenu(System *system) : Menu(system) {
         case 'N' : {
             clear();
             sort(sys->clients.begin(), sys->clients.end(), compareName<Person *>);
-            sys->readPeople();
+            sys->readPeople(system->people);
         } break;
         case 'B' : {
             clear();
             sort(sys->clients.begin(), sys->clients.end(), compareBirthday);
-            sys->readPeople();
+            sys->readPeople(system->people);
         } break;
         case 'R':
             return;
@@ -530,12 +528,12 @@ ReadMuseumMenu::ReadMuseumMenu(System *system) : Menu(system) {
         case 'N' : {
             clear();
             sort(sys->museums.begin(), sys->museums.end(), compareName<Museum *>);
-            sys->readMuseums();
+            sys->readMuseums(system->museums);
         } break;
         case 'C' : {
             clear();
             sort(sys->museums.begin(), sys->museums.end(), compareCapacity);
-            sys->readMuseums();
+            sys->readMuseums(system->museums);
         } break;
         case 'R':
             return;
@@ -547,5 +545,43 @@ ReadMuseumMenu::ReadMuseumMenu(System *system) : Menu(system) {
 vector<vector<string>> ReadMuseumMenu::getOptions() const {
     return vector<vector<string>>({{"N", "Sort by Name"},
                                    {"C", "Sort by Capacity"},
+                                   {"R", "Return"}});
+}
+
+FinanceMenu::FinanceMenu(System *system) : Menu(system) {
+    this->nextMenu = this->option();
+    switch (this->nextMenu) {
+        case 'F' : {
+            double rev;
+            rev = sys->totalRevenue();
+            cout << "The total Revenue is " << rev << endl;
+            clear();
+        }
+            break;
+        case 'P' : {
+            double spent;
+            spent = sys->moneySpentPerson();
+            cout << "The total money spent by this Person is " << spent << endl;
+            clear();
+        }
+            break;
+        case 'E' : {
+            double rev;
+            rev = sys->eventRevenue();
+            cout << "The Event's revenue is " << rev << endl;
+            clear();
+        }
+            break;
+        case 'R':
+            return;
+        default:
+            break;
+    }
+}
+
+vector<vector<string>> FinanceMenu::getOptions() const {
+    return vector<vector<string>>({{"F", "Total Revenue"},
+                                   {"P", "Money spent by Someone"},
+                                   {"E", "Ticket Revenue of an Event"},
                                    {"R", "Return"}});
 }
