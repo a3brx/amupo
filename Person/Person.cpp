@@ -78,18 +78,21 @@ void Person::printData(ostream &out) {
         " | " << this->contact << endl << this->address;
 }
 
+bool compareName(const Person &person1, const Person &person2){
+    return person1.name < person2.name;
+}
+
+bool compareBirthday(const Person &person1, const Person &person2){
+    return person1.birthday < person2.birthday;
+}
 
 //Client
 Date Client::getAcquisitionDate() const {
     return acquisitionDate;
 }
 
-Client::Client(string name, Date acquisitionDate, Date birthday, Address address, unsigned contact) : Person(name,
-                                                                                                             birthday,
-                                                                                                             move(address),
-                                                                                                             contact),
-                                                                                                      acquisitionDate(
-                                                                                                              acquisitionDate) {}
+Client::Client(string name, Date acquisitionDate, Date birthday, Address address, unsigned contact) :
+Person(name, birthday, move(address), contact), acquisitionDate(acquisitionDate) {}
 
 void Client::printData(ostream &out) {
     out << this->getName() << " | " << this->getAcquisitionDate() <<

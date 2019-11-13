@@ -28,8 +28,10 @@ class Event{
     friend istream &operator>>(istream &in, Event **event);
 
     friend bool operator==(Event &left, Event &right);
-
     friend bool operator!=(Event &left, Event &right);
+    friend bool compareName(Event &left, Event &right);
+    friend bool compareDate(Event &left, Event &right);
+    friend bool comparePrice(Event &left, Event &right);
 };
 
 class OverBookedEvent : exception {

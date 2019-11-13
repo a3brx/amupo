@@ -64,6 +64,12 @@ MainMenu::MainMenu(System *system) : Menu(system) {
             case 'S':
                 sys->sellTicket();
                 break;
+            case 'B': {
+                clear();
+                cout << "The total budget is " << sys->calcBudget() << endl;
+                pause();
+                break;
+            }
             case 'Q':
                 return;
             default:
@@ -77,6 +83,7 @@ vector<vector<string>> MainMenu::getOptions() const {
                                    {"P", "Person Menu"},
                                    {"M", "Museum Menu"},
                                    {"S", "Sell Tickets"},
+                                   {"B", "Calculate Budget"},
                                    {"Q", "Quit Program"}});
 }
 
@@ -226,7 +233,6 @@ UpdateMuseumMenu::UpdateMuseumMenu(System *system) : Menu(system) {
                 clear();
             } break;
             case 'C' : {
-                //FODAAAA SSEEEEEEEEE
                 clear();
                 //sys->updateMuseum();
             } break;
