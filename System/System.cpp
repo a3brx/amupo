@@ -370,28 +370,14 @@ void System::deleteClient(const string &name, const Date &birthday) {
 }
 
 void System::deleteClient() {
-    string name = getInput([](string) { return true; }, "Type the name of the Client: ");
-    string date = getInput([](string a) {
-        try {
-            Date temp(a);
-            return true;
-        } catch (...) {
-            return false;
-        }
-    }, "Type their birthday: ", "Invalid Date.");
+    string name = getInput(isName, "Type the name of the Client: ");
+    string date = getInput(isDate, "Type their birthday: ", "Invalid Date.");
     deleteClient(name, Date(date));
 }
 
 void System::deleteEvent() {
-    string name = getInput([](string) { return true; }, "Type the name of the Event: ");
-    string date = getInput([](string a) {
-        try {
-            Date temp(a);
-            return true;
-        } catch (...) {
-            return false;
-        }
-    }, "Type its date: ", "Invalid Date.");
+    string name = getInput(notEmptyString, "Type the name of the Event: ");
+    string date = getInput(isDate, "Type its date: ", "Invalid Date.");
     deleteEvent(name, Date(date));
 }
 
@@ -406,7 +392,7 @@ void System::deleteEvent(string name, const Date &date) {
 }
 
 void System::deleteMuseum() {
-    string name = getInput([](string) { return true; }, "Type the name of the Museum: ");
+    string name = getInput(notEmptyString, "Type the name of the Museum: ");
     deleteMuseum(name);
 }
 

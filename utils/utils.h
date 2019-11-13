@@ -49,9 +49,9 @@ vector<string> split(const string& toSplit,const string& splitPoint);
 ///@brief Recognizes if a string is a number.
 ///@param toConvert String to check if it's a number.
 ///@return Returns true if the string is convertible to number;
-bool isNum(const string toConvert);
+bool isNum(const string& toConvert);
 
-bool isPostalCode(string toTest);
+bool isPostalCode(const string& toTest);
 
 template<class T>
 string join(vector<T> vecToJoin, char character = ' ') {
@@ -69,15 +69,15 @@ string upper(const string & s);
 
 string strPrecision(string num, unsigned decimalDigits = 2);
 
-string getInput(bool (__valid)(string), const string &message = "Choose a option: ", const string &fail = "Invalid input.");
+string getInput(bool (__valid)(const string&), const string &message = "Choose a option: ", const string &fail = "Invalid input.");
 
-bool isYorN(string toTest);
+bool isYorN(const string& toTest);
 
-bool isContact(string toTest);
+bool isContact(const string& toTest);
 
-bool isName(string toTest);
+bool isName(const string& toTest);
 
-bool notEmptyString(string toTest);
+bool notEmptyString(const string& toTest);
 
 template<class T, template<class, class = allocator<T>> class Container>
 Container<T> filter(const Container<T> &container, bool (filterFunction)(const T &)) {
