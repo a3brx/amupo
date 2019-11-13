@@ -50,8 +50,8 @@ public:
     friend ostream &operator<<(ostream &out, Person *person);
     bool operator==(Person person);
     bool operator!=(Person person);
-    friend bool compareName(const Person &person1, const Person &person2);
-    friend bool compareBirthday(const Person &person1, const Person &person2);
+    template <class T> friend bool compareName(T left, T right);
+    friend bool compareBirthday(const Person * person1, const Person * person2);
 };
 
 class Client:public Person{

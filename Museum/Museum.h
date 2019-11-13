@@ -25,8 +25,8 @@ class Museum{
 
     friend ostream & operator<<(ostream & out, const Museum & museum);
     friend istream & operator>>(istream & in, Museum ** museum);
-    friend bool compareName(Museum &left, Museum &right);
-    friend bool compareCapacity(Museum &left, Museum &right);
+    template <class T> friend bool compareName(T left, T right);
+    friend bool compareCapacity(Museum * left, Museum * right);
 };
 
 class ExistingMuseum : public exception, public Museum {

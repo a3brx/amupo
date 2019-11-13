@@ -16,9 +16,9 @@ class System{
 private:
     friend class Menu;
     string fileName;
-    vector<Client *> clients;
     vector<Ticket*> soldTickets;
 public:
+    vector<Client *> clients;
     vector<Person*> people;
     vector<Event*> events;
     vector<Museum*> museums;

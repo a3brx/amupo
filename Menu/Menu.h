@@ -43,20 +43,38 @@ public:
     vector<vector<string>> getOptions() const override;
 };
 
-class UpdateMuseumMenu:public Menu{
+class UpdateEventMenu : public Menu{
 public:
-    UpdateMuseumMenu(System *system);
+    UpdateEventMenu(System *system);
     vector<vector<string>> getOptions() const override;
 };
 
-class UpdatePersonMenu:public Menu{
+class UpdatePersonMenu : public Menu{
 public:
     UpdatePersonMenu(System *system);
     vector<vector<string>> getOptions() const override;
 };
 
-class UpdateEventMenu:public Menu{
+class UpdateMuseumMenu : public Menu{
 public:
-    UpdateEventMenu(System *system);
+    UpdateMuseumMenu(System *system);
+    vector<vector<string>> getOptions() const override;
+};
+
+class ReadEventMenu : public Menu{
+public:
+    ReadEventMenu(System *system);
+    vector<vector<string>> getOptions() const override;
+};
+
+class ReadPersonMenu : public Menu{
+public:
+    ReadPersonMenu(System *system);
+    vector<vector<string>> getOptions() const override;
+};
+
+class ReadMuseumMenu : public Menu{
+public:
+    ReadMuseumMenu(System *system);
     vector<vector<string>> getOptions() const override;
 };

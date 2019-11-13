@@ -29,9 +29,9 @@ class Event{
 
     friend bool operator==(Event &left, Event &right);
     friend bool operator!=(Event &left, Event &right);
-    friend bool compareName(Event &left, Event &right);
-    friend bool compareDate(Event &left, Event &right);
-    friend bool comparePrice(Event &left, Event &right);
+    template <class T> friend bool compareName(T left, T right);
+    friend bool compareDate(Event * left, Event * right);
+    friend bool comparePrice(Event * left, Event * right);
 };
 
 class OverBookedEvent : exception {
