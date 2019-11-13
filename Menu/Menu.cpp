@@ -45,7 +45,7 @@ Menu::Menu(System *system) {
 }
 
 MainMenu::MainMenu(System *system) : Menu(system) {
-    Menu *call;
+    Menu *call = nullptr;
     do {
         char o = this->option();
         switch (o) {
@@ -502,48 +502,51 @@ bool compareBirthday(const Person *person1, const Person *person2) {
 }
 
 ReadPersonMenu::ReadPersonMenu(System *system) : ReadMenu<Person>(system) {
-    this->nextMenu = this->option();
-    switch (this->nextMenu) {
-        case 'N' : {
-            clear();
-            sort(sys->clients.begin(), sys->clients.end(), compareName<Person *>);
-            sys->readPeople(system->people);
+    this->toRead = system->people;
+    do {
+        this->nextMenu = this->option();
+        switch (this->nextMenu) {
+            case 'N' : {
+                clear();
+                sort(sys->clients.begin(), sys->clients.end(), compareName<Person *>);
+                sys->readPeople(system->people);
+            }
+                break;
+            case 'B' : {
+                clear();
+                sort(sys->clients.begin(), sys->clients.end(), compareBirthday);
+                sys->readPeople(system->people);
+            }
+                break;
+            case 'F' : {
+                clear();
+                auto d1 = Date(getInput(isDate, "Type the First Date: ", "Invalid Date."));
+                auto d2 = Date(getInput(isDate, "Type the Second Date: ", "Invalid Date."));
+                vector<Person *> newVector;
+                for (auto x : this->toRead)
+                    if (x->getBirthday() >= d1 && x->getBirthday() <= d2)
+                        newVector.push_back(x);
+                this->toRead = newVector;
+                sys->readPeople(this->toRead);
+            }
+                break;
+            case 'L' : {
+                clear();
+                auto locality = getInput(notEmptyString, "Type the Locality Name: ", "Invalid Locality.");
+                vector<Person *> newVector;
+                for (auto x : this->toRead)
+                    if (x->getAddress().getLocality() == locality)
+                        newVector.push_back(x);
+                this->toRead = newVector;
+                sys->readPeople(this->toRead);
+            }
+                break;
+            case 'G':
+                return;
+            default:
+                break;
         }
-            break;
-        case 'B' : {
-            clear();
-            sort(sys->clients.begin(), sys->clients.end(), compareBirthday);
-            sys->readPeople(system->people);
-        }
-            break;
-        case 'F' : {
-            clear();
-            auto d1 = Date(getInput(isDate, "Type the First Date: ", "Invalid Date."));
-            auto d2 = Date(getInput(isDate, "Type the Second Date: ", "Invalid Date."));
-            vector<Person *> newVector;
-            for(auto x : this->toRead)
-                if(x->getBirthday() >= d1 && x->getBirthday() <= d2)
-                    newVector.push_back(x);
-            this->toRead = newVector;
-            sys->readPeople(this->toRead);
-        }
-            break;
-        case 'L' : {
-            clear();
-            auto locality = getInput(notEmptyString, "Type the Locality Name: ", "Invalid Locality.");
-            vector<Person *> newVector;
-            for(auto x : this->toRead)
-                if(x->getAddress().getLocality() == locality)
-                    newVector.push_back(x);
-            this->toRead = newVector;
-            sys->readPeople(this->toRead);
-        }
-            break;
-        case 'G':
-            return;
-        default:
-            break;
-    }
+    } while (this->nextMenu == 'F' || this->nextMenu == 'L');
 }
 
 vector<vector<string>> ReadPersonMenu::getOptions() const {
@@ -559,30 +562,57 @@ bool compareCapacity(Museum *left, Museum *right) {
 }
 
 ReadMuseumMenu::ReadMuseumMenu(System *system) : ReadMenu<Museum>(system) {
-    this->nextMenu = this->option();
-    switch (this->nextMenu) {
-        case 'N' : {
-            clear();
-            sort(sys->museums.begin(), sys->museums.end(), compareName<Museum *>);
-            sys->readMuseums(system->museums);
+    this->toRead = system->museums;
+    do {
+        this->nextMenu = this->option();
+        switch (this->nextMenu) {
+            case 'N' : {
+                clear();
+                sort(sys->museums.begin(), sys->museums.end(), compareName<Museum *>);
+                sys->readMuseums(system->museums);
+            }
+                break;
+            case 'C' : {
+                clear();
+                sort(sys->museums.begin(), sys->museums.end(), compareCapacity);
+                sys->readMuseums(system->museums);
+            }
+                break;
+            case 'F' : {
+                clear();
+                auto c1 = stoi(getInput(isNum, "Type the Lowest Capacity: ", "Invalid Number."));
+                auto c2 = stoi(getInput(isNum, "Type the Highest Capacity: ", "Invalid Number."));
+                vector<Museum *> newVector;
+                for (auto x : this->toRead)
+                    if (x->getCapacity() >= c1 && x->getCapacity() <= c2)
+                        newVector.push_back(x);
+                this->toRead = newVector;
+                sys->readMuseums(this->toRead);
+            }
+                break;
+            case 'L' : {
+                clear();
+                auto locality = getInput(notEmptyString, "Type the Locality Name: ", "Invalid Locality.");
+                vector<Museum *> newVector;
+                for (auto x : this->toRead)
+                    if (x->getAddress().getLocality() == locality)
+                        newVector.push_back(x);
+                this->toRead = newVector;
+                sys->readMuseums(this->toRead);
+            }
+                break;
+            case 'G':
+                return;
+            default:
+                break;
         }
-            break;
-        case 'C' : {
-            clear();
-            sort(sys->museums.begin(), sys->museums.end(), compareCapacity);
-            sys->readMuseums(system->museums);
-        }
-            break;
-        case 'G':
-            return;
-        default:
-            break;
-    }
+    } while (this->nextMenu == 'F' || this->nextMenu == 'L');
 }
 
 vector<vector<string>> ReadMuseumMenu::getOptions() const {
     return vector<vector<string>>({{"N", "Sort by Name"},
                                    {"C", "Sort by Capacity"},
-                                   {"F", "Filter"},
+                                   {"F", "Filter by Capacity"},
+                                   {"L", "Filter by Locality"},
                                    {"G", "Go Back"}});
 }
