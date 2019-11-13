@@ -81,12 +81,14 @@ Event::Event(const Event &ev) {
     this->price = ev.price;
 }
 
+bool compareName(Event &left, Event &right) {
+    return left.name < right.name;
+}
 
+bool compareDate(Event &left, Event &right) {
+    return left.date < right.date;
+}
 
-
-
-
-
-
-
-
+bool comparePrice(Event &left, Event &right) {
+    return left.price < right.price;
+}

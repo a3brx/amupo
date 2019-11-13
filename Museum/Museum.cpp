@@ -58,5 +58,10 @@ bool Museum::isValid() const {
     return this->valid;
 }
 
+bool compareName(Museum &left, Museum &right){
+    return left.name < right.name;
+}
 
-
+bool compareCapacity(Museum &left, Museum &right){
+    return left.capacity < right.capacity;
+}
