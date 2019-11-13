@@ -437,17 +437,17 @@ ReadEventMenu::ReadEventMenu(System *system) : Menu(system) {
         case 'N' : {
             clear();
             sort(sys->events.begin(), sys->events.end(), compareName<Event *>);
-            sys->readEvents();
+            sys->readEvents(system->events);
         } break;
         case 'D' : {
             clear();
             sort(sys->events.begin(), sys->events.end(), compareDate);
-            sys->readEvents();
+            sys->readEvents(system->events);
         } break;
         case 'P' : {
             clear();
             sort(sys->events.begin(), sys->events.end(), comparePrice);
-            sys->readEvents();
+            sys->readEvents(system->events);
         } break;
         case 'R':
             return;
@@ -473,12 +473,12 @@ ReadPersonMenu::ReadPersonMenu(System *system) : Menu(system) {
         case 'N' : {
             clear();
             sort(sys->clients.begin(), sys->clients.end(), compareName<Person *>);
-            sys->readPeople();
+            sys->readPeople(system->people);
         } break;
         case 'B' : {
             clear();
             sort(sys->clients.begin(), sys->clients.end(), compareBirthday);
-            sys->readPeople();
+            sys->readPeople(system->people);
         } break;
         case 'R':
             return;
@@ -503,12 +503,12 @@ ReadMuseumMenu::ReadMuseumMenu(System *system) : Menu(system) {
         case 'N' : {
             clear();
             sort(sys->museums.begin(), sys->museums.end(), compareName<Museum *>);
-            sys->readMuseums();
+            sys->readMuseums(system->museums);
         } break;
         case 'C' : {
             clear();
             sort(sys->museums.begin(), sys->museums.end(), compareCapacity);
-            sys->readMuseums();
+            sys->readMuseums(system->museums);
         } break;
         case 'R':
             return;

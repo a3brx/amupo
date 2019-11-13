@@ -4,6 +4,7 @@
 #include <utility>
 #include "../Address/Address.h"
 #include "../Date/Date.h"
+#include "../Table/Table.h"
 #include "../utils/InvalidInput.h"
 
 class Person{

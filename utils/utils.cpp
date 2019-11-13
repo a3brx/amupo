@@ -99,7 +99,7 @@ vector<string> split(const string& toSplit,const string& splitPoint){
     return splitVec;
 }
 
-bool isNum(const string toConvert) {
+bool isNum(const string& toConvert) {
     float f;
     stringstream st;
     st.str(toConvert);
@@ -107,7 +107,7 @@ bool isNum(const string toConvert) {
     return st.eof() && !st.fail();
 }
 
-bool isPostalCode(string toTest){
+bool isPostalCode(const string& toTest){
     vector<string> toTestVec=split(toTest,"-");
     if(toTestVec.size()!=2) return false;
     return isNum(toTestVec.at(0)) && isNum(toTestVec.at(1))
@@ -137,7 +137,7 @@ string strPrecision(string num, unsigned decimalDigits) {
     return num;
 }
 
-string getInput(bool (__valid)(string), const string &message, const string &fail){
+string getInput(bool (__valid)(const string&), const string &message, const string &fail){
     string input;
     cout << message;
     getline(cin, input);
@@ -150,11 +150,23 @@ string getInput(bool (__valid)(string), const string &message, const string &fai
     return input;
 }
 
-bool isYorN(string toTest) {
+bool isYorN(const string& toTest) {
     return (toTest == "1" or toTest == "0");
 }
 
-bool isContact(string toTest) {
+bool notEmptyString(const string& toTest){
+    return toTest.size() > 0;
+}
+
+bool isName(const string& toTest){
+    for(auto x : upper(toTest)){
+        if(!(x >= 'A' && x <= 'Z') && x != ' ' && x != '-')
+            return false;
+    }
+    return split(toTest, " ").size() >= 2;
+}
+
+bool isContact(const string& toTest) {
     return (isNum(toTest) && toTest.size() == 9);
 }
 

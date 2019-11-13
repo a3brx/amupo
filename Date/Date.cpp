@@ -264,7 +264,7 @@ bool validDate(unsigned char day, unsigned char month, unsigned short year) {
 // ----------------------------------------------------------------------------------------------------
 //                                   Returns true if a date is valid
 // ----------------------------------------------------------------------------------------------------
-bool isDate(const string date) {
+bool isDate(const string& date) {
     try{
         Date temp(date);
         return true;
