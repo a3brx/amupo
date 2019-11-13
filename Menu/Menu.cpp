@@ -100,6 +100,10 @@ EventMenu::EventMenu(System *system) : Menu(system) {
                 clear();
                 sys->deleteEvent();
             } break;
+            case 'V' : {
+                clear();
+                sys->readEvent();
+            } break;
             case 'M':
                 return;
             case 'Q':
@@ -111,7 +115,7 @@ EventMenu::EventMenu(System *system) : Menu(system) {
 }
 
 vector<vector<string>> EventMenu::getOptions() const {
-    return vector<vector<string>>({{"C", "Create Event"}, {"R", "Read Events"}, {"U", "Update Event"}, {"D", "Delete Event"}, {"M", "Main Menu"}, {"Q", "Quit Program"}});
+    return vector<vector<string>>({{"C", "Create Event"}, {"R", "Read Events"}, {"U", "Update Event"}, {"D", "Delete Event"}, {"V", "View Event"}, {"M", "Main Menu"}, {"Q", "Quit Program"}});
 }
 
 PersonMenu::PersonMenu(System *system) : Menu(system) {
@@ -134,6 +138,10 @@ PersonMenu::PersonMenu(System *system) : Menu(system) {
                 clear();
                 sys->deleteClient();
             } break;
+            case 'V' : {
+                clear();
+                sys->readPerson();
+            } break;
             case 'M':
                 return;
             case 'Q':
@@ -145,7 +153,7 @@ PersonMenu::PersonMenu(System *system) : Menu(system) {
 }
 
 vector<vector<string>> PersonMenu::getOptions() const {
-    return vector<vector<string>>({{"C", "Create Person"}, {"R", "Read People"}, {"U", "Update Person"}, {"D", "Delete Person"}, {"M", "Main Menu"}, {"Q", "Quit Program"}});
+    return vector<vector<string>>({{"C", "Create Person"}, {"R", "Read People"}, {"U", "Update Person"}, {"D", "Delete Person"}, {"V", "View Person"}, {"M", "Main Menu"}, {"Q", "Quit Program"}});
 }
 
 MuseumMenu::MuseumMenu(System *system) : Menu(system) {
@@ -168,6 +176,10 @@ MuseumMenu::MuseumMenu(System *system) : Menu(system) {
                 clear();
                 sys->deleteMuseum();
             } break;
+            case 'V' : {
+                clear();
+                sys->readMuseum();
+            } break;
             case 'M':
                 return;
             case 'Q':
@@ -179,5 +191,110 @@ MuseumMenu::MuseumMenu(System *system) : Menu(system) {
 }
 
 vector<vector<string>> MuseumMenu::getOptions() const {
-    return vector<vector<string>>({{"C", "Create Museum"}, {"R", "Read Museums"}, {"U", "Update Museum"}, {"D", "Delete Museum"}, {"M", "Main Menu"}, {"Q", "Quit Program"}});
+    return vector<vector<string>>({{"C", "Create Museum"}, {"R", "Read Museums"}, {"U", "Update Museum"}, {"D", "Delete Museum"}, {"V", "View Museum"}, {"M", "Main Menu"}, {"Q", "Quit Program"}});
+}
+
+UpdateMuseumMenu::UpdateMuseumMenu(System *system) : Menu(system) {
+    string aux,aux2;
+    cout<<"Please insert the name of the Museum you are looking to update:";
+    getline(cin,aux);
+    //aux2=getInput(isDate, "Introduce a birthday (Format: DD/MM/YYYY): ", "Invalid Date");
+    //Date bday=Date(aux2);
+    if(sys->findMuseum(aux)==sys->getMuseums().end()){
+        cout<<"This museum doesn't exist!";
+        pause();
+        clear();
+        return;
+    }
+    auto mus=sys->findMuseum(aux);
+    while(true) {
+        this->nextMenu = this->option();
+        switch (this->nextMenu) {
+            case 'N' : {
+                string name;
+                cout<<"Introduce the new museum name:";
+                getline(cin,name);
+                (*mus)->setName(name);
+                cout<<"Museum name changed to: "<< name <<" successfully!";
+                pause();
+                clear();
+            } break;
+            case 'A' : {
+                Address ad;
+                sys->inputAddress(ad);
+                (*mus)->setAddress(ad);
+                cout<<"Museum address changed successfully!";
+                pause();
+                clear();
+            } break;
+            case 'C' : {
+                //FODAAAA SSEEEEEEEEE
+                clear();
+                //sys->updateMuseum();
+            } break;
+            case 'R' : {
+                clear();
+                return;
+            }
+            default:
+                break;
+        }
+    }
+}
+
+vector<vector<string>> UpdateMuseumMenu::getOptions() const {
+    return vector<vector<string>>({{"N", "Update Museum Name"}, {"A", "Update Museum Address"}, {"C", "Update Museum Capacity"}, {"R", "Return"}});
+}
+
+UpdatePersonMenu::UpdatePersonMenu(System *system) : Menu(system) {
+    string aux,aux2;
+    cout<<"Please insert the name of the Person you are looking to update:";
+    getline(cin,aux);
+    aux2=getInput(isDate, "Introduce a birthday (Format: DD/MM/YYYY): ", "Invalid Date");
+    Date bday=Date(aux2);
+    if(sys->findPerson(aux,bday)==sys->getPeople().end()){
+        cout<<"This person doesn't exist!";
+        pause();
+        clear();
+        return;
+    }
+    auto prs=sys->findPerson(aux,bday);
+    while(true) {
+        this->nextMenu = this->option();
+        switch (this->nextMenu) {
+            case 'N' : {
+                string name;
+                cout<<"Introduce the person name:";
+                getline(cin,name);
+                (*prs)->setName(name);
+                cout<<"Person name changed to : "<< name <<" successfully!";
+                pause();
+                clear();
+            } break;
+            case 'A' : {
+                Address ad;
+                sys->inputAddress(ad);
+                (*prs)->setAddress(ad);
+                cout<<"Person address changed successfully!";
+                pause();
+                clear();
+            } break;
+            case 'C' : {
+                unsigned cont = getInput(isContact(), "Enter the person new contact","Invalid contact!");
+                (*prs)->setContact(cont);
+                pause();
+                clear();
+            } break;
+            case 'R' : {
+                clear();
+                return;
+            }
+            default:
+                break;
+        }
+    }
+}
+
+vector<vector<string>> UpdatePersonMenu::getOptions() const {
+    return vector<vector<string>>({{"N", "Update Person Name"}, {"A", "Update Person Address"}, {"C", "Update Person Contact"}, {"R", "Return"}});
 }

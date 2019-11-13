@@ -125,6 +125,7 @@ string upper(const string & s) {
 }
 
 string strPrecision(string num, unsigned decimalDigits) {
+    stringstream res;
     bool afterPoint = false;
     string newNum;
     for (auto car : num) {
@@ -133,6 +134,7 @@ string strPrecision(string num, unsigned decimalDigits) {
         if (car == '.') afterPoint = true;
         if (decimalDigits == 0) return newNum;
     }
+    return num;
 }
 
 string getInput(bool (__valid)(string), const string &message, const string &fail){

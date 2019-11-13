@@ -40,8 +40,11 @@ public:
     void createMuseum();                                        //Ler do input
     void createMuseum(Museum *mus);
 
+    void readEvent() const;
     void readEvents() const;                            //Mostra Tabela com todos Events
+    void readPerson() const;
     void readPeople() const;                              //Mostra Tabela com todos Cards
+    void readMuseum() const;
     void readMuseums() const;                              //Mostra Tabela com todos Museums
 
     void updateEvent();                                     //Pedir input
