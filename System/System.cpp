@@ -122,7 +122,10 @@ void System::readPerson() const {
     string name = getInput(isName, "Type the name of the Client: ", "Invalid name.");
     string birthday = getInput(isDate, "Type its birthday: ", "Invalid Date.");
     Person * personPtr = * findPerson(name, Date(birthday));
-    readPeople({personPtr});
+    if(personPtr == *this->people.end())
+        readPeople({});
+    else
+        readPeople({personPtr});
 }
 
 void System::readPeople(const vector<Person *> &container) const {
@@ -139,7 +142,10 @@ void System::readEvent() const {
     string name = getInput(notEmptyString, "Type the name of the Event: ", "Invalid name.");
     string date = getInput(isDate, "Type its date: ", "Invalid Date.");
     Event * eventPtr = * findEvent(name, Date(date));
-    readEvents({eventPtr});
+    if(eventPtr == *this->events.end())
+        readEvents({});
+    else
+        readEvents({eventPtr});
 }
 
 void System::readEvents(const vector<Event *> &container) const {
@@ -155,7 +161,10 @@ void System::readEvents(const vector<Event *> &container) const {
 void System::readMuseum() const {
     string name = getInput(notEmptyString, "Type the name of the Museum: ", "Invalid name.");
     Museum * museumPtr = * findMuseum(name);
-    readMuseums({museumPtr});
+    if(museumPtr == *this->museums.end())
+        readMuseums({});
+    else
+        readMuseums({museumPtr});
 }
 
 void System::readMuseums(const vector<Museum *> &container) const {
