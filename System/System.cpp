@@ -96,6 +96,7 @@ System::System(const string &fileName) {
             aux = trim(split(auxStr, "|"));
             vecPerson = trim(split(aux.at(0), ","));
             vecEvent = trim(split(aux.at(1), ","));
+            float price = stof(aux.at(2));
             auto ite = findEvent(vecEvent.at(0), Date(vecEvent.at(1)));
             auto itp = findPerson(vecPerson.at(0), Date(vecPerson.at(1)));
             if (ite == events.end()) {
@@ -107,6 +108,7 @@ System::System(const string &fileName) {
             Event *ev = *this->findEvent(vecEvent.at(0), Date(vecEvent.at(1)));
             Person *p = *this->findPerson(vecPerson.at(0), Date(vecPerson.at(1)));
             ticket = new Ticket(ev, p);
+            ticket->setPrice(price);
             this->soldTickets.push_back(ticket);
         }
         catch (...) {
@@ -520,6 +522,7 @@ void System::sellTicket(Event *event, Person *person) {
         throw OverBookedEvent(event->getMuseum(), newSoldTickets);
     }
     Ticket *ticket = new Ticket(event, person);
+    setTicketsPrice(ticket);
     this->soldTickets.push_back(ticket);
     cout << "Ticket sold!" << endl;
 }
@@ -547,7 +550,7 @@ void System::setTicketsPrice(Ticket *ticket) {
     float p;
     p = ticket->getEvent()->getPrice();
     if (findClient(ticket->getPerson()->getName(), ticket->getPerson()->getBirthday()) != clients.end()) {
-        p = p * 0.75;
+        p *= 0.75;
     }
     ticket->setPrice(p);
 }

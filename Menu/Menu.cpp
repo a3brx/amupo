@@ -63,7 +63,7 @@ MainMenu::MainMenu(System *system) : Menu(system) {
                 break;
             case 'B': {
                 clear();
-                cout << "The total budget is " << sys->calcBudget() << endl;
+                cout << "The total revenue is " << sys->calcBudget() << endl;
                 pause();
                 break;
             }
@@ -80,7 +80,7 @@ vector<vector<string>> MainMenu::getOptions() const {
                                    {"P", "Person Menu"},
                                    {"M", "Museum Menu"},
                                    {"S", "Sell Tickets"},
-                                   {"B", "Calculate Budget"},
+                                   {"B", "Calculate Revenue"},
                                    {"Q", "Quit Program"}});
 }
 
@@ -322,7 +322,7 @@ UpdatePersonMenu::UpdatePersonMenu(System *system) : Menu(system) {
             }
                 break;
             case 'C' : {
-                unsigned cont = stoi(getInput(isContact, "Enter the person new contact", "Invalid contact!"));
+                unsigned cont = stoi(getInput(isContact, "Enter the person new contact: ", "Invalid contact!"));
                 (*prs)->setContact(cont);
                 cout << "Person contact changed successfully!" << endl;
                 pause();

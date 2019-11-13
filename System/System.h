@@ -49,13 +49,6 @@ public:
     void readMuseum() const;
     void readMuseums(const vector<Museum *> &container) const;                              //Mostra Tabela com todos Museums
 
-    void updateEvent();                                     //Pedir input
-    //void updateEvent(Event* oldEvent, Event* newEvent);
-    void updatePerson();                                      //Pedir input
-    //void updatePerson(Person* oldPerson, Person* newPerson);
-    void updateMuseum();                                        //Pedir input
-    //void updateMuseum(Museum* oldMuseum, Museum* newMuseum);
-
     void deleteEvent();                                     //Pedir input
     void deleteEvent(string name, const Date& date);
 
