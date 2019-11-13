@@ -2,7 +2,10 @@
 
 using namespace std;
 
-Event::Event(Museum * museum, Date date, float price, string name): museum(museum), date(date), price(price), name(move(name)) {}
+Event::Event(Museum *museum, Date date, float price, string name) : museum(museum), date(date), price(price),
+                                                                    name(move(name)) {
+    time = Time();
+}
 
 string Event::getName() {
     return this->name;
@@ -49,6 +52,7 @@ istream &operator>>(istream &in, Event **event) {
     name = vecAux.at(0);
     date = vecAux.at(1);
     price = vecAux.at(2);
+
     try {
         Date dt = Date(date);
         if (!isNum(price)) throw InvalidInput("Some Event's ticket price is not a number!");
@@ -78,4 +82,5 @@ Event::Event(const Event &ev) {
     this->date = ev.date;
     this->museum = ev.museum;
     this->price = ev.price;
+    this->time = ev.time;
 }

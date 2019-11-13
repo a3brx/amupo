@@ -7,12 +7,14 @@
 #include "../utils/utils.h"
 #include "../Date/Date.h"
 #include "../Museum/Museum.h"
+#include "../Time/Time.h"
 
 class Event{
     string name;            //so se da nome ao event ao adiciona-lo ao sistema para ver se ha dois iguais
     Museum * museum;
     Date date;
     float price;
+    Time time;
 
     public:
     Event(Museum * mus, Date date, float price, string name);  //por data como soldTickets(nao me lembro do nome)

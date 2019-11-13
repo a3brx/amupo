@@ -522,7 +522,7 @@ void System::sellTicket(Event *event, Person *person) {
     cout << "Ticket sold!" << endl;
 }
 
-double System::calcBudget() const {
+double System::totalRevenue() const {
     double total = 0;
     for (auto ticket : soldTickets){
         total += ticket->getPrice();
@@ -541,6 +541,18 @@ unsigned System::getEventSoldTickets(Event *ev) const {
     return counter;
 }
 
+vector<Ticket*> System::getEventTickets(Event *ev) {
+    unsigned counter = 0;
+    vector<Ticket*> ticks;
+    auto it = soldTickets.begin();
+    for (; it != soldTickets.end(); it++) {
+        if (*(*it)->getEvent() == *ev) {
+            ticks.push_back(new Ticket (*it));
+        }
+    }
+    return ticks;
+}
+
 void System::setTicketsPrice(Ticket *ticket) {
     float p;
     p = ticket->getEvent()->getPrice();
@@ -548,6 +560,58 @@ void System::setTicketsPrice(Ticket *ticket) {
         p *= 0.75;
     }
     ticket->setPrice(p);
+}
+
+vector<Ticket *> System::getTickets() {
+    return this->soldTickets;
+}
+
+double System::moneySpentPerson() {
+    string name;
+    vector<Person *>::const_iterator it;
+    while (true) {
+        cout << "Enter the Person's name: ";
+        getline(cin, name);
+        Date bDay(getInput(isDate, "Enter the Person's birthday (DD/MM/YYYY): ", "Invalid Date"));
+        it = findPerson(name, bDay);
+        if (it == people.end()) {
+            cout << "This Person doesn't exist!" << endl;
+            continue;
+        }
+        break;
+    }
+    double money = 0;
+    auto itt = soldTickets.begin(), ittl = soldTickets.end();
+    for (; itt != ittl; itt++) {
+        if (*(*itt)->getPerson() == **it) {
+            money += (*itt)->getPrice();
+        }
+    }
+    return money;
+}
+
+double System::eventRevenue() {
+    string name;
+    vector<Event *>::const_iterator it;
+    while (true) {
+        cout << "Enter the Event's name: ";
+        getline(cin, name);
+        Date date(getInput(isDate, "Enter the Event's date (DD/MM/YYYY): ", "Invalid Date"));
+        it = findEvent(name, date);
+        if (it == events.end()) {
+            cout << "This Event doesn't exist!" << endl;
+            continue;
+        }
+        break;
+    }
+    double money = 0;
+    auto itt = soldTickets.begin(), ittl = soldTickets.end();
+    for (; itt != ittl; itt++) {
+        if (*(*itt)->getEvent() == **it) {
+            money += (*itt)->getPrice();
+        }
+    }
+    return money;
 }
 
 Table<string> toTable(const vector<Event *> &container, const System * sys){

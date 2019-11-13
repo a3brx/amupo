@@ -61,10 +61,8 @@ MainMenu::MainMenu(System *system) : Menu(system) {
             case 'S':
                 sys->sellTicket();
                 break;
-            case 'B': {
-                clear();
-                cout << "The total revenue is " << sys->calcBudget() << endl;
-                pause();
+            case 'F': {
+                call = new FinanceMenu(system);
                 break;
             }
             case 'Q':
@@ -79,8 +77,8 @@ vector<vector<string>> MainMenu::getOptions() const {
     return vector<vector<string>>({{"E", "Event Menu"},
                                    {"P", "Person Menu"},
                                    {"M", "Museum Menu"},
-                                   {"S", "Sell Tickets"},
-                                   {"B", "Calculate Revenue"},
+                                   {"S", "Sell Ticket"},
+                                   {"F", "Finances Menu"},
                                    {"Q", "Quit Program"}});
 }
 
@@ -265,8 +263,33 @@ UpdateMuseumMenu::UpdateMuseumMenu(System *system) : Menu(system) {
             }
                 break;
             case 'C' : {
+                string cap;
+                getline(cin,cap);
+                unsigned capu=stoi(getInput(isNum,"Introduce the new museum capacity:","Invalid capacity"));
+                if (capu>(*mus)->getCapacity()){
+                    (*mus)->setCapacity(capu);
+                }else{
+                    string yesno;
+                    cout<<"Are you sure you want to change the museum capacity to a lower one ?\nThis may lead to ticket refunds since there isn't enough capacity.";
+                    cout<<"Input Y to continue or press other key to cancel";
+                    getline(cin,yesno);
+                    if(yesno=="Y"){
+                        vector<Ticket*>::reverse_iterator its;
+                        for(its=sys->getTickets().rbegin();its!=sys->getTickets().rend();++its){
+                            if((sys->getEventSoldTickets((*its)->getEvent())>capu)
+                            && (*its)->getEvent()->getMuseum()->getName()==(*mus)->getName()){
+                                delete((*its));
+                            }
+                        }
+                    }else{
+                        cout<<"Operation canceled."<<endl;
+                        pause();
+                        clear();
+                    }
+                }
+                cout<<"Museum capacity change successfully!"<<endl;
+                pause();
                 clear();
-                //sys->updateMuseum();
             }
                 break;
             case 'R' : {
@@ -399,7 +422,8 @@ UpdateEventMenu::UpdateEventMenu(System *system) : Menu(system) {
             }
                 break;
             case 'P' : {
-                (*eve)->setPrice(100);
+                unsigned p=stoi(getInput(isNum,"Introduce the new ticket price.","Invalid input for ticket price"));
+                (*eve)->setPrice(p);
             }
                 break;
             case 'R' : {
@@ -615,4 +639,42 @@ vector<vector<string>> ReadMuseumMenu::getOptions() const {
                                    {"F", "Filter by Capacity"},
                                    {"L", "Filter by Locality"},
                                    {"G", "Go Back"}});
+}
+
+FinanceMenu::FinanceMenu(System *system) : Menu(system) {
+    this->nextMenu = this->option();
+    switch (this->nextMenu) {
+        case 'F' : {
+            double rev;
+            rev = sys->totalRevenue();
+            cout << "The total Revenue is " << rev << endl;
+            clear();
+        }
+            break;
+        case 'P' : {
+            double spent;
+            spent = sys->moneySpentPerson();
+            cout << "The total money spent by this Person is " << spent << endl;
+            clear();
+        }
+            break;
+        case 'E' : {
+            double rev;
+            rev = sys->eventRevenue();
+            cout << "The Event's revenue is " << rev << endl;
+            clear();
+        }
+            break;
+        case 'R':
+            return;
+        default:
+            break;
+    }
+}
+
+vector<vector<string>> FinanceMenu::getOptions() const {
+    return vector<vector<string>>({{"F", "Total Revenue"},
+                                   {"P", "Money spent by Someone"},
+                                   {"E", "Ticket Revenue of an Event"},
+                                   {"R", "Return"}});
 }
