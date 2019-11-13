@@ -36,5 +36,11 @@ float Ticket::getPrice() const {
     return this->price;
 }
 
+Ticket::Ticket(Ticket *pTicket) {
+    this->person=pTicket->person;
+    this->event=pTicket->event;
+    this->price=pTicket->price;
+}
+
 
 

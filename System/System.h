@@ -49,13 +49,6 @@ public:
     void readMuseum() const;
     void readMuseums() const;                              //Mostra Tabela com todos Museums
 
-    void updateEvent();                                     //Pedir input
-    //void updateEvent(Event* oldEvent, Event* newEvent);
-    void updatePerson();                                      //Pedir input
-    //void updatePerson(Person* oldPerson, Person* newPerson);
-    void updateMuseum();                                        //Pedir input
-    //void updateMuseum(Museum* oldMuseum, Museum* newMuseum);
-
     void deleteEvent();                                     //Pedir input
     void deleteEvent(string name, const Date& date);
 
@@ -66,7 +59,9 @@ public:
 
     void inputAddress(Address &address);
 
+    vector<Ticket*> getTickets();
     unsigned getEventSoldTickets(Event *ev);
+    vector<Ticket*> getEventTickets(Event *ev);
 
     void sellTicket();
     double calcBudget();
