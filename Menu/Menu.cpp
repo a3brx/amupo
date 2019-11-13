@@ -422,7 +422,8 @@ UpdateEventMenu::UpdateEventMenu(System *system) : Menu(system) {
             }
                 break;
             case 'P' : {
-                (*eve)->setPrice(100);
+                unsigned p=stoi(getInput(isNum,"Introduce the new ticket price.","Invalid input for ticket price"));
+                (*eve)->setPrice(p);
             }
                 break;
             case 'R' : {
