@@ -79,12 +79,7 @@ MainMenu::MainMenu(System *system) : Menu(system) {
 }
 
 vector<vector<string>> MainMenu::getOptions() const {
-    return vector<vector<string>>({{"E", "Event Menu"},
-                                   {"P", "Person Menu"},
-                                   {"M", "Museum Menu"},
-                                   {"S", "Sell Tickets"},
-                                   {"B", "Calculate Budget"},
-                                   {"Q", "Quit Program"}});
+    return vector<vector<string>>({{"E", "Event Menu"}, {"P", "Person Menu"}, {"M", "Museum Menu"}, {"S", "Sell Tickets"}, {"B", "Calculate Budget"}, {"Q", "Quit Program"}});
 }
 
 EventMenu::EventMenu(System *system) : Menu(system) {
