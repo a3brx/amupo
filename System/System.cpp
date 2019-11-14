@@ -26,21 +26,24 @@ System::System(const string &fileName/*,const string pass*/) {
 
     file.open(museumsFile);
     Museum *m;
-    while (!file.eof()) {
-        try {
-            file >> &m;
+    if (file.peek() != '\n') {
+        while (!file.eof()) {
+            try {
+                file >> &m;
+            }
+            catch (InvalidInput &) {
+                throw InvalidInput("Error reading museums!");
+            }
+            this->museums.push_back(m);
         }
-        catch (InvalidInput &) {
-            throw InvalidInput("Error reading museums!");
-        }
-        this->museums.push_back(m);
     }
     file.close();
 
     file.open(peopleFile);
 
-    while (!file.eof() || file.peek() != '\n') {
+    while (!file.eof()) {
         char type = file.peek();
+        Date now;
         switch (type) {
             case '-':
                 Person *p;
@@ -50,13 +53,15 @@ System::System(const string &fileName/*,const string pass*/) {
             case '0':
                 IndividualClient *i;
                 file >> &i;
-                if((Date().getYear() - 1 - i->getBirthday().getYear()) >= 65){
-                    cout << "Good news for " << i->getName() << ", they are over 65 and now are a Silver Client " << endl;
+                if ((now.getYear() - 1 - i->getBirthday().getYear()) >= 65) {
+                    cout << "Good news for " << i->getName() << ", they are over 65 and now are a Silver Client "
+                         << endl;
                     SilverClient *s;
-                    s = new SilverClient(i->getName(), i->getAcquisitionDate(), i->getBirthday(), i->getAddress(), i->getContact());
+                    s = new SilverClient(i->getName(), i->getAcquisitionDate(), i->getBirthday(), i->getAddress(),
+                                         i->getContact());
                     this->people.push_back(s);
                     this->clients.push_back(s);
-                }else{
+                } else {
                     this->people.push_back(i);
                     this->clients.push_back(i);
                 }
@@ -70,10 +75,12 @@ System::System(const string &fileName/*,const string pass*/) {
             case '2':
                 UniClient *u;
                 file >> &u;
-                if((Date().getYear() - 1 - i->getBirthday().getYear()) >= 65){
-                    cout << "Good news for " << i->getName() << ", they are over 65 and now are a Silver Client " << endl;
+                if ((now.getYear() - 1 - u->getBirthday().getYear()) >= 65) {
+                    cout << "Good news for " << u->getName() << ", they are over 65 and now are a Silver Client "
+                         << endl;
                     SilverClient *s;
-                    s = new SilverClient(i->getName(), i->getAcquisitionDate(), i->getBirthday(), i->getAddress(), i->getContact());
+                    s = new SilverClient(u->getName(), u->getAcquisitionDate(), u->getBirthday(), u->getAddress(),
+                                         u->getContact());
                     this->people.push_back(s);
                     this->clients.push_back(s);
                 } else {
@@ -85,11 +92,13 @@ System::System(const string &fileName/*,const string pass*/) {
                 break;
         }
     }
+
     file.close();
 
     file.open(eventsFile);
     Event *e;
-    while (!file.eof() || file.peek() != '\n') {
+
+    while (!file.eof()) {
         try {
             file >> &e;
         }
@@ -109,7 +118,7 @@ System::System(const string &fileName/*,const string pass*/) {
     string auxStr;
     vector<string> vecPerson, vecEvent;
     Ticket *ticket;
-    while (!file.eof() || file.peek() != '\n') {
+    while (!file.eof()) {
         getline(file, auxStr);
         try {
             if (auxStr.empty()) throw InvalidInput();
@@ -677,9 +686,11 @@ void System::velho() const {
             eventsIn8Hours.push_back(*it);
         }
     }
-    cout << "This Events are happening in 8 hours! Any Silver Client who lives in the same locality\n"
-         << "as where the Event will happen, can get a free ticket!" << endl;
-    readEvents(eventsIn8Hours);
+    if (eventsIn8Hours.size() != 0) {
+        cout << "This Events are happening in 8 hours! Any Silver Client who lives in the same locality\n"
+             << "as where the Event will happen, can get a free ticket!" << endl;
+        readEvents(eventsIn8Hours);
+    }
     cout << endl;
 }
 
