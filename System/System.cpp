@@ -2,7 +2,7 @@
 
 using namespace std;
 
-System::System(const string &fileName,const string pass) {
+System::System(const string &fileName/*,const string pass*/) {
     this->fileName = fileName;
     ifstream file;
     vector<string> aux = split(fileName, "/");
@@ -10,13 +10,13 @@ System::System(const string &fileName,const string pass) {
     string path = join(aux, '/');
     string museumsFile, peopleFile, eventsFile, ticketsFile;
     file.open(fileName);
-    if(file.fail()){
+    /*if(file.fail()){
         throw InvalidInput("Invalid login credentials!");
     }
     getline(file,this->pass);
     if(this->pass!=pass){
         throw InvalidInput("Invalid login credentials!");
-    }
+    }*/
     file >> eventsFile >> peopleFile >> museumsFile >> ticketsFile;
     eventsFile = path + eventsFile;
     peopleFile = path + peopleFile;
@@ -39,7 +39,6 @@ System::System(const string &fileName,const string pass) {
 
     file.open(peopleFile);
 
-    char peeked;
     while (!file.eof()) {
         char type = file.peek();
         switch (type) {
@@ -69,7 +68,6 @@ System::System(const string &fileName,const string pass) {
             default:
                 break;
         }
-
     }
     file.close();
 

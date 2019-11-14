@@ -1,4 +1,3 @@
-12345
 events.txt
 people.txt
 museums.txt

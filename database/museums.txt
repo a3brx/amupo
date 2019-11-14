@@ -1,10 +1,8 @@
-1 | Museu do Teste | 3
-Rua da FEUP, 213 2132-123 Paranhos 
-1 | Museu dos Biscainhos | 122
-Rua dos Biscainhos, 0 4700-415 Braga 
-1 | Museu Nacional Machado de Castro | 400
-Largo Dr. Jose Rodrigues, 0 3000-248 Coimbra 
-1 | Museu Romantico da Quinta da Macieirinha | 200
-Rua de Entre-Quintas, 220 4050-240 Porto 
-1 | Museu Soares dos Reis | 2000
-Rua de Dom Manuel II, 44 4050-342 Porto 
+2 Joao Basto do Rosario | 24/4/2019 | 15/3/2000 | 910917429
+Rua Domingos Luis Tome, 12 5982-138 Vila Nova de Gaia 
+1 Cao Coelho | 15/3/2018 | 6/7/1950 | 918282619
+Rua da Boavista, 12 5982-138 Viana do Castelo 
+-1 Alexandre Abreu | 20/7/1999 | 925768342
+Rua Monte dos Pipos, 6 4460-059 Guifoes 
+2 Miguel Castro Pinto | 12/11/2019 | 21/6/1996 | 910809137
+Rua Diogo do Couto, 43 4150-269 Porto 

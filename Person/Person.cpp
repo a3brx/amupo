@@ -10,6 +10,19 @@ Date Person::getBirthday() const{
     return birthday;
 }
 
+unsigned Person::getAge() const {
+    Date now;
+    unsigned res = now.getYear() - this->getBirthday().getYear() - 1;
+    if(now.getMonth() == this->getBirthday().getMonth()){
+        if(now.getDay() <= this->getBirthday().getDay()){
+            res++;
+        }
+    }else if(now.getMonth() < this->getBirthday().getMonth()){
+        res++;
+    }
+    return res;
+}
+
 Address Person::getAddress() const{
     return address;
 }

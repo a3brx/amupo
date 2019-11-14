@@ -1,4 +1,10 @@
-Cao Coelho, 6/7/1950 | Web Summit, 5/10/2019 | 262.5
-Joao Basto do Rosario, 15/3/2000 | Paredes, 13/10/2020 | 75
-Joao Basto do Rosario, 15/3/2000 | Paredes, 13/10/2020 | 75
-Joao Basto do Rosario, 15/3/2000 | Paredes, 13/10/2020 | 75
+1 | Museu do Teste | 3
+Rua da FEUP, 213 2132-123 Paranhos 
+1 | Museu dos Biscainhos | 122
+Rua dos Biscainhos, 0 4700-415 Braga 
+1 | Museu Nacional Machado de Castro | 400
+Largo Dr. Jose Rodrigues, 0 3000-248 Coimbra 
+1 | Museu Romantico da Quinta da Macieirinha | 200
+Rua de Entre-Quintas, 220 4050-240 Porto 
+1 | Museu Soares dos Reis | 2000
+Rua de Dom Manuel II, 44 4050-342 Porto 

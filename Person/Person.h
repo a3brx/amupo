@@ -25,6 +25,8 @@ public:
     ///@return The Birthday date attribute of the person.
     Date getBirthday() const;
 
+    unsigned getAge() const;
+
     ///@brief Gets the Address of the person.
     ///@return The Address attribute of the person.
     Address getAddress() const;
