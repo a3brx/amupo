@@ -45,7 +45,7 @@ Menu::Menu(System *system) {
 }
 
 MainMenu::MainMenu(System *system) : Menu(system) {
-    Menu *call;
+    Menu *call = nullptr;
     do {
         char o = this->option();
         switch (o) {
@@ -78,7 +78,7 @@ vector<vector<string>> MainMenu::getOptions() const {
                                    {"P", "Person Menu"},
                                    {"M", "Museum Menu"},
                                    {"S", "Sell Ticket"},
-                                   {"F", "Finances"},
+                                   {"F", "Finances Menu"},
                                    {"Q", "Quit Program"}});
 }
 
@@ -312,7 +312,7 @@ vector<vector<string>> UpdateMuseumMenu::getOptions() const {
     return vector<vector<string>>({{"N", "Update Name"},
                                    {"A", "Update Address"},
                                    {"C", "Update Capacity"},
-                                   {"R", "Return"}});
+                                   {"G", "Go Back"}});
 }
 
 UpdatePersonMenu::UpdatePersonMenu(System *system) : Menu(system) {
@@ -372,7 +372,7 @@ vector<vector<string>> UpdatePersonMenu::getOptions() const {
     return vector<vector<string>>({{"N", "Update Name"},
                                    {"A", "Update Address"},
                                    {"C", "Update Contact"},
-                                   {"R", "Return"}});
+                                   {"G", "Go Back"}});
 }
 
 UpdateEventMenu::UpdateEventMenu(System *system) : Menu(system) {
@@ -447,112 +447,204 @@ vector<vector<string>> UpdateEventMenu::getOptions() const {
                                    {"D", "Update Date"},
                                    {"L", "Update Location"},
                                    {"P", "Update Price"},
-                                   {"R", "Return"}});
+                                   {"G", "Go Back"}});
 }
 
-template <class T>
+template<class T>
 bool compareName(T left, T right) {
     return trim(upper(left->name)) < trim(upper(right->name));
 }
 
-bool compareDate(Event * left, Event * right) {
+bool compareDate(Event *left, Event *right) {
     return left->date < right->date;
 }
 
-bool comparePrice(Event * left, Event * right) {
+bool comparePrice(Event *left, Event *right) {
     return left->price < right->price;
 }
 
-ReadEventMenu::ReadEventMenu(System *system) : Menu(system) {
-    this->nextMenu = this->option();
-    switch (this->nextMenu) {
-        case 'N' : {
-            clear();
-            sort(sys->events.begin(), sys->events.end(), compareName<Event *>);
-            sys->readEvents(system->events);
-        } break;
-        case 'D' : {
-            clear();
-            sort(sys->events.begin(), sys->events.end(), compareDate);
-            sys->readEvents(system->events);
-        } break;
-        case 'P' : {
-            clear();
-            sort(sys->events.begin(), sys->events.end(), comparePrice);
-            sys->readEvents(system->events);
-        } break;
-        case 'R':
-            return;
-        default:
-            break;
-    }
+ReadEventMenu::ReadEventMenu(System *system) : ReadMenu<Event>(system) {
+    this->toRead = system->events;
+    do {
+        this->nextMenu = this->option();
+        switch (this->nextMenu) {
+            case 'N' : {
+                clear();
+                sort(sys->events.begin(), sys->events.end(), compareName<Event *>);
+                sys->readEvents(this->toRead);
+            }
+                break;
+            case 'D' : {
+                clear();
+                sort(sys->events.begin(), sys->events.end(), compareDate);
+                sys->readEvents(this->toRead);
+            }
+                break;
+            case 'P' : {
+                clear();
+                sort(sys->events.begin(), sys->events.end(), comparePrice);
+                sys->readEvents(this->toRead);
+            }
+                break;
+            case 'B' : {
+                clear();
+                auto d1 = Date(getInput(isDate, "Type the First Date: ", "Invalid Date."));
+                auto d2 = Date(getInput(isDate, "Type the Second Date: ", "Invalid Date."));
+                vector<Event *> newVector;
+                for(auto x : this->toRead)
+                    if(x->getDate() >= d1 && x->getDate() <= d2)
+                        newVector.push_back(x);
+                this->toRead = newVector;
+                sys->readEvents(this->toRead);
+            }
+                break;
+            case 'R' : {
+                clear();
+                float c1 = stof(getInput(isNum, "Type the Lowest Price: ", "Invalid Price."));
+                float c2 = stof(getInput(isNum, "Type the Highest Price: ", "Invalid Price."));
+                vector<Event *> newVector;
+                for(auto x : this->toRead)
+                    if(x->getPrice() >= c1 && x->getPrice() <= c2)
+                        newVector.push_back(x);
+                this->toRead = newVector;
+                sys->readEvents(this->toRead);
+            }
+                break;
+            case 'G':
+                return;
+            default:
+                break;
+        }
+    } while (this->nextMenu == 'B' || this->nextMenu == 'R');
 }
 
 vector<vector<string>> ReadEventMenu::getOptions() const {
     return vector<vector<string>>({{"N", "Sort by Name"},
                                    {"D", "Sort by Date"},
                                    {"P", "Sort by Price"},
-                                   {"R", "Return"}});
+                                   {"B", "Filter Between Two Dates"},
+                                   {"R", "Filter in a Price Range"},
+                                   {"G", "Go Back"}});
 }
 
-bool compareBirthday(const Person * person1, const Person  * person2){
+bool compareBirthday(const Person *person1, const Person *person2) {
     return person1->birthday < person2->birthday;
 }
 
-ReadPersonMenu::ReadPersonMenu(System *system) : Menu(system) {
-    this->nextMenu = this->option();
-    switch (this->nextMenu) {
-        case 'N' : {
-            clear();
-            sort(sys->clients.begin(), sys->clients.end(), compareName<Person *>);
-            sys->readPeople(system->people);
-        } break;
-        case 'B' : {
-            clear();
-            sort(sys->clients.begin(), sys->clients.end(), compareBirthday);
-            sys->readPeople(system->people);
-        } break;
-        case 'R':
-            return;
-        default:
-            break;
-    }
+ReadPersonMenu::ReadPersonMenu(System *system) : ReadMenu<Person>(system) {
+    this->toRead = system->people;
+    do {
+        this->nextMenu = this->option();
+        switch (this->nextMenu) {
+            case 'N' : {
+                clear();
+                sort(sys->clients.begin(), sys->clients.end(), compareName<Person *>);
+                sys->readPeople(system->people);
+            }
+                break;
+            case 'B' : {
+                clear();
+                sort(sys->clients.begin(), sys->clients.end(), compareBirthday);
+                sys->readPeople(system->people);
+            }
+                break;
+            case 'F' : {
+                clear();
+                auto d1 = Date(getInput(isDate, "Type the First Date: ", "Invalid Date."));
+                auto d2 = Date(getInput(isDate, "Type the Second Date: ", "Invalid Date."));
+                vector<Person *> newVector;
+                for (auto x : this->toRead)
+                    if (x->getBirthday() >= d1 && x->getBirthday() <= d2)
+                        newVector.push_back(x);
+                this->toRead = newVector;
+                sys->readPeople(this->toRead);
+            }
+                break;
+            case 'L' : {
+                clear();
+                auto locality = getInput(notEmptyString, "Type the Locality Name: ", "Invalid Locality.");
+                vector<Person *> newVector;
+                for (auto x : this->toRead)
+                    if (x->getAddress().getLocality() == locality)
+                        newVector.push_back(x);
+                this->toRead = newVector;
+                sys->readPeople(this->toRead);
+            }
+                break;
+            case 'G':
+                return;
+            default:
+                break;
+        }
+    } while (this->nextMenu == 'F' || this->nextMenu == 'L');
 }
 
 vector<vector<string>> ReadPersonMenu::getOptions() const {
     return vector<vector<string>>({{"N", "Sort by Name"},
                                    {"B", "Sort by Birthday"},
-                                   {"R", "Return"}});
+                                   {"F", "Filter by Born Between Two Dates"},
+                                   {"L", "Filter by Locality"},
+                                   {"G", "Go Back"}});
 }
 
-bool compareCapacity(Museum * left, Museum * right){
+bool compareCapacity(Museum *left, Museum *right) {
     return left->capacity < right->capacity;
 }
 
-ReadMuseumMenu::ReadMuseumMenu(System *system) : Menu(system) {
-    this->nextMenu = this->option();
-    switch (this->nextMenu) {
-        case 'N' : {
-            clear();
-            sort(sys->museums.begin(), sys->museums.end(), compareName<Museum *>);
-            sys->readMuseums(system->museums);
-        } break;
-        case 'C' : {
-            clear();
-            sort(sys->museums.begin(), sys->museums.end(), compareCapacity);
-            sys->readMuseums(system->museums);
-        } break;
-        case 'R':
-            return;
-        default:
-            break;
-    }
+ReadMuseumMenu::ReadMuseumMenu(System *system) : ReadMenu<Museum>(system) {
+    this->toRead = system->museums;
+    do {
+        this->nextMenu = this->option();
+        switch (this->nextMenu) {
+            case 'N' : {
+                clear();
+                sort(sys->museums.begin(), sys->museums.end(), compareName<Museum *>);
+                sys->readMuseums(system->museums);
+            }
+                break;
+            case 'C' : {
+                clear();
+                sort(sys->museums.begin(), sys->museums.end(), compareCapacity);
+                sys->readMuseums(system->museums);
+            }
+                break;
+            case 'F' : {
+                clear();
+                auto c1 = stoi(getInput(isNum, "Type the Lowest Capacity: ", "Invalid Number."));
+                auto c2 = stoi(getInput(isNum, "Type the Highest Capacity: ", "Invalid Number."));
+                vector<Museum *> newVector;
+                for (auto x : this->toRead)
+                    if (x->getCapacity() >= c1 && x->getCapacity() <= c2)
+                        newVector.push_back(x);
+                this->toRead = newVector;
+                sys->readMuseums(this->toRead);
+            }
+                break;
+            case 'L' : {
+                clear();
+                auto locality = getInput(notEmptyString, "Type the Locality Name: ", "Invalid Locality.");
+                vector<Museum *> newVector;
+                for (auto x : this->toRead)
+                    if (x->getAddress().getLocality() == locality)
+                        newVector.push_back(x);
+                this->toRead = newVector;
+                sys->readMuseums(this->toRead);
+            }
+                break;
+            case 'G':
+                return;
+            default:
+                break;
+        }
+    } while (this->nextMenu == 'F' || this->nextMenu == 'L');
 }
 
 vector<vector<string>> ReadMuseumMenu::getOptions() const {
     return vector<vector<string>>({{"N", "Sort by Name"},
                                    {"C", "Sort by Capacity"},
-                                   {"R", "Return"}});
+                                   {"F", "Filter by Capacity"},
+                                   {"L", "Filter by Locality"},
+                                   {"G", "Go Back"}});
 }
 
 FinanceMenu::FinanceMenu(System *system) : Menu(system) {

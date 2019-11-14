@@ -80,7 +80,7 @@ bool isName(const string& toTest);
 bool notEmptyString(const string& toTest);
 
 template<class T, template<class, class = allocator<T>> class Container>
-Container<T> filter(const Container<T> &container, bool (filterFunction)(const T &)) {
+Container<T> filter(const Container<T> &container, bool (filterFunction)(const T)) {
     Container<T> res;
     for (auto it = container.begin(); it != container.end(); it++)
         if (filterFunction(*it))

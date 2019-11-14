@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Museum::Museum(Address adr, unsigned cap = 0, string name = ""): address(move(adr)), capacity(cap), name(move(name)) {
+Museum::Museum(Address adr, unsigned cap = 0, string name = "") : address(move(adr)), capacity(cap), name(move(name)) {
 }
 
 string Museum::getName() {
@@ -29,12 +29,12 @@ void Museum::setCapacity(unsigned cap) {
     this->capacity = cap;
 }
 
-ostream & operator<<(ostream & out, const Museum & museum) {
+ostream &operator<<(ostream &out, const Museum &museum) {
     out << museum.valid << " | " << museum.name << " | " << museum.capacity << endl << museum.address;
     return out;
 }
 
-istream & operator>>(istream & in, Museum ** museum) {
+istream &operator>>(istream &in, Museum **museum) {
     string line;
     getline(in, line);
     if (line.size() == 0) throw InvalidInput();
@@ -56,13 +56,13 @@ bool Museum::isValid() const {
     return this->valid;
 }
 
-Table<string> toTable(const vector<Museum *> &container){
+Table<string> toTable(const vector<Museum *> &container) {
     vector<string> header = {"Name", "Capacity", "Address"};
     vector<vector<string>> content;
     for (auto museum : container) {
         stringstream address;
         address << museum->getAddress();
-        content.push_back({ museum->getName(), to_string(museum->getCapacity()), address.str() });
+        content.push_back({museum->getName(), to_string(museum->getCapacity()), address.str()});
     }
     Table<string> data(header, content);
     return data;

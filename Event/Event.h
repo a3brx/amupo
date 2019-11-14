@@ -2,6 +2,7 @@
 #include <utility>
 #include <iostream>
 #include <iomanip>
+#include <functional>
 #include "../utils/InvalidInput.h"
 #include "../utils/utils.h"
 #include "../Date/Date.h"
@@ -19,9 +20,9 @@ class Event{
     Event(Museum * mus, Date date, float price, string name);  //por data como soldTickets(nao me lembro do nome)
     Event(const Event &ev);
     string getName();
-    Museum * getMuseum();
-    Date getDate();
-    float getPrice();
+    Museum * getMuseum() const;
+    Date getDate() const;
+    float getPrice() const;
     void setName(string nm);
     void setMuseum(Museum * museum);
     void setDate(Date d);
