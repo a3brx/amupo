@@ -659,14 +659,15 @@ vector<Ticket *>::const_iterator System::findTicket(Ticket *ticket) {
 }
 
 Table<string> toTable(const vector<Event *> &container, const System * sys){
-    vector<string> header = {"Name", "Museum", "Date", "Sold Tickets", "Price"};
+    vector<string> header = {"Name", "Museum", "Date", "Time", "Sold Tickets", "Price"};
     vector<vector<string>> content;
     for (auto event : container) {
-        stringstream date, price;
+        stringstream date, time, price;
         unsigned sold = sys->getEventSoldTickets(event);
+        time << event->getTime();
         date << event->getDate();
         price << fixed << setprecision(2) << event->getPrice();
-        content.push_back({event->getName(), event->getMuseum()->getName(), date.str(), to_string(sold), price.str()});
+        content.push_back({event->getName(), event->getMuseum()->getName(), date.str(), time.str(), to_string(sold), price.str()});
     }
     Table<string> data(header, content);
     return data;

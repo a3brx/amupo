@@ -24,6 +24,7 @@ class Event{
     string getName();
     Museum * getMuseum() const;
     Date getDate() const;
+    Time getTime() const;
     float getPrice() const;
     void setName(string nm);
     void setMuseum(Museum * museum);

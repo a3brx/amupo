@@ -15,6 +15,10 @@ Date Event::getDate() const {
     return this->date;
 }
 
+Time Event::getTime() const {
+    return this->time;
+}
+
 float Event::getPrice() const {
     return this->price;
 }
