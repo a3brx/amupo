@@ -89,3 +89,11 @@ Event::Event(const Event &ev) {
 Event::Event(Museum *museum, Date date, float price, string name, Time time) : museum(museum), date(date), price(price),
                                                                                name(move(name)), time(time) {
 }
+
+Event::Event(Event *ev) {
+    this->price=ev->price;
+    this->museum=ev->museum;
+    this->name=ev->name;
+    this->date=ev->date;
+    this->time=ev->time;
+}

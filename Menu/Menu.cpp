@@ -233,7 +233,7 @@ UpdateMuseumMenu::UpdateMuseumMenu(System *system) : Menu(system) {
     string aux, aux2;
     cout << "Please insert the name of the Museum you are looking to update:";
     getline(cin, aux);
-    if (sys->findMuseum(aux) == sys->getMuseums().end()) {
+    if (sys->findMuseum(aux) == sys->museums.end()) {
         cout << "This museum doesn't exist!";
         pause();
         clear();
@@ -263,42 +263,60 @@ UpdateMuseumMenu::UpdateMuseumMenu(System *system) : Menu(system) {
             }
                 break;
             case 'C' : {
-                string cap;
-                getline(cin,cap);
-                unsigned capu=stoi(getInput(isNum,"Introduce the new museum capacity:","Invalid capacity"));
-                if (capu>(*mus)->getCapacity()){
-                    (*mus)->setCapacity(capu);
-                }else if(capu==(*mus)->getCapacity()){
+                unsigned cap=stoi(getInput(isNum, "Introduce the new museum capacity:", "Invalid capacity"));
+                if (cap > (*mus)->getCapacity()){
+                    (*mus)->setCapacity(cap);
+                    cout<<"Museum new capacity changed successfully!"<<endl;
+                    pause();
+                    clear();
+                    return;
+                }else if(cap == (*mus)->getCapacity()){
                     cout<<"Museum new capacity has to be a different from current one!"<<endl;
                     pause();
                     clear();
+                    return;
                 }else{
                     string yesno;
                     cout<<"Are you sure you want to change the museum capacity to a lower one ?\nThis may lead to ticket refunds since there isn't enough capacity.";
                     cout<<"Input Y to continue or press other key to cancel: ";
                     getline(cin,yesno);
-                    if(yesno=="Y"){
-                        vector<Ticket*>::reverse_iterator its;
-                        for(its=sys->getTickets().rbegin();its!=sys->getTickets().rend();++its){
-                            if((sys->getEventSoldTickets((*its)->getEvent())>capu)
-                            && (*its)->getEvent()->getMuseum()->getName()==(*mus)->getName()){
-                                capu=capu-1;
-                                delete((*its));
-                                ++its;
+                    if(yesno=="Y") {
+                        vector<Event *>::iterator it;
+                        vector<Event *> eventsInMus;
+                        for(auto it=sys->events.begin();it!=sys->events.end();it++) {
+                            if ((*it)->getMuseum() == (*mus)) {
+                                eventsInMus.push_back(*it);
+                            }
+                        }
+                        if(eventsInMus.size()==0){
+                            cout<<"Museum new capacity changed successfully!"<<endl;
+                            pause();
+                            clear();
+                            return;
+                        }
+                        vector<Ticket *>::reverse_iterator its;
+                        for (its = sys->soldTickets.rbegin(); its != sys->soldTickets.rend(); its++){
+                            auto auxEvent = firstInSecond((*its)->getEvent(),eventsInMus);
+                            if(auxEvent!= nullptr){
+                                if(sys->getEventSoldTickets(auxEvent) > cap){
+                                    sys->soldTickets.erase(sys->findTicket(*its));
+                                }
                             }
                         }
                     }else{
                         cout<<"Operation canceled."<<endl;
                         pause();
                         clear();
+                        return;
                     }
                 }
+                vector<Ticket*> t=sys->soldTickets;
                 cout<<"Museum capacity change successfully!"<<endl;
                 pause();
                 clear();
             }
                 break;
-            case 'R' : {
+            case 'G' : {
                 clear();
                 return;
             }
@@ -358,7 +376,7 @@ UpdatePersonMenu::UpdatePersonMenu(System *system) : Menu(system) {
                 clear();
             }
                 break;
-            case 'R' : {
+            case 'G' : {
                 clear();
                 return;
             }
@@ -420,7 +438,22 @@ UpdateEventMenu::UpdateEventMenu(System *system) : Menu(system) {
                     return;
                 }
                 Museum *mus = *sys->findMuseum(local);
+                if((*eve)->getMuseum()->getCapacity()>(*mus).getCapacity()){
+                    string yesno;
+                    cout<<"Changing the event to a location with lower capacity can cause problems with sold tickets."<<endl;
+                    cout<<"If you which to continue and refund tickets enter Y:";
+                    getline(cin,yesno);
+                    if(yesno=="Y"){
+                        (*eve)->setMuseum((mus));
+
+                    }else{
+                        cout<<"Operation canceled."<<endl;
+                        pause();
+                        clear();
+                    }
+                }
                 (*eve)->setMuseum((mus));
+
                 Event *evt = (*eve);
                 cout << "Event Location changed successfully" << endl;
                 pause();
@@ -430,9 +463,18 @@ UpdateEventMenu::UpdateEventMenu(System *system) : Menu(system) {
             case 'P' : {
                 unsigned p=stoi(getInput(isNum,"Introduce the new ticket price.","Invalid input for ticket price"));
                 (*eve)->setPrice(p);
-            }
-                break;
-            case 'R' : {
+                cout << "Ticket price changed successfully!";
+                pause();
+                clear();
+            }break;
+            case 'T':{
+                string time=getInput(isTime,"Input the new time of the event","Invalid type format");
+                //(*eve)->setTime(time);
+                cout << "Event time changed successfully!";
+                pause();
+                clear();
+            }break;
+            case 'G' : {
                 clear();
                 return;
             }
@@ -447,6 +489,7 @@ vector<vector<string>> UpdateEventMenu::getOptions() const {
                                    {"D", "Update Date"},
                                    {"L", "Update Location"},
                                    {"P", "Update Price"},
+                                   {"C", "Update Time"},
                                    {"G", "Go Back"}});
 }
 

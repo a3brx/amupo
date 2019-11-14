@@ -17,8 +17,8 @@ class System{
 private:
     friend class Menu;
     string fileName;
-    vector<Ticket*> soldTickets;
 public:
+    vector<Ticket*> soldTickets;
     vector<Client *> clients;
     vector<Person*> people;
     vector<Event*> events;
@@ -34,6 +34,7 @@ public:
     vector<Person*>::const_iterator findPerson(string name, const Date& birthday) const;
     vector<Client *>::const_iterator findClient(string name, const Date &birthday) const;
     vector<Museum*>::const_iterator findMuseum(const string &name) const;
+    vector<Ticket*>::const_iterator findTicket(Ticket *ticket);
 
     void createEvent();                                     //Ler do input, dar nome ao event
     void createEvent(Event *ev);
@@ -74,7 +75,6 @@ public:
     double totalRevenue() const;
     double moneySpentPerson();
     double eventRevenue();
-
 };
 
 Table<string> toTable(const vector<Event *> &container, const System * sys);

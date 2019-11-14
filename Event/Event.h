@@ -20,6 +20,7 @@ class Event{
     Event(Museum *mus, Date date, float price, string name,
           Time time);  //por data como soldTickets(nao me lembro do nome)
     Event(const Event &ev);
+    Event(Event *ev);
     string getName();
     Museum * getMuseum() const;
     Date getDate() const;

@@ -87,3 +87,11 @@ Container<T> filter(const Container<T> &container, bool (filterFunction)(const T
             res.push_back(*it);
     return res;
 };
+
+template<class T>
+T* firstInSecond(T *first,vector<T*> second){
+    for(size_t i=0;i<second.size();i++){
+        if(*first==*second.at(i)) return second.at(i);
+    }
+    return nullptr;
+}

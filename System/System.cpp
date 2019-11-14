@@ -617,6 +617,15 @@ double System::eventRevenue() {
     return money;
 }
 
+vector<Ticket *>::const_iterator System::findTicket(Ticket *ticket) {
+    for(auto tick=soldTickets.begin();tick!=soldTickets.end();tick++){
+        if((*tick)==ticket){
+            return tick;
+        }
+    }
+    return soldTickets.end();
+}
+
 Table<string> toTable(const vector<Event *> &container, const System * sys){
     vector<string> header = {"Name", "Museum", "Date", "Sold Tickets", "Price"};
     vector<vector<string>> content;
