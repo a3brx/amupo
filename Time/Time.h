@@ -17,7 +17,7 @@ public:
 
     Time(char h, char m);
 
-    Time(string &str);
+    explicit Time(string &str);
 
     char getHour() const;
 
@@ -35,7 +35,7 @@ class InvalidTime : exception {
 public:
     InvalidTime(char h, char m) : hour(h), minute(m) {}
 
-    InvalidTime(string str) {
+    explicit InvalidTime(const string& str) {
         vector<string> aux;
         aux = trim(split(str, ":"));
         if (aux.size() != 2) {
@@ -46,12 +46,13 @@ public:
             this->minute = -1;
             this->hour = -1;
         }
-        hour = stoi(aux.at(0));
-        minute = stoi(aux.at(1));
+        hour = (char) stoi(aux.at(0));
+        minute = (char) stoi(aux.at(1));
     }
 
     friend ostream &operator<<(ostream &out, InvalidTime &t) {
         out << "The time " << t.hour << ":" << t.minute << " is invalid!";
+        return out;
     }
 };
 

@@ -77,7 +77,7 @@ public:
     vector<vector<string>> getOptions() const override;
 };
 
-class ReadPersonMenu : public ReadMenu<Person>{
+class ReadPersonMenu : public ReadMenu<Client>{
 public:
     explicit ReadPersonMenu(System *system);
     vector<vector<string>> getOptions() const override;

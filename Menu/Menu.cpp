@@ -461,7 +461,7 @@ UpdateEventMenu::UpdateEventMenu(System *system) : Menu(system) {
             }
                 break;
             case 'P' : {
-                unsigned p=stoi(getInput(isNum,"Introduce the new ticket price.","Invalid input for ticket price"));
+                float p = stof(getInput(isNum,"Introduce the new ticket price.","Invalid input for ticket price"));
                 (*eve)->setPrice(p);
                 cout << "Ticket price changed successfully!";
                 pause();
@@ -574,28 +574,28 @@ bool compareBirthday(const Person *person1, const Person *person2) {
     return person1->birthday < person2->birthday;
 }
 
-ReadPersonMenu::ReadPersonMenu(System *system) : ReadMenu<Person>(system) {
-    this->toRead = system->people;
+ReadPersonMenu::ReadPersonMenu(System *system) : ReadMenu<Client>(system) {
+    this->toRead = system->clients;
     do {
         this->nextMenu = this->option();
         switch (this->nextMenu) {
             case 'N' : {
                 clear();
                 sort(sys->clients.begin(), sys->clients.end(), compareName<Person *>);
-                sys->readPeople(system->people);
+                sys->readPeople(system->clients);
             }
                 break;
             case 'B' : {
                 clear();
                 sort(sys->clients.begin(), sys->clients.end(), compareBirthday);
-                sys->readPeople(system->people);
+                sys->readPeople(system->clients);
             }
                 break;
             case 'F' : {
                 clear();
                 auto d1 = Date(getInput(isDate, "Type the First Date: ", "Invalid Date."));
                 auto d2 = Date(getInput(isDate, "Type the Second Date: ", "Invalid Date."));
-                vector<Person *> newVector;
+                vector<Client *> newVector;
                 for (auto x : this->toRead)
                     if (x->getBirthday() >= d1 && x->getBirthday() <= d2)
                         newVector.push_back(x);
@@ -606,7 +606,7 @@ ReadPersonMenu::ReadPersonMenu(System *system) : ReadMenu<Person>(system) {
             case 'L' : {
                 clear();
                 auto locality = getInput(notEmptyString, "Type the Locality Name: ", "Invalid Locality.");
-                vector<Person *> newVector;
+                vector<Client *> newVector;
                 for (auto x : this->toRead)
                     if (x->getAddress().getLocality() == locality)
                         newVector.push_back(x);
@@ -693,10 +693,18 @@ vector<vector<string>> ReadMuseumMenu::getOptions() const {
 FinanceMenu::FinanceMenu(System *system) : Menu(system) {
     this->nextMenu = this->option();
     switch (this->nextMenu) {
-        case 'F' : {
+        case 'A' : {
+            double rev;
+            rev = sys->anualRevenue();
+            cout << "The total Revenue in the last 12 months was " << rev  << " Euros" << endl;
+            pause();
+            clear();
+        }
+            break;
+        case 'T' : {
             double rev;
             rev = sys->totalRevenue();
-            cout << "The total Revenue is " << rev << endl;
+            cout << "The Revenue from all time is " << rev << " Euros" << endl;
             pause();
             clear();
         }
@@ -704,7 +712,7 @@ FinanceMenu::FinanceMenu(System *system) : Menu(system) {
         case 'P' : {
             double spent;
             spent = sys->moneySpentPerson();
-            cout << "The total money spent by this Person is " << spent << endl;
+            cout << "The total money spent by this Person is " << spent << " Euros" << endl;
             pause();
             clear();
         }
@@ -712,7 +720,7 @@ FinanceMenu::FinanceMenu(System *system) : Menu(system) {
         case 'E' : {
             double rev;
             rev = sys->eventRevenue();
-            cout << "The Event's revenue is " << rev << endl;
+            cout << "The Event's revenue is " << rev << " Euros" << endl;
             pause();
             clear();
         }
@@ -725,7 +733,8 @@ FinanceMenu::FinanceMenu(System *system) : Menu(system) {
 }
 
 vector<vector<string>> FinanceMenu::getOptions() const {
-    return vector<vector<string>>({{"F", "Total Revenue"},
+    return vector<vector<string>>({{"A", "Anual Revenue"},
+                                   {"T", "Total Revenue"},
                                    {"P", "Money spent by Someone"},
                                    {"E", "Ticket Revenue of an Event"},
                                    {"R", "Return"}});
