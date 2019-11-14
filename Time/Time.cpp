@@ -18,7 +18,7 @@ Time::Time(char h, char m) {
 
 Time::Time(string str) {
     if (!isTime(str)) throw InvalidTime(str);
-    if ()
+    //if ()
 }
 
 char Time::getHour() const {

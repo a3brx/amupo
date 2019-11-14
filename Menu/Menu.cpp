@@ -268,17 +268,23 @@ UpdateMuseumMenu::UpdateMuseumMenu(System *system) : Menu(system) {
                 unsigned capu=stoi(getInput(isNum,"Introduce the new museum capacity:","Invalid capacity"));
                 if (capu>(*mus)->getCapacity()){
                     (*mus)->setCapacity(capu);
+                }else if(capu==(*mus)->getCapacity()){
+                    cout<<"Museum new capacity has to be a different from current one!"<<endl;
+                    pause();
+                    clear();
                 }else{
                     string yesno;
                     cout<<"Are you sure you want to change the museum capacity to a lower one ?\nThis may lead to ticket refunds since there isn't enough capacity.";
-                    cout<<"Input Y to continue or press other key to cancel";
+                    cout<<"Input Y to continue or press other key to cancel: ";
                     getline(cin,yesno);
                     if(yesno=="Y"){
                         vector<Ticket*>::reverse_iterator its;
                         for(its=sys->getTickets().rbegin();its!=sys->getTickets().rend();++its){
                             if((sys->getEventSoldTickets((*its)->getEvent())>capu)
                             && (*its)->getEvent()->getMuseum()->getName()==(*mus)->getName()){
+                                capu=capu-1;
                                 delete((*its));
+                                ++its;
                             }
                         }
                     }else{
@@ -556,6 +562,7 @@ FinanceMenu::FinanceMenu(System *system) : Menu(system) {
             double rev;
             rev = sys->totalRevenue();
             cout << "The total Revenue is " << rev << endl;
+            pause();
             clear();
         }
             break;
@@ -563,6 +570,7 @@ FinanceMenu::FinanceMenu(System *system) : Menu(system) {
             double spent;
             spent = sys->moneySpentPerson();
             cout << "The total money spent by this Person is " << spent << endl;
+            pause();
             clear();
         }
             break;
@@ -570,6 +578,7 @@ FinanceMenu::FinanceMenu(System *system) : Menu(system) {
             double rev;
             rev = sys->eventRevenue();
             cout << "The Event's revenue is " << rev << endl;
+            pause();
             clear();
         }
             break;
