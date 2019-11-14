@@ -23,7 +23,7 @@ public:
     vector<Person*> people;
     vector<Event*> events;
     vector<Museum*> museums;
-    System(const string &fileName);                             //Ler ficheiros no inicio
+    explicit System(const string &fileName);                             //Ler ficheiros no inicio
     ~System();
 
     vector<Event*> getEvents() const;
@@ -72,6 +72,7 @@ public:
     void sellTicket(Event *event, Person *person);
     void setTicketsPrice(Ticket *ticket);
 
+    double anualRevenue() const;
     double totalRevenue() const;
     double moneySpentPerson();
     double eventRevenue();

@@ -428,7 +428,7 @@ UpdateEventMenu::UpdateEventMenu(System *system) : Menu(system) {
             }
                 break;
             case 'P' : {
-                unsigned p=stoi(getInput(isNum,"Introduce the new ticket price.","Invalid input for ticket price"));
+                float p = stof(getInput(isNum,"Introduce the new ticket price.","Invalid input for ticket price"));
                 (*eve)->setPrice(p);
             }
                 break;
@@ -650,10 +650,18 @@ vector<vector<string>> ReadMuseumMenu::getOptions() const {
 FinanceMenu::FinanceMenu(System *system) : Menu(system) {
     this->nextMenu = this->option();
     switch (this->nextMenu) {
-        case 'F' : {
+        case 'A' : {
+            double rev;
+            rev = sys->anualRevenue();
+            cout << "The total Revenue in the last 12 months was " << rev  << " Euros" << endl;
+            pause();
+            clear();
+        }
+            break;
+        case 'T' : {
             double rev;
             rev = sys->totalRevenue();
-            cout << "The total Revenue is " << rev << endl;
+            cout << "The Revenue from all time is " << rev << " Euros" << endl;
             pause();
             clear();
         }
@@ -661,7 +669,7 @@ FinanceMenu::FinanceMenu(System *system) : Menu(system) {
         case 'P' : {
             double spent;
             spent = sys->moneySpentPerson();
-            cout << "The total money spent by this Person is " << spent << endl;
+            cout << "The total money spent by this Person is " << spent << " Euros" << endl;
             pause();
             clear();
         }
@@ -669,7 +677,7 @@ FinanceMenu::FinanceMenu(System *system) : Menu(system) {
         case 'E' : {
             double rev;
             rev = sys->eventRevenue();
-            cout << "The Event's revenue is " << rev << endl;
+            cout << "The Event's revenue is " << rev << " Euros" << endl;
             pause();
             clear();
         }
@@ -682,7 +690,8 @@ FinanceMenu::FinanceMenu(System *system) : Menu(system) {
 }
 
 vector<vector<string>> FinanceMenu::getOptions() const {
-    return vector<vector<string>>({{"F", "Total Revenue"},
+    return vector<vector<string>>({{"A", "Anual Revenue"},
+                                   {"T", "Total Revenue"},
                                    {"P", "Money spent by Someone"},
                                    {"E", "Ticket Revenue of an Event"},
                                    {"R", "Return"}});

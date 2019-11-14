@@ -24,7 +24,7 @@ System::System(const string &fileName) {
         try {
             file >> &m;
         }
-        catch (InvalidInput) {
+        catch (InvalidInput &) {
             throw InvalidInput("Error reading museums!");
         }
         this->museums.push_back(m);
@@ -92,7 +92,7 @@ System::System(const string &fileName) {
     while (!file.eof()) {
         getline(file, auxStr);
         try {
-            if (auxStr.size() == 0) throw InvalidInput();
+            if (auxStr.empty()) throw InvalidInput();
             aux = trim(split(auxStr, "|"));
             vecPerson = trim(split(aux.at(0), ","));
             vecEvent = trim(split(aux.at(1), ","));
@@ -333,22 +333,21 @@ void System::createClient() {
         getline(cin, contact);
     } while (!isNum(contact) || contact.size() != 9);
     if (bday - Date() > 65 * 365) {
-        SilverClient *tempS = new SilverClient(name, Date(), bday, address, stoi(contact));
+        auto *tempS = new SilverClient(name, Date(), bday, address, stoi(contact));
         this->people.push_back(tempS);
         cout << "Registered the client as Silver with success!\n";
         return;
     }
     bool uni = stoi(getInput(isYorN, "Does the client go to University? (1-True/0-False)", "Invalid Response"));
     if (uni) {
-        UniClient *tempU = new UniClient(name, Date(), bday, address, stoi(contact));
+        auto *tempU = new UniClient(name, Date(), bday, address, stoi(contact));
         this->people.push_back(tempU);
         cout << "Registered the client as Uni with success!\n";
         return;
     }
-    IndividualClient *tempI = new IndividualClient(name, Date(), bday, address, stoi(contact));
+    auto *tempI = new IndividualClient(name, Date(), bday, address, stoi(contact));
     this->people.push_back(tempI);
     cout << "Registered the client as Individual with success!\n";
-    return;
 }
 
 void System::createPerson(Person *person) {
@@ -448,7 +447,7 @@ void System::createEvent() {
     }
     mus = *(findMuseum(musName));
     price = getInput(isNum, "Price: ", "Invalid Price");
-    Event *tempE = new Event(mus, date, (float) stof(price), name, Time(timeStr));
+    auto *tempE = new Event(mus, date, (float) stof(price), name, Time(timeStr));
     events.push_back(tempE);
     cout << "Created event with success!" << endl;
 }
@@ -476,7 +475,7 @@ void System::createMuseum() {
     }
     cout << "Museum's Address" << endl;
     inputAddress(address);
-    Museum *tempM = new Museum(address, stoi(capStr), name);
+    auto *tempM = new Museum(address, stoi(capStr), name);
     museums.push_back(tempM);
     cout << "Created Museum with success!" << endl;
 }
@@ -530,10 +529,26 @@ void System::sellTicket(Event *event, Person *person) {
     if (event->getMuseum()->capacity < newSoldTickets) {
         throw OverBookedEvent(event->getMuseum(), newSoldTickets);
     }
-    Ticket *ticket = new Ticket(event, person);
+    auto *ticket = new Ticket(event, person);
     setTicketsPrice(ticket);
     this->soldTickets.push_back(ticket);
     cout << "Ticket sold!" << endl;
+}
+
+double System::anualRevenue() const {
+    auto oneYearAgo = Date();
+    if(oneYearAgo.getMonth() == 2 && oneYearAgo.getDay() == 29)
+        oneYearAgo.setDay(28);
+    oneYearAgo.setYear(oneYearAgo.getYear() - 1);
+    double total = 0;
+    for (auto ticket : soldTickets){
+        if(ticket->getEvent()->getDate() >= oneYearAgo)
+            total += ticket->getPrice();
+    }
+    for (auto client : clients){
+        total += client->getCost();
+    }
+    return total;
 }
 
 double System::totalRevenue() const {
@@ -556,7 +571,6 @@ unsigned System::getEventSoldTickets(Event *ev) const {
 }
 
 vector<Ticket*> System::getEventTickets(Event *ev) {
-    unsigned counter = 0;
     vector<Ticket*> ticks;
     auto it = soldTickets.begin();
     for (; it != soldTickets.end(); it++) {
