@@ -23,8 +23,9 @@ public:
 
     char getMinute() const;
 
-    friend Time operator-(Time &left, Time &right);
+    friend Time operator-(Time left, Time right);
 
+    friend bool operator<(Time left, Time right);
     friend ostream &operator<<(ostream &out, const Time &t);
     friend istream &operator>>(istream &in, Time &t);
 };

@@ -39,7 +39,7 @@ System::System(const string &fileName/*,const string pass*/) {
 
     file.open(peopleFile);
 
-    while (!file.eof()) {
+    while (!file.eof() || file.peek() != '\n') {
         char type = file.peek();
         switch (type) {
             case '-':
@@ -89,7 +89,7 @@ System::System(const string &fileName/*,const string pass*/) {
 
     file.open(eventsFile);
     Event *e;
-    while (!file.eof()) {
+    while (!file.eof() || file.peek() != '\n') {
         try {
             file >> &e;
         }
@@ -109,7 +109,7 @@ System::System(const string &fileName/*,const string pass*/) {
     string auxStr;
     vector<string> vecPerson, vecEvent;
     Ticket *ticket;
-    while (!file.eof()) {
+    while (!file.eof() || file.peek() != '\n') {
         getline(file, auxStr);
         try {
             if (auxStr.empty()) throw InvalidInput();
@@ -136,6 +136,8 @@ System::System(const string &fileName/*,const string pass*/) {
         }
     }
     file.close();
+
+    velho();
 }
 
 void System::readPerson() const {
@@ -314,6 +316,7 @@ System::~System() {
         file << endl << *(*itt);
     }
     file.close();
+
 }
 
 void System::inputAddress(Address &address) {
@@ -661,6 +664,23 @@ double System::eventRevenue() {
         }
     }
     return money;
+}
+
+void System::velho() const {
+    Time atual;
+    Date atualDate;
+    auto it = events.begin(), itl = events.end();
+    vector<Event *> eventsIn8Hours;
+    for (; it != itl; it++) {
+        if ((((*it)->getTime() - atual).getHour() <= 7) && (((*it)->getDate() - atualDate) <= 1) &&
+            (getEventSoldTickets(*it) < (*it)->getMuseum()->capacity)) {
+            eventsIn8Hours.push_back(*it);
+        }
+    }
+    cout << "This Events are happening in 8 hours! Any Silver Client who lives in the same locality\n"
+         << "as where the Event will happen, can get a free ticket!" << endl;
+    readEvents(eventsIn8Hours);
+    cout << endl;
 }
 
 vector<Ticket *>::const_iterator System::findTicket(Ticket *ticket) {

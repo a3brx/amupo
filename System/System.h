@@ -128,6 +128,8 @@ public:
     double totalRevenue() const;
     double moneySpentPerson();
     double eventRevenue();
+
+    void velho() const;
 };
 
 Table<string> toTable(const vector<Event *> &container, const System * sys);

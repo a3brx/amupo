@@ -32,7 +32,7 @@ char Time::getMinute() const {
     return this->minute;
 }
 
-Time operator-(Time &left, Time &right) {
+Time operator-(Time left, Time right) {
     signed char resH, resM;
     resM = left.minute - right.minute;
     if (resM < 0) {
