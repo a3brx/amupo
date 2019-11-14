@@ -538,13 +538,13 @@ ReadPersonMenu::ReadPersonMenu(System *system) : ReadMenu<Person>(system) {
         switch (this->nextMenu) {
             case 'N' : {
                 clear();
-                sort(sys->clients.begin(), sys->clients.end(), compareName<Person *>);
+                sort(sys->people.begin(), sys->people.end(), compareName<Person *>);
                 sys->readPeople(system->people);
             }
                 break;
             case 'B' : {
                 clear();
-                sort(sys->clients.begin(), sys->clients.end(), compareBirthday);
+                sort(sys->people.begin(), sys->people.end(), compareBirthday);
                 sys->readPeople(system->people);
             }
                 break;
