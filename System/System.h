@@ -17,6 +17,7 @@ class System{
 private:
     friend class Menu;
     string fileName;
+    string pass;
 public:
     vector<Ticket*> soldTickets;
     vector<Client *> clients;
@@ -26,7 +27,8 @@ public:
 
     /// @brief Creates a new system with the information provided by the file.
     /// @param fileName The path to the file where the information is stored.
-    explicit System(const string &fileName);
+    ///@param password for the login.
+    explicit System(const string &fileName,const string pass);
 
     /// @brief Writes the new information of the system on the files and frees the memory from the objects created during the execution of the program.
     ~System();

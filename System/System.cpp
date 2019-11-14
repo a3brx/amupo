@@ -2,7 +2,7 @@
 
 using namespace std;
 
-System::System(const string &fileName) {
+System::System(const string &fileName,const string pass) {
     this->fileName = fileName;
     ifstream file;
     vector<string> aux = split(fileName, "/");
@@ -11,6 +11,10 @@ System::System(const string &fileName) {
     string museumsFile, peopleFile, eventsFile, ticketsFile;
     file.open(fileName);
     if(file.fail()){
+        throw InvalidInput("Invalid login credentials!");
+    }
+    getline(file,this->pass);
+    if(this->pass!=pass){
         throw InvalidInput("Invalid login credentials!");
     }
     file >> eventsFile >> peopleFile >> museumsFile >> ticketsFile;
@@ -237,9 +241,7 @@ System::~System() {
     string museumsFile, peopleFile, eventsFile, ticketsFile;
 
     file.open(this->fileName);
-    if(file.fail()){
-        throw "Login or password invalid";
-    }
+    getline(file,this->pass);
     file >> eventsFile >> peopleFile >> museumsFile >> ticketsFile;
     eventsFile = path + eventsFile;
     peopleFile = path + peopleFile;

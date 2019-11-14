@@ -9,11 +9,13 @@ using namespace std;
 int main(){
     cout<<"Welcome to the museum manager program!"<<endl;
     cout<<"To start input the login name of your enterprise: ";
-    string test;
+    string test,pass;
     getline(cin,test);
+    cout<<"Input the password: ";
+    getline(cin,pass);
     System *sys;
     try {
-        sys = new System("../database/"+test+".txt");
+        sys = new System("../database/"+test+".txt",pass);
     } catch (InvalidInput &error) {
         cout << error.getMsg() << endl;
         return 1;
@@ -27,7 +29,6 @@ int main(){
     delete sys;
     return 0;
 }
-
 //uni - 140
 //ind - 116
 //
