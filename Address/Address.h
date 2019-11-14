@@ -22,7 +22,11 @@ public:
     /// @param locality The local of the Address.
     Address(string street, const string & postalCode, unsigned short doorNumber, string locality);
 
+    /// @brief Constructs an Address with the default parameters.
     Address() = default;
+
+    /// @brief Constructs an Address from a string.
+    /// @param addressString The address in a string format.
     Address(string addressString);
 
     ///@brief Gets the street of address.
@@ -63,7 +67,17 @@ public:
     /// @param param The address that is compared with the object.
     /// @return Returns true if two objects of type Date are equal.
     bool operator==(const Address & param) const;
+
+    /// @brief Sends a address to a ostream object.
+    /// @param out The ostream object to where we are gonna send the Address information.
+    /// @param address The address that is send.
+    /// @return Returns the ostream itself.
     friend ostream & operator<<(ostream & out, const Address & address);
+
+    /// @brief Reads a address from a istream object.
+    /// @param in The istream object where the information to create the new address is.
+    /// @param address A pointer to a pointer that is gonna point to the new Address.
+    /// @return Returns the istream itself.
     friend istream & operator>>(istream & in, Address ** address);
 
     friend class InvalidAddress;
