@@ -50,8 +50,16 @@ System::System(const string &fileName/*,const string pass*/) {
             case '0':
                 IndividualClient *i;
                 file >> &i;
-                this->people.push_back(i);
-                this->clients.push_back(i);
+                if((Date().getYear() - 1 - i->getBirthday().getYear()) >= 65){
+                    cout << "Good news for " << i->getName() << ", they are over 65 and now are a Silver Client " << endl;
+                    SilverClient *s;
+                    s = new SilverClient(i->getName(), i->getAcquisitionDate(), i->getBirthday(), i->getAddress(), i->getContact());
+                    this->people.push_back(s);
+                    this->clients.push_back(s);
+                }else{
+                    this->people.push_back(i);
+                    this->clients.push_back(i);
+                }
                 break;
             case '1':
                 SilverClient *s;
@@ -62,8 +70,16 @@ System::System(const string &fileName/*,const string pass*/) {
             case '2':
                 UniClient *u;
                 file >> &u;
-                this->people.push_back(u);
-                this->clients.push_back(u);
+                if((Date().getYear() - 1 - i->getBirthday().getYear()) >= 65){
+                    cout << "Good news for " << i->getName() << ", they are over 65 and now are a Silver Client " << endl;
+                    SilverClient *s;
+                    s = new SilverClient(i->getName(), i->getAcquisitionDate(), i->getBirthday(), i->getAddress(), i->getContact());
+                    this->people.push_back(s);
+                    this->clients.push_back(s);
+                } else {
+                    this->people.push_back(u);
+                    this->clients.push_back(u);
+                }
                 break;
             default:
                 break;
@@ -239,7 +255,7 @@ System::~System() {
     string museumsFile, peopleFile, eventsFile, ticketsFile;
 
     file.open(this->fileName);
-    getline(file,this->pass);
+    //getline(file,this->pass);
     file >> eventsFile >> peopleFile >> museumsFile >> ticketsFile;
     eventsFile = path + eventsFile;
     peopleFile = path + peopleFile;
