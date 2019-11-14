@@ -531,28 +531,28 @@ bool compareBirthday(const Person *person1, const Person *person2) {
     return person1->birthday < person2->birthday;
 }
 
-ReadPersonMenu::ReadPersonMenu(System *system) : ReadMenu<Person>(system) {
-    this->toRead = system->people;
+ReadPersonMenu::ReadPersonMenu(System *system) : ReadMenu<Client>(system) {
+    this->toRead = system->clients;
     do {
         this->nextMenu = this->option();
         switch (this->nextMenu) {
             case 'N' : {
                 clear();
-                sort(sys->people.begin(), sys->people.end(), compareName<Person *>);
-                sys->readPeople(system->people);
+                sort(sys->clients.begin(), sys->clients.end(), compareName<Person *>);
+                sys->readPeople(system->clients);
             }
                 break;
             case 'B' : {
                 clear();
-                sort(sys->people.begin(), sys->people.end(), compareBirthday);
-                sys->readPeople(system->people);
+                sort(sys->clients.begin(), sys->clients.end(), compareBirthday);
+                sys->readPeople(system->clients);
             }
                 break;
             case 'F' : {
                 clear();
                 auto d1 = Date(getInput(isDate, "Type the First Date: ", "Invalid Date."));
                 auto d2 = Date(getInput(isDate, "Type the Second Date: ", "Invalid Date."));
-                vector<Person *> newVector;
+                vector<Client *> newVector;
                 for (auto x : this->toRead)
                     if (x->getBirthday() >= d1 && x->getBirthday() <= d2)
                         newVector.push_back(x);
@@ -563,7 +563,7 @@ ReadPersonMenu::ReadPersonMenu(System *system) : ReadMenu<Person>(system) {
             case 'L' : {
                 clear();
                 auto locality = getInput(notEmptyString, "Type the Locality Name: ", "Invalid Locality.");
-                vector<Person *> newVector;
+                vector<Client *> newVector;
                 for (auto x : this->toRead)
                     if (x->getAddress().getLocality() == locality)
                         newVector.push_back(x);

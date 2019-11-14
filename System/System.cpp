@@ -122,10 +122,21 @@ void System::readPerson() const {
     string name = getInput(isName, "Type the name of the Client: ", "Invalid name.");
     string birthday = getInput(isDate, "Type its birthday: ", "Invalid Date.");
     Person * personPtr = * findPerson(name, Date(birthday));
-    if(personPtr == *this->people.end())
-        readPeople({});
-    else
+    if(personPtr == *this->people.end()) {
+        vector<Person *> aux = {};
+        readPeople(aux);
+    } else
         readPeople({personPtr});
+}
+
+void System::readPeople(const vector<Client *> &container) const {
+    if(container.empty()){
+        cout << "The search is empty :(" << endl;
+        return;
+    }
+    auto read = toTable(container, this);
+    cout << read;
+    pause();
 }
 
 void System::readPeople(const vector<Person *> &container) const {

@@ -45,6 +45,7 @@ public:
     void readEvent() const;
     void readEvents(const vector<Event *> &container) const;                            //Mostra Tabela com todos Events
     void readPerson() const;
+    void readPeople(const vector<Client *> &container) const;
     void readPeople(const vector<Person *> &container) const; //Mostra Tabela com todos Cards
     void readMuseum() const;
     void readMuseums() const;                              //Mostra Tabela com todos Museums
