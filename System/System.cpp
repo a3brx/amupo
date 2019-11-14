@@ -9,8 +9,10 @@ System::System(const string &fileName) {
     aux.pop_back();
     string path = join(aux, '/');
     string museumsFile, peopleFile, eventsFile, ticketsFile;
-
     file.open(fileName);
+    if(file.fail()){
+        throw InvalidInput("Invalid login credentials!");
+    }
     file >> eventsFile >> peopleFile >> museumsFile >> ticketsFile;
     eventsFile = path + eventsFile;
     peopleFile = path + peopleFile;
@@ -235,6 +237,9 @@ System::~System() {
     string museumsFile, peopleFile, eventsFile, ticketsFile;
 
     file.open(this->fileName);
+    if(file.fail()){
+        throw "Login or password invalid";
+    }
     file >> eventsFile >> peopleFile >> museumsFile >> ticketsFile;
     eventsFile = path + eventsFile;
     peopleFile = path + peopleFile;

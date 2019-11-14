@@ -7,10 +7,13 @@
 using namespace std;
 
 int main(){
+    cout<<"Welcome to the museum manager program!"<<endl;
+    cout<<"To start input the login name of your enterprise: ";
+    string test;
+    getline(cin,test);
     System *sys;
     try {
-        string test = "../database/files.txt";
-        sys = new System(test);
+        sys = new System("../database/"+test+".txt");
     } catch (InvalidInput &error) {
         cout << error.getMsg() << endl;
         return 1;
