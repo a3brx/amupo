@@ -16,9 +16,12 @@ Time::Time(char h, char m) {
     this->minute = m;
 }
 
-Time::Time(string str) {
+Time::Time(string &str) {
     if (!isTime(str)) throw InvalidTime(str);
-    if ()
+    vector<string> aux;
+    aux = trim(split(str, ":"));
+    hour = stoi(aux.at(0));
+    minute = stoi(aux.at(1));
 }
 
 char Time::getHour() const {
@@ -48,13 +51,22 @@ istream &operator>>(istream &in, Time &t) {
     in >> timeStr;
     if (!isTime(timeStr)) throw InvalidTime(timeStr);
     t = Time(timeStr);
+    return in;
 }
 
-bool isTime(string str) {
+ostream &operator<<(ostream &out, const Time &t) {
+    string h = to_string(t.hour), m = to_string(t.minute);
+    if (t.hour < 10) h = "0" + h;
+    if (t.minute < 10) m = "0" + m;
+    out << h << ":" << m;
+    return out;
+}
+
+bool isTime(const string &str) {
     vector<string> aux;
-    aux = trim(split(str));
+    aux = trim(split(str, ":"));
     if (aux.size() != 2) return false;
     if (!isNum(aux.at(0)) || !isNum(aux.at(1))) return false;
     char h = stoi(aux.at(0)), m = stoi(aux.at(1));
-    return (h < 0 || h >= 24 || m < 0 || m >= 60);
+    return (h >= 0 && h < 24 && m >= 0 && m < 60);
 }

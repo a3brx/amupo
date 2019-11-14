@@ -73,7 +73,7 @@ System::System(const string &fileName) {
         try {
             file >> &e;
         }
-        catch (InvalidInput) {
+        catch (...) {
             throw InvalidInput("Error reading events!");
         }
         this->events.push_back(e);
@@ -182,7 +182,7 @@ vector<Museum *> System::getMuseums() const {
 }
 
 vector<Event *>::const_iterator System::findEvent(string name, const Date &date) const {
-    auto *tempE = new Event(nullptr, date, 0, move(name));
+    auto *tempE = new Event(nullptr, date, 0, move(name), Time());
     for (auto event = events.begin(); event != events.end(); ++event) {
         if (*tempE == **event)
             return event;
@@ -324,19 +324,19 @@ void System::createClient() {
     if (bday - Date() > 65 * 365) {
         SilverClient *tempS = new SilverClient(name, Date(), bday, address, stoi(contact));
         this->people.push_back(tempS);
-        cout << "Registered the client as Silver\n";
+        cout << "Registered the client as Silver with success!\n";
         return;
     }
     bool uni = stoi(getInput(isYorN, "Does the client go to University? (1-True/0-False)", "Invalid Response"));
     if (uni) {
         UniClient *tempU = new UniClient(name, Date(), bday, address, stoi(contact));
         this->people.push_back(tempU);
-        cout << "Registered the client as Uni\n";
+        cout << "Registered the client as Uni with success!\n";
         return;
     }
     IndividualClient *tempI = new IndividualClient(name, Date(), bday, address, stoi(contact));
     this->people.push_back(tempI);
-    cout << "Registered the client as Individual\n";
+    cout << "Registered the client as Individual with success!\n";
     return;
 }
 
@@ -412,7 +412,7 @@ void System::createEvent(Event *ev) {
 }
 
 void System::createEvent() {
-    string name, dateStr, price, musName;
+    string name, dateStr, price, musName, timeStr;
     Date date;
     Museum *mus;
     while (true) {
@@ -425,6 +425,7 @@ void System::createEvent() {
         }
         break;
     }
+    timeStr = getInput(isTime, "Time of the Event (Format: HH:MM): ", "Invalid Time");
     while (true) {
         cout << "Place of the event: ";
         getline(cin, musName);
@@ -436,8 +437,9 @@ void System::createEvent() {
     }
     mus = *(findMuseum(musName));
     price = getInput(isNum, "Price: ", "Invalid Price");
-    Event *tempE = new Event(mus, date, (float) stof(price), name);
+    Event *tempE = new Event(mus, date, (float) stof(price), name, Time(timeStr));
     events.push_back(tempE);
+    cout << "Created event with success!" << endl;
 }
 
 void System::createMuseum() {
@@ -465,6 +467,7 @@ void System::createMuseum() {
     inputAddress(address);
     Museum *tempM = new Museum(address, stoi(capStr), name);
     museums.push_back(tempM);
+    cout << "Created Museum with success!" << endl;
 }
 
 void System::createMuseum(Museum *mus) {

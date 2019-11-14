@@ -17,7 +17,7 @@ public:
 
     Time(char h, char m);
 
-    Time(string str);
+    Time(string &str);
 
     char getHour() const;
 
@@ -25,6 +25,7 @@ public:
 
     friend Time operator-(Time &left, Time &right);
 
+    friend ostream &operator<<(ostream &out, const Time &t);
     friend istream &operator>>(istream &in, Time &t);
 };
 
@@ -36,7 +37,7 @@ public:
 
     InvalidTime(string str) {
         vector<string> aux;
-        aux = trim(split(str));
+        aux = trim(split(str, ":"));
         if (aux.size() != 2) {
             this->minute = -1;
             this->hour = -1;
@@ -54,5 +55,5 @@ public:
     }
 };
 
-bool isTime(string str);
+bool isTime(const string &str);
 

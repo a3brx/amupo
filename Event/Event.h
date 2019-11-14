@@ -16,7 +16,8 @@ class Event{
     Time time;
 
     public:
-    Event(Museum * mus, Date date, float price, string name);  //por data como soldTickets(nao me lembro do nome)
+    Event(Museum *mus, Date date, float price, string name,
+          Time time);  //por data como soldTickets(nao me lembro do nome)
     Event(const Event &ev);
     string getName();
     Museum * getMuseum();
@@ -28,6 +29,7 @@ class Event{
     void setPrice(float p);
 
     friend ostream & operator<<(ostream & out, const Event & event);
+
     friend istream &operator>>(istream &in, Event **event);
 
     friend bool operator==(Event &left, Event &right);
