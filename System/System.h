@@ -29,11 +29,6 @@ public:
     explicit System(const string &fileName);
 
     /// @brief Writes the new information of the system on the files and frees the memory from the objects created during the execution of the program.
-    /// @brief Creates a new system with the information provided by the file.
-    /// @param fileName The path to the file where the information is stored.
-    explicit System(const string &fileName);
-
-    /// @brief Writes the new information of the system on the files and frees the memory from the objects created during the execution of the program.
     ~System();
 
     /// @return Returns a vector with the events of the system.
