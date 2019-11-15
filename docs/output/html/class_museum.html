@@ -88,8 +88,10 @@
         <div class="center">
             <img src="class_museum.png" usemap="#Museum_map" alt=""/>
             <map id="Museum_map" name="Museum_map">
-                <area href="class_existing_museum.html" alt="ExistingMuseum" shape="rect" coords="0,56,102,80"/>
-                <area href="class_invalid_museum.html" alt="InvalidMuseum" shape="rect" coords="112,56,214,80"/>
+                <area href="class_existing_museum.html" title="Existing Museum Exception." alt="ExistingMuseum"
+                      shape="rect" coords="0,56,102,80"/>
+                <area href="class_invalid_museum.html" title="invalid Museum Exception" alt="InvalidMuseum" shape="rect"
+                      coords="112,56,214,80"/>
             </map>
         </div>
     </div>
@@ -102,7 +104,8 @@
             <td class="memItemLeft" align="right" valign="top">&#160;</td>
             <td class="memItemRight" valign="bottom"><a class="el"
                                                         href="class_museum.html#a2e563a48f09335338deab683a29d6a7e">Museum</a>
-                (<a class="el" href="class_address.html">Address</a> adr, unsigned cap, string name)
+                (<a class="el" href="class_address.html">Address</a> adr, unsigned cap, string <a class="el"
+                                                                                                  href="class_museum.html#a885d6bf39b31f7dd9687bb8b4593a460">name</a>)
             </td>
         </tr>
         <tr class="memdesc:a2e563a48f09335338deab683a29d6a7e">
@@ -178,7 +181,7 @@
             <td class="memItemLeft" align="right" valign="top">void&#160;</td>
             <td class="memItemRight" valign="bottom"><a class="el"
                                                         href="class_museum.html#af4d3d61638fe0c80098a95c213c27d0d">setName</a>
-                (string name)
+                (string <a class="el" href="class_museum.html#a885d6bf39b31f7dd9687bb8b4593a460">name</a>)
             </td>
         </tr>
         <tr class="memdesc:af4d3d61638fe0c80098a95c213c27d0d">
@@ -229,7 +232,14 @@
             <td class="memItemLeft" align="right" valign="top"><a id="abd3bc227929d1f633833b60690f1fc47"></a>
                 bool&#160;
             </td>
-            <td class="memItemRight" valign="bottom"><b>valid</b> = true</td>
+            <td class="memItemRight" valign="bottom"><a class="el"
+                                                        href="class_museum.html#abd3bc227929d1f633833b60690f1fc47">valid</a>
+                = true
+            </td>
+        </tr>
+        <tr class="memdesc:abd3bc227929d1f633833b60690f1fc47">
+            <td class="mdescLeft">&#160;</td>
+            <td class="mdescRight">True if the museum is active on the system. <br/></td>
         </tr>
         <tr class="separator:abd3bc227929d1f633833b60690f1fc47">
             <td class="memSeparator" colspan="2">&#160;</td>
@@ -238,7 +248,13 @@
             <td class="memItemLeft" align="right" valign="top"><a id="a885d6bf39b31f7dd9687bb8b4593a460"></a>
                 string&#160;
             </td>
-            <td class="memItemRight" valign="bottom"><b>name</b></td>
+            <td class="memItemRight" valign="bottom"><a class="el"
+                                                        href="class_museum.html#a885d6bf39b31f7dd9687bb8b4593a460">name</a>
+            </td>
+        </tr>
+        <tr class="memdesc:a885d6bf39b31f7dd9687bb8b4593a460">
+            <td class="mdescLeft">&#160;</td>
+            <td class="mdescRight">The name of the museum. <br/></td>
         </tr>
         <tr class="separator:a885d6bf39b31f7dd9687bb8b4593a460">
             <td class="memSeparator" colspan="2">&#160;</td>
@@ -247,7 +263,13 @@
             <td class="memItemLeft" align="right" valign="top"><a id="aa600f14466974d42209453b92feac226"></a>
                 <a class="el" href="class_address.html">Address</a>&#160;
             </td>
-            <td class="memItemRight" valign="bottom"><b>address</b></td>
+            <td class="memItemRight" valign="bottom"><a class="el"
+                                                        href="class_museum.html#aa600f14466974d42209453b92feac226">address</a>
+            </td>
+        </tr>
+        <tr class="memdesc:aa600f14466974d42209453b92feac226">
+            <td class="mdescLeft">&#160;</td>
+            <td class="mdescRight">The address of the museum. <br/></td>
         </tr>
         <tr class="separator:aa600f14466974d42209453b92feac226">
             <td class="memSeparator" colspan="2">&#160;</td>
@@ -256,7 +278,13 @@
             <td class="memItemLeft" align="right" valign="top"><a id="abe5bce3f332e8c3286d2dc04f5096257"></a>
                 unsigned&#160;
             </td>
-            <td class="memItemRight" valign="bottom"><b>capacity</b></td>
+            <td class="memItemRight" valign="bottom"><a class="el"
+                                                        href="class_museum.html#abe5bce3f332e8c3286d2dc04f5096257">capacity</a>
+            </td>
+        </tr>
+        <tr class="memdesc:abe5bce3f332e8c3286d2dc04f5096257">
+            <td class="mdescLeft">&#160;</td>
+            <td class="mdescRight">The capacity of the museum. <br/></td>
         </tr>
         <tr class="separator:abe5bce3f332e8c3286d2dc04f5096257">
             <td class="memSeparator" colspan="2">&#160;</td>
@@ -388,7 +416,9 @@
                     <table class="params">
                         <tr>
                             <td class="paramname">adr</td>
-                            <td><a class="el" href="class_address.html">Address</a> of the museum</td>
+                            <td><a class="el" href="class_address.html" title="The Address class.">Address</a> of the
+                                museum
+                            </td>
                         </tr>
                         <tr>
                             <td class="paramname">cap</td>
@@ -713,6 +743,7 @@
         <div class="memdoc">
 
             <p>Compares the name of two objects. </p>
+            <p>Tests if a class object name is equal to another.</p>
             <dl class="tparams">
                 <dt>Template Parameters</dt>
                 <dd>
@@ -742,21 +773,6 @@
             <dl class="section return">
                 <dt>Returns</dt>
                 <dd>Returns true if the names of the objects are equal</dd>
-            </dl>
-            <dl class="params">
-                <dt>Parameters</dt>
-                <dd>
-                    <table class="params">
-                        <tr>
-                            <td class="paramname">left</td>
-                            <td>One of the event that will be tested.</td>
-                        </tr>
-                        <tr>
-                            <td class="paramname">right</td>
-                            <td>The other event that will be tested.</td>
-                        </tr>
-                    </table>
-                </dd>
             </dl>
 
         </div>

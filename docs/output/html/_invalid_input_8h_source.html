@@ -83,34 +83,71 @@
         <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span>
         </div>
         <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
-        <div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="class_invalid_input.html">    5</a></span>&#160;<span
+        <div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="class_invalid_input.html">    6</a></span>&#160;<span
                 class="keyword">class </span><a class="code" href="class_invalid_input.html">InvalidInput</a> : <span
                 class="keyword">public</span> std::exception {
         </div>
-        <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span
+        <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span
                 class="keyword">private</span>:
         </div>
-        <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; std::string msg;</div>
-        <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span
+        <div class="line"><a name="l00009"></a><span class="lineno"><a class="line"
+                                                                       href="class_invalid_input.html#abfa01bec2c885d8438e783ffc4af9ae0">    9</a></span>&#160;
+            std::string <a class="code" href="class_invalid_input.html#abfa01bec2c885d8438e783ffc4af9ae0">msg</a>;
+        </div>
+        <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span
                 class="keyword">public</span>:
         </div>
-        <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; <a class="code"
-                                                                                          href="class_invalid_input.html">InvalidInput</a>(std::string
-            msg) : msg(move(msg)) {};
+        <div class="line"><a name="l00013"></a><span class="lineno"><a class="line"
+                                                                       href="class_invalid_input.html#a4f702987230dcf8486e3834f68d4612c">   13</a></span>&#160;
+            <a class="code" href="class_invalid_input.html#a4f702987230dcf8486e3834f68d4612c">InvalidInput</a>(std::string
+            <a class="code" href="class_invalid_input.html#abfa01bec2c885d8438e783ffc4af9ae0">msg</a>) : <a class="code"
+                                                                                                            href="class_invalid_input.html#abfa01bec2c885d8438e783ffc4af9ae0">msg</a>(move(<a
+                    class="code" href="class_invalid_input.html#abfa01bec2c885d8438e783ffc4af9ae0">msg</a>)) {};
         </div>
-        <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-        <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; <a class="code"
-                                                                                          href="class_invalid_input.html">InvalidInput</a>()
+        <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+        <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; <a class="code"
+                                                                                          href="class_invalid_input.html#aaa8b2ee65231eeb253acbfcaae0cf741">InvalidInput</a>()
             = <span class="keywordflow">default</span>;
         </div>
-        <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; std::string getMsg() { <span
-                class="keywordflow">return</span> this-&gt;msg; }
+        <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+        <div class="line"><a name="l00020"></a><span class="lineno"><a class="line"
+                                                                       href="class_invalid_input.html#a2e7ed7d9f24bbe1d1089361d34d4b901">   20</a></span>&#160;
+            std::string <a class="code" href="class_invalid_input.html#a2e7ed7d9f24bbe1d1089361d34d4b901">getMsg</a>() {
+            <span class="keywordflow">return</span> this-&gt;<a class="code"
+                                                                href="class_invalid_input.html#abfa01bec2c885d8438e783ffc4af9ae0">msg</a>;
+            }
         </div>
-        <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;};</div>
+        <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;};</div>
     </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclass_invalid_input_html">
     <div class="ttname"><a href="class_invalid_input.html">InvalidInput</a></div>
-    <div class="ttdef"><b>Definition:</b> InvalidInput.h:5</div>
+    <div class="ttdoc">Invalid Input Exception.</div>
+    <div class="ttdef"><b>Definition:</b> InvalidInput.h:6</div>
+</div>
+<div class="ttc" id="aclass_invalid_input_html_a4f702987230dcf8486e3834f68d4612c">
+    <div class="ttname"><a
+            href="class_invalid_input.html#a4f702987230dcf8486e3834f68d4612c">InvalidInput::InvalidInput</a></div>
+    <div class="ttdeci">InvalidInput(std::string msg)</div>
+    <div class="ttdoc">Constructs an InvalidInput exception.</div>
+    <div class="ttdef"><b>Definition:</b> InvalidInput.h:13</div>
+</div>
+<div class="ttc" id="aclass_invalid_input_html_aaa8b2ee65231eeb253acbfcaae0cf741">
+    <div class="ttname"><a
+            href="class_invalid_input.html#aaa8b2ee65231eeb253acbfcaae0cf741">InvalidInput::InvalidInput</a></div>
+    <div class="ttdeci">InvalidInput()=default</div>
+    <div class="ttdoc">Construct an InvalidInput exception with an empty msg.</div>
+</div>
+<div class="ttc" id="aclass_invalid_input_html_abfa01bec2c885d8438e783ffc4af9ae0">
+    <div class="ttname"><a href="class_invalid_input.html#abfa01bec2c885d8438e783ffc4af9ae0">InvalidInput::msg</a></div>
+    <div class="ttdeci">std::string msg</div>
+    <div class="ttdoc">The msg to be displayed when this exception occurs.</div>
+    <div class="ttdef"><b>Definition:</b> InvalidInput.h:9</div>
+</div>
+<div class="ttc" id="aclass_invalid_input_html_a2e7ed7d9f24bbe1d1089361d34d4b901">
+    <div class="ttname"><a href="class_invalid_input.html#a2e7ed7d9f24bbe1d1089361d34d4b901">InvalidInput::getMsg</a>
+    </div>
+    <div class="ttdeci">std::string getMsg()</div>
+    <div class="ttdef"><b>Definition:</b> InvalidInput.h:20</div>
 </div>
 <!-- start footer part -->
 <hr class="footer"/>

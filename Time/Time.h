@@ -24,8 +24,11 @@ public:
     char getMinute() const;
 
     friend Time operator-(Time left, Time right);
+
     friend bool operator<(Time left, Time right);
+
     friend ostream &operator<<(ostream &out, const Time &t);
+
     friend istream &operator>>(istream &in, Time &t);
 
     friend bool futureTimeInSameDay(Time time);
@@ -39,7 +42,7 @@ class InvalidTime : public exception {
 public:
     InvalidTime(char h, char m) : hour(h), minute(m) {}
 
-    explicit InvalidTime(const string& str) {
+    explicit InvalidTime(const string &str) {
         vector<string> aux;
         aux = trim(split(str, ":"));
         if (aux.size() != 2) {

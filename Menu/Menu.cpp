@@ -269,55 +269,56 @@ UpdateMuseumMenu::UpdateMuseumMenu(System *system) : Menu(system) {
             }
                 break;
             case 'C' : {
-                unsigned cap=stoi(getInput(isNum, "Introduce the new museum capacity:", "Invalid capacity"));
-                if (cap > (*mus)->getCapacity()){
+                unsigned cap = stoi(getInput(isNum, "Introduce the new museum capacity:", "Invalid capacity"));
+                if (cap > (*mus)->getCapacity()) {
                     (*mus)->setCapacity(cap);
-                    cout<<"Museum new capacity changed successfully!"<<endl;
+                    cout << "Museum new capacity changed successfully!" << endl;
                     pause();
                     clear();
                     return;
-                }else if(cap == (*mus)->getCapacity()){
-                    cout<<"Museum new capacity has to be a different from current one!"<<endl;
+                } else if (cap == (*mus)->getCapacity()) {
+                    cout << "Museum new capacity has to be a different from current one!" << endl;
                     pause();
                     clear();
                     return;
-                }else{
+                } else {
                     string yesno;
-                    cout<<"Are you sure you want to change the museum capacity to a lower one ?\nThis may lead to ticket refunds since there isn't enough capacity.";
-                    cout<<"Input Y to continue or press other key to cancel: ";
-                    getline(cin,yesno);
-                    if(yesno=="Y") {
+                    cout
+                            << "Are you sure you want to change the museum capacity to a lower one ?\nThis may lead to ticket refunds since there isn't enough capacity.";
+                    cout << "Input Y to continue or press other key to cancel: ";
+                    getline(cin, yesno);
+                    if (yesno == "Y") {
                         vector<Event *>::iterator it;
                         vector<Event *> eventsInMus;
-                        for(auto it=sys->events.begin();it!=sys->events.end();it++) {
+                        for (auto it = sys->events.begin(); it != sys->events.end(); it++) {
                             if ((*it)->getMuseum() == (*mus)) {
                                 eventsInMus.push_back(*it);
                             }
                         }
-                        if(eventsInMus.size()==0){
-                            cout<<"Museum new capacity changed successfully!"<<endl;
+                        if (eventsInMus.size() == 0) {
+                            cout << "Museum new capacity changed successfully!" << endl;
                             pause();
                             clear();
                             return;
                         }
                         vector<Ticket *>::reverse_iterator its;
-                        for (its = sys->soldTickets.rbegin(); its != sys->soldTickets.rend(); its++){
-                            auto auxEvent = firstInSecond((*its)->getEvent(),eventsInMus);
-                            if(auxEvent!= nullptr){
-                                if(sys->getEventSoldTickets(auxEvent) > cap){
+                        for (its = sys->soldTickets.rbegin(); its != sys->soldTickets.rend(); its++) {
+                            auto auxEvent = firstInSecond((*its)->getEvent(), eventsInMus);
+                            if (auxEvent != nullptr) {
+                                if (sys->getEventSoldTickets(auxEvent) > cap) {
                                     sys->soldTickets.erase(sys->findTicket(*its));
                                 }
                             }
                         }
                         (*mus)->setCapacity(cap);
-                    }else{
-                        cout<<"Operation canceled."<<endl;
+                    } else {
+                        cout << "Operation canceled." << endl;
                         pause();
                         clear();
                         return;
                     }
                 }
-                cout<<"Museum capacity change successfully!"<<endl;
+                cout << "Museum capacity change successfully!" << endl;
                 pause();
                 clear();
             }
@@ -446,24 +447,25 @@ UpdateEventMenu::UpdateEventMenu(System *system) : Menu(system) {
                     return;
                 }
                 Museum *mus = *sys->findMuseum(local);
-                if((*eve)->getMuseum()->getCapacity()>(*mus).getCapacity()){
+                if ((*eve)->getMuseum()->getCapacity() > (*mus).getCapacity()) {
                     string yesno;
-                    cout<<"Changing the event to a location with lower capacity can cause problems with sold tickets."<<endl;
-                    cout<<"If you which to continue and refund tickets enter Y:";
-                    getline(cin,yesno);
-                    if(yesno=="Y"){
+                    cout << "Changing the event to a location with lower capacity can cause problems with sold tickets."
+                         << endl;
+                    cout << "If you which to continue and refund tickets enter Y:";
+                    getline(cin, yesno);
+                    if (yesno == "Y") {
                         (*eve)->setMuseum((mus));
                         vector<Ticket *>::reverse_iterator its;
-                        for (its = sys->soldTickets.rbegin(); its != sys->soldTickets.rend(); its++){
-                            if(*((*its)->getEvent())==*(*eve)){
-                                if(sys->getEventSoldTickets((*eve)) > (*eve)->getMuseum()->getCapacity()){
+                        for (its = sys->soldTickets.rbegin(); its != sys->soldTickets.rend(); its++) {
+                            if (*((*its)->getEvent()) == *(*eve)) {
+                                if (sys->getEventSoldTickets((*eve)) > (*eve)->getMuseum()->getCapacity()) {
                                     sys->soldTickets.erase(sys->findTicket(*its));
                                 }
                             }
                         }
 
-                    }else{
-                        cout<<"Operation canceled."<<endl;
+                    } else {
+                        cout << "Operation canceled." << endl;
                         pause();
                         clear();
                     }
@@ -477,19 +479,21 @@ UpdateEventMenu::UpdateEventMenu(System *system) : Menu(system) {
             }
                 break;
             case 'P' : {
-                float p = stof(getInput(isNum,"Introduce the new ticket price.","Invalid input for ticket price"));
+                float p = stof(getInput(isNum, "Introduce the new ticket price.", "Invalid input for ticket price"));
                 (*eve)->setPrice(p);
                 cout << "Ticket price changed successfully!";
                 pause();
                 clear();
-            }break;
-            case 'T':{
+            }
+                break;
+            case 'T': {
                 string time = getInput(isTime, "Input the new time of the event", "Invalid type format");
                 (*eve)->setTime(Time(time));
                 cout << "Event time changed successfully!";
                 pause();
                 clear();
-            }break;
+            }
+                break;
             case 'G' : {
                 clear();
                 return;
@@ -509,6 +513,11 @@ vector<vector<string>> UpdateEventMenu::getOptions() const {
                                    {"G", "Go Back"}});
 }
 
+/// @brief Compares the name of two objects
+/// @tparam T The class of the objects
+/// @param left The first object to be tested
+/// @param right The second object to be tested
+/// @return Returns true if the names of the objects are equal
 template<class T>
 bool compareName(T left, T right) {
     return trim(upper(left->name)) < trim(upper(right->name));
@@ -553,8 +562,8 @@ ReadEventMenu::ReadEventMenu(System *system) : ReadMenu<Event>(system) {
                 auto d1 = Date(getInput(isDate, "Type the First Date: ", "Invalid Date."));
                 auto d2 = Date(getInput(isDate, "Type the Second Date: ", "Invalid Date."));
                 vector<Event *> newVector;
-                for(auto x : this->toRead)
-                    if(x->getDate() >= d1 && x->getDate() <= d2)
+                for (auto x : this->toRead)
+                    if (x->getDate() >= d1 && x->getDate() <= d2)
                         newVector.push_back(x);
                 this->toRead = newVector;
                 sys->readEvents(this->toRead);
@@ -566,8 +575,8 @@ ReadEventMenu::ReadEventMenu(System *system) : ReadMenu<Event>(system) {
                 float c1 = stof(getInput(isNum, "Type the Lowest Price: ", "Invalid Price."));
                 float c2 = stof(getInput(isNum, "Type the Highest Price: ", "Invalid Price."));
                 vector<Event *> newVector;
-                for(auto x : this->toRead)
-                    if(x->getPrice() >= c1 && x->getPrice() <= c2)
+                for (auto x : this->toRead)
+                    if (x->getPrice() >= c1 && x->getPrice() <= c2)
                         newVector.push_back(x);
                 this->toRead = newVector;
                 sys->readEvents(this->toRead);
@@ -721,7 +730,7 @@ FinanceMenu::FinanceMenu(System *system) : Menu(system) {
         case 'A' : {
             double rev;
             rev = sys->anualRevenue();
-            cout << "The total Revenue in the last 12 months was " << rev  << " Euros" << endl;
+            cout << "The total Revenue in the last 12 months was " << rev << " Euros" << endl;
             pause();
             clear();
         }

@@ -11,10 +11,14 @@
 
 using namespace std;
 
+/// @brief The Date Class
 class Date {
 private:
+    /// @brief The day of the Date
     unsigned char day;
+    /// @brief The month of the Date
     unsigned char month;
+    /// @brief The year of the Date
     unsigned short year;
 public:
     /// @brief Constructs a Date equal to the actual date.
@@ -40,7 +44,7 @@ public:
 
     /// @brief Constructs a Date from a string.
     /// @param s A string in the format "DD-MM-YYYY".
-    explicit Date(const string & s);
+    explicit Date(const string &s);
 
     /// @brief Gets the day of a Date.
     /// @return The day attribute of the Date.
@@ -113,8 +117,17 @@ public:
     /// @return Returns true if the dates are different, false otherwise.
     bool operator!=(const Date param) const;
 
-    friend ostream &operator<<(ostream & out, const Date & date);
-    friend istream &operator>>(istream & in, Date & date);
+    /// @brief Outputs a date in the DD-MM-YYYY format
+    /// @param out The ostream that will receive the information of the Date
+    /// @param date The Date that will have its information send
+    /// @return Returns the ostream object itself
+    friend ostream &operator<<(ostream &out, const Date &date);
+
+    /// @brief Inputs a date in the DD-MM-YYYY format from a istream object
+    /// @param in The istream that has the information of the Date
+    /// @param date The Date that will be changed based on the istream
+    /// @return Returns the istream object itself
+    friend istream &operator>>(istream &in, Date &date);
 };
 
 /// @param year The year to test.
@@ -129,7 +142,7 @@ bool validDate(unsigned char day, unsigned char month, unsigned short year);
 
 /// @param date The date in the DD-MM-YYYY form.
 /// @return Returns true if tha date is possible in the Gregorian calendar.
-bool isDate(const string& date);
+bool isDate(const string &date);
 
 /// @param month The month to verify.
 /// @return Returns the number of days of that month in a non-leap year.
@@ -147,18 +160,25 @@ unsigned abs(const Date date);
 /// @return Returns the date that is after a number of days since the epoch
 Date date(unsigned days);
 
+/// @param date The date to be tested
+/// @param time The time to be tested
+/// @return True if the datetime is in the future
 bool futureDate(Date date, Time time);
 
+/// @param date The date to be tested
+/// @param time The time to be tested
+/// @return True if the datetime will happen in the next 8 hours
 bool future8hours(Date date, Time time);
 
+/// @brief The Invalid Date exception
 class InvalidDate : public exception {
 private:
     unsigned char day;
     unsigned char month;
     unsigned short year;
 public:
-    InvalidDate(unsigned char d, unsigned char m, unsigned short y):
-        day(d), month(m), year(y) {};
+    InvalidDate(unsigned char d, unsigned char m, unsigned short y) :
+            day(d), month(m), year(y) {};
 
     InvalidDate(string s) {
         unsigned char day = stoi(s.substr(0, 2));

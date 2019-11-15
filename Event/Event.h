@@ -126,7 +126,9 @@ public:
 ///@brief Happens when you try to sell a ticket to a full event.
 class OverBookedEvent : public exception {
 private:
+    /// @brief The memory address of the museum that is full
     Museum *museum;
+    /// @brief The number of sold tickets
     unsigned soldTickets;
 public:
     ///@brief Constructs a overbooked event.

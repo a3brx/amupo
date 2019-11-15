@@ -39,7 +39,7 @@ public:
     float getPrice() const;
 
     ///@brief Changes the price of a ticket
-    ///@param New price of the ticket
+    ///@param price New price of the ticket
     void setPrice(float price);
 
     ///@brief Operator == overload
