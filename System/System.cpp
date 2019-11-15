@@ -552,10 +552,17 @@ void System::sellTicket() {
         event = *finderE;
         break;
     }
-    sellTicket(event, buyer);
+    try {
+        sellTicket(event, buyer);
+    }
+    catch (PastEvent) {
+        cout << "You cant buy a ticket for this event. It already happened!" << endl;
+        return;
+    }
 }
 
 void System::sellTicket(Event *event, Person *person) {
+    if (!futureDate(event->getDate(), event->getTime())) throw PastEvent(event);
     unsigned newSoldTickets = getEventSoldTickets(event);
     if (event->getMuseum()->capacity < newSoldTickets) {
         throw OverBookedEvent(event->getMuseum(), newSoldTickets);
@@ -694,8 +701,7 @@ void System::velho() {
     Date atualDate;
     auto it = events.begin(), itl = events.end();
     for (; it != itl; it++) {
-        bool cond = ((*it)->getTime() - atual).getHour() <= 7;
-        cond = cond && (((*it)->getDate() - atualDate) <= 1);
+        bool cond = future8hours((*it)->getDate(), (*it)->getTime());
         cond = cond && (getEventSoldTickets(*it) < 0.5 * (*it)->getMuseum()->capacity);
         if (cond) {
             eventsIn8Hours.push_back(*it);
@@ -708,6 +714,7 @@ void System::velho() {
         for (; it != itl; it++) {
             if (eligibleSilverClient(*it, *ite))
                 eligible.push_back(*it);
+
         }
         if (eligible.size() != 0) {
             cout << endl << "This Event is happening in 8 hours!" << endl;
@@ -721,9 +728,9 @@ void System::velho() {
     cout << endl;
 }
 
-vector<Ticket *>::const_iterator System::findTicket(Ticket *ticket) {
+vector<Ticket *>::const_iterator System::findTicket(Ticket *ticket) const {
     for(auto tick=soldTickets.begin();tick!=soldTickets.end();tick++){
-        if((*tick)==ticket){
+        if (*(*tick) == *ticket) {
             return tick;
         }
     }
@@ -738,6 +745,8 @@ void System::readEvent(Event *ev) const {
 }
 
 bool System::eligibleSilverClient(Person *person, Event *ev) const {
+    auto finder = findTicket(new Ticket(ev, person));
+    if (finder != soldTickets.end()) return false;
     if (person->getAge() < 65) return false;
     return (person->getAddress().getLocality() == ev->getMuseum()->getAddress().getLocality());
 }

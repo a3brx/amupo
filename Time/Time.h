@@ -24,10 +24,11 @@ public:
     char getMinute() const;
 
     friend Time operator-(Time left, Time right);
-
     friend bool operator<(Time left, Time right);
     friend ostream &operator<<(ostream &out, const Time &t);
     friend istream &operator>>(istream &in, Time &t);
+
+    friend bool futureTimeInSameDay(Time time);
 };
 
 class InvalidTime : exception {
@@ -59,3 +60,4 @@ public:
 
 bool isTime(const string &str);
 
+bool futureTimeInSameDay(Time time);

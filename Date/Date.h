@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include "../utils/utils.h"
+#include "../Time/Time.h"
 
 #define EPOCH 1900
 
@@ -145,6 +146,10 @@ unsigned abs(const Date date);
 /// @param days The number of days since the epoch.
 /// @return Returns the date that is after a number of days since the epoch
 Date date(unsigned days);
+
+bool futureDate(Date date, Time time);
+
+bool future8hours(Date date, Time time);
 
 class InvalidDate : public exception {
 private:

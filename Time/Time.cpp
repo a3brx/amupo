@@ -70,3 +70,20 @@ bool isTime(const string &str) {
     char h = stoi(aux.at(0)), m = stoi(aux.at(1));
     return (h >= 0 && h < 24 && m >= 0 && m < 60);
 }
+
+bool futureTimeInSameDay(Time time) {
+    Time atual;
+    if (atual.hour > time.hour) return true;
+    else if (atual.hour == time.hour) {
+        if (atual.minute >= time.minute) return true;
+    }
+    return false;
+}
+
+bool operator<(Time left, Time right) {
+    if (left.hour < right.hour) return true;
+    else if (left.hour == right.hour) {
+        if (left.minute < right.minute) return false;
+    }
+    return false;
+}

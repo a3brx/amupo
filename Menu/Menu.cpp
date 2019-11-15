@@ -60,6 +60,7 @@ MainMenu::MainMenu(System *system) : Menu(system) {
                 break;
             case 'S':
                 sys->sellTicket();
+                call = new MainMenu(system);
                 break;
             case 'F': {
                 call = new FinanceMenu(system);
@@ -98,7 +99,12 @@ EventMenu::EventMenu(System *system) : Menu(system) {
                 break;
             case 'U' : {
                 clear();
-                new UpdateEventMenu(system);
+                try {
+                    new UpdateEventMenu(system);
+                }
+                catch (PastEvent) {
+                    cout << "You can´t change an event that already happened!" << endl;
+                }
             }
                 break;
             case 'D' : {
@@ -399,13 +405,15 @@ UpdateEventMenu::UpdateEventMenu(System *system) : Menu(system) {
     getline(cin, aux);
     aux2 = getInput(isDate, "Introduce a start date (Format: DD/MM/YYYY): ", "Invalid Date");
     Date bday = Date(aux2);
+
     if (sys->findEvent(aux, bday) == sys->events.end()) {
-        cout << "This Event doesn't exist!";
+        cout << "This Event doesn't exist!\n";
         pause();
         clear();
         return;
     }
     auto eve = sys->findEvent(aux, bday);
+    if (!futureDate(bday, (*eve)->getTime())) throw PastEvent(*eve);
     while (true) {
         this->nextMenu = this->option();
         switch (this->nextMenu) {

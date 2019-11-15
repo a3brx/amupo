@@ -360,3 +360,29 @@ Date date(unsigned days) {
     Date result(days, month, year);
     return result;
 }
+
+
+bool futureDate(Date date, Time time) {
+    Date atual;
+    Time atualT;
+    long days1 = abs(date), days2 = abs(atual);
+    long days = days1 - days2;
+    if (days > 0) return true;
+    else if (days == 0) {
+        if (atualT < time) return true;
+    }
+    return false;
+}
+
+bool future8hours(Date date, Time time) {
+    Date atual;
+    Time atualT;
+    long days = abs(date) - abs(atual);
+    if (days == 0) {
+        if ((time - atualT).getHour() < 8) return true;
+    } else if (days == 1) {
+        if ((atualT - time).getHour() < 8) return true;
+    }
+    return false;
+}
+

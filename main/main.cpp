@@ -29,6 +29,3 @@ int main(){
     delete sys;
     return 0;
 }
-//uni - 140
-//ind - 116
-//

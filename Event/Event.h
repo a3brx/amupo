@@ -65,11 +65,8 @@ private:
     float price;
 public:
     InvalidEvent(string nm, Date dt, float price) : name(nm), date(dt), price(price) {}
-
     string getName() const { return this->name; }
-
     Date getDate() const { return this->date; }
-
     float getPrice() const { return price; }
 };
 
@@ -78,3 +75,9 @@ public:
     ExistingEvent(Event ev) : Event(ev) {}
 
 };
+
+class PastEvent : public exception, public Event {
+public:
+    PastEvent(Event ev) : Event(ev) {}
+};
+

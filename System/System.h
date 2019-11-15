@@ -65,7 +65,8 @@ public:
     /// @param name A string equal to the name of the museum. Not case sensitive.
     /// @return Returns a iterator to the Museum, museums.end() otherwise.
     vector<Museum*>::const_iterator findMuseum(const string &name) const;
-    vector<Ticket*>::const_iterator findTicket(Ticket *ticket);
+
+    vector<Ticket *>::const_iterator findTicket(Ticket *ticket) const;
 
     /// @brief Reads the information via console and creates a new Event with those attributes.
     void createEvent();

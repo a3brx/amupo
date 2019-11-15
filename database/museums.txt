@@ -7,6 +7,6 @@ Largo Dr. Jose Rodrigues, 0 3000-248 Coimbra
 1 | Museu Romantico da Quinta da Macieirinha | 200
 Rua de Entre-Quintas, 220 4050-240 Porto 
 1 | Museu Soares dos Reis | 2000
-Rua de Dom Manuel II, 44 4050-342 Porto
+Rua de Dom Manuel II, 44 4050-342 Porto 
 1 | Altice Arena | 10000
-Rua de Lisboa, 115 1100-281 Lisboa
+Rua de Lisboa, 115 1100-281 Lisboa 
