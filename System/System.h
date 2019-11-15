@@ -12,7 +12,7 @@
 #include "../utils/InvalidInput.h"
 
 
-
+///C
 class System{
 private:
     friend class Menu;
@@ -28,7 +28,7 @@ public:
 
     /// @brief Creates a new system with the information provided by the file.
     /// @param fileName The path to the file where the information is stored.
-    ///@param password for the login.
+    ///@param password for the logon.
     explicit System(const string &fileName/*,const string pass*/);
 
     /// @brief Writes the new information of the system on the files and frees the memory from the objects created during the execution of the program.

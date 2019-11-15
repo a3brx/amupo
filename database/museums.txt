@@ -1,4 +1,4 @@
-1 | Museu do Teste | 3
+1 | Museu do Teste | 1
 Rua da FEUP, 213 2132-123 Paranhos 
 1 | Museu dos Biscainhos | 122
 Rua dos Biscainhos, 0 4700-415 Braga 

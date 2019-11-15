@@ -309,6 +309,7 @@ UpdateMuseumMenu::UpdateMuseumMenu(System *system) : Menu(system) {
                                 }
                             }
                         }
+                        (*mus)->setCapacity(cap);
                     }else{
                         cout<<"Operation canceled."<<endl;
                         pause();
@@ -316,7 +317,6 @@ UpdateMuseumMenu::UpdateMuseumMenu(System *system) : Menu(system) {
                         return;
                     }
                 }
-                vector<Ticket*> t=sys->soldTickets;
                 cout<<"Museum capacity change successfully!"<<endl;
                 pause();
                 clear();
@@ -484,7 +484,7 @@ UpdateEventMenu::UpdateEventMenu(System *system) : Menu(system) {
                 clear();
             }break;
             case 'T':{
-                string time=getInput(isTime,"Input the new time of the event","Invalid type format");
+                string time = getInput(isTime, "Input the new time of the event", "Invalid type format");
                 (*eve)->setTime(Time(time));
                 cout << "Event time changed successfully!";
                 pause();

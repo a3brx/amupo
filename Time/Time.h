@@ -31,6 +31,8 @@ public:
     friend bool futureTimeInSameDay(Time time);
 };
 
+
+/// Exception Invalid Time
 class InvalidTime : exception {
     char hour;
     char minute;
