@@ -103,9 +103,14 @@ void Client::printData(ostream &out) {
         " | " << this->getBirthday() << " | " << this->getContact() << endl << this->getAddress();
 }
 
+unsigned Client::getYearsRegistered() const {
+    Date now;
+    unsigned y = now - this->getAcquisitionDate();
+    y /= 365;
+    return y;
+}
 
 //Silver
-
 float SilverClient::cost = 30;
 
 float SilverClient::getCost() const {

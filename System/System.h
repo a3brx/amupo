@@ -23,6 +23,7 @@ public:
     vector<Client *> clients;
     vector<Person*> people;
     vector<Event*> events;
+    vector<Event *> eventsIn8Hours;
     vector<Museum*> museums;
 
     /// @brief Creates a new system with the information provided by the file.
@@ -119,7 +120,6 @@ public:
     vector<Ticket*> getEventTickets(Event *ev);
 
     void sellTicket();
-    double calcBudget();
 
     void sellTicket(Event *event, Person *person);
     void setTicketsPrice(Ticket *ticket);
@@ -129,7 +129,7 @@ public:
     double moneySpentPerson();
     double eventRevenue();
 
-    void velho() const;
+    void velho();
 };
 
 Table<string> toTable(const vector<Event *> &container, const System * sys);

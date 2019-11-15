@@ -704,7 +704,7 @@ FinanceMenu::FinanceMenu(System *system) : Menu(system) {
         case 'T' : {
             double rev;
             rev = sys->totalRevenue();
-            cout << "The Revenue from all time is " << rev << " Euros" << endl;
+            cout << "All time Revenue is " << rev << " Euros" << endl;
             pause();
             clear();
         }

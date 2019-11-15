@@ -68,6 +68,7 @@ public:
     ///@return The Acquisition date attribute of the card.
     Date getAcquisitionDate() const;
 
+    unsigned getYearsRegistered() const;
     virtual void printData(ostream &out);
     virtual float getCost() const = 0;
 

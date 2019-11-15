@@ -53,7 +53,7 @@ System::System(const string &fileName/*,const string pass*/) {
             case '0':
                 IndividualClient *i;
                 file >> &i;
-                if ((now.getYear() - 1 - i->getBirthday().getYear()) >= 65) {
+                if (i->getAge() >= 65) {
                     cout << "Good news for " << i->getName() << ", they are over 65 and now are a Silver Client "
                          << endl;
                     SilverClient *s;
@@ -75,7 +75,7 @@ System::System(const string &fileName/*,const string pass*/) {
             case '2':
                 UniClient *u;
                 file >> &u;
-                if ((now.getYear() - 1 - u->getBirthday().getYear()) >= 65) {
+                if (u->getAge() >= 65) {
                     cout << "Good news for " << u->getName() << ", they are over 65 and now are a Silver Client "
                          << endl;
                     SilverClient *s;
@@ -565,6 +565,10 @@ void System::sellTicket(Event *event, Person *person) {
     auto *ticket = new Ticket(event, person);
     setTicketsPrice(ticket);
     this->soldTickets.push_back(ticket);
+    if (ticket->getPrice() == 0) {
+        cout << "Free Ticket!" << endl;
+        return;
+    }
     cout << "Ticket sold!" << endl;
 }
 
@@ -588,6 +592,9 @@ double System::totalRevenue() const {
     double total = 0;
     for (auto ticket : soldTickets){
         total += ticket->getPrice();
+    }
+    for (auto client : clients) {
+        total += client->getCost() * (client->getYearsRegistered() + 1);
     }
     return total;
 }
@@ -617,7 +624,13 @@ vector<Ticket*> System::getEventTickets(Event *ev) {
 void System::setTicketsPrice(Ticket *ticket) {
     float p;
     p = ticket->getEvent()->getPrice();
-    if (findClient(ticket->getPerson()->getName(), ticket->getPerson()->getBirthday()) != clients.end()) {
+    bool cond = firstInSecond(ticket->getEvent(), eventsIn8Hours) != nullptr;
+    cond = cond && ticket->getPerson()->getAge() >= 65;
+    cond = cond && (upper(ticket->getEvent()->getMuseum()->getAddress().getLocality()) ==
+                    upper(ticket->getPerson()->getAddress().getLocality()));
+    if (cond) {
+        p = 0;
+    } else if (findClient(ticket->getPerson()->getName(), ticket->getPerson()->getBirthday()) != clients.end()) {
         p *= 0.75;
     }
     ticket->setPrice(p);
@@ -630,6 +643,7 @@ vector<Ticket *> System::getTickets() {
 double System::moneySpentPerson() {
     string name;
     vector<Person *>::const_iterator it;
+    double money = 0;
     while (true) {
         cout << "Enter the Person's name: ";
         getline(cin, name);
@@ -639,14 +653,18 @@ double System::moneySpentPerson() {
             cout << "This Person doesn't exist!" << endl;
             continue;
         }
-        break;
-    }
-    double money = 0;
-    auto itt = soldTickets.begin(), ittl = soldTickets.end();
-    for (; itt != ittl; itt++) {
-        if (*(*itt)->getPerson() == **it) {
-            money += (*itt)->getPrice();
+        auto itt = soldTickets.begin(), ittl = soldTickets.end();
+        for (; itt != ittl; itt++) {
+            if (*(*itt)->getPerson() == **it) {
+                money += (*itt)->getPrice();
+            }
         }
+        vector<Client *>::const_iterator itc;
+        itc = findClient(name, bDay);
+        if (itc != clients.end()) {
+            money += (*itc)->getCost() * ((*itc)->getYearsRegistered() + 1);
+        }
+        break;
     }
     return money;
 }
@@ -675,19 +693,20 @@ double System::eventRevenue() {
     return money;
 }
 
-void System::velho() const {
+void System::velho() {
     Time atual;
     Date atualDate;
     auto it = events.begin(), itl = events.end();
-    vector<Event *> eventsIn8Hours;
     for (; it != itl; it++) {
-        if ((((*it)->getTime() - atual).getHour() <= 7) && (((*it)->getDate() - atualDate) <= 1) &&
-            (getEventSoldTickets(*it) < (*it)->getMuseum()->capacity)) {
+        bool cond = ((*it)->getTime() - atual).getHour() <= 7;
+        cond = cond && (((*it)->getDate() - atualDate) <= 1);
+        cond = cond && (getEventSoldTickets(*it) < 0.5 * (*it)->getMuseum()->capacity);
+        if (cond) {
             eventsIn8Hours.push_back(*it);
         }
     }
     if (eventsIn8Hours.size() != 0) {
-        cout << "This Events are happening in 8 hours! Any Silver Client who lives in the same locality\n"
+        cout << endl << "This Events are happening in 8 hours! Any Silver Client who lives in the same locality\n"
              << "as where the Event will happen, can get a free ticket!" << endl;
         readEvents(eventsIn8Hours);
     }

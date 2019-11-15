@@ -5,6 +5,7 @@
 #include <utility>
 #include "../Table/Table.h"
 #include "../System/System.h"
+#include "../Person/Person.h"
 
 class Menu {
 protected:
@@ -95,3 +96,4 @@ public:
 
     vector<vector<string>> getOptions() const override;
 };
+
