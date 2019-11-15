@@ -484,7 +484,7 @@ UpdateEventMenu::UpdateEventMenu(System *system) : Menu(system) {
                 clear();
             }break;
             case 'T':{
-                string time=getInput(isTime,"Input the new time of the event","Invalid type format");
+                string time = getInput(isTime, "Input the new time of the event", "Invalid type format");
                 (*eve)->setTime(Time(time));
                 cout << "Event time changed successfully!";
                 pause();

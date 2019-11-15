@@ -5,7 +5,6 @@ set(CMAKE_CXX_STANDARD 11)
 
 add_executable(amigo_dos_museus main/main.cpp Date/Date.cpp Address/Address.cpp Event/Event.cpp Museum/Museum.cpp System/System.cpp Menu/Menu.cpp utils/utils.cpp Person/Person.cpp Ticket/Ticket.cpp utils/InvalidInput.h Time/Time.cpp)
 
-# Doxygen Build
 find_package(Doxygen)
 if(DOXYGEN_FOUND)
     set(BUILD_DOC_DIR "${CMAKE_SOURCE_DIR}/docs/output")
@@ -26,3 +25,4 @@ if(DOXYGEN_FOUND)
 else(DOXYGEN_FOUND)
     message("Doxygen needs to be installed to generate the documentation.")
 endif(DOXYGEN_FOUND)
+

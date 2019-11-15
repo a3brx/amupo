@@ -719,7 +719,7 @@ void System::velho() {
         if (eligible.size() != 0) {
             cout << endl << "This Event is happening in 8 hours!" << endl;
             readEvent(*ite);
-            cout << "This Silver Clients are eligible to get a free Ticket for this Event!" << endl;
+            cout << "These Silver Clients are eligible to get a free Ticket for this Event!" << endl;
             readClients(eligible);
             cout << endl;
             eligible.clear();
