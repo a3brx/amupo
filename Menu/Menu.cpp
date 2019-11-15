@@ -445,6 +445,14 @@ UpdateEventMenu::UpdateEventMenu(System *system) : Menu(system) {
                     getline(cin,yesno);
                     if(yesno=="Y"){
                         (*eve)->setMuseum((mus));
+                        vector<Ticket *>::reverse_iterator its;
+                        for (its = sys->soldTickets.rbegin(); its != sys->soldTickets.rend(); its++){
+                            if(*((*its)->getEvent())==*(*eve)){
+                                if(sys->getEventSoldTickets((*eve)) > (*eve)->getMuseum()->getCapacity()){
+                                    sys->soldTickets.erase(sys->findTicket(*its));
+                                }
+                            }
+                        }
 
                     }else{
                         cout<<"Operation canceled."<<endl;

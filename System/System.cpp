@@ -274,7 +274,7 @@ System::~System() {
     ticketsFile = path + ticketsFile;
     file.close();
 
-    file.open(museumsFile);
+    file.open(museumsFile,ofstream::out | ofstream::trunc);
     auto itm = this->museums.begin(), itml = this->museums.end();
     bool firstTime = true;
     for (; itm != itml; itm++) {
@@ -287,7 +287,7 @@ System::~System() {
     }
     file.close();
 
-    file.open(peopleFile);
+    file.open(peopleFile,ofstream::out | ofstream::trunc);
     auto itp = this->people.begin(), itpl = this->people.end();
     firstTime = true;
     for (; itp != itpl; itp++) {
@@ -300,7 +300,7 @@ System::~System() {
     }
     file.close();
 
-    file.open(eventsFile);
+    file.open(eventsFile,ofstream::out | ofstream::trunc);
     auto ite = this->events.begin(), itel = this->events.end();
     firstTime = true;
     for (; ite != itel; ite++) {
@@ -313,7 +313,7 @@ System::~System() {
     }
     file.close();
 
-    file.open(ticketsFile);
+    file.open(ticketsFile,ofstream::out | ofstream::trunc);
     auto itt = this->soldTickets.begin(), ittl = this->soldTickets.end();
     firstTime = true;
     for (; itt != ittl; itt++) {
