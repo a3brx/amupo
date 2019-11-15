@@ -83,7 +83,7 @@ public:
     friend class InvalidAddress;
 };
 
-///Exception Invalid Address
+///@brief Exception Invalid Address
 class InvalidAddress : public exception, public Address {
 public:
     InvalidAddress() = default;
