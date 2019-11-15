@@ -83,16 +83,11 @@ public:
     friend class InvalidAddress;
 };
 
-class InvalidAddress : public exception {
+///Exception Invalid Address
+class InvalidAddress : public exception, public Address {
 public:
-    const string street;
-    string postalCode;
-    unsigned short doorNumber{};
-    string locality;
     InvalidAddress() = default;
-    explicit InvalidAddress(string street, string postalCode, unsigned short doorNumber, string locality) :
-            street(street),
-            postalCode(postalCode),
-            doorNumber(doorNumber),
-            locality(locality) {}
+
+    explicit InvalidAddress(string street, string postalCode, unsigned short doorNumber, string locality) : Address(
+            street, postalCode, doorNumber, locality) {}
 };

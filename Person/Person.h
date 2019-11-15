@@ -62,11 +62,18 @@ class Client:public Person{
 private:
     const Date acquisitionDate;
 public:
+    ///Constructs a client object
+    ///@param name Name of the client
+    ///@param acquisitionDate Date when the clients is added
+    ///@param birthday Date when the client was born
+    ///@param address Address of the person
+    ///@param contact Person's contact
     Client(string name, Date acquisitionDate, Date birthday, Address address, unsigned contact);
 
     ///@brief Gets the acquistion date of the card.
     ///@return The Acquisition date attribute of the card.
     Date getAcquisitionDate() const;
+
 
     unsigned getYearsRegistered() const;
     virtual void printData(ostream &out);
