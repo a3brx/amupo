@@ -83,6 +83,8 @@ public:
     /// @brief Asks information about the Event and shows the specified event.
     void readEvent() const;
 
+    void readEvent(Event *ev) const;
+
     /// @brief Shows a list of events in a Table
     /// @param container A vector of the events to be showed
     void readEvents(const vector<Event *> &container) const;
@@ -92,7 +94,7 @@ public:
 
     /// @brief Shows a list of people in a Table
     /// @param container A vector of the clients to be showed
-    void readPeople(const vector<Client *> &container) const;
+    void readClients(const vector<Client *> &container) const;
 
     /// @brief Shows a list of people in a Table
     /// @param container A vector of the people to be showed
@@ -130,6 +132,9 @@ public:
     double eventRevenue();
 
     void velho();
+
+    bool eligibleSilverClient(Person *person, Event *ev) const;
+
 };
 
 Table<string> toTable(const vector<Event *> &container, const System * sys);

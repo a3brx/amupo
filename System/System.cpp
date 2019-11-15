@@ -160,14 +160,13 @@ void System::readPerson() const {
         readPeople({personPtr});
 }
 
-void System::readPeople(const vector<Client *> &container) const {
+void System::readClients(const vector<Client *> &container) const {
     if(container.empty()){
         cout << "The search is empty :(" << endl;
         return;
     }
     auto read = toTable(container, this);
     cout << read;
-    pause();
 }
 
 void System::readPeople(const vector<Person *> &container) const {
@@ -197,7 +196,6 @@ void System::readEvents(const vector<Event *> &container) const {
     }
     auto read = toTable(container, this);
     cout << read;
-    pause();
 }
 
 void System::readMuseum() const {
@@ -625,9 +623,7 @@ void System::setTicketsPrice(Ticket *ticket) {
     float p;
     p = ticket->getEvent()->getPrice();
     bool cond = firstInSecond(ticket->getEvent(), eventsIn8Hours) != nullptr;
-    cond = cond && ticket->getPerson()->getAge() >= 65;
-    cond = cond && (upper(ticket->getEvent()->getMuseum()->getAddress().getLocality()) ==
-                    upper(ticket->getPerson()->getAddress().getLocality()));
+    cond = cond && eligibleSilverClient(ticket->getPerson(), ticket->getEvent());
     if (cond) {
         p = 0;
     } else if (findClient(ticket->getPerson()->getName(), ticket->getPerson()->getBirthday()) != clients.end()) {
@@ -705,10 +701,22 @@ void System::velho() {
             eventsIn8Hours.push_back(*it);
         }
     }
-    if (eventsIn8Hours.size() != 0) {
-        cout << endl << "This Events are happening in 8 hours! Any Silver Client who lives in the same locality\n"
-             << "as where the Event will happen, can get a free ticket!" << endl;
-        readEvents(eventsIn8Hours);
+    vector<Client *> eligible;
+    auto ite = eventsIn8Hours.begin(), itel = eventsIn8Hours.end();
+    for (; ite != itel; ite++) {
+        auto it = clients.begin(), itl = clients.end();
+        for (; it != itl; it++) {
+            if (eligibleSilverClient(*it, *ite))
+                eligible.push_back(*it);
+        }
+        if (eligible.size() != 0) {
+            cout << endl << "This Event is happening in 8 hours!" << endl;
+            readEvent(*ite);
+            cout << "This Silver Clients are eligible to get a free Ticket for this Event!" << endl;
+            readClients(eligible);
+            cout << endl;
+            eligible.clear();
+        }
     }
     cout << endl;
 }
@@ -720,6 +728,18 @@ vector<Ticket *>::const_iterator System::findTicket(Ticket *ticket) {
         }
     }
     return soldTickets.end();
+}
+
+void System::readEvent(Event *ev) const {
+    vector<Event *> evs;
+    evs.push_back(ev);
+    auto read = toTable(evs, this);
+    cout << read;
+}
+
+bool System::eligibleSilverClient(Person *person, Event *ev) const {
+    if (person->getAge() < 65) return false;
+    return (person->getAddress().getLocality() == ev->getMuseum()->getAddress().getLocality());
 }
 
 Table<string> toTable(const vector<Event *> &container, const System * sys){

@@ -8,6 +8,8 @@
 #include "../Date/Date.h"
 #include "../Museum/Museum.h"
 #include "../Time/Time.h"
+#include "../Person/Person.h"
+
 
 class Event{
     string name;            //so se da nome ao event ao adiciona-lo ao sistema para ver se ha dois iguais

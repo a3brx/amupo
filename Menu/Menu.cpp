@@ -523,18 +523,21 @@ ReadEventMenu::ReadEventMenu(System *system) : ReadMenu<Event>(system) {
                 clear();
                 sort(sys->events.begin(), sys->events.end(), compareName<Event *>);
                 sys->readEvents(this->toRead);
+                pause();
             }
                 break;
             case 'D' : {
                 clear();
                 sort(sys->events.begin(), sys->events.end(), compareDate);
                 sys->readEvents(this->toRead);
+                pause();
             }
                 break;
             case 'P' : {
                 clear();
                 sort(sys->events.begin(), sys->events.end(), comparePrice);
                 sys->readEvents(this->toRead);
+                pause();
             }
                 break;
             case 'B' : {
@@ -547,6 +550,7 @@ ReadEventMenu::ReadEventMenu(System *system) : ReadMenu<Event>(system) {
                         newVector.push_back(x);
                 this->toRead = newVector;
                 sys->readEvents(this->toRead);
+                pause();
             }
                 break;
             case 'R' : {
@@ -559,6 +563,7 @@ ReadEventMenu::ReadEventMenu(System *system) : ReadMenu<Event>(system) {
                         newVector.push_back(x);
                 this->toRead = newVector;
                 sys->readEvents(this->toRead);
+                pause();
             }
                 break;
             case 'G':
@@ -590,13 +595,15 @@ ReadPersonMenu::ReadPersonMenu(System *system) : ReadMenu<Client>(system) {
             case 'N' : {
                 clear();
                 sort(sys->clients.begin(), sys->clients.end(), compareName<Person *>);
-                sys->readPeople(system->clients);
+                sys->readClients(system->clients);
+                pause();
             }
                 break;
             case 'B' : {
                 clear();
                 sort(sys->clients.begin(), sys->clients.end(), compareBirthday);
-                sys->readPeople(system->clients);
+                sys->readClients(system->clients);
+                pause();
             }
                 break;
             case 'F' : {
@@ -608,7 +615,8 @@ ReadPersonMenu::ReadPersonMenu(System *system) : ReadMenu<Client>(system) {
                     if (x->getBirthday() >= d1 && x->getBirthday() <= d2)
                         newVector.push_back(x);
                 this->toRead = newVector;
-                sys->readPeople(this->toRead);
+                sys->readClients(this->toRead);
+                pause();
             }
                 break;
             case 'L' : {
@@ -619,7 +627,8 @@ ReadPersonMenu::ReadPersonMenu(System *system) : ReadMenu<Client>(system) {
                     if (x->getAddress().getLocality() == locality)
                         newVector.push_back(x);
                 this->toRead = newVector;
-                sys->readPeople(this->toRead);
+                sys->readClients(this->toRead);
+                pause();
             }
                 break;
             case 'G':
