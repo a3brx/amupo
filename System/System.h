@@ -188,8 +188,11 @@ public:
 
 };
 
+///@brief Receives a vector of Event and transforms in a table.
 Table<string> toTable(const vector<Event *> &container, const System *sys);
 
+///@brief Receives a vector of Client and transforms in a table.
 Table<string> toTable(const vector<Client *> &container, const System *sys);
 
+///@brief Receives a vector of Person and transforms in a table.
 Table<string> toTable(const vector<Person *> &container, const System *sys);
