@@ -14,6 +14,7 @@ private:
     Address address;
     unsigned contact;
 public:
+
     Person(string name, Date birthday, Address address, unsigned contact);
 
     Person(const Person &person);

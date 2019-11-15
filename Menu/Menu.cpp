@@ -309,6 +309,7 @@ UpdateMuseumMenu::UpdateMuseumMenu(System *system) : Menu(system) {
                                 }
                             }
                         }
+                        (*mus)->setCapacity(cap);
                     }else{
                         cout<<"Operation canceled."<<endl;
                         pause();
@@ -316,7 +317,6 @@ UpdateMuseumMenu::UpdateMuseumMenu(System *system) : Menu(system) {
                         return;
                     }
                 }
-                vector<Ticket*> t=sys->soldTickets;
                 cout<<"Museum capacity change successfully!"<<endl;
                 pause();
                 clear();

@@ -721,7 +721,7 @@ void System::velho() {
             readEvent(*ite);
             cout << "These Silver Clients are eligible to get a free Ticket for this Event!" << endl;
             readClients(eligible);
-            cout << endl;
+            pause();
             eligible.clear();
         }
     }
