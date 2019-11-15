@@ -79,287 +79,573 @@
     <div class="fragment">
         <div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span>
         </div>
-        <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;utility&gt;</span>
+        <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
+        <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;utility&gt;</span>
         </div>
-        <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span>
+        <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span>
         </div>
-        <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;iomanip&gt;</span>
+        <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;iomanip&gt;</span>
         </div>
-        <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;functional&gt;</span>
+        <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;functional&gt;</span>
         </div>
-        <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;../utils/InvalidInput.h&quot;</span>
+        <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;../utils/InvalidInput.h&quot;</span>
         </div>
-        <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;../utils/utils.h&quot;</span>
+        <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;../utils/utils.h&quot;</span>
         </div>
-        <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;../Date/Date.h&quot;</span>
+        <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;../Date/Date.h&quot;</span>
         </div>
-        <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;../Museum/Museum.h&quot;</span>
+        <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;../Museum/Museum.h&quot;</span>
         </div>
-        <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;../Time/Time.h&quot;</span>
+        <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;../Time/Time.h&quot;</span>
         </div>
-        <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;../Person/Person.h&quot;</span>
+        <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;../Person/Person.h&quot;</span>
         </div>
-        <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
         <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-        <div class="line"><a name="l00014"></a><span class="lineno"><a class="line"
-                                                                       href="class_event.html">   14</a></span>&#160;<span
-                class="keyword">class </span><a class="code" href="class_event.html">Event</a>{
+        <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+        <div class="line"><a name="l00015"></a><span class="lineno"><a class="line"
+                                                                       href="class_event.html">   15</a></span>&#160;<span
+                class="keyword">class </span><a class="code" href="class_event.html">Event</a> {
         </div>
-        <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; <span
+        <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; <span
                 class="keywordtype">string</span> name; <span class="comment">//so se da nome ao event ao adiciona-lo ao sistema para ver se ha dois iguais</span>
         </div>
-        <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; <a class="code"
-                                                                                          href="class_museum.html">Museum</a>
-            * museum;
-        </div>
         <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; <a class="code"
+                                                                                          href="class_museum.html">Museum</a>
+            *museum;
+        </div>
+        <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; <a class="code"
                                                                                           href="class_date.html">Date</a>
             date;
         </div>
-        <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; <span
+        <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; <span
                 class="keywordtype">float</span> price;
         </div>
-        <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; <a class="code"
+        <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; <a class="code"
                                                                                           href="class_time.html">Time</a>
             time;
         </div>
-        <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-        <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; <span
+        <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+        <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span
                 class="keyword">public</span>:
         </div>
-        <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; <a class="code"
-                                                                                          href="class_event.html">Event</a>(<a
+        <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
+        <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; <a class="code"
+                                                                                          href="class_event.html#a258fdce6d8a4fc913848d3998a5fb2b7">Event</a>(<a
                 class="code" href="class_museum.html">Museum</a> *mus, <a class="code" href="class_date.html">Date</a>
-            date, <span class="keywordtype">float</span> price, <span class="keywordtype">string</span> name,
+            date, <span class="keywordtype">float</span> price, <span class="keywordtype">string</span> name, <a
+                    class="code" href="class_time.html">Time</a> time);
         </div>
-        <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; <a class="code"
-                                                                                          href="class_time.html">Time</a>
-            time); <span class="comment">//por data como soldTickets(nao me lembro do nome)</span></div>
-        <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; <a class="code"
-                                                                                          href="class_event.html">Event</a>(<span
+        <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+        <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; <a class="code"
+                                                                                          href="class_event.html#a258fdce6d8a4fc913848d3998a5fb2b7">Event</a>(<span
                 class="keyword">const</span> <a class="code" href="class_event.html">Event</a> &amp;ev);
         </div>
-        <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; <a class="code"
-                                                                                          href="class_event.html">Event</a>(<a
+        <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+        <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; <a class="code"
+                                                                                          href="class_event.html#a258fdce6d8a4fc913848d3998a5fb2b7">Event</a>(<a
                 class="code" href="class_event.html">Event</a> *ev);
         </div>
-        <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; <span
-                class="keywordtype">string</span> getName();
-        </div>
-        <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; <a class="code"
-                                                                                          href="class_museum.html">Museum</a>
-            * getMuseum() <span class="keyword">const</span>;
-        </div>
-        <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; <a class="code"
-                                                                                          href="class_date.html">Date</a>
-            getDate() <span class="keyword">const</span>;
-        </div>
-        <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; <a class="code"
-                                                                                          href="class_time.html">Time</a>
-            getTime() <span class="keyword">const</span>;
-        </div>
-        <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; <span
-                class="keywordtype">float</span> getPrice() <span class="keyword">const</span>;
-        </div>
-        <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; <span
-                class="keywordtype">void</span> setName(<span class="keywordtype">string</span> nm);
-        </div>
-        <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; <span
-                class="keywordtype">void</span> setMuseum(<a class="code" href="class_museum.html">Museum</a> * museum);
-        </div>
-        <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; <span
-                class="keywordtype">void</span> setDate(<a class="code" href="class_date.html">Date</a> d);
-        </div>
-        <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; <span
-                class="keywordtype">void</span> setPrice(<span class="keywordtype">float</span> p);
-        </div>
-        <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-        <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; <span
-                class="keywordtype">void</span> setTime(<a class="code" href="class_time.html">Time</a> t);
-        </div>
-        <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-        <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; <span
-                class="keyword">friend</span> ostream &amp; operator&lt;&lt;(ostream &amp; out, <span class="keyword">const</span>
-            <a class="code" href="class_event.html">Event</a> &amp; event);
-        </div>
         <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-        <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; <span
-                class="keyword">friend</span> istream &amp;operator&gt;&gt;(istream &amp;in, <a class="code"
-                                                                                                href="class_event.html">Event</a>
-            **event);
-        </div>
-        <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
         <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; <span
-                class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<a class="code"
-                                                                                                  href="class_event.html">Event</a>
-            &amp;left, <a class="code" href="class_event.html">Event</a> &amp;right);
+                class="keywordtype">string</span> <a class="code"
+                                                     href="class_event.html#a6be6a0033ddac703543dc5d1040dd9b8">getName</a>();
         </div>
-        <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; <span
-                class="keyword">friend</span> <span class="keywordtype">bool</span> operator!=(<a class="code"
-                                                                                                  href="class_event.html">Event</a>
-            &amp;left, <a class="code" href="class_event.html">Event</a> &amp;right);
+        <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+        <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; <a class="code"
+                                                                                          href="class_museum.html">Museum</a>
+            *<a class="code" href="class_event.html#a0fc80c4fa388885e82944fcfbcefe80a">getMuseum</a>() <span
+                    class="keyword">const</span>;
         </div>
-        <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; <span
-                class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keyword">friend</span>
-            <span class="keywordtype">bool</span> compareName(T left, T right);
+        <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+        <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; <a class="code"
+                                                                                          href="class_date.html">Date</a>
+            <a class="code" href="class_event.html#afb982ea390aa61ed05bd3c5e544071e1">getDate</a>() <span
+                    class="keyword">const</span>;
         </div>
-        <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; <span
-                class="keyword">friend</span> <span class="keywordtype">bool</span> compareDate(<a class="code"
-                                                                                                   href="class_event.html">Event</a>
-            * left, <a class="code" href="class_event.html">Event</a> * right);
+        <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+        <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; <a class="code"
+                                                                                          href="class_time.html">Time</a>
+            <a class="code" href="class_event.html#a0df726e5bcf203e2168699cff984e229">getTime</a>() <span
+                    class="keyword">const</span>;
         </div>
-        <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; <span
-                class="keyword">friend</span> <span class="keywordtype">bool</span> comparePrice(<a class="code"
-                                                                                                    href="class_event.html">Event</a>
-            * left, <a class="code" href="class_event.html">Event</a> * right);
+        <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+        <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; <span
+                class="keywordtype">float</span> <a class="code"
+                                                    href="class_event.html#a7723e46900b600b22ec141aeff90e39a">getPrice</a>()
+            <span class="keyword">const</span>;
         </div>
-        <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;};</div>
-        <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-        <div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="class_over_booked_event.html">   49</a></span>&#160;<span
+        <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+        <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; <span
+                class="keywordtype">void</span> <a class="code"
+                                                   href="class_event.html#adebcc91df64f9d06102c287eb04526d1">setName</a>(<span
+                class="keywordtype">string</span> nm);
+        </div>
+        <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+        <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; <span
+                class="keywordtype">void</span> <a class="code"
+                                                   href="class_event.html#a173b87a74a132942d2ce01778e1fa509">setMuseum</a>(<a
+                class="code" href="class_museum.html">Museum</a> *museum);
+        </div>
+        <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+        <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; <span
+                class="keywordtype">void</span> <a class="code"
+                                                   href="class_event.html#a60a25f08b7850e19959957dfbfb0f1fc">setDate</a>(<a
+                class="code" href="class_date.html">Date</a> d);
+        </div>
+        <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+        <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; <span
+                class="keywordtype">void</span> <a class="code"
+                                                   href="class_event.html#aa4580054c6b0ebb73bcc4a8126a28059">setPrice</a>(<span
+                class="keywordtype">float</span> p);
+        </div>
+        <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+        <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; <span
+                class="keywordtype">void</span> <a class="code"
+                                                   href="class_event.html#abe259ae9f7c5eefffaa3090ce6e130de">setTime</a>(<a
+                class="code" href="class_time.html">Time</a> t);
+        </div>
+        <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+        <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; <span
+                class="keyword">friend</span> ostream &amp;<a class="code"
+                                                              href="class_event.html#a989f2972dca76b2532ca37392f2830be">operator&lt;&lt;</a>(ostream
+            &amp;out, <span class="keyword">const</span> <a class="code" href="class_event.html">Event</a> &amp;event);
+        </div>
+        <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+        <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; <span
+                class="keyword">friend</span> istream &amp;<a class="code"
+                                                              href="class_event.html#abbc7cef18d02672375ed960a6a20b48a">operator&gt;&gt;</a>(istream
+            &amp;in, <a class="code" href="class_event.html">Event</a> **event);
+        </div>
+        <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
+        <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; <span
+                class="keyword">friend</span> <span class="keywordtype">bool</span> <a class="code"
+                                                                                       href="class_event.html#a1514ad9e788b515cabe679dab71ced25">operator==</a>(<a
+                class="code" href="class_event.html">Event</a> &amp;left, <a class="code"
+                                                                             href="class_event.html">Event</a> &amp;right);
+        </div>
+        <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
+        <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; <span
+                class="keyword">friend</span> <span class="keywordtype">bool</span> <a class="code"
+                                                                                       href="class_event.html#a406cf66cf3a2b849678469c6e90f27b8">operator!=</a>(<a
+                class="code" href="class_event.html">Event</a> &amp;left, <a class="code"
+                                                                             href="class_event.html">Event</a> &amp;right);
+        </div>
+        <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+        <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; <span
+                class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;
+        </div>
+        <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; <span
+                class="keyword">friend</span> <span class="keywordtype">bool</span> <a class="code"
+                                                                                       href="class_event.html#a980aa4757201237ba2c2b103cc7b155b">compareName</a>(T
+            left, T right);
+        </div>
+        <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
+        <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; <span
+                class="keyword">friend</span> <span class="keywordtype">bool</span> <a class="code"
+                                                                                       href="class_event.html#aa17c35044eb12859a960d867e26c939d">compareDate</a>(<a
+                class="code" href="class_event.html">Event</a> *left, <a class="code" href="class_event.html">Event</a>
+            *right);
+        </div>
+        <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+        <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; <span
+                class="keyword">friend</span> <span class="keywordtype">bool</span> <a class="code"
+                                                                                       href="class_event.html#a15d56898fa95323cd60faae01fae42a7">comparePrice</a>(<a
+                class="code" href="class_event.html">Event</a> *left, <a class="code" href="class_event.html">Event</a>
+            *right);
+        </div>
+        <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;};</div>
+        <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
+        <div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="class_over_booked_event.html">  118</a></span>&#160;<span
                 class="keyword">class </span><a class="code" href="class_over_booked_event.html">OverBookedEvent</a> :
             exception {
         </div>
-        <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span
+        <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span
                 class="keyword">private</span>:
         </div>
-        <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; <a class="code"
+        <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; <a class="code"
                                                                                           href="class_museum.html">Museum</a>
-            * museum;
+            *museum;
         </div>
-        <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; <span class="keywordtype">unsigned</span>
+        <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; <span class="keywordtype">unsigned</span>
             soldTickets;
         </div>
-        <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span
+        <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span
                 class="keyword">public</span>:
         </div>
-        <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; <a class="code"
-                                                                                          href="class_over_booked_event.html">OverBookedEvent</a>(<a
-                class="code" href="class_museum.html">Museum</a> * museum, <span class="keywordtype">unsigned</span>
+        <div class="line"><a name="l00124"></a><span class="lineno"><a class="line"
+                                                                       href="class_over_booked_event.html#a2614dc45ef3d350aa4cdc68e79ac29e9">  124</a></span>&#160;
+            <a class="code" href="class_over_booked_event.html#a2614dc45ef3d350aa4cdc68e79ac29e9">OverBookedEvent</a>(<a
+                    class="code" href="class_museum.html">Museum</a> *museum, <span class="keywordtype">unsigned</span>
             soldTickets) : museum(museum), soldTickets(soldTickets) {}
         </div>
-        <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; <a class="code"
-                                                                                          href="class_museum.html">Museum</a>
-            * getMuseum() {<span class="keywordflow">return</span> museum;}
+        <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
+        <div class="line"><a name="l00128"></a><span class="lineno"><a class="line"
+                                                                       href="class_over_booked_event.html#a18905c8a06f68b86f6e662d9497d59a8">  128</a></span>&#160;
+            <a class="code" href="class_museum.html">Museum</a> *<a class="code"
+                                                                    href="class_over_booked_event.html#a18905c8a06f68b86f6e662d9497d59a8">getMuseum</a>()
+            { <span class="keywordflow">return</span> museum; }
         </div>
-        <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; <span class="keywordtype">unsigned</span>
-            getSoldTickets() {<span class="keywordflow">return</span> soldTickets;}
+        <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
+        <div class="line"><a name="l00132"></a><span class="lineno"><a class="line"
+                                                                       href="class_over_booked_event.html#a2cbaa505af9adf830e4e99a24e081062">  132</a></span>&#160;
+            <span class="keywordtype">unsigned</span> <a class="code"
+                                                         href="class_over_booked_event.html#a2cbaa505af9adf830e4e99a24e081062">getSoldTickets</a>()
+            { <span class="keywordflow">return</span> soldTickets; }
         </div>
-        <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; <span
-                class="keyword">friend</span> ostream &amp; operator&lt;&lt;(ostream&amp; out, <span class="keyword">const</span>
-            <a class="code" href="class_over_booked_event.html">OverBookedEvent</a>&amp; ev) {
+        <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
+        <div class="line"><a name="l00136"></a><span class="lineno"><a class="line"
+                                                                       href="class_over_booked_event.html#a42da40498968682970120acab4c7a68c">  136</a></span>&#160;
+            <span class="keyword">friend</span> ostream &amp;<a class="code"
+                                                                href="class_over_booked_event.html#a42da40498968682970120acab4c7a68c">operator&lt;&lt;</a>(ostream
+            &amp;out, <span class="keyword">const</span> <a class="code" href="class_over_booked_event.html">OverBookedEvent</a>
+            &amp;ev) {
         </div>
-        <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; out &lt;&lt; <span
-                class="stringliteral">&quot;OverBookedEvent\nMuseum: &quot;</span> &lt;&lt; * ev.museum &lt;&lt; <span
+        <div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; out &lt;&lt; <span
+                class="stringliteral">&quot;OverBookedEvent\nMuseum: &quot;</span> &lt;&lt; *ev.museum &lt;&lt; <span
                 class="stringliteral">&quot;\nSoldTickets&quot;</span> &lt;&lt; ev.soldTickets;
         </div>
-        <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; <span
+        <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; <span
                 class="keywordflow">return</span> out;
         </div>
-        <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; }</div>
-        <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;};</div>
-        <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-        <div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="class_invalid_event.html">   63</a></span>&#160;<span
+        <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; }</div>
+        <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;};</div>
+        <div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;</div>
+        <div class="line"><a name="l00143"></a><span class="lineno"><a class="line" href="class_invalid_event.html">  143</a></span>&#160;<span
                 class="keyword">class </span><a class="code" href="class_invalid_event.html">InvalidEvent</a> :
             exception {
         </div>
-        <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span
+        <div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span
                 class="keyword">private</span>:
         </div>
-        <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; <span
-                class="keywordtype">string</span> name; <span class="comment">//so se da nome ao event ao adiciona-lo ao sistema para ver se ha dois iguais</span>
+        <div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;</div>
+        <div class="line"><a name="l00147"></a><span class="lineno"><a class="line"
+                                                                       href="class_invalid_event.html#a84474960f75b31b6371e3edea9207304">  147</a></span>&#160;
+            <span class="keywordtype">string</span> <a class="code"
+                                                       href="class_invalid_event.html#a84474960f75b31b6371e3edea9207304">name</a>;
         </div>
-        <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; <a class="code"
-                                                                                          href="class_date.html">Date</a>
-            date;
+        <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
+        <div class="line"><a name="l00150"></a><span class="lineno"><a class="line"
+                                                                       href="class_invalid_event.html#a1aae0f442869e47c96a3180e043e341f">  150</a></span>&#160;
+            <a class="code" href="class_date.html">Date</a> <a class="code"
+                                                               href="class_invalid_event.html#a1aae0f442869e47c96a3180e043e341f">date</a>;
         </div>
-        <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; <span
-                class="keywordtype">float</span> price;
+        <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;</div>
+        <div class="line"><a name="l00153"></a><span class="lineno"><a class="line"
+                                                                       href="class_invalid_event.html#a646f15703bef07223dcb516ae048f7b6">  153</a></span>&#160;
+            <span class="keywordtype">float</span> <a class="code"
+                                                      href="class_invalid_event.html#a646f15703bef07223dcb516ae048f7b6">price</a>;
         </div>
-        <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span
+        <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span
                 class="keyword">public</span>:
         </div>
-        <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; <a class="code"
-                                                                                          href="class_invalid_event.html">InvalidEvent</a>(<span
-                class="keywordtype">string</span> nm, <a class="code" href="class_date.html">Date</a> dt, <span
-                class="keywordtype">float</span> price) : name(nm), date(dt), price(price) {}
+        <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;</div>
+        <div class="line"><a name="l00157"></a><span class="lineno"><a class="line"
+                                                                       href="class_invalid_event.html#a94f5fc900fb04f1d6e0d6ea4a9cc91a4">  157</a></span>&#160;
+            <a class="code" href="class_invalid_event.html#a94f5fc900fb04f1d6e0d6ea4a9cc91a4">InvalidEvent</a>(<span
+                    class="keywordtype">string</span> nm, <a class="code" href="class_date.html">Date</a> dt, <span
+                    class="keywordtype">float</span> <a class="code"
+                                                        href="class_invalid_event.html#a646f15703bef07223dcb516ae048f7b6">price</a>)
+            : <a class="code" href="class_invalid_event.html#a84474960f75b31b6371e3edea9207304">name</a>(nm), <a
+                    class="code" href="class_invalid_event.html#a1aae0f442869e47c96a3180e043e341f">date</a>(dt), <a
+                    class="code" href="class_invalid_event.html#a646f15703bef07223dcb516ae048f7b6">price</a>(<a
+                    class="code" href="class_invalid_event.html#a646f15703bef07223dcb516ae048f7b6">price</a>) {}
         </div>
-        <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; <span
-                class="keywordtype">string</span> getName()<span class="keyword"> const </span>{ <span
-                class="keywordflow">return</span> this-&gt;name; }
+        <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;</div>
+        <div class="line"><a name="l00161"></a><span class="lineno"><a class="line"
+                                                                       href="class_invalid_event.html#aa17389e2ac6a7091cd9e522d5c0f17c6">  161</a></span>&#160;
+            <span class="keywordtype">string</span> <a class="code"
+                                                       href="class_invalid_event.html#aa17389e2ac6a7091cd9e522d5c0f17c6">getName</a>()<span
+                    class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code"
+                                                                                                        href="class_invalid_event.html#a84474960f75b31b6371e3edea9207304">name</a>;
+            }
         </div>
-        <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; <a class="code"
-                                                                                          href="class_date.html">Date</a>
-            getDate()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;date; }
+        <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;</div>
+        <div class="line"><a name="l00165"></a><span class="lineno"><a class="line"
+                                                                       href="class_invalid_event.html#a02773c850edac47fd355f7a6ed7c5901">  165</a></span>&#160;
+            <a class="code" href="class_date.html">Date</a> <a class="code"
+                                                               href="class_invalid_event.html#a02773c850edac47fd355f7a6ed7c5901">getDate</a>()<span
+                    class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code"
+                                                                                                        href="class_invalid_event.html#a1aae0f442869e47c96a3180e043e341f">date</a>;
+            }
         </div>
-        <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; <span
-                class="keywordtype">float</span> getPrice()<span class="keyword"> const </span>{ <span
-                class="keywordflow">return</span> price; }
+        <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
+        <div class="line"><a name="l00169"></a><span class="lineno"><a class="line"
+                                                                       href="class_invalid_event.html#ac6928b9ae1741c74ca5856da5b4c0b9d">  169</a></span>&#160;
+            <span class="keywordtype">float</span> <a class="code"
+                                                      href="class_invalid_event.html#ac6928b9ae1741c74ca5856da5b4c0b9d">getPrice</a>()<span
+                    class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code"
+                                                                                               href="class_invalid_event.html#a646f15703bef07223dcb516ae048f7b6">price</a>;
+            }
         </div>
-        <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;};</div>
-        <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-        <div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="class_existing_event.html">   75</a></span>&#160;<span
+        <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;};</div>
+        <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;</div>
+        <div class="line"><a name="l00173"></a><span class="lineno"><a class="line" href="class_existing_event.html">  173</a></span>&#160;<span
                 class="keyword">class </span><a class="code" href="class_existing_event.html">ExistingEvent</a> : <span
                 class="keyword">public</span> exception, <span class="keyword">public</span> <a class="code"
                                                                                                 href="class_event.html">Event</a>
             {
         </div>
-        <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span
+        <div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span
                 class="keyword">public</span>:
         </div>
-        <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; <a class="code"
-                                                                                          href="class_existing_event.html">ExistingEvent</a>(<a
-                class="code" href="class_event.html">Event</a> ev) : <a class="code" href="class_event.html">Event</a>(ev)
-            {}
+        <div class="line"><a name="l00176"></a><span class="lineno"><a class="line"
+                                                                       href="class_existing_event.html#ad4ea248070813cd5dbb65c853ebc8ffb">  176</a></span>&#160;
+            <a class="code" href="class_existing_event.html#ad4ea248070813cd5dbb65c853ebc8ffb">ExistingEvent</a>(<a
+                    class="code" href="class_event.html">Event</a> ev) : <a class="code"
+                                                                            href="class_event.html">Event</a>(ev) {}
         </div>
-        <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-        <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;};</div>
-        <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-        <div class="line"><a name="l00081"></a><span class="lineno"><a class="line"
-                                                                       href="class_past_event.html">   81</a></span>&#160;<span
+        <div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;</div>
+        <div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;};</div>
+        <div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;</div>
+        <div class="line"><a name="l00181"></a><span class="lineno"><a class="line"
+                                                                       href="class_past_event.html">  181</a></span>&#160;<span
                 class="keyword">class </span><a class="code" href="class_past_event.html">PastEvent</a> : <span
                 class="keyword">public</span> exception, <span class="keyword">public</span> <a class="code"
                                                                                                 href="class_event.html">Event</a>
             {
         </div>
-        <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span
+        <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span
                 class="keyword">public</span>:
         </div>
-        <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; <a class="code"
-                                                                                          href="class_past_event.html">PastEvent</a>(<a
-                class="code" href="class_event.html">Event</a> ev) : <a class="code" href="class_event.html">Event</a>(ev)
-            {}
+        <div class="line"><a name="l00184"></a><span class="lineno"><a class="line"
+                                                                       href="class_past_event.html#ab6d9cc4c4c7f523553e9fc377d1ac097">  184</a></span>&#160;
+            <a class="code" href="class_past_event.html#ab6d9cc4c4c7f523553e9fc377d1ac097">PastEvent</a>(<a class="code"
+                                                                                                            href="class_event.html">Event</a>
+            ev) : <a class="code" href="class_event.html">Event</a>(ev) {}
         </div>
-        <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;};</div>
-        <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+        <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;};</div>
+        <div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;</div>
     </div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclass_invalid_event_html_a94f5fc900fb04f1d6e0d6ea4a9cc91a4">
+    <div class="ttname"><a
+            href="class_invalid_event.html#a94f5fc900fb04f1d6e0d6ea4a9cc91a4">InvalidEvent::InvalidEvent</a></div>
+    <div class="ttdeci">InvalidEvent(string nm, Date dt, float price)</div>
+    <div class="ttdoc">Constructs an InvalidEvent.</div>
+    <div class="ttdef"><b>Definition:</b> Event.h:157</div>
+</div>
+<div class="ttc" id="aclass_over_booked_event_html_a2614dc45ef3d350aa4cdc68e79ac29e9">
+    <div class="ttname"><a href="class_over_booked_event.html#a2614dc45ef3d350aa4cdc68e79ac29e9">OverBookedEvent::OverBookedEvent</a>
+    </div>
+    <div class="ttdeci">OverBookedEvent(Museum *museum, unsigned soldTickets)</div>
+    <div class="ttdoc">Constructs a overbooked event.</div>
+    <div class="ttdef"><b>Definition:</b> Event.h:124</div>
+</div>
+<div class="ttc" id="aclass_event_html_a6be6a0033ddac703543dc5d1040dd9b8">
+    <div class="ttname"><a href="class_event.html#a6be6a0033ddac703543dc5d1040dd9b8">Event::getName</a></div>
+    <div class="ttdeci">string getName()</div>
+    <div class="ttdoc">Gets a name.</div>
+    <div class="ttdef"><b>Definition:</b> Event.cpp:6</div>
+</div>
+<div class="ttc" id="aclass_past_event_html_ab6d9cc4c4c7f523553e9fc377d1ac097">
+    <div class="ttname"><a href="class_past_event.html#ab6d9cc4c4c7f523553e9fc377d1ac097">PastEvent::PastEvent</a></div>
+    <div class="ttdeci">PastEvent(Event ev)</div>
+    <div class="ttdoc">Constructs a PastEvent.</div>
+    <div class="ttdef"><b>Definition:</b> Event.h:184</div>
+</div>
 <div class="ttc" id="aclass_museum_html">
     <div class="ttname"><a href="class_museum.html">Museum</a></div>
     <div class="ttdoc">Museum Class.</div>
     <div class="ttdef"><b>Definition:</b> Museum.h:12</div>
 </div>
+<div class="ttc" id="aclass_over_booked_event_html_a2cbaa505af9adf830e4e99a24e081062">
+    <div class="ttname"><a href="class_over_booked_event.html#a2cbaa505af9adf830e4e99a24e081062">OverBookedEvent::getSoldTickets</a>
+    </div>
+    <div class="ttdeci">unsigned getSoldTickets()</div>
+    <div class="ttdoc">Gets the number of tickets of the event that is overbooked.</div>
+    <div class="ttdef"><b>Definition:</b> Event.h:132</div>
+</div>
+<div class="ttc" id="aclass_invalid_event_html_a646f15703bef07223dcb516ae048f7b6">
+    <div class="ttname"><a href="class_invalid_event.html#a646f15703bef07223dcb516ae048f7b6">InvalidEvent::price</a>
+    </div>
+    <div class="ttdeci">float price</div>
+    <div class="ttdoc">price of the invalid event.</div>
+    <div class="ttdef"><b>Definition:</b> Event.h:153</div>
+</div>
+<div class="ttc" id="aclass_event_html_adebcc91df64f9d06102c287eb04526d1">
+    <div class="ttname"><a href="class_event.html#adebcc91df64f9d06102c287eb04526d1">Event::setName</a></div>
+    <div class="ttdeci">void setName(string nm)</div>
+    <div class="ttdoc">Sets the name of the event.</div>
+    <div class="ttdef"><b>Definition:</b> Event.cpp:26</div>
+</div>
 <div class="ttc" id="aclass_past_event_html">
     <div class="ttname"><a href="class_past_event.html">PastEvent</a></div>
-    <div class="ttdef"><b>Definition:</b> Event.h:81</div>
+    <div class="ttdoc">Happens when an event has already happened.</div>
+    <div class="ttdef"><b>Definition:</b> Event.h:181</div>
+</div>
+<div class="ttc" id="aclass_event_html_a7723e46900b600b22ec141aeff90e39a">
+    <div class="ttname"><a href="class_event.html#a7723e46900b600b22ec141aeff90e39a">Event::getPrice</a></div>
+    <div class="ttdeci">float getPrice() const</div>
+    <div class="ttdoc">Gets the event price.</div>
+    <div class="ttdef"><b>Definition:</b> Event.cpp:22</div>
+</div>
+<div class="ttc" id="aclass_event_html_afb982ea390aa61ed05bd3c5e544071e1">
+    <div class="ttname"><a href="class_event.html#afb982ea390aa61ed05bd3c5e544071e1">Event::getDate</a></div>
+    <div class="ttdeci">Date getDate() const</div>
+    <div class="ttdoc">Gets a date.</div>
+    <div class="ttdef"><b>Definition:</b> Event.cpp:14</div>
+</div>
+<div class="ttc" id="aclass_event_html_a406cf66cf3a2b849678469c6e90f27b8">
+    <div class="ttname"><a href="class_event.html#a406cf66cf3a2b849678469c6e90f27b8">Event::operator!=</a></div>
+    <div class="ttdeci">friend bool operator!=(Event &amp;left, Event &amp;right)</div>
+    <div class="ttdoc">Tests if an event is not equal to another.</div>
+    <div class="ttdef"><b>Definition:</b> Event.cpp:81</div>
+</div>
+<div class="ttc" id="aclass_event_html_a258fdce6d8a4fc913848d3998a5fb2b7">
+    <div class="ttname"><a href="class_event.html#a258fdce6d8a4fc913848d3998a5fb2b7">Event::Event</a></div>
+    <div class="ttdeci">Event(Museum *mus, Date date, float price, string name, Time time)</div>
+    <div class="ttdoc">Constructs an Event.</div>
+    <div class="ttdef"><b>Definition:</b> Event.cpp:93</div>
+</div>
+<div class="ttc" id="aclass_event_html_a1514ad9e788b515cabe679dab71ced25">
+    <div class="ttname"><a href="class_event.html#a1514ad9e788b515cabe679dab71ced25">Event::operator==</a></div>
+    <div class="ttdeci">friend bool operator==(Event &amp;left, Event &amp;right)</div>
+    <div class="ttdoc">Tests if an event is equal to another.</div>
+    <div class="ttdef"><b>Definition:</b> Event.cpp:76</div>
 </div>
 <div class="ttc" id="aclass_time_html">
     <div class="ttname"><a href="class_time.html">Time</a></div>
     <div class="ttdef"><b>Definition:</b> Time.h:11</div>
 </div>
+<div class="ttc" id="aclass_invalid_event_html_a02773c850edac47fd355f7a6ed7c5901">
+    <div class="ttname"><a href="class_invalid_event.html#a02773c850edac47fd355f7a6ed7c5901">InvalidEvent::getDate</a>
+    </div>
+    <div class="ttdeci">Date getDate() const</div>
+    <div class="ttdoc">Gets the date.</div>
+    <div class="ttdef"><b>Definition:</b> Event.h:165</div>
+</div>
+<div class="ttc" id="aclass_event_html_a980aa4757201237ba2c2b103cc7b155b">
+    <div class="ttname"><a href="class_event.html#a980aa4757201237ba2c2b103cc7b155b">Event::compareName</a></div>
+    <div class="ttdeci">friend bool compareName(T left, T right)</div>
+    <div class="ttdoc">Tests if a class object name is equal to another.</div>
+    <div class="ttdef"><b>Definition:</b> Menu.cpp:513</div>
+</div>
+<div class="ttc" id="aclass_event_html_aa17c35044eb12859a960d867e26c939d">
+    <div class="ttname"><a href="class_event.html#aa17c35044eb12859a960d867e26c939d">Event::compareDate</a></div>
+    <div class="ttdeci">friend bool compareDate(Event *left, Event *right)</div>
+    <div class="ttdoc">Tests if an event date is equal to another.</div>
+    <div class="ttdef"><b>Definition:</b> Menu.cpp:517</div>
+</div>
 <div class="ttc" id="aclass_event_html">
     <div class="ttname"><a href="class_event.html">Event</a></div>
-    <div class="ttdef"><b>Definition:</b> Event.h:14</div>
+    <div class="ttdef"><b>Definition:</b> Event.h:15</div>
+</div>
+<div class="ttc" id="aclass_over_booked_event_html_a18905c8a06f68b86f6e662d9497d59a8">
+    <div class="ttname"><a href="class_over_booked_event.html#a18905c8a06f68b86f6e662d9497d59a8">OverBookedEvent::getMuseum</a>
+    </div>
+    <div class="ttdeci">Museum * getMuseum()</div>
+    <div class="ttdoc">Gets the museum of the event that is overbooked.</div>
+    <div class="ttdef"><b>Definition:</b> Event.h:128</div>
+</div>
+<div class="ttc" id="aclass_event_html_a0df726e5bcf203e2168699cff984e229">
+    <div class="ttname"><a href="class_event.html#a0df726e5bcf203e2168699cff984e229">Event::getTime</a></div>
+    <div class="ttdeci">Time getTime() const</div>
+    <div class="ttdoc">Gets a time.</div>
+    <div class="ttdef"><b>Definition:</b> Event.cpp:18</div>
+</div>
+<div class="ttc" id="aclass_invalid_event_html_a84474960f75b31b6371e3edea9207304">
+    <div class="ttname"><a href="class_invalid_event.html#a84474960f75b31b6371e3edea9207304">InvalidEvent::name</a>
+    </div>
+    <div class="ttdeci">string name</div>
+    <div class="ttdoc">name of the invalid event.</div>
+    <div class="ttdef"><b>Definition:</b> Event.h:147</div>
+</div>
+<div class="ttc" id="aclass_event_html_a15d56898fa95323cd60faae01fae42a7">
+    <div class="ttname"><a href="class_event.html#a15d56898fa95323cd60faae01fae42a7">Event::comparePrice</a></div>
+    <div class="ttdeci">friend bool comparePrice(Event *left, Event *right)</div>
+    <div class="ttdoc">Tests if an event price is equal to another.</div>
+    <div class="ttdef"><b>Definition:</b> Menu.cpp:521</div>
 </div>
 <div class="ttc" id="aclass_over_booked_event_html">
     <div class="ttname"><a href="class_over_booked_event.html">OverBookedEvent</a></div>
-    <div class="ttdef"><b>Definition:</b> Event.h:49</div>
+    <div class="ttdoc">Happens when you try to sell a ticket to a full event.</div>
+    <div class="ttdef"><b>Definition:</b> Event.h:118</div>
+</div>
+<div class="ttc" id="aclass_event_html_abbc7cef18d02672375ed960a6a20b48a">
+    <div class="ttname"><a href="class_event.html#abbc7cef18d02672375ed960a6a20b48a">Event::operator&gt;&gt;</a></div>
+    <div class="ttdeci">friend istream &amp; operator&gt;&gt;(istream &amp;in, Event **event)</div>
+    <div class="ttdoc">Creates a pointer to a new event.</div>
+    <div class="ttdef"><b>Definition:</b> Event.cpp:48</div>
+</div>
+<div class="ttc" id="aclass_event_html_a173b87a74a132942d2ce01778e1fa509">
+    <div class="ttname"><a href="class_event.html#a173b87a74a132942d2ce01778e1fa509">Event::setMuseum</a></div>
+    <div class="ttdeci">void setMuseum(Museum *museum)</div>
+    <div class="ttdoc">Sets museum where the event will take place.</div>
+    <div class="ttdef"><b>Definition:</b> Event.cpp:30</div>
+</div>
+<div class="ttc" id="aclass_event_html_abe259ae9f7c5eefffaa3090ce6e130de">
+    <div class="ttname"><a href="class_event.html#abe259ae9f7c5eefffaa3090ce6e130de">Event::setTime</a></div>
+    <div class="ttdeci">void setTime(Time t)</div>
+    <div class="ttdoc">Sets the time of the event.</div>
+    <div class="ttdef"><b>Definition:</b> Event.cpp:105</div>
+</div>
+<div class="ttc" id="aclass_invalid_event_html_ac6928b9ae1741c74ca5856da5b4c0b9d">
+    <div class="ttname"><a href="class_invalid_event.html#ac6928b9ae1741c74ca5856da5b4c0b9d">InvalidEvent::getPrice</a>
+    </div>
+    <div class="ttdeci">float getPrice() const</div>
+    <div class="ttdoc">Gets the price.</div>
+    <div class="ttdef"><b>Definition:</b> Event.h:169</div>
+</div>
+<div class="ttc" id="aclass_invalid_event_html_aa17389e2ac6a7091cd9e522d5c0f17c6">
+    <div class="ttname"><a href="class_invalid_event.html#aa17389e2ac6a7091cd9e522d5c0f17c6">InvalidEvent::getName</a>
+    </div>
+    <div class="ttdeci">string getName() const</div>
+    <div class="ttdoc">Gets the name.</div>
+    <div class="ttdef"><b>Definition:</b> Event.h:161</div>
 </div>
 <div class="ttc" id="aclass_invalid_event_html">
     <div class="ttname"><a href="class_invalid_event.html">InvalidEvent</a></div>
-    <div class="ttdef"><b>Definition:</b> Event.h:63</div>
+    <div class="ttdoc">Happens when an event is invalid.</div>
+    <div class="ttdef"><b>Definition:</b> Event.h:143</div>
+</div>
+<div class="ttc" id="aclass_event_html_a989f2972dca76b2532ca37392f2830be">
+    <div class="ttname"><a href="class_event.html#a989f2972dca76b2532ca37392f2830be">Event::operator&lt;&lt;</a></div>
+    <div class="ttdeci">friend ostream &amp; operator&lt;&lt;(ostream &amp;out, const Event &amp;event)</div>
+    <div class="ttdoc">Writes on the out parameter the event.</div>
+    <div class="ttdef"><b>Definition:</b> Event.cpp:42</div>
+</div>
+<div class="ttc" id="aclass_over_booked_event_html_a42da40498968682970120acab4c7a68c">
+    <div class="ttname"><a href="class_over_booked_event.html#a42da40498968682970120acab4c7a68c">OverBookedEvent::operator&lt;&lt;</a>
+    </div>
+    <div class="ttdeci">friend ostream &amp; operator&lt;&lt;(ostream &amp;out, const OverBookedEvent &amp;ev)</div>
+    <div class="ttdoc">Prints the exception.</div>
+    <div class="ttdef"><b>Definition:</b> Event.h:136</div>
+</div>
+<div class="ttc" id="aclass_event_html_a0fc80c4fa388885e82944fcfbcefe80a">
+    <div class="ttname"><a href="class_event.html#a0fc80c4fa388885e82944fcfbcefe80a">Event::getMuseum</a></div>
+    <div class="ttdeci">Museum * getMuseum() const</div>
+    <div class="ttdoc">Gets a pointer of a museum.</div>
+    <div class="ttdef"><b>Definition:</b> Event.cpp:10</div>
+</div>
+<div class="ttc" id="aclass_event_html_aa4580054c6b0ebb73bcc4a8126a28059">
+    <div class="ttname"><a href="class_event.html#aa4580054c6b0ebb73bcc4a8126a28059">Event::setPrice</a></div>
+    <div class="ttdeci">void setPrice(float p)</div>
+    <div class="ttdoc">Sets the price of the event.</div>
+    <div class="ttdef"><b>Definition:</b> Event.cpp:38</div>
+</div>
+<div class="ttc" id="aclass_invalid_event_html_a1aae0f442869e47c96a3180e043e341f">
+    <div class="ttname"><a href="class_invalid_event.html#a1aae0f442869e47c96a3180e043e341f">InvalidEvent::date</a>
+    </div>
+    <div class="ttdeci">Date date</div>
+    <div class="ttdoc">date of the invalid event.</div>
+    <div class="ttdef"><b>Definition:</b> Event.h:150</div>
+</div>
+<div class="ttc" id="aclass_event_html_a60a25f08b7850e19959957dfbfb0f1fc">
+    <div class="ttname"><a href="class_event.html#a60a25f08b7850e19959957dfbfb0f1fc">Event::setDate</a></div>
+    <div class="ttdeci">void setDate(Date d)</div>
+    <div class="ttdoc">Sets the date of the event.</div>
+    <div class="ttdef"><b>Definition:</b> Event.cpp:34</div>
+</div>
+<div class="ttc" id="aclass_existing_event_html_ad4ea248070813cd5dbb65c853ebc8ffb">
+    <div class="ttname"><a href="class_existing_event.html#ad4ea248070813cd5dbb65c853ebc8ffb">ExistingEvent::ExistingEvent</a>
+    </div>
+    <div class="ttdeci">ExistingEvent(Event ev)</div>
+    <div class="ttdoc">Constructs an Invalid Event.</div>
+    <div class="ttdef"><b>Definition:</b> Event.h:176</div>
 </div>
 <div class="ttc" id="aclass_existing_event_html">
     <div class="ttname"><a href="class_existing_event.html">ExistingEvent</a></div>
-    <div class="ttdef"><b>Definition:</b> Event.h:75</div>
+    <div class="ttdoc">Happens when an event created already exists.</div>
+    <div class="ttdef"><b>Definition:</b> Event.h:173</div>
 </div>
 <div class="ttc" id="aclass_date_html">
     <div class="ttname"><a href="class_date.html">Date</a></div>

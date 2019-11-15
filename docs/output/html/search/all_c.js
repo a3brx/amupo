@@ -1,19 +1,17 @@
 var searchData =
     [
-        ['setaddress_82', ['setAddress', ['../class_museum.html#af69a3fc747ce1b4747278f6e82722f09', 1, 'Museum::setAddress()'], ['../class_person.html#a50e4f3f7bf2acb402fb3c1e568a45ee6', 1, 'Person::setAddress()']]],
-        ['setcapacity_83', ['setCapacity', ['../class_museum.html#a8a3bc77112aa41ab9bfda75d51826412', 1, 'Museum']]],
-        ['setcontact_84', ['setContact', ['../class_person.html#a65d72eb7fc61efd80f0611241c0ae9bb', 1, 'Person']]],
-        ['setcontent_85', ['setContent', ['../class_table.html#aaccf9406b39687dfdc6de98c0bbba139', 1, 'Table']]],
-        ['setcost_86', ['setCost', ['../class_silver_client.html#a28409c0fa6f0891ef0c252e1a8ea5577', 1, 'SilverClient::setCost()'], ['../class_uni_client.html#af5957fa0f04fabcb9f45179ffecc7bf9', 1, 'UniClient::setCost()'], ['../class_individual_client.html#aeb2106eea433fb4c84c83204b9440f16', 1, 'IndividualClient::setCost()']]],
-        ['setday_87', ['setDay', ['../class_date.html#adac4574d3bc24d0009404638abdbb9f4', 1, 'Date']]],
-        ['setdoornumber_88', ['setDoorNumber', ['../class_address.html#a2e320994aa3957ed65227029588fa686', 1, 'Address']]],
-        ['setheader_89', ['setHeader', ['../class_table.html#acddab5270034579aa28955f0dcf3fa7a', 1, 'Table']]],
-        ['setlocality_90', ['setLocality', ['../class_address.html#a6c1644ddeb6ad3b5ccb38648b0617122', 1, 'Address']]],
-        ['setmonth_91', ['setMonth', ['../class_date.html#adfaf040d0bcb6130c1759c53cc1d2f61', 1, 'Date']]],
-        ['setname_92', ['setName', ['../class_museum.html#af4d3d61638fe0c80098a95c213c27d0d', 1, 'Museum::setName()'], ['../class_person.html#a9fa68f82727e6de0137b3c1b1537a0bf', 1, 'Person::setName()']]],
-        ['setpostalcode_93', ['setPostalCode', ['../class_address.html#a708a886a91035781c9554db22caabbfc', 1, 'Address']]],
-        ['setstreet_94', ['setStreet', ['../class_address.html#a20640441686ce8ddb5e6b7c37e76d7c1', 1, 'Address']]],
-        ['setyear_95', ['setYear', ['../class_date.html#afc91660bd97191dc0733862f69394b91', 1, 'Date']]],
-        ['silverclient_96', ['SilverClient', ['../class_silver_client.html', 1, '']]],
-        ['system_97', ['System', ['../class_system.html', 1, 'System'], ['../class_system.html#afb1b23495c55e3b7a32ee2d08304a1ec', 1, 'System::System()']]]
+        ['readclients_79', ['readClients', ['../class_system.html#a2d59fd26720caf7b520722890c10c215', 1, 'System']]],
+        ['readevent_80', ['readEvent', ['../class_system.html#a2965050eced0c327b3689fb11f172adb', 1, 'System']]],
+        ['readeventmenu_81', ['ReadEventMenu', ['../class_read_event_menu.html', 1, 'ReadEventMenu'], ['../class_read_event_menu.html#a64da9891dd496e091ce31ea7300f13bd', 1, 'ReadEventMenu::ReadEventMenu()']]],
+        ['readevents_82', ['readEvents', ['../class_system.html#aec4835a9eb7e62e61d513cb02c72bc18', 1, 'System']]],
+        ['readmenu_83', ['ReadMenu', ['../class_read_menu.html', 1, 'ReadMenu&lt; T &gt;'], ['../class_read_menu.html#a4484151635cf62507ad1bc2ead84e85b', 1, 'ReadMenu::ReadMenu()']]],
+        ['readmenu_3c_20client_20_3e_84', ['ReadMenu&lt; Client &gt;', ['../class_read_menu.html', 1, '']]],
+        ['readmenu_3c_20event_20_3e_85', ['ReadMenu&lt; Event &gt;', ['../class_read_menu.html', 1, '']]],
+        ['readmenu_3c_20museum_20_3e_86', ['ReadMenu&lt; Museum &gt;', ['../class_read_menu.html', 1, '']]],
+        ['readmuseum_87', ['readMuseum', ['../class_system.html#a19584e50422d313bcf90147523787c86', 1, 'System']]],
+        ['readmuseummenu_88', ['ReadMuseumMenu', ['../class_read_museum_menu.html', 1, 'ReadMuseumMenu'], ['../class_read_museum_menu.html#a0025f3b910fba7a00c837f4c1268d4b6', 1, 'ReadMuseumMenu::ReadMuseumMenu()']]],
+        ['readmuseums_89', ['readMuseums', ['../class_system.html#a7ee56d6c97cf71a4e25dfb4dc7cbfd9d', 1, 'System']]],
+        ['readpeople_90', ['readPeople', ['../class_system.html#a97ec8f5f6024a57454dcd3a3e4be938c', 1, 'System']]],
+        ['readperson_91', ['readPerson', ['../class_system.html#ab72ed1c71cc5cd96144516101d089dc9', 1, 'System']]],
+        ['readpersonmenu_92', ['ReadPersonMenu', ['../class_read_person_menu.html', 1, 'ReadPersonMenu'], ['../class_read_person_menu.html#ae7cd411fb8caf5ffc9d7175a9e7ec92c', 1, 'ReadPersonMenu::ReadPersonMenu()']]]
     ];
