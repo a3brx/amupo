@@ -33,7 +33,7 @@ public:
 
 
 /// Exception Invalid Time
-class InvalidTime : exception {
+class InvalidTime : public exception {
     char hour;
     char minute;
 public:

@@ -11,12 +11,21 @@
 #include "../Time/Time.h"
 #include "../Person/Person.h"
 
-
+/// @brief The Event Class
 class Event {
-    string name;            //so se da nome ao event ao adiciona-lo ao sistema para ver se ha dois iguais
+    ///@brief The name of the event
+    string name;
+
+    ///@brief The memory address of the museum where the event takes place
     Museum *museum;
+
+    ///@brief The date of the event
     Date date;
+
+    ///@brief The ticket price of the event
     float price;
+
+    ///@brief The time when the event is gonna start
     Time time;
 
 public:
@@ -115,7 +124,7 @@ public:
 };
 
 ///@brief Happens when you try to sell a ticket to a full event.
-class OverBookedEvent : exception {
+class OverBookedEvent : public exception {
 private:
     Museum *museum;
     unsigned soldTickets;
@@ -140,7 +149,7 @@ public:
 };
 
 ///@brief Happens when an event is invalid.
-class InvalidEvent : exception {
+class InvalidEvent : public exception {
 private:
 
     ///@brief name of the invalid event.

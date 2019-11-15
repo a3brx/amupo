@@ -18,6 +18,8 @@ private:
 public:
 
     ///@brief Constructs a ticket object
+    ///@param event Ticket's event
+    ///@param person Person that bought the ticket
     Ticket(Event *event, Person *person);
 
     ///@brief Constructor of a ticket
