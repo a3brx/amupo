@@ -1,6 +1,6 @@
 Alive | 20/5/2023 | 650 | 15:40
 Museu dos Biscainhos
-Paredes | 13/10/2020 | 100 | 17:30
+Paredes | 13/10/2020 | 125 | 17:30
 Museu do Teste
 Web Summit | 5/10/2019 | 350 | 20:00
 Museu Soares dos Reis
