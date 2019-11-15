@@ -146,7 +146,7 @@ System::System(const string &fileName/*,const string pass*/) {
     }
     file.close();
 
-    velho();
+    freeSilverClientTickets();
 }
 
 void System::readPerson() const {
@@ -696,7 +696,7 @@ double System::eventRevenue() {
     return money;
 }
 
-void System::velho() {
+void System::freeSilverClientTickets() {
     Time atual;
     Date atualDate;
     auto it = events.begin(), itl = events.end();
