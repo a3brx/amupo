@@ -101,3 +101,7 @@ Event::Event(Event *ev) {
     this->date=ev->date;
     this->time=ev->time;
 }
+
+void Event::setTime(Time t) {
+    this->time = t;
+}

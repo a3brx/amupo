@@ -33,6 +33,8 @@ class Event{
     void setDate(Date d);
     void setPrice(float p);
 
+    void setTime(Time t);
+
     friend ostream & operator<<(ostream & out, const Event & event);
 
     friend istream &operator>>(istream &in, Event **event);
