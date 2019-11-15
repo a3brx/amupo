@@ -8,6 +8,11 @@
 const unsigned char PADDING = 3;
 using namespace std;
 
+/// @brief Adds spaces after and before a string until it reaches a length
+/// @tparam Printable Any class with the operator<< defined
+/// @param s The object that is gonna be made into a normalized string
+/// @param n The length of the resultant string
+/// @return Returns a string with the length n that has the information of s
 template<class Printable>
 string normalize(Printable s, unsigned n);
 
