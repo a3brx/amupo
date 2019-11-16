@@ -84,8 +84,6 @@ public:
     /// @param address A pointer to a pointer that is gonna point to the new Address.
     /// @return Returns the istream itself.
     friend istream &operator>>(istream &in, Address **address);
-
-    friend class InvalidAddress;
 };
 
 ///@brief Exception Invalid Address
