@@ -73,7 +73,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Happens when you try to sell a ticket to a full event.  
+    <p>The Over Booked <a class="el" href="class_event.html" title="The Event Class.">Event</a> exception.
  <a href="class_over_booked_event.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_event_8h_source.html">Event.h</a>&gt;</code></p>
@@ -81,13 +81,25 @@ $(function() {
 Inheritance diagram for OverBookedEvent:</div>
 <div class="dyncontent">
  <div class="center">
-  <img src="class_over_booked_event.png" alt=""/>
- </div></div>
+     <img src="class_over_booked_event.png" usemap="#OverBookedEvent_map" alt=""/>
+     <map id="OverBookedEvent_map" name="OverBookedEvent_map">
+         <area href="class_event.html" title="The Event Class." alt="Event" shape="rect" coords="125,0,240,24"/>
+     </map>
+ </div>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a2614dc45ef3d350aa4cdc68e79ac29e9"><td class="memItemLeft" align="right" valign="top"><a id="a2614dc45ef3d350aa4cdc68e79ac29e9"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_over_booked_event.html#a2614dc45ef3d350aa4cdc68e79ac29e9">OverBookedEvent</a> (<a class="el" href="class_museum.html">Museum</a> *<a class="el" href="class_over_booked_event.html#a196178a3335200756cbbec687db12f2d">museum</a>, unsigned <a class="el" href="class_over_booked_event.html#a6b747ac7a4808ec7b90c60d825680906">soldTickets</a>)</td></tr>
+    &#160;
+</td>
+    <td class="memItemRight" valign="bottom"><a class="el"
+                                                href="class_over_booked_event.html#a2614dc45ef3d350aa4cdc68e79ac29e9">OverBookedEvent</a>
+        (<a class="el" href="class_museum.html">Museum</a> *<a class="el"
+                                                               href="class_event.html#aef29e39e6223d61ea8fd14f8f9007127">museum</a>,
+        unsigned <a class="el" href="class_over_booked_event.html#a6b747ac7a4808ec7b90c60d825680906">soldTickets</a>)
+    </td>
+</tr>
 <tr class="memdesc:a2614dc45ef3d350aa4cdc68e79ac29e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a overbooked event. <br /></td></tr>
 <tr class="separator:a2614dc45ef3d350aa4cdc68e79ac29e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18905c8a06f68b86f6e662d9497d59a8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_museum.html">Museum</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_over_booked_event.html#a18905c8a06f68b86f6e662d9497d59a8">getMuseum</a> ()</td></tr>
@@ -96,13 +108,215 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2cbaa505af9adf830e4e99a24e081062"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_over_booked_event.html#a2cbaa505af9adf830e4e99a24e081062">getSoldTickets</a> ()</td></tr>
 <tr class="memdesc:a2cbaa505af9adf830e4e99a24e081062"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of tickets of the event that is overbooked.  <a href="class_over_booked_event.html#a2cbaa505af9adf830e4e99a24e081062">More...</a><br /></td></tr>
 <tr class="separator:a2cbaa505af9adf830e4e99a24e081062"><td class="memSeparator" colspan="2">&#160;</td></tr>
+    <tr class="inherit_header pub_methods_class_event">
+        <td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_event')"><img src="closed.png" alt="-"/>&#160;Public
+            Member Functions inherited from <a class="el" href="class_event.html">Event</a></td>
+    </tr>
+    <tr class="memitem:a258fdce6d8a4fc913848d3998a5fb2b7 inherit pub_methods_class_event">
+        <td class="memItemLeft" align="right" valign="top">&#160;</td>
+        <td class="memItemRight" valign="bottom"><a class="el"
+                                                    href="class_event.html#a258fdce6d8a4fc913848d3998a5fb2b7">Event</a>
+            (<a class="el" href="class_museum.html">Museum</a> *mus, <a class="el" href="class_date.html">Date</a> <a
+                    class="el" href="class_event.html#a67ba6f103d6826dbdb146a5138732a27">date</a>, float <a class="el"
+                                                                                                            href="class_event.html#ac0fe6b8229d3d3ac88cfd5ee3887d0dd">price</a>,
+            string <a class="el" href="class_event.html#a2260aa14c4dfb50ad5db1dd71ece65eb">name</a>, <a class="el"
+                                                                                                        href="class_time.html">Time</a>
+            <a class="el" href="class_event.html#a1a72e728fc81fa0a2b538be333f70d70">time</a>)
+        </td>
+    </tr>
+    <tr class="memdesc:a258fdce6d8a4fc913848d3998a5fb2b7 inherit pub_methods_class_event">
+        <td class="mdescLeft">&#160;</td>
+        <td class="mdescRight">Constructs an <a class="el" href="class_event.html" title="The Event Class.">Event</a>.
+            <a href="class_event.html#a258fdce6d8a4fc913848d3998a5fb2b7">More...</a><br/></td>
+    </tr>
+    <tr class="separator:a258fdce6d8a4fc913848d3998a5fb2b7 inherit pub_methods_class_event">
+        <td class="memSeparator" colspan="2">&#160;</td>
+    </tr>
+    <tr class="memitem:aa79f43b0c42280875280ec071aa2eea1 inherit pub_methods_class_event">
+        <td class="memItemLeft" align="right" valign="top">&#160;</td>
+        <td class="memItemRight" valign="bottom"><a class="el"
+                                                    href="class_event.html#aa79f43b0c42280875280ec071aa2eea1">Event</a>
+            (const <a class="el" href="class_event.html">Event</a> &amp;ev)
+        </td>
+    </tr>
+    <tr class="memdesc:aa79f43b0c42280875280ec071aa2eea1 inherit pub_methods_class_event">
+        <td class="mdescLeft">&#160;</td>
+        <td class="mdescRight">Constructs an <a class="el" href="class_event.html" title="The Event Class.">Event</a>.
+            <a href="class_event.html#aa79f43b0c42280875280ec071aa2eea1">More...</a><br/></td>
+    </tr>
+    <tr class="separator:aa79f43b0c42280875280ec071aa2eea1 inherit pub_methods_class_event">
+        <td class="memSeparator" colspan="2">&#160;</td>
+    </tr>
+    <tr class="memitem:a882966319ceeed9ac9ec5b69e4aabcf2 inherit pub_methods_class_event">
+        <td class="memItemLeft" align="right" valign="top">&#160;</td>
+        <td class="memItemRight" valign="bottom"><a class="el"
+                                                    href="class_event.html#a882966319ceeed9ac9ec5b69e4aabcf2">Event</a>
+            (<a class="el" href="class_event.html">Event</a> *ev)
+        </td>
+    </tr>
+    <tr class="memdesc:a882966319ceeed9ac9ec5b69e4aabcf2 inherit pub_methods_class_event">
+        <td class="mdescLeft">&#160;</td>
+        <td class="mdescRight">Constructs an <a class="el" href="class_event.html" title="The Event Class.">Event</a>.
+            <a href="class_event.html#a882966319ceeed9ac9ec5b69e4aabcf2">More...</a><br/></td>
+    </tr>
+    <tr class="separator:a882966319ceeed9ac9ec5b69e4aabcf2 inherit pub_methods_class_event">
+        <td class="memSeparator" colspan="2">&#160;</td>
+    </tr>
+    <tr class="memitem:a6be6a0033ddac703543dc5d1040dd9b8 inherit pub_methods_class_event">
+        <td class="memItemLeft" align="right" valign="top">string&#160;</td>
+        <td class="memItemRight" valign="bottom"><a class="el"
+                                                    href="class_event.html#a6be6a0033ddac703543dc5d1040dd9b8">getName</a>
+            ()
+        </td>
+    </tr>
+    <tr class="memdesc:a6be6a0033ddac703543dc5d1040dd9b8 inherit pub_methods_class_event">
+        <td class="mdescLeft">&#160;</td>
+        <td class="mdescRight">Gets a name. <a
+                href="class_event.html#a6be6a0033ddac703543dc5d1040dd9b8">More...</a><br/></td>
+    </tr>
+    <tr class="separator:a6be6a0033ddac703543dc5d1040dd9b8 inherit pub_methods_class_event">
+        <td class="memSeparator" colspan="2">&#160;</td>
+    </tr>
+    <tr class="memitem:a0fc80c4fa388885e82944fcfbcefe80a inherit pub_methods_class_event">
+        <td class="memItemLeft" align="right" valign="top"><a class="el" href="class_museum.html">Museum</a> *&#160;
+        </td>
+        <td class="memItemRight" valign="bottom"><a class="el"
+                                                    href="class_event.html#a0fc80c4fa388885e82944fcfbcefe80a">getMuseum</a>
+            () const
+        </td>
+    </tr>
+    <tr class="memdesc:a0fc80c4fa388885e82944fcfbcefe80a inherit pub_methods_class_event">
+        <td class="mdescLeft">&#160;</td>
+        <td class="mdescRight">Gets a pointer of a museum. <a href="class_event.html#a0fc80c4fa388885e82944fcfbcefe80a">More...</a><br/>
+        </td>
+    </tr>
+    <tr class="separator:a0fc80c4fa388885e82944fcfbcefe80a inherit pub_methods_class_event">
+        <td class="memSeparator" colspan="2">&#160;</td>
+    </tr>
+    <tr class="memitem:afb982ea390aa61ed05bd3c5e544071e1 inherit pub_methods_class_event">
+        <td class="memItemLeft" align="right" valign="top"><a class="el" href="class_date.html">Date</a>&#160;</td>
+        <td class="memItemRight" valign="bottom"><a class="el"
+                                                    href="class_event.html#afb982ea390aa61ed05bd3c5e544071e1">getDate</a>
+            () const
+        </td>
+    </tr>
+    <tr class="memdesc:afb982ea390aa61ed05bd3c5e544071e1 inherit pub_methods_class_event">
+        <td class="mdescLeft">&#160;</td>
+        <td class="mdescRight">Gets a date. <a
+                href="class_event.html#afb982ea390aa61ed05bd3c5e544071e1">More...</a><br/></td>
+    </tr>
+    <tr class="separator:afb982ea390aa61ed05bd3c5e544071e1 inherit pub_methods_class_event">
+        <td class="memSeparator" colspan="2">&#160;</td>
+    </tr>
+    <tr class="memitem:a0df726e5bcf203e2168699cff984e229 inherit pub_methods_class_event">
+        <td class="memItemLeft" align="right" valign="top"><a class="el" href="class_time.html">Time</a>&#160;</td>
+        <td class="memItemRight" valign="bottom"><a class="el"
+                                                    href="class_event.html#a0df726e5bcf203e2168699cff984e229">getTime</a>
+            () const
+        </td>
+    </tr>
+    <tr class="memdesc:a0df726e5bcf203e2168699cff984e229 inherit pub_methods_class_event">
+        <td class="mdescLeft">&#160;</td>
+        <td class="mdescRight">Gets a time. <a
+                href="class_event.html#a0df726e5bcf203e2168699cff984e229">More...</a><br/></td>
+    </tr>
+    <tr class="separator:a0df726e5bcf203e2168699cff984e229 inherit pub_methods_class_event">
+        <td class="memSeparator" colspan="2">&#160;</td>
+    </tr>
+    <tr class="memitem:a7723e46900b600b22ec141aeff90e39a inherit pub_methods_class_event">
+        <td class="memItemLeft" align="right" valign="top">float&#160;</td>
+        <td class="memItemRight" valign="bottom"><a class="el"
+                                                    href="class_event.html#a7723e46900b600b22ec141aeff90e39a">getPrice</a>
+            () const
+        </td>
+    </tr>
+    <tr class="memdesc:a7723e46900b600b22ec141aeff90e39a inherit pub_methods_class_event">
+        <td class="mdescLeft">&#160;</td>
+        <td class="mdescRight">Gets the event price. <a href="class_event.html#a7723e46900b600b22ec141aeff90e39a">More...</a><br/>
+        </td>
+    </tr>
+    <tr class="separator:a7723e46900b600b22ec141aeff90e39a inherit pub_methods_class_event">
+        <td class="memSeparator" colspan="2">&#160;</td>
+    </tr>
+    <tr class="memitem:adebcc91df64f9d06102c287eb04526d1 inherit pub_methods_class_event">
+        <td class="memItemLeft" align="right" valign="top">void&#160;</td>
+        <td class="memItemRight" valign="bottom"><a class="el"
+                                                    href="class_event.html#adebcc91df64f9d06102c287eb04526d1">setName</a>
+            (string nm)
+        </td>
+    </tr>
+    <tr class="memdesc:adebcc91df64f9d06102c287eb04526d1 inherit pub_methods_class_event">
+        <td class="mdescLeft">&#160;</td>
+        <td class="mdescRight">Sets the name of the event. <a href="class_event.html#adebcc91df64f9d06102c287eb04526d1">More...</a><br/>
+        </td>
+    </tr>
+    <tr class="separator:adebcc91df64f9d06102c287eb04526d1 inherit pub_methods_class_event">
+        <td class="memSeparator" colspan="2">&#160;</td>
+    </tr>
+    <tr class="memitem:a173b87a74a132942d2ce01778e1fa509 inherit pub_methods_class_event">
+        <td class="memItemLeft" align="right" valign="top">void&#160;</td>
+        <td class="memItemRight" valign="bottom"><a class="el"
+                                                    href="class_event.html#a173b87a74a132942d2ce01778e1fa509">setMuseum</a>
+            (<a class="el" href="class_museum.html">Museum</a> *<a class="el"
+                                                                   href="class_event.html#aef29e39e6223d61ea8fd14f8f9007127">museum</a>)
+        </td>
+    </tr>
+    <tr class="memdesc:a173b87a74a132942d2ce01778e1fa509 inherit pub_methods_class_event">
+        <td class="mdescLeft">&#160;</td>
+        <td class="mdescRight">Sets museum where the event will take place. <a
+                href="class_event.html#a173b87a74a132942d2ce01778e1fa509">More...</a><br/></td>
+    </tr>
+    <tr class="separator:a173b87a74a132942d2ce01778e1fa509 inherit pub_methods_class_event">
+        <td class="memSeparator" colspan="2">&#160;</td>
+    </tr>
+    <tr class="memitem:a60a25f08b7850e19959957dfbfb0f1fc inherit pub_methods_class_event">
+        <td class="memItemLeft" align="right" valign="top">void&#160;</td>
+        <td class="memItemRight" valign="bottom"><a class="el"
+                                                    href="class_event.html#a60a25f08b7850e19959957dfbfb0f1fc">setDate</a>
+            (<a class="el" href="class_date.html">Date</a> d)
+        </td>
+    </tr>
+    <tr class="memdesc:a60a25f08b7850e19959957dfbfb0f1fc inherit pub_methods_class_event">
+        <td class="mdescLeft">&#160;</td>
+        <td class="mdescRight">Sets the date of the event. <a href="class_event.html#a60a25f08b7850e19959957dfbfb0f1fc">More...</a><br/>
+        </td>
+    </tr>
+    <tr class="separator:a60a25f08b7850e19959957dfbfb0f1fc inherit pub_methods_class_event">
+        <td class="memSeparator" colspan="2">&#160;</td>
+    </tr>
+    <tr class="memitem:aa4580054c6b0ebb73bcc4a8126a28059 inherit pub_methods_class_event">
+        <td class="memItemLeft" align="right" valign="top">void&#160;</td>
+        <td class="memItemRight" valign="bottom"><a class="el"
+                                                    href="class_event.html#aa4580054c6b0ebb73bcc4a8126a28059">setPrice</a>
+            (float p)
+        </td>
+    </tr>
+    <tr class="memdesc:aa4580054c6b0ebb73bcc4a8126a28059 inherit pub_methods_class_event">
+        <td class="mdescLeft">&#160;</td>
+        <td class="mdescRight">Sets the price of the event. <a
+                href="class_event.html#aa4580054c6b0ebb73bcc4a8126a28059">More...</a><br/></td>
+    </tr>
+    <tr class="separator:aa4580054c6b0ebb73bcc4a8126a28059 inherit pub_methods_class_event">
+        <td class="memSeparator" colspan="2">&#160;</td>
+    </tr>
+    <tr class="memitem:abe259ae9f7c5eefffaa3090ce6e130de inherit pub_methods_class_event">
+        <td class="memItemLeft" align="right" valign="top">void&#160;</td>
+        <td class="memItemRight" valign="bottom"><a class="el"
+                                                    href="class_event.html#abe259ae9f7c5eefffaa3090ce6e130de">setTime</a>
+            (<a class="el" href="class_time.html">Time</a> t)
+        </td>
+    </tr>
+    <tr class="memdesc:abe259ae9f7c5eefffaa3090ce6e130de inherit pub_methods_class_event">
+        <td class="mdescLeft">&#160;</td>
+        <td class="mdescRight">Sets the time of the event. <a href="class_event.html#abe259ae9f7c5eefffaa3090ce6e130de">More...</a><br/>
+        </td>
+    </tr>
+    <tr class="separator:abe259ae9f7c5eefffaa3090ce6e130de inherit pub_methods_class_event">
+        <td class="memSeparator" colspan="2">&#160;</td>
+    </tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a196178a3335200756cbbec687db12f2d"><td class="memItemLeft" align="right" valign="top"><a id="a196178a3335200756cbbec687db12f2d"></a>
-<a class="el" href="class_museum.html">Museum</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_over_booked_event.html#a196178a3335200756cbbec687db12f2d">museum</a></td></tr>
-<tr class="memdesc:a196178a3335200756cbbec687db12f2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The memory address of the museum that is full. <br /></td></tr>
-<tr class="separator:a196178a3335200756cbbec687db12f2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b747ac7a4808ec7b90c60d825680906"><td class="memItemLeft" align="right" valign="top"><a id="a6b747ac7a4808ec7b90c60d825680906"></a>
 unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_over_booked_event.html#a6b747ac7a4808ec7b90c60d825680906">soldTickets</a></td></tr>
 <tr class="memdesc:a6b747ac7a4808ec7b90c60d825680906"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of sold tickets. <br /></td></tr>
@@ -114,8 +328,95 @@ Friends</h2></td></tr>
 <tr class="memdesc:a42da40498968682970120acab4c7a68c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the exception.  <a href="class_over_booked_event.html#a42da40498968682970120acab4c7a68c">More...</a><br /></td></tr>
 <tr class="separator:a42da40498968682970120acab4c7a68c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+    <table class="memberdecls">
+        <tr class="heading">
+            <td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+                Additional Inherited Members</h2></td>
+        </tr>
+        <tr class="inherit_header pro_attribs_class_event">
+            <td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_event')"><img src="closed.png"
+                                                                                               alt="-"/>&#160;Protected
+                Attributes inherited from <a class="el" href="class_event.html">Event</a></td>
+        </tr>
+        <tr class="memitem:a2260aa14c4dfb50ad5db1dd71ece65eb inherit pro_attribs_class_event">
+            <td class="memItemLeft" align="right" valign="top"><a id="a2260aa14c4dfb50ad5db1dd71ece65eb"></a>
+                string&#160;
+            </td>
+            <td class="memItemRight" valign="bottom"><a class="el"
+                                                        href="class_event.html#a2260aa14c4dfb50ad5db1dd71ece65eb">name</a>
+            </td>
+        </tr>
+        <tr class="memdesc:a2260aa14c4dfb50ad5db1dd71ece65eb inherit pro_attribs_class_event">
+            <td class="mdescLeft">&#160;</td>
+            <td class="mdescRight">The name of the event. <br/></td>
+        </tr>
+        <tr class="separator:a2260aa14c4dfb50ad5db1dd71ece65eb inherit pro_attribs_class_event">
+            <td class="memSeparator" colspan="2">&#160;</td>
+        </tr>
+        <tr class="memitem:aef29e39e6223d61ea8fd14f8f9007127 inherit pro_attribs_class_event">
+            <td class="memItemLeft" align="right" valign="top"><a id="aef29e39e6223d61ea8fd14f8f9007127"></a>
+                <a class="el" href="class_museum.html">Museum</a> *&#160;
+            </td>
+            <td class="memItemRight" valign="bottom"><a class="el"
+                                                        href="class_event.html#aef29e39e6223d61ea8fd14f8f9007127">museum</a>
+            </td>
+        </tr>
+        <tr class="memdesc:aef29e39e6223d61ea8fd14f8f9007127 inherit pro_attribs_class_event">
+            <td class="mdescLeft">&#160;</td>
+            <td class="mdescRight">The memory address of the museum where the event takes place. <br/></td>
+        </tr>
+        <tr class="separator:aef29e39e6223d61ea8fd14f8f9007127 inherit pro_attribs_class_event">
+            <td class="memSeparator" colspan="2">&#160;</td>
+        </tr>
+        <tr class="memitem:a67ba6f103d6826dbdb146a5138732a27 inherit pro_attribs_class_event">
+            <td class="memItemLeft" align="right" valign="top"><a id="a67ba6f103d6826dbdb146a5138732a27"></a>
+                <a class="el" href="class_date.html">Date</a>&#160;
+            </td>
+            <td class="memItemRight" valign="bottom"><a class="el"
+                                                        href="class_event.html#a67ba6f103d6826dbdb146a5138732a27">date</a>
+            </td>
+        </tr>
+        <tr class="memdesc:a67ba6f103d6826dbdb146a5138732a27 inherit pro_attribs_class_event">
+            <td class="mdescLeft">&#160;</td>
+            <td class="mdescRight">The date of the event. <br/></td>
+        </tr>
+        <tr class="separator:a67ba6f103d6826dbdb146a5138732a27 inherit pro_attribs_class_event">
+            <td class="memSeparator" colspan="2">&#160;</td>
+        </tr>
+        <tr class="memitem:ac0fe6b8229d3d3ac88cfd5ee3887d0dd inherit pro_attribs_class_event">
+            <td class="memItemLeft" align="right" valign="top"><a id="ac0fe6b8229d3d3ac88cfd5ee3887d0dd"></a>
+                float&#160;
+            </td>
+            <td class="memItemRight" valign="bottom"><a class="el"
+                                                        href="class_event.html#ac0fe6b8229d3d3ac88cfd5ee3887d0dd">price</a>
+            </td>
+        </tr>
+        <tr class="memdesc:ac0fe6b8229d3d3ac88cfd5ee3887d0dd inherit pro_attribs_class_event">
+            <td class="mdescLeft">&#160;</td>
+            <td class="mdescRight">The ticket price of the event. <br/></td>
+        </tr>
+        <tr class="separator:ac0fe6b8229d3d3ac88cfd5ee3887d0dd inherit pro_attribs_class_event">
+            <td class="memSeparator" colspan="2">&#160;</td>
+        </tr>
+        <tr class="memitem:a1a72e728fc81fa0a2b538be333f70d70 inherit pro_attribs_class_event">
+            <td class="memItemLeft" align="right" valign="top"><a id="a1a72e728fc81fa0a2b538be333f70d70"></a>
+                <a class="el" href="class_time.html">Time</a>&#160;
+            </td>
+            <td class="memItemRight" valign="bottom"><a class="el"
+                                                        href="class_event.html#a1a72e728fc81fa0a2b538be333f70d70">time</a>
+            </td>
+        </tr>
+        <tr class="memdesc:a1a72e728fc81fa0a2b538be333f70d70 inherit pro_attribs_class_event">
+            <td class="mdescLeft">&#160;</td>
+            <td class="mdescRight">The time when the event is gonna start. <br/></td>
+        </tr>
+        <tr class="separator:a1a72e728fc81fa0a2b538be333f70d70 inherit pro_attribs_class_event">
+            <td class="memSeparator" colspan="2">&#160;</td>
+        </tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Happens when you try to sell a ticket to a full event. </p>
+    <div class="textblock"><p>The Over Booked <a class="el" href="class_event.html" title="The Event Class.">Event</a>
+        exception. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a18905c8a06f68b86f6e662d9497d59a8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a18905c8a06f68b86f6e662d9497d59a8">&#9670;&nbsp;</a></span>getMuseum()</h2>

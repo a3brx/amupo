@@ -92,13 +92,20 @@ public:
 };
 
 /// @brief invalid Museum Exception
-class InvalidMuseum : public exception, public Museum {
+class InvalidMuseum : public exception {
+private:
+    ///@brief Supposed address of the invalid museum
+    Address address;
+    ///@brief Supposed capacity of the invalid museum
+    unsigned capacity;
+    ///@brief Supposed name of the invalid museum
+    string name;
 public:
     /// @brief Constructs an InvalidMuseum exception
     /// @param name The name of the supposed museum
     /// @param add The address of the supposed museum
     /// @param cap The capacity of the supposed museum
-    InvalidMuseum(string name, Address add, unsigned cap) : Museum(add, cap, name) {}
+    InvalidMuseum(string name, Address add, unsigned cap) : address(add), capacity(cap), name(name) {}
 };
 
 /// @brief Creates a Table from museums

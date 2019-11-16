@@ -13,6 +13,7 @@
 
 /// @brief The Event Class
 class Event {
+protected:
     ///@brief The name of the event
     string name;
 
@@ -121,19 +122,18 @@ public:
 };
 
 ///@brief The Over Booked Event exception
-class OverBookedEvent : public exception {
+class OverBookedEvent : public exception, public Event {
 private:
-    /// @brief The memory address of the museum that is full
-    Museum *museum;
     /// @brief The number of sold tickets
     unsigned soldTickets;
 public:
     ///@brief Constructs a overbooked event.
-    OverBookedEvent(Museum *museum, unsigned soldTickets) : museum(museum), soldTickets(soldTickets) {}
+    OverBookedEvent(Museum *museum, unsigned soldTickets) : Event(museum, Date(), 0, "", Time()),
+                                                            soldTickets(soldTickets) {}
 
     ///@brief Gets the museum of the event that is overbooked.
     ///@return Returns the museum that is full.
-    Museum *getMuseum() { return museum; }
+    Museum *getMuseum() { return this->museum; }
 
     ///@brief Gets the number of tickets of the event that is overbooked.
     ///@return Returns the number of tickets of the event that is full.

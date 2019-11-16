@@ -89,11 +89,6 @@ public:
     ///@return True if *this and person have a different name or a different birthday. False otherwise.
     bool operator!=(Person person);
 
-    /// @brief Compares the name of two objects.
-    /// @tparam T The class of the objects.
-    /// @param left Object to be compared.
-    /// @param right Object to be compared.
-    /// @return Returns true if the names of the objects are equal. False otherwise.
     template<class T>
     friend bool compareName(T left, T right);
 

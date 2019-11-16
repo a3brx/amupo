@@ -378,10 +378,8 @@ bool future8hours(Date date, Time time) {
     Date atual;
     Time atualT;
     long days = abs(date) - abs(atual);
-    if (days == 0) {
+    if (days == 0 || days == 1) {
         if ((time - atualT).getHour() < 8) return true;
-    } else if (days == 1) {
-        if ((atualT - time).getHour() < 8) return true;
     }
     return false;
 }

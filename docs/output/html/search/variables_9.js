@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['person_362',['person',['../class_ticket.html#a0bac446576eb7ddce64ffc583d69b92c',1,'Ticket']]],
-  ['postalcode_363',['postalCode',['../class_address.html#a71374f16361b3de68fe5f56def2e1a4f',1,'Address']]],
-  ['price_364',['price',['../class_event.html#ac0fe6b8229d3d3ac88cfd5ee3887d0dd',1,'Event::price()'],['../class_invalid_event.html#a646f15703bef07223dcb516ae048f7b6',1,'InvalidEvent::price()'],['../class_ticket.html#abd4b8993ceac8f421931181d1060e18d',1,'Ticket::price()']]]
+    ['name_375', ['name', ['../class_event.html#a2260aa14c4dfb50ad5db1dd71ece65eb', 1, 'Event::name()'], ['../class_invalid_event.html#a84474960f75b31b6371e3edea9207304', 1, 'InvalidEvent::name()'], ['../class_museum.html#a885d6bf39b31f7dd9687bb8b4593a460', 1, 'Museum::name()'], ['../class_invalid_museum.html#af27800001c272d35a3b7f8bae5fc590c', 1, 'InvalidMuseum::name()'], ['../class_person.html#a669b64897b4d823a27bb5866368d4dfa', 1, 'Person::name()']]],
+    ['nextmenu_376', ['nextMenu', ['../class_menu.html#a951cf4f42da0dffd4f46391d65c4f9bc', 1, 'Menu']]]
 ];

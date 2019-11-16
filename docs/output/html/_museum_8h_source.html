@@ -126,22 +126,83 @@ $(function() {
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;};</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="class_invalid_museum.html">   95</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_invalid_museum.html">InvalidMuseum</a> : <span class="keyword">public</span> exception, <span class="keyword">public</span> <a class="code" href="class_museum.html">Museum</a> {</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="class_invalid_museum.html#abb99197b9195fa0d5db67032dfc235db">  101</a></span>&#160;    <a class="code" href="class_invalid_museum.html#abb99197b9195fa0d5db67032dfc235db">InvalidMuseum</a>(<span class="keywordtype">string</span> name, <a class="code" href="class_address.html">Address</a> add, <span class="keywordtype">unsigned</span> cap) : <a class="code" href="class_museum.html">Museum</a>(add, cap, name) {}</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;};</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<a class="code" href="class_table.html">Table&lt;string&gt;</a> toTable(<span class="keyword">const</span> vector&lt;Museum *&gt; &amp;container);</div>
+    <div class="line"><a name="l00095"></a><span class="lineno"><a class="line"
+                                                                   href="class_invalid_museum.html">   95</a></span>&#160;<span
+            class="keyword">class </span><a class="code" href="class_invalid_museum.html">InvalidMuseum</a> : <span
+            class="keyword">public</span> exception {
+    </div>
+    <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keyword">private</span>:
+    </div>
+    <div class="line"><a name="l00098"></a><span class="lineno"><a class="line"
+                                                                   href="class_invalid_museum.html#a7ceca3e13c84798d0553c73ee6a3692b">   98</a></span>&#160;
+        <a class="code" href="class_address.html">Address</a> <a class="code"
+                                                                 href="class_invalid_museum.html#a7ceca3e13c84798d0553c73ee6a3692b">address</a>;
+    </div>
+    <div class="line"><a name="l00100"></a><span class="lineno"><a class="line"
+                                                                   href="class_invalid_museum.html#ab5036f56701934916eca909478ffdbbd">  100</a></span>&#160;
+        <span class="keywordtype">unsigned</span> <a class="code"
+                                                     href="class_invalid_museum.html#ab5036f56701934916eca909478ffdbbd">capacity</a>;
+    </div>
+    <div class="line"><a name="l00102"></a><span class="lineno"><a class="line"
+                                                                   href="class_invalid_museum.html#af27800001c272d35a3b7f8bae5fc590c">  102</a></span>&#160;
+        <span class="keywordtype">string</span> <a class="code"
+                                                   href="class_invalid_museum.html#af27800001c272d35a3b7f8bae5fc590c">name</a>;
+    </div>
+    <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="keyword">public</span>:
+    </div>
+    <div class="line"><a name="l00108"></a><span class="lineno"><a class="line"
+                                                                   href="class_invalid_museum.html#abb99197b9195fa0d5db67032dfc235db">  108</a></span>&#160;
+        <a class="code" href="class_invalid_museum.html#abb99197b9195fa0d5db67032dfc235db">InvalidMuseum</a>(<span
+                class="keywordtype">string</span> name, <a class="code" href="class_address.html">Address</a> add, <span
+                class="keywordtype">unsigned</span> cap) : address(add), capacity(cap), name(name) {}
+    </div>
+    <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;};</div>
+    <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+    <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<a class="code"
+                                                                                     href="class_table.html">Table&lt;string&gt;</a>
+        toTable(<span class="keyword">const</span> vector&lt;Museum *&gt; &amp;container);
+    </div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclass_existing_museum_html"><div class="ttname"><a href="class_existing_museum.html">ExistingMuseum</a></div><div class="ttdoc">Existing Museum Exception.</div><div class="ttdef"><b>Definition:</b> Museum.h:86</div></div>
 <div class="ttc" id="aclass_museum_html"><div class="ttname"><a href="class_museum.html">Museum</a></div><div class="ttdoc">Museum Class.</div><div class="ttdef"><b>Definition:</b> Museum.h:12</div></div>
+<div class="ttc" id="aclass_invalid_museum_html_af27800001c272d35a3b7f8bae5fc590c">
+    <div class="ttname"><a href="class_invalid_museum.html#af27800001c272d35a3b7f8bae5fc590c">InvalidMuseum::name</a>
+    </div>
+    <div class="ttdeci">string name</div>
+    <div class="ttdoc">Supposed name of the invalid museum.</div>
+    <div class="ttdef"><b>Definition:</b> Museum.h:102</div>
+</div>
+<div class="ttc" id="aclass_invalid_museum_html_ab5036f56701934916eca909478ffdbbd">
+    <div class="ttname"><a
+            href="class_invalid_museum.html#ab5036f56701934916eca909478ffdbbd">InvalidMuseum::capacity</a></div>
+    <div class="ttdeci">unsigned capacity</div>
+    <div class="ttdoc">Supposed capacity of the invalid museum.</div>
+    <div class="ttdef"><b>Definition:</b> Museum.h:100</div>
+</div>
 <div class="ttc" id="aclass_museum_html_aa600f14466974d42209453b92feac226"><div class="ttname"><a href="class_museum.html#aa600f14466974d42209453b92feac226">Museum::address</a></div><div class="ttdeci">Address address</div><div class="ttdoc">The address of the museum.</div><div class="ttdef"><b>Definition:</b> Museum.h:23</div></div>
 <div class="ttc" id="aclass_address_html"><div class="ttname"><a href="class_address.html">Address</a></div><div class="ttdoc">The Address class.</div><div class="ttdef"><b>Definition:</b> Address.h:12</div></div>
+<div class="ttc" id="aclass_invalid_museum_html_a7ceca3e13c84798d0553c73ee6a3692b">
+    <div class="ttname"><a href="class_invalid_museum.html#a7ceca3e13c84798d0553c73ee6a3692b">InvalidMuseum::address</a>
+    </div>
+    <div class="ttdeci">Address address</div>
+    <div class="ttdoc">Supposed address of the invalid museum.</div>
+    <div class="ttdef"><b>Definition:</b> Museum.h:98</div>
+</div>
 <div class="ttc" id="aclass_existing_museum_html_ada83ce5730855d882fc0e414187c0a1f"><div class="ttname"><a href="class_existing_museum.html#ada83ce5730855d882fc0e414187c0a1f">ExistingMuseum::ExistingMuseum</a></div><div class="ttdeci">ExistingMuseum(Museum m)</div><div class="ttdoc">Constructs an ExistingMuseum exception.</div><div class="ttdef"><b>Definition:</b> Museum.h:90</div></div>
 <div class="ttc" id="aclass_invalid_museum_html"><div class="ttname"><a href="class_invalid_museum.html">InvalidMuseum</a></div><div class="ttdoc">invalid Museum Exception</div><div class="ttdef"><b>Definition:</b> Museum.h:95</div></div>
 <div class="ttc" id="aclass_museum_html_abe5bce3f332e8c3286d2dc04f5096257"><div class="ttname"><a href="class_museum.html#abe5bce3f332e8c3286d2dc04f5096257">Museum::capacity</a></div><div class="ttdeci">unsigned capacity</div><div class="ttdoc">The capacity of the museum.</div><div class="ttdef"><b>Definition:</b> Museum.h:26</div></div>
-<div class="ttc" id="aclass_system_html"><div class="ttname"><a href="class_system.html">System</a></div><div class="ttdoc">C.</div><div class="ttdef"><b>Definition:</b> System.h:17</div></div>
-<div class="ttc" id="aclass_invalid_museum_html_abb99197b9195fa0d5db67032dfc235db"><div class="ttname"><a href="class_invalid_museum.html#abb99197b9195fa0d5db67032dfc235db">InvalidMuseum::InvalidMuseum</a></div><div class="ttdeci">InvalidMuseum(string name, Address add, unsigned cap)</div><div class="ttdoc">Constructs an InvalidMuseum exception.</div><div class="ttdef"><b>Definition:</b> Museum.h:101</div></div>
+<div class="ttc" id="aclass_system_html">
+    <div class="ttname"><a href="class_system.html">System</a></div>
+    <div class="ttdoc">The System Class.</div>
+    <div class="ttdef"><b>Definition:</b> System.h:17</div>
+</div>
+<div class="ttc" id="aclass_invalid_museum_html_abb99197b9195fa0d5db67032dfc235db">
+    <div class="ttname"><a href="class_invalid_museum.html#abb99197b9195fa0d5db67032dfc235db">InvalidMuseum::InvalidMuseum</a>
+    </div>
+    <div class="ttdeci">InvalidMuseum(string name, Address add, unsigned cap)</div>
+    <div class="ttdoc">Constructs an InvalidMuseum exception.</div>
+    <div class="ttdef"><b>Definition:</b> Museum.h:108</div>
+</div>
 <div class="ttc" id="aclass_museum_html_a885d6bf39b31f7dd9687bb8b4593a460"><div class="ttname"><a href="class_museum.html#a885d6bf39b31f7dd9687bb8b4593a460">Museum::name</a></div><div class="ttdeci">string name</div><div class="ttdoc">The name of the museum.</div><div class="ttdef"><b>Definition:</b> Museum.h:20</div></div>
 <div class="ttc" id="aclass_table_html"><div class="ttname"><a href="class_table.html">Table</a></div><div class="ttdoc">The Table Class.</div><div class="ttdef"><b>Definition:</b> Table.h:22</div></div>
 <!-- start footer part -->
