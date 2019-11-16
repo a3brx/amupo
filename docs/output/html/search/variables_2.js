@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['capacity_329',['capacity',['../class_museum.html#abe5bce3f332e8c3286d2dc04f5096257',1,'Museum']]],
-  ['contact_330',['contact',['../class_person.html#a85a0f434cfefa29a55a9ea5dbfbf3ca3',1,'Person']]],
-  ['content_331',['content',['../class_table.html#a120894b021aa442ba7acd45e75774975',1,'Table']]]
+  ['capacity_345',['capacity',['../class_museum.html#abe5bce3f332e8c3286d2dc04f5096257',1,'Museum']]],
+  ['contact_346',['contact',['../class_person.html#a85a0f434cfefa29a55a9ea5dbfbf3ca3',1,'Person']]],
+  ['content_347',['content',['../class_table.html#a120894b021aa442ba7acd45e75774975',1,'Table']]],
+  ['cost_348',['cost',['../class_silver_client.html#a506c0e64e7232cd534aebe1efaab5e64',1,'SilverClient::cost()'],['../class_uni_client.html#a3ae6f4647ad33057b2f86f5ef27fa36d',1,'UniClient::cost()'],['../class_individual_client.html#a518acdfce96537dea9a0e6f3bffb692f',1,'IndividualClient::cost()']]]
 ];

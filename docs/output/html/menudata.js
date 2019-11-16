@@ -82,6 +82,9 @@ var menudata={children:[
 {text:"t",url:"functions_vars.html#index_t"},
 {text:"v",url:"functions_vars.html#index_v"},
 {text:"y",url:"functions_vars.html#index_y"}]},
-{text:"Related Functions",url:"functions_rela.html"}]}]},
+{text:"Related Functions",url:"functions_rela.html",children:[
+{text:"c",url:"functions_rela.html#index_c"},
+{text:"f",url:"functions_rela.html#index_f"},
+{text:"o",url:"functions_rela.html#index_o"}]}]}]},
 {text:"Files",url:"files.html",children:[
 {text:"File List",url:"files.html"}]}]}
