@@ -13,19 +13,29 @@
 #include "../utils/InvalidInput.h"
 
 
-///C
+/// The System Class
 class System {
 private:
     friend class Menu;
-
+    /// @brief The file with the names of the other database files
     string fileName;
-    string pass;
 public:
+    /// @brief All sold Tickets memory positions in a vector
     vector<Ticket *> soldTickets;
+
+    /// @brief All Clients memory positions in a vector
     vector<Client *> clients;
+
+    /// @brief All People memory positions in a vector
     vector<Person *> people;
+
+    /// @brief All Events memory positions in a vector
     vector<Event *> events;
+
+    /// @brief All memory positions of Events that will happen in the next eight hours in a vector
     vector<Event *> eventsIn8Hours;
+
+    /// @brief All Museums memory positions in a vector
     vector<Museum *> museums;
 
     /// @brief Creates a new system with the information provided by the file.
@@ -73,8 +83,12 @@ public:
     /// @brief Reads the information via console and creates a new Event with those attributes.
     void createEvent();
 
+    /// @brief Inserts a new event in the Events vector
+    /// @param ev The event to be inserted
     void createEvent(Event *ev);
 
+    /// @brief Inserts a new person in the People vector
+    /// @param Person The person to be inserted
     void createPerson(Person *Person);
 
     /// @brief Reads the information via console and creates a new Client with those attributes.
@@ -83,11 +97,15 @@ public:
     /// @brief Reads the information via console and creates a new Museum with those attributes.
     void createMuseum();
 
+    /// @brief Inserts a new museum in the Museums vector
+    /// @param mus The museum to be inserted
     void createMuseum(Museum *mus);
 
     /// @brief Asks information about the Event and shows the specified event.
     void readEvent() const;
 
+    /// @brief Prints the information of a Event
+    /// @param ev The event that will have its information printed
     void readEvent(Event *ev) const;
 
     /// @brief Shows a list of events in a Table
