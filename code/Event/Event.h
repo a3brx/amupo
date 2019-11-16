@@ -120,7 +120,7 @@ public:
     friend bool comparePrice(Event *left, Event *right);
 };
 
-///@brief Happens when you try to sell a ticket to a full event.
+///@brief The Over Booked Event exception
 class OverBookedEvent : public exception {
 private:
     /// @brief The memory address of the museum that is full
@@ -147,7 +147,7 @@ public:
     }
 };
 
-///@brief Happens when an event is invalid.
+///@brief The Invalid Event exception
 class InvalidEvent : public exception {
 private:
 
@@ -177,7 +177,7 @@ public:
     float getPrice() const { return price; }
 };
 
-///@brief Happens when an event created already exists.
+///@brief The Existing Event exception
 class ExistingEvent : public exception, public Event {
 public:
     ///@brief Constructs an Invalid Event.
@@ -185,7 +185,7 @@ public:
 
 };
 
-///@brief Happens when an event has already happened.
+///@brief The Past Event exception
 class PastEvent : public exception, public Event {
 public:
     ///@brief Constructs a PastEvent.
