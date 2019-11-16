@@ -7,6 +7,8 @@
 #include "../Table/Table.h"
 #include "../utils/InvalidInput.h"
 
+
+///@brief The Person Class
 class Person {
 private:
     /// @brief The name of the Person
@@ -37,7 +39,8 @@ public:
     ///@return The Birthday date attribute of the person.
     Date getBirthday() const;
 
-    ///
+    ///@brief Gets the age of the person.
+    ///@return The age of the person.
     unsigned getAge() const;
 
     ///@brief Gets the Address of the person.
@@ -60,10 +63,20 @@ public:
     ///@param contact The contact to be attributed to the card.
     void setContact(unsigned contact);
 
+    ///@brief Reads an object person from the input stream in.
+    ///@param in Stream from where the person will be read.
+    ///@param person Pointer to pointer to a person object.
+    ///@return Input stream.
     friend istream &operator>>(istream &in, Person **person);
 
+    ///@brief Prints the person data to an output stream. Helps make the operator<< work for all subClasses of Person.
+    ///@param out Output stream where the person data will be printed.
     virtual void printData(ostream &out);
 
+    ///@brief Prints an object person to the output strean out.
+    ///@param out Stream where person's data will be printed.
+    ///@param person Person to be printed.
+    ///@return Output St
     friend ostream &operator<<(ostream &out, Person *person);
 
     bool operator==(Person person);
