@@ -173,13 +173,24 @@ bool future8hours(Date date, Time time);
 /// @brief The Invalid Date exception
 class InvalidDate : public exception {
 private:
+    /// @brief The day of the Invalid Date
     unsigned char day;
+
+    /// @brief The month of the Invalid Date
     unsigned char month;
+
+    /// @brief The year of the Invalid Date
     unsigned short year;
 public:
+    /// @brief Constructs a new Invalid Date Exception
+    /// @param d The day of the new InvalidDate object
+    /// @param m The month of the new Invalid Date object
+    /// @param y The year of the new Invalid Date object
     InvalidDate(unsigned char d, unsigned char m, unsigned short y) :
             day(d), month(m), year(y) {};
 
+    /// @brief Constructs a new Invalid Date from a string
+    /// @param s String with a date in the format DD-MM-YYYY
     InvalidDate(string s) {
         unsigned char day = stoi(s.substr(0, 2));
         unsigned char month = stoi(s.substr(3, 2));

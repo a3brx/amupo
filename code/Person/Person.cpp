@@ -1,4 +1,4 @@
-#include "../Person/Person.h"
+#include "Person.h"
 
 //Person
 
