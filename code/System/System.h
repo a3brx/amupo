@@ -40,7 +40,6 @@ public:
 
     /// @brief Creates a new system with the information provided by the file.
     /// @param fileName The path to the file where the information is stored.
-    ///@param password for the logon.
     explicit System(const string &fileName/*,const string pass*/);
 
     /// @brief Writes the new information of the system on the files and frees the memory from the objects created during the execution of the program.
@@ -78,6 +77,9 @@ public:
     /// @return Returns a iterator to the Museum, museums.end() otherwise.
     vector<Museum *>::const_iterator findMuseum(const string &name) const;
 
+    /// @brief Finds the memory position of a Ticket.
+    /// @param ticket The ticket to be found.
+    /// @return Returns an iterator ro the Ticket, tickets.end() otherwise.
     vector<Ticket *>::const_iterator findTicket(Ticket *ticket) const;
 
     /// @brief Reads the information via console and creates a new Event with those attributes.
@@ -143,7 +145,7 @@ public:
 
     ///@brief It's called by deleteClient() and deletes a Client.
     ///@param name The name of the client to be deleted.
-    ///@param date The birthday of the client to be deleted.
+    ///@param birthday The birthday of the client to be deleted.
     void deleteClient(const string &name, const Date &birthday);
 
     ///@brief Reads a museum information via user input and removes it.
