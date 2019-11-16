@@ -106,9 +106,6 @@ public:
     ///@param right The other event that will be tested.
     friend bool operator!=(Event &left, Event &right);
 
-    ///@brief Tests if a class object name is equal to another.
-    ///@param left One of the event that will be tested.
-    ///@param right The other event that will be tested.
     template<class T>
     friend bool compareName(T left, T right);
 
