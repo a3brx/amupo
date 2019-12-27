@@ -3,7 +3,7 @@ project(amigo_dos_museus)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(amigo_dos_museus main/main.cpp Date/Date.cpp Address/Address.cpp Event/Event.cpp Museum/Museum.cpp System/System.cpp Menu/Menu.cpp utils/utils.cpp Person/Person.cpp Ticket/Ticket.cpp utils/InvalidInput.h Time/Time.cpp)
+add_executable(amigo_dos_museus main/main.cpp Date/Date.cpp Address/Address.cpp Event/Event.cpp Museum/Museum.cpp System/System.cpp Menu/Menu.cpp utils/utils.cpp Person/Person.cpp Ticket/Ticket.cpp utils/InvalidInput.h Time/Time.cpp PriorityQueue/Company.h PriorityQueue/Company.cpp PriorityQueue/AvailableCompanys.h PriorityQueue/AvailableCompanys.cpp)
 
 find_package(Doxygen)
 if(DOXYGEN_FOUND)
