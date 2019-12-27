@@ -1,8 +1,8 @@
 2 Joao Rosario | 24/4/2019 | 15/3/2000 | 910917429
 Rua Domingos Luis Tome, 12 5982-138 Vila Nova de Gaia 
-1 Cao Coelho | 15/3/2018 | 6/7/1950 | 918282619
+1 Joao Castro Pinto | 15/3/2018 | 6/7/1950 | 918282619
 Rua da Boavista, 12 5982-138 Paranhos 
 -1 Alexandre Abreu | 20/7/1999 | 925768342
 Rua Monte dos Pipos, 6 4460-059 Guifoes 
-1 Miguel Castro Pinto | 12/11/2019 | 21/6/1945 | 910809137
+1 Miguel Castro Silva | 12/11/2019 | 21/6/1945 | 910809137
 Rua Diogo do Couto, 43 4150-269 Lisboa 

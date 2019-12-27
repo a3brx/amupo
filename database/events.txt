@@ -2,9 +2,9 @@ Alive | 20/5/2023 | 650 | 15:40
 Museu dos Biscainhos
 Paredes | 13/10/2020 | 125 | 17:30
 Museu do Teste
-Web Summit | 5/10/2019 | 350 | 20:00
-Museu Soares dos Reis
-Teste | 16/11/2019 | 1000 | 14:45
-Museu do Teste
 Super | 15/11/2019 | 3000 | 15:00
 Altice Arena
+Teste | 17/11/2019 | 1000 | 01:00
+Museu do Teste
+Web Summit | 5/10/2019 | 350 | 20:00
+Museu Soares dos Reis

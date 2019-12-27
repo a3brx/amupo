@@ -1,4 +1,4 @@
-var searchData =
-    [
-        ['name_61', ['name', ['../class_invalid_event.html#a84474960f75b31b6371e3edea9207304', 1, 'InvalidEvent']]]
-    ];
+var searchData=
+[
+  ['locality_91',['locality',['../class_address.html#a69acc87a1ce360a39eba9dfa3ac9aa7d',1,'Address']]]
+];
