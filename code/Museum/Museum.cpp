@@ -87,12 +87,16 @@ istream &operator>>(istream &in, Museum **museum) {
     return in;
 }
 
-bool Museum::operator<(Museum rhs) {
+bool Museum::operator<(const Museum rhs) const {
     if (this->visits < rhs.visits) return true;
     if (this->visits == rhs.visits) {
         if (this->name < rhs.name) return true;
     }
     return false;
+}
+
+bool Museum::operator==(const Museum rhs) const {
+    return this->name == rhs.name;
 }
 
 bool Museum::isValid() const {

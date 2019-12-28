@@ -9,19 +9,14 @@ using namespace std;
 
 template<class Comparable>
 class BSTItrIn;
-
 template<class Comparable>
 class BSTItrPre;
-
 template<class Comparable>
 class BSTItrPost;
-
 template<class Comparable>
 class BSTItrLevel;
-
 template<class Comparable>
 class iteratorBST;
-
 template<class Comparable>
 class BST;
 
@@ -35,15 +30,10 @@ class BinaryNode {
             : element(theElement), left(lt), right(rt) {}
 
     friend class BST<Comparable>;
-
     friend class BSTItrIn<Comparable>;
-
     friend class BSTItrPre<Comparable>;
-
     friend class BSTItrPost<Comparable>;
-
     friend class BSTItrLevel<Comparable>;
-
     friend class iteratorBST<Comparable>;
 };
 
@@ -51,63 +41,46 @@ template<class Comparable>
 class BST {
 public:
     explicit BST(const Comparable &notFound);
-
     BST(const BST &rhs);
-
     ~BST();
 
     const Comparable &findMin() const;
-
     const Comparable &findMax() const;
-
     const Comparable &find(const Comparable &x) const;
 
     bool isEmpty() const;
-
     void printTree() const;
-
     void makeEmpty();
 
     bool insert(const Comparable &x);
-
     bool remove(const Comparable &x);
 
     const BST &operator=(const BST &rhs);
 
     iteratorBST<Comparable> begin() const;
-
     iteratorBST<Comparable> end() const;
 
 private:
     BinaryNode<Comparable> *root;
     const Comparable ITEM_NOT_FOUND;
-
     const Comparable &elementAt(BinaryNode<Comparable> *t) const;
 
     bool insert(const Comparable &x, BinaryNode<Comparable> *&t) const;
-
     bool remove(const Comparable &x, BinaryNode<Comparable> *&t) const;
 
     BinaryNode<Comparable> *findMin(BinaryNode<Comparable> *t) const;
-
     BinaryNode<Comparable> *findMax(BinaryNode<Comparable> *t) const;
-
     BinaryNode<Comparable> *find(const Comparable &x, BinaryNode<Comparable> *t) const;
 
     void makeEmpty(BinaryNode<Comparable> *&t) const;
-
     void printTree(BinaryNode<Comparable> *t) const;
 
     BinaryNode<Comparable> *clone(BinaryNode<Comparable> *t) const;
 
     friend class BSTItrIn<Comparable>;
-
     friend class BSTItrPre<Comparable>;
-
     friend class BSTItrPost<Comparable>;
-
     friend class BSTItrLevel<Comparable>;
-
     friend class iteratorBST<Comparable>;
 };
 
@@ -121,7 +94,6 @@ template<class Comparable>
 BST<Comparable>::BST(const BST<Comparable> &rhs) : root(NULL), ITEM_NOT_FOUND(rhs.ITEM_NOT_FOUND) {
     *this = rhs;
 }
-
 
 template<class Comparable>
 BST<Comparable>::~BST() {

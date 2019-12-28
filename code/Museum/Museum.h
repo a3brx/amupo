@@ -35,6 +35,8 @@ public:
     ///@param name Name of the museum
     Museum(Address adr, pair<double, double> pos, unsigned cap, string name, unsigned vis = 0);
 
+    Museum() : position({360, 360}) {}
+
     ///@brief Gets the museum name
     ///@return Returns the name of the Musuem
     string getName();
@@ -85,7 +87,9 @@ public:
     /// @return Returns the istream itself
     friend istream &operator>>(istream &in, Museum **museum);
 
-    bool operator<(Museum rhs);
+    bool operator<(const Museum rhs) const;
+
+    bool operator==(const Museum rhs) const;
 
     template<class T>
     friend bool compareName(T left, T right);

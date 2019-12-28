@@ -11,6 +11,7 @@
 #include "../Museum/Museum.h"
 #include "../Ticket/Ticket.h"
 #include "../utils/InvalidInput.h"
+#include "../../BinaryTree/registoMuseum.h"
 
 
 /// The System Class
@@ -37,6 +38,8 @@ public:
 
     /// @brief All Museums memory positions in a vector
     vector<Museum *> museums;
+
+    MuseumRegister musReg;
 
     /// @brief Creates a new system with the information provided by the file.
     /// @param fileName The path to the file where the information is stored.

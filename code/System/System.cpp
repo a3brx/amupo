@@ -39,6 +39,14 @@ System::System(const string &fileName/*,const string pass*/) {
     }
     file.close();
 
+    vector<Museum> toTree;
+    for (auto museum : museums) {
+        if (museum->valid && museum->visits > 0)
+            toTree.push_back(*museum);
+    }
+    MuseumRegister mReg(toTree);
+    this->musReg = mReg;
+
     file.open(peopleFile);
 
     while (!file.eof()) {
