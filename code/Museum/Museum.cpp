@@ -4,9 +4,11 @@
 
 using namespace std;
 
-Museum::Museum(Address adr, pair<double, double> pos, unsigned cap, string name) : address(move(adr)),
-                                                                                   position(std::move(pos)),
-                                                                                   capacity(cap), name(move(name)) {
+Museum::Museum(Address adr, pair<double, double> pos, unsigned cap, string name, unsigned vis) : address(move(adr)),
+                                                                                                 position(std::move(pos)),
+                                                                                                 capacity(cap),
+                                                                                                 name(move(name)),
+                                                                                                 visits(vis) {
 }
 
 string Museum::getName() {
@@ -25,6 +27,10 @@ pair<double, double> Museum::getPosition() {
     return this->position;
 }
 
+unsigned Museum::getVisits() {
+    return this->visits;
+}
+
 void Museum::setName(string name) {
     this->name = name;
 }
@@ -41,9 +47,17 @@ void Museum::setPosition(pair<double, double> pos) {
     this->position = pos;
 }
 
+void Museum::setVisits(unsigned vis) {
+    this->visits = vis;
+}
+
+void Museum::visit() {
+    this->visits++;
+}
+
 ostream &operator<<(ostream &out, const Museum &museum) {
     out << museum.valid << " | " << museum.name << " | " << museum.position.first << ", " << museum.position.second
-        << " | " << museum.capacity << endl << museum.address;
+        << " | " << museum.visits << " | " << museum.capacity << endl << museum.address;
     return out;
 }
 
@@ -62,13 +76,23 @@ istream &operator>>(istream &in, Museum **museum) {
     if (!isNum(aux.back())) throw InvalidInput();
     unsigned auxCapacity = stoi(aux.back());
     aux.pop_back();
+    unsigned visits = stoi(aux.back());
+    aux.pop_back();
     aux.pop_back();
     string auxName = trim(join(aux));
     Address *auxAddress;
     in >> &auxAddress;
-    *museum = new Museum(*auxAddress, pos, auxCapacity, auxName);
+    *museum = new Museum(*auxAddress, pos, auxCapacity, auxName, visits);
     (*museum)->valid = valid;
     return in;
+}
+
+bool Museum::operator<(Museum rhs) {
+    if (this->visits < rhs.visits) return true;
+    if (this->visits == rhs.visits) {
+        if (this->name < rhs.name) return true;
+    }
+    return false;
 }
 
 bool Museum::isValid() const {

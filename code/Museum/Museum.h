@@ -12,7 +12,6 @@ using namespace std;
 class Museum {
     friend class System;
 
-private:
     /// @brief True if the museum is active on the system
     bool valid = true;
 
@@ -27,12 +26,14 @@ private:
 
     pair<double, double> position;
 
+    unsigned visits;
+
 public:
     ///@brief Contructs a Museum
     ///@param adr Address of the museum
     ///@param cap Capacity of the museum
     ///@param name Name of the museum
-    Museum(Address adr, pair<double, double> pos, unsigned cap, string name);
+    Museum(Address adr, pair<double, double> pos, unsigned cap, string name, unsigned vis = 0);
 
     ///@brief Gets the museum name
     ///@return Returns the name of the Musuem
@@ -47,6 +48,8 @@ public:
     unsigned getCapacity();
 
     pair<double, double> getPosition();
+
+    unsigned getVisits();
 
     /// @brief Verifies if a museum is active in the system
     /// @return Returns true if the museum is valid
@@ -66,6 +69,10 @@ public:
 
     void setPosition(pair<double, double> pos);
 
+    void setVisits(unsigned vis);
+
+    void visit();
+
     /// @brief Sends a museum information to a ostream object
     /// @param out The ostream object to where the museum information is gonna be send
     /// @param museum The museum object that is gonna be printed on the ostream object
@@ -78,6 +85,8 @@ public:
     /// @return Returns the istream itself
     friend istream &operator>>(istream &in, Museum **museum);
 
+    bool operator<(Museum rhs);
+
     template<class T>
     friend bool compareName(T left, T right);
 
@@ -86,6 +95,8 @@ public:
     /// @param right The second museum to be tested
     /// @return Returns true if the capacities of the museums are equal
     friend bool compareCapacity(Museum *left, Museum *right);
+
+
 };
 
 /// @brief Existing Museum Exception
