@@ -25,12 +25,14 @@ private:
     /// @brief The capacity of the museum
     unsigned capacity;
 
+    pair<double, double> position;
+
 public:
     ///@brief Contructs a Museum
     ///@param adr Address of the museum
     ///@param cap Capacity of the museum
     ///@param name Name of the museum
-    Museum(Address adr, unsigned cap, string name);
+    Museum(Address adr, pair<double, double> pos, unsigned cap, string name);
 
     ///@brief Gets the museum name
     ///@return Returns the name of the Musuem
@@ -43,6 +45,8 @@ public:
     ///@brief Gets the museum capacity
     ///@return Returns the capacity of the Musuem
     unsigned getCapacity();
+
+    pair<double, double> getPosition();
 
     /// @brief Verifies if a museum is active in the system
     /// @return Returns true if the museum is valid
@@ -59,6 +63,8 @@ public:
     /// @brief Sets the capacity of the museum
     /// @param cap The new capacity of the museum
     void setCapacity(unsigned cap);
+
+    void setPosition(pair<double, double> pos);
 
     /// @brief Sends a museum information to a ostream object
     /// @param out The ostream object to where the museum information is gonna be send

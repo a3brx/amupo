@@ -247,6 +247,14 @@ vector<Museum *>::const_iterator System::findMuseum(const string &name) const {
     return museums.end();
 }
 
+vector<Museum *>::const_iterator System::findMuseum(const pair<double, double> pos) const {
+    for (auto museum = museums.begin(); museum != museums.end(); ++museum) {
+        if ((*museum)->position.first == pos.first && (*museum)->position.second == pos.second)
+            return museum;
+    }
+    return museums.end();
+}
+
 vector<Client *>::const_iterator System::findClient(string name, const Date &birthday) const {
     auto *tempP = new Person(move(name), birthday, Address(), 0);
     for (auto person = clients.begin(); person != clients.end(); ++person) {
@@ -487,7 +495,7 @@ void System::createMuseum() {
     string name, capStr;
     Address address;
     while (true) {
-        cout << "Introduce the Museum name: ";
+        cout << "Enter the Museum name: ";
         getline(cin, name);
         if (findMuseum(name) != museums.end()) {
             cout << "Museum with that name already exists\n";
@@ -495,18 +503,22 @@ void System::createMuseum() {
         }
         break;
     }
+    capStr = getInput(isNum, "Enter the capacity of the Museum: ", "Invalid Capacity\n");
+    pair<double, double> pos;
     while (true) {
-        cout << "Introduce the capacity of the Museum: ";
-        getline(cin, capStr);
-        if (!isNum(capStr)) {
-            cout << "Invalid Capacity\n";
+        string posStr = getInput(isPosition, "Enter the Museum's Coordinates in the format(x , y): ",
+                                 "Invalid Position");
+        vector<string> aux = trim(split(posStr, ","));
+        pos = {stod(aux.at(0)), stod(aux.at(1))};
+        if (findMuseum(pos) != museums.end()) {
+            cout << "Museum in that position already exists\n";
             continue;
         }
         break;
     }
     cout << "Museum's Address" << endl;
     inputAddress(address);
-    auto *tempM = new Museum(address, stoi(capStr), name);
+    auto *tempM = new Museum(address, pos, stoi(capStr), name);
     museums.push_back(tempM);
     cout << "Created Museum with success!" << endl;
 }

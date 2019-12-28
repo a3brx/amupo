@@ -77,6 +77,7 @@ public:
     /// @return Returns a iterator to the Museum, museums.end() otherwise.
     vector<Museum *>::const_iterator findMuseum(const string &name) const;
 
+    vector<Museum *>::const_iterator findMuseum(const pair<double, double> pos) const;
     /// @brief Finds the memory position of a Ticket.
     /// @param ticket The ticket to be found.
     /// @return Returns an iterator ro the Ticket, tickets.end() otherwise.

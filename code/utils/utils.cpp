@@ -170,3 +170,13 @@ bool isContact(const string& toTest) {
     return (isNum(toTest) && toTest.size() == 9);
 }
 
+bool isPosition(const string &toTest) {
+    vector<string> aux = trim(split(toTest, ","));
+    if (aux.size() != 2) return false;
+    if (!isNum(aux.at(0)) || !isNum(aux.at(1))) return false;
+    if (stod(aux.at(0)) < -180 || stod(aux.at(0)) > 180) return false;
+    if (stod(aux.at(0)) < -90 || stod(aux.at(1)) > 90) return false;
+    return true;
+}
+
+

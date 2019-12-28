@@ -54,8 +54,8 @@ vector<string> split(const string& toSplit,const string& splitPoint);
 ///@return Returns true if the string is convertible to number;
 bool isNum(const string& toConvert);
 
-///@brief Recognizes if a strign is a postal code.
-///@param toTest strign to be tested.
+///@brief Recognizes if a string is a postal code.
+///@param toTest string to be tested.
 ///@return Returns true if the string is a postal code.
 bool isPostalCode(const string& toTest);
 
@@ -109,6 +109,8 @@ bool isName(const string& toTest);
 ///@param toTest String to be tested.
 ///@return A bool.
 bool notEmptyString(const string& toTest);
+
+bool isPosition(const string &toTest);
 
 ///@brief
 ///@param
