@@ -906,6 +906,7 @@ VisitedMuseumsMenu::VisitedMuseumsMenu(System *system) : Menu(system) {
             case 'V' : {
                 clear();
 //                sys->visitedMuseumsByVisits(tree);
+
             }
                 break;
             case 'N' : {
@@ -914,24 +915,23 @@ VisitedMuseumsMenu::VisitedMuseumsMenu(System *system) : Menu(system) {
             }
                 break;
             case 'F' : {
-                clear();
-                try {
-                    new UpdateEventMenu(system);
-                }
-                catch (PastEvent) {
-                    cout << "You can´t change an event that already happened!" << endl;
-                }
+
             }
                 break;
-            case 'D' : {
-                clear();
-                sys->deleteEvent();
-            }
-                break;
-//            case 'V' : {
+            case '-' : {
 //                clear();
-//                sys->readEvent();
-//            }
+//                Museum mus = sys->getLessVisitedMuseum();
+//                vector<Museum *> musVec; musVec.push_back(&mus);
+//                Table<string> musTab = toTable(musVec);
+//                cout << musTab;
+            }
+                break;
+            case '+' : {
+//                clear();
+//                Museum mus = sys->getLessVisitedMuseum();
+//                vector<Museum *> musVec; musVec.push_back(&mus);
+//                Table<string> musTab = toTable(musVec);
+//                cout << musTab;            }
                 break;
             case 'M':
                 return;
