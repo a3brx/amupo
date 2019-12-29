@@ -159,7 +159,9 @@ System::System(const string &fileName/*,const string pass*/) {
 
 void System::readPerson() const {
     string name = getInput(isName, "Type the name of the Client: ", "Invalid name.");
+    if (name == ":q") return;
     string birthday = getInput(isDate, "Type its birthday: ", "Invalid Date.");
+    if (birthday == ":q") return;
     Person * personPtr = * findPerson(name, Date(birthday));
     if(personPtr == *this->people.end()) {
         vector<Person *> aux = {};
@@ -189,7 +191,9 @@ void System::readPeople(const vector<Person *> &container) const {
 
 void System::readEvent() const {
     string name = getInput(notEmptyString, "Type the name of the Event: ", "Invalid name.");
+    if (name == ":q") return;
     string date = getInput(isDate, "Type its date: ", "Invalid Date.");
+    if (date == ":q") return;
     Event * eventPtr = * findEvent(name, Date(date));
     if(eventPtr == *this->events.end())
         readEvents({});
@@ -208,6 +212,7 @@ void System::readEvents(const vector<Event *> &container) const {
 
 void System::readMuseum() const {
     string name = getInput(notEmptyString, "Type the name of the Museum: ", "Invalid name.");
+    if (name == ":q") return;
     Museum * museumPtr = * findMuseum(name);
     if(museumPtr == *this->museums.end())
         readMuseums({});
@@ -347,12 +352,26 @@ void System::inputAddress(Address &address) {
     cout << "Introduce the street name: ";
     getline(cin, street);
     address.setStreet(street);
+    if (street == ":q") return;
     doornumber = getInput(isNum, "Introduce the door number: ", "Invalid door number");
+    if (doornumber == ":q") {
+        address.setStreet(":q");
+        return;
+    }
     address.setDoorNumber(stoi(doornumber));
-    address.setPostalCode(
-            getInput(isPostalCode, "Introduce a valid Postal Code (Format: XXXX-YYY): ", "Invalid postal code."));
+    string postCode = getInput(isPostalCode, "Introduce a valid Postal Code (Format: XXXX-YYY): ",
+                               "Invalid postal code.");
+    if (postCode == ":q") {
+        address.setStreet(":q");
+        return;
+    }
+    address.setPostalCode(postCode);
     cout << "Introduce the local: ";
     getline(cin, local);
+    if (local == ":q") {
+        address.setStreet(":q");
+        return;
+    }
     address.setLocality(local);
 }
 
@@ -362,7 +381,9 @@ void System::createClient() {
     Address address;
     cout << "Name: ";
     getline(cin, name);
+    if (name == ":q") return;
     birthday = getInput(isDate, "Introduce a birthday (Format: DD/MM/YYYY): ", "Invalid Date");
+    if (birthday == ":q") return;
     bday = Date(birthday);
     auto it = findPerson(name, bday);
     auto itc = findClient(name, bday);
@@ -375,9 +396,11 @@ void System::createClient() {
         cout << "Deleted Person with name " << name << " to create a client profile";
     }
     inputAddress(address);
+    if (address.getStreet() == ":q") return;
     do {
         cout << "Contact: ";
         getline(cin, contact);
+        if (contact == ":q") return;
     } while (!isNum(contact) || contact.size() != 9);
     if (bday - Date() > 65 * 365) {
         auto *tempS = new SilverClient(name, Date(), bday, address, stoi(contact));
@@ -385,7 +408,9 @@ void System::createClient() {
         cout << "Registered the client as Silver with success!\n";
         return;
     }
-    bool uni = stoi(getInput(isYorN, "Does the client go to University? (1-True/0-False)", "Invalid Response"));
+    string uniStr = getInput(isYorN, "Does the client go to University? (1-True/0-False)", "Invalid Response");
+    if (uniStr == ":q") return;
+    bool uni = stoi(uniStr);
     if (uni) {
         auto *tempU = new UniClient(name, Date(), bday, address, stoi(contact));
         this->people.push_back(tempU);
@@ -428,13 +453,17 @@ void System::deleteClient(const string &name, const Date &birthday) {
 
 void System::deleteClient() {
     string name = getInput(isName, "Type the name of the Client: ");
+    if (name == ":q") return;
     string date = getInput(isDate, "Type their birthday: ", "Invalid Date.");
+    if (date == ":q") return;
     deleteClient(name, Date(date));
 }
 
 void System::deleteEvent() {
     string name = getInput(notEmptyString, "Type the name of the Event: ");
+    if (name == ":q") return;
     string date = getInput(isDate, "Type its date: ", "Invalid Date.");
+    if (date == ":q") return;
     deleteEvent(name, Date(date));
 }
 
@@ -450,6 +479,7 @@ void System::deleteEvent(string name, const Date &date) {
 
 void System::deleteMuseum() {
     string name = getInput(notEmptyString, "Type the name of the Museum: ");
+    if (name == ":q") return;
     deleteMuseum(name);
 }
 
@@ -475,7 +505,10 @@ void System::createEvent() {
     while (true) {
         cout << "Name: ";
         getline(cin, name);
-        date = Date(getInput(isDate, "Introduce a date (Format: DD/MM/YYYY): ", "Invalid Date"));
+        if (name == ":q") return;
+        string dateStr = getInput(isDate, "Introduce a date (Format: DD/MM/YYYY): ", "Invalid Date");
+        if (dateStr == ":q") return;
+        date = Date(dateStr);
         if (findEvent(name, date) != events.end()) {
             cout << "An Event with that name and date already exists\n Enter a new ";
             continue;
@@ -483,9 +516,11 @@ void System::createEvent() {
         break;
     }
     timeStr = getInput(isTime, "Time of the Event (Format: HH:MM): ", "Invalid Time");
+    if (timeStr == ":q") return;
     while (true) {
         cout << "Place of the event: ";
         getline(cin, musName);
+        if (musName == ":q") return;
         if (findMuseum(musName) == museums.end()) {
             cout << "That place doesn't exist\n";
             continue;
@@ -494,6 +529,7 @@ void System::createEvent() {
     }
     mus = *(findMuseum(musName));
     price = getInput(isNum, "Price: ", "Invalid Price");
+    if (price == ":q") return;
     auto *tempE = new Event(mus, date, (float) stof(price), name, Time(timeStr));
     events.push_back(tempE);
     cout << "Created event with success!" << endl;
@@ -505,6 +541,7 @@ void System::createMuseum() {
     while (true) {
         cout << "Enter the Museum name: ";
         getline(cin, name);
+        if (name == ":q") return;
         if (findMuseum(name) != museums.end()) {
             cout << "Museum with that name already exists\n";
             continue;
@@ -512,10 +549,12 @@ void System::createMuseum() {
         break;
     }
     capStr = getInput(isNum, "Enter the capacity of the Museum: ", "Invalid Capacity\n");
+    if (capStr == ":q") return;
     pair<double, double> pos;
     while (true) {
         string posStr = getInput(isPosition, "Enter the Museum's Coordinates in the format(x , y): ",
                                  "Invalid Position");
+        if (posStr == ":q") return;
         vector<string> aux = trim(split(posStr, ","));
         pos = {stod(aux.at(0)), stod(aux.at(1))};
         if (findMuseum(pos) != museums.end()) {
@@ -526,6 +565,7 @@ void System::createMuseum() {
     }
     cout << "Museum's Address" << endl;
     inputAddress(address);
+    if (address.getStreet() == ":q") return;
     auto *tempM = new Museum(address, pos, stoi(capStr), name);
     museums.push_back(tempM);
     cout << "Created Museum with success!" << endl;
@@ -546,15 +586,20 @@ void System::sellTicket() {
     Event *event;
     cout << "Name of the buyer: ";
     getline(cin, buyerName);
+    if (buyerName == ":q") return;
     buyerDate = getInput(isDate, "Introduce a birthday (Format: DD/MM/YYYY): ", "Invalid Date");
+    if (buyerDate == ":q") return;
     buyerDt = Date(buyerDate);
     auto finderB = findPerson(buyerName, buyerDt);
     if (finderB == people.end()) {
         cout << "This is a new Person" << endl;
-        buyer->setContact(stoi(getInput(isContact, "Introduce the person's contact: ", "Invalid contact")));
+        string contStr = getInput(isContact, "Introduce the person's contact: ", "Invalid contact");
+        if (contStr == ":q") return;
+        buyer->setContact(stoi(contStr));
         Address address;
         cout << "Person's Address" << endl;
         inputAddress(address);
+        if (address.getStreet() == ":q") return;
         people.push_back(buyer);
     } else {
         buyer = *finderB;
@@ -562,7 +607,9 @@ void System::sellTicket() {
     while (true) {
         cout << "Name of the Event: ";
         getline(cin, eventName);
+        if (eventName == ":q") return;
         eventDate = getInput(isDate, "Introduce the event's date (Format: DD/MM/YYYY): ", "Invalid Date");
+        if (eventDate == ":q") return;
         eventDt = Date(eventDate);
         auto finderE = findEvent(eventName, eventDt);
         if (finderE == events.end()) {
@@ -670,7 +717,10 @@ double System::moneySpentPerson() {
     while (true) {
         cout << "Enter the Person's name: ";
         getline(cin, name);
-        Date bDay(getInput(isDate, "Enter the Person's birthday (DD/MM/YYYY): ", "Invalid Date"));
+        if (name == ":q") return -1;
+        string bDayStr = getInput(isDate, "Enter the Person's birthday (DD/MM/YYYY): ", "Invalid Date");
+        if (bDayStr == ":q") return -1;
+        Date bDay(bDayStr);
         it = findPerson(name, bDay);
         if (it == people.end()) {
             cout << "This Person doesn't exist!" << endl;
@@ -698,7 +748,10 @@ double System::eventRevenue() {
     while (true) {
         cout << "Enter the Event's name: ";
         getline(cin, name);
-        Date date(getInput(isDate, "Enter the Event's date (DD/MM/YYYY): ", "Invalid Date"));
+        if (name == ":q") return -1;
+        string dtStr = getInput(isDate, "Enter the Event's date (DD/MM/YYYY): ", "Invalid Date");
+        if (dtStr == ":q") return -1;
+        Date date(dtStr);
         it = findEvent(name, date);
         if (it == events.end()) {
             cout << "This Event doesn't exist!" << endl;

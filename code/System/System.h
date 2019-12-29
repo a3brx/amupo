@@ -210,6 +210,14 @@ public:
     ///@param ev The event to be checked.
     bool eligibleSilverClient(Person *person, Event *ev) const;
 
+
+    // 2nd Part
+
+    void visitedMuseumsByVisits(BST<Museum> tree);
+
+    void visitedMuseumByName(BST<Museum> tree);
+
+
 };
 
 ///@brief Receives a vector of Event and transforms in a table.

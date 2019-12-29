@@ -15,6 +15,8 @@ public:
 
     MuseumRegister();
 
+    BST<Museum> getMuseums();
+
     bool insert(Museum mus);
 
     bool remove(Museum mus);

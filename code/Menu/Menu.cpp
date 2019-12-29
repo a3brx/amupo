@@ -239,6 +239,7 @@ UpdateMuseumMenu::UpdateMuseumMenu(System *system) : Menu(system) {
     string aux, aux2;
     cout << "Please insert the name of the Museum you are looking to update:";
     getline(cin, aux);
+    if (aux == ":q") return;
     if (sys->findMuseum(aux) == sys->museums.end()) {
         cout << "This museum doesn't exist!";
         pause();
@@ -253,6 +254,10 @@ UpdateMuseumMenu::UpdateMuseumMenu(System *system) : Menu(system) {
                 string name;
                 cout << "Introduce the new museum name:";
                 getline(cin, name);
+                if (name == ":q") {
+                    clear();
+                    break;
+                }
                 (*mus)->setName(name);
                 cout << "Museum name changed to: " << name << " successfully!";
                 pause();
@@ -262,6 +267,10 @@ UpdateMuseumMenu::UpdateMuseumMenu(System *system) : Menu(system) {
             case 'A' : {
                 Address ad;
                 sys->inputAddress(ad);
+                if (ad.getStreet() == ":q") {
+                    clear();
+                    break;
+                }
                 (*mus)->setAddress(ad);
                 cout << "Museum address changed successfully!";
                 pause();
@@ -269,7 +278,9 @@ UpdateMuseumMenu::UpdateMuseumMenu(System *system) : Menu(system) {
             }
                 break;
             case 'C' : {
-                unsigned cap = stoi(getInput(isNum, "Introduce the new museum capacity:", "Invalid capacity"));
+                string capStr = getInput(isNum, "Introduce the new museum capacity:", "Invalid capacity");
+                if (capStr == ":q") continue;
+                unsigned cap = stoi(capStr);
                 if (cap > (*mus)->getCapacity()) {
                     (*mus)->setCapacity(cap);
                     cout << "Museum new capacity changed successfully!" << endl;
@@ -287,6 +298,10 @@ UpdateMuseumMenu::UpdateMuseumMenu(System *system) : Menu(system) {
                             << "Are you sure you want to change the museum capacity to a lower one ?\nThis may lead to ticket refunds since there isn't enough capacity.";
                     cout << "Input Y to continue or press other key to cancel: ";
                     getline(cin, yesno);
+                    if (yesno == ":q") {
+                        clear();
+                        break;
+                    }
                     if (yesno == "Y") {
                         vector<Event *>::iterator it;
                         vector<Event *> eventsInMus;
@@ -344,7 +359,9 @@ UpdatePersonMenu::UpdatePersonMenu(System *system) : Menu(system) {
     string aux, aux2;
     cout << "Please insert the name of the Person you are looking to update:";
     getline(cin, aux);
+    if (aux == ":q") return;
     aux2 = getInput(isDate, "Introduce a birthday (Format: DD/MM/YYYY): ", "Invalid Date");
+    if (aux2 == ":q") return;
     Date bday = Date(aux2);
     if (sys->findPerson(aux, bday) == sys->people.end()) {
         cout << "This person doesn't exist!";
@@ -360,6 +377,10 @@ UpdatePersonMenu::UpdatePersonMenu(System *system) : Menu(system) {
                 string name;
                 cout << "Introduce the person name:";
                 getline(cin, name);
+                if (name == ":q") {
+                    clear();
+                    break;
+                }
                 (*prs)->setName(name);
                 cout << "Person name changed to : " << name << " successfully!" << endl;
                 pause();
@@ -369,6 +390,10 @@ UpdatePersonMenu::UpdatePersonMenu(System *system) : Menu(system) {
             case 'A' : {
                 Address ad;
                 sys->inputAddress(ad);
+                if (ad.getStreet() == ":q") {
+                    clear();
+                    break;
+                }
                 (*prs)->setAddress(ad);
                 cout << "Person address changed successfully!" << endl;
                 pause();
@@ -376,7 +401,12 @@ UpdatePersonMenu::UpdatePersonMenu(System *system) : Menu(system) {
             }
                 break;
             case 'C' : {
-                unsigned cont = stoi(getInput(isContact, "Enter the person new contact: ", "Invalid contact!"));
+                string contStr = getInput(isContact, "Enter the person new contact: ", "Invalid contact!");
+                if (contStr == ":q") {
+                    clear();
+                    break;
+                }
+                unsigned cont = stoi(contStr);
                 (*prs)->setContact(cont);
                 cout << "Person contact changed successfully!" << endl;
                 pause();
@@ -404,7 +434,9 @@ UpdateEventMenu::UpdateEventMenu(System *system) : Menu(system) {
     string aux, aux2;
     cout << "Please insert the name of the Event you are looking to update:";
     getline(cin, aux);
+    if (aux == ":q") return;
     aux2 = getInput(isDate, "Introduce a start date (Format: DD/MM/YYYY): ", "Invalid Date");
+    if (aux2 == ":q") return;
     Date bday = Date(aux2);
 
     if (sys->findEvent(aux, bday) == sys->events.end()) {
@@ -422,6 +454,10 @@ UpdateEventMenu::UpdateEventMenu(System *system) : Menu(system) {
                 string name;
                 cout << "Introduce the event name:";
                 getline(cin, name);
+                if (name == ":q") {
+                    clear();
+                    break;
+                }
                 (*eve)->setName(name);
                 cout << "Person name changed to : " << name << " successfully!";
                 pause();
@@ -429,7 +465,12 @@ UpdateEventMenu::UpdateEventMenu(System *system) : Menu(system) {
             }
                 break;
             case 'D' : {
-                Date dt = Date(getInput(isDate, "Introduce the new date: ", "Invalid Date"));
+                string dateStr = getInput(isDate, "Introduce the new date: ", "Invalid Date");
+                if (dateStr == ":q") {
+                    clear();
+                    break;
+                }
+                Date dt = Date(dateStr);
                 (*eve)->setDate(dt);
                 cout << "Person address changed successfully!";
                 pause();
@@ -440,6 +481,10 @@ UpdateEventMenu::UpdateEventMenu(System *system) : Menu(system) {
                 cout << "Introduce the museum name to which you want to change the event location: ";
                 string local;
                 getline(cin, local);
+                if (local == ":q") {
+                    clear();
+                    break;
+                }
                 if (sys->findMuseum(local) == sys->museums.end()) {
                     cout << "This museum doesn't exist!" << endl;
                     pause();
@@ -453,6 +498,10 @@ UpdateEventMenu::UpdateEventMenu(System *system) : Menu(system) {
                          << endl;
                     cout << "If you which to continue and refund tickets enter Y:";
                     getline(cin, yesno);
+                    if (yesno == ":q") {
+                        clear();
+                        break;
+                    }
                     if (yesno == "Y") {
                         (*eve)->setMuseum((mus));
                         vector<Ticket *>::reverse_iterator its;
@@ -479,7 +528,12 @@ UpdateEventMenu::UpdateEventMenu(System *system) : Menu(system) {
             }
                 break;
             case 'P' : {
-                float p = stof(getInput(isNum, "Introduce the new ticket price.", "Invalid input for ticket price"));
+                string pStr = getInput(isNum, "Introduce the new ticket price.", "Invalid input for ticket price");
+                if (pStr == ":q") {
+                    clear();
+                    break;
+                }
+                float p = stof(pStr);
                 (*eve)->setPrice(p);
                 cout << "Ticket price changed successfully!";
                 pause();
@@ -488,6 +542,10 @@ UpdateEventMenu::UpdateEventMenu(System *system) : Menu(system) {
                 break;
             case 'T': {
                 string time = getInput(isTime, "Input the new time of the event", "Invalid type format");
+                if (time == ":q") {
+                    clear();
+                    break;
+                }
                 (*eve)->setTime(Time(time));
                 cout << "Event time changed successfully!";
                 pause();
@@ -559,8 +617,18 @@ ReadEventMenu::ReadEventMenu(System *system) : ReadMenu<Event>(system) {
                 break;
             case 'B' : {
                 clear();
-                auto d1 = Date(getInput(isDate, "Type the First Date: ", "Invalid Date."));
-                auto d2 = Date(getInput(isDate, "Type the Second Date: ", "Invalid Date."));
+                string auxStr = getInput(isDate, "Type the First Date: ", "Invalid Date.");
+                if (auxStr == ":q") {
+                    clear();
+                    break;
+                }
+                auto d1 = Date(auxStr);
+                auxStr = getInput(isDate, "Type the Second Date: ", "Invalid Date.");
+                if (auxStr == ":q") {
+                    clear();
+                    break;
+                }
+                auto d2 = Date(auxStr);
                 vector<Event *> newVector;
                 for (auto x : this->toRead)
                     if (x->getDate() >= d1 && x->getDate() <= d2)
@@ -572,8 +640,18 @@ ReadEventMenu::ReadEventMenu(System *system) : ReadMenu<Event>(system) {
                 break;
             case 'R' : {
                 clear();
-                float c1 = stof(getInput(isNum, "Type the Lowest Price: ", "Invalid Price."));
-                float c2 = stof(getInput(isNum, "Type the Highest Price: ", "Invalid Price."));
+                string cStr = getInput(isNum, "Type the Lowest Price: ", "Invalid Price.");
+                if (cStr == ":q") {
+                    clear();
+                    break;
+                }
+                float c1 = stof(cStr);
+                cStr = getInput(isNum, "Type the Highest Price: ", "Invalid Price.");
+                if (cStr == ":q") {
+                    clear();
+                    break;
+                }
+                float c2 = stof(cStr);
                 vector<Event *> newVector;
                 for (auto x : this->toRead)
                     if (x->getPrice() >= c1 && x->getPrice() <= c2)
@@ -625,8 +703,18 @@ ReadPersonMenu::ReadPersonMenu(System *system) : ReadMenu<Client>(system) {
                 break;
             case 'F' : {
                 clear();
-                auto d1 = Date(getInput(isDate, "Type the First Date: ", "Invalid Date."));
-                auto d2 = Date(getInput(isDate, "Type the Second Date: ", "Invalid Date."));
+                string dStr = getInput(isDate, "Type the First Date: ", "Invalid Date.");
+                if (dStr == ":q") {
+                    clear();
+                    break;
+                }
+                auto d1 = Date(dStr);
+                dStr = getInput(isDate, "Type the Second Date: ", "Invalid Date.");
+                if (dStr == ":q") {
+                    clear();
+                    break;
+                }
+                auto d2 = Date(dStr);
                 vector<Client *> newVector;
                 for (auto x : this->toRead)
                     if (x->getBirthday() >= d1 && x->getBirthday() <= d2)
@@ -639,6 +727,10 @@ ReadPersonMenu::ReadPersonMenu(System *system) : ReadMenu<Client>(system) {
             case 'L' : {
                 clear();
                 auto locality = getInput(notEmptyString, "Type the Locality Name: ", "Invalid Locality.");
+                if (locality == ":q") {
+                    clear();
+                    break;
+                }
                 vector<Client *> newVector;
                 for (auto x : this->toRead)
                     if (x->getAddress().getLocality() == locality)
@@ -687,8 +779,18 @@ ReadMuseumMenu::ReadMuseumMenu(System *system) : ReadMenu<Museum>(system) {
                 break;
             case 'F' : {
                 clear();
-                auto c1 = stoi(getInput(isNum, "Type the Lowest Capacity: ", "Invalid Number."));
-                auto c2 = stoi(getInput(isNum, "Type the Highest Capacity: ", "Invalid Number."));
+                string cStr = getInput(isNum, "Type the Lowest Capacity: ", "Invalid Number.");
+                if (cStr == ":q") {
+                    clear();
+                    break;
+                }
+                auto c1 = stoi(cStr);
+                cStr = getInput(isNum, "Type the Highest Capacity: ", "Invalid Number.");
+                if (cStr == ":q") {
+                    clear();
+                    break;
+                }
+                auto c2 = stoi(cStr);
                 vector<Museum *> newVector;
                 for (auto x : this->toRead)
                     if (x->getCapacity() >= c1 && x->getCapacity() <= c2)
@@ -700,6 +802,10 @@ ReadMuseumMenu::ReadMuseumMenu(System *system) : ReadMenu<Museum>(system) {
             case 'L' : {
                 clear();
                 auto locality = getInput(notEmptyString, "Type the Locality Name: ", "Invalid Locality.");
+                if (locality == ":q") {
+                    clear();
+                    break;
+                }
                 vector<Museum *> newVector;
                 for (auto x : this->toRead)
                     if (x->getAddress().getLocality() == locality)
@@ -746,6 +852,10 @@ FinanceMenu::FinanceMenu(System *system) : Menu(system) {
         case 'P' : {
             double spent;
             spent = sys->moneySpentPerson();
+            if (spent == -1) {
+                clear();
+                break;
+            }
             cout << "The total money spent by this Person is " << spent << " Euros" << endl;
             pause();
             clear();
@@ -754,6 +864,10 @@ FinanceMenu::FinanceMenu(System *system) : Menu(system) {
         case 'E' : {
             double rev;
             rev = sys->eventRevenue();
+            if (rev == -1) {
+                clear();
+                break;
+            }
             cout << "The Event's revenue is " << rev << " Euros" << endl;
             pause();
             clear();
@@ -772,4 +886,59 @@ vector<vector<string>> FinanceMenu::getOptions() const {
                                    {"P", "Money spent by Someone"},
                                    {"E", "Ticket Revenue of an Event"},
                                    {"R", "Return"}});
+}
+
+vector<vector<string>> VisitedMuseumsMenu::getOptions() const {
+    return vector<vector<string>>({{"V", "List Visited Museums by nr of visits"},
+                                   {"N", "List Visited Museums by name"},
+                                   {"F", "Filter"},
+                                   {"-", "Less visited Museum"},
+                                   {"+", "Most visited Museum"},
+                                   {"M", "Main Menu"},
+                                   {"Q", "Quit Program"}});
+}
+
+VisitedMuseumsMenu::VisitedMuseumsMenu(System *system) : Menu(system) {
+    BST<Museum> tree((Museum()));
+    while (true) {
+        this->nextMenu = this->option();
+        switch (this->nextMenu) {
+            case 'V' : {
+                clear();
+//                sys->visitedMuseumsByVisits(tree);
+            }
+                break;
+            case 'N' : {
+                clear();
+//                sys->visitedMuseumByName(tree);
+            }
+                break;
+            case 'F' : {
+                clear();
+                try {
+                    new UpdateEventMenu(system);
+                }
+                catch (PastEvent) {
+                    cout << "You can´t change an event that already happened!" << endl;
+                }
+            }
+                break;
+            case 'D' : {
+                clear();
+                sys->deleteEvent();
+            }
+                break;
+//            case 'V' : {
+//                clear();
+//                sys->readEvent();
+//            }
+                break;
+            case 'M':
+                return;
+            case 'Q':
+                return;
+            default:
+                break;
+        }
+    }
 }

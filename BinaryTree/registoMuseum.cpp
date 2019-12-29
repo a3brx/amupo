@@ -30,4 +30,12 @@ unsigned MuseumRegister::size() {
     return this->sizeBst;
 }
 
+bool MuseumRegister::insert(Museum mus) {
+    return this->museums.insert(mus);
+}
+
+BST<Museum> MuseumRegister::getMuseums() {
+    return this->museums;
+}
+
 

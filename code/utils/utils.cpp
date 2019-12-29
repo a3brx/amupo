@@ -141,10 +141,12 @@ string getInput(bool (__valid)(const string&), const string &message, const stri
     string input;
     cout << message;
     getline(cin, input);
+    if (input == ":q") return input;
     input = upper(input);
     while (!__valid(input)){
         cout << fail << endl << message;
         getline(cin, input);
+        if (input == ":q") return input;
         input = upper(input);
     };
     return input;
