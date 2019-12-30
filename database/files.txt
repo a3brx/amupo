@@ -2,3 +2,4 @@ events.txt
 people.txt
 museums.txt
 tickets.txt
+companies.txt
