@@ -644,21 +644,21 @@ ReadEventMenu::ReadEventMenu(System *system) : ReadMenu<Event>(system) {
         switch (this->nextMenu) {
             case 'N' : {
                 clear();
-                sort(sys->events.begin(), sys->events.end(), compareName<Event *>);
+                sort(this->toRead.begin(), this->toRead.end(), compareName<Event *>);
                 sys->readEvents(this->toRead);
                 pause();
             }
                 break;
             case 'D' : {
                 clear();
-                sort(sys->events.begin(), sys->events.end(), compareDate);
+                sort(this->toRead.begin(), this->toRead.end(), compareDate);
                 sys->readEvents(this->toRead);
                 pause();
             }
                 break;
             case 'P' : {
                 clear();
-                sort(sys->events.begin(), sys->events.end(), comparePrice);
+                sort(this->toRead.begin(), this->toRead.end(), comparePrice);
                 sys->readEvents(this->toRead);
                 pause();
             }
