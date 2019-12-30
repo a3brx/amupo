@@ -113,6 +113,8 @@ bool notEmptyString(const string& toTest);
 
 bool isPosition(const string &toTest);
 
+pair<double, double> strToPair(string toPair);
+
 ///@brief
 ///@param
 ///@return

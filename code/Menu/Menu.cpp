@@ -244,6 +244,62 @@ vector<vector<string>> MuseumMenu::getOptions() const {
                                    {"Q", "Quit Program"}});
 }
 
+vector<vector<string>> VisitedMuseumsMenu::getOptions() const {
+    return vector<vector<string>>({{"V", "List Visited Museums by nr of visits"},
+                                   {"N", "List Visited Museums by name"},
+                                   {"F", "Filter"},
+                                   {"-", "Less visited Museum"},
+                                   {"+", "Most visited Museum"},
+                                   {"M", "Main Menu"},
+                                   {"Q", "Quit Program"}});
+}
+
+VisitedMuseumsMenu::VisitedMuseumsMenu(System *system) : Menu(system) {
+    BST<Museum> tree((Museum()));
+    while (true) {
+        this->nextMenu = this->option();
+        switch (this->nextMenu) {
+            case 'V' : {
+                clear();
+//                sys->visitedMuseumsByVisits(tree);
+
+            }
+                break;
+            case 'N' : {
+                clear();
+//                sys->visitedMuseumByName(tree);
+            }
+                break;
+            case 'F' : {
+
+            }
+                break;
+            case '-' : {
+//                clear();
+//                Museum mus = sys->getLessVisitedMuseum();
+//                vector<Museum *> musVec; musVec.push_back(&mus);
+//                Table<string> musTab = toTable(musVec);
+//                cout << musTab;
+            }
+                break;
+            case '+' : {
+//                clear();
+//                Museum mus = sys->getLessVisitedMuseum();
+//                vector<Museum *> musVec; musVec.push_back(&mus);
+//                Table<string> musTab = toTable(musVec);
+//                cout << musTab;            }
+                break;
+                case 'M':
+                    return;
+                case 'Q':
+                    return;
+                default:
+                    break;
+            }
+        }
+    }
+}
+
 UpdateMuseumMenu::UpdateMuseumMenu(System *system) : Menu(system) {
     string aux, aux2;
     cout << "Please insert the name of the Museum you are looking to update:";
@@ -267,6 +323,7 @@ UpdateMuseumMenu::UpdateMuseumMenu(System *system) : Menu(system) {
                     clear();
                     break;
                 }
+                sys->musReg.updateMuseum(**mus, MusName, name);
                 (*mus)->setName(name);
                 cout << "Museum name changed to: " << name << " successfully!";
                 pause();
@@ -280,6 +337,9 @@ UpdateMuseumMenu::UpdateMuseumMenu(System *system) : Menu(system) {
                     clear();
                     break;
                 }
+                stringstream addStr;
+                addStr << ad;
+                sys->musReg.updateMuseum(**mus, MusAddress, addStr.str());
                 (*mus)->setAddress(ad);
                 cout << "Museum address changed successfully!";
                 pause();
@@ -334,6 +394,7 @@ UpdateMuseumMenu::UpdateMuseumMenu(System *system) : Menu(system) {
                                 }
                             }
                         }
+                        sys->musReg.updateMuseum(**mus, MusCap, to_string(cap));
                         (*mus)->setCapacity(cap);
                     } else {
                         cout << "Operation canceled." << endl;
@@ -345,6 +406,17 @@ UpdateMuseumMenu::UpdateMuseumMenu(System *system) : Menu(system) {
                 cout << "Museum capacity change successfully!" << endl;
                 pause();
                 clear();
+            }
+                break;
+            case 'P': {
+                string posStr = getInput(isPosition, "Introduce the Museum's Position (Format: x,y): ",
+                                         "Invalid Position!\n");
+                if (posStr == ":q") {
+                    clear();
+                    break;
+                }
+                sys->musReg.updateMuseum(**mus, MusPos, posStr);
+                (*mus)->setPosition(strToPair(posStr));
             }
                 break;
             case 'G' : {
@@ -361,6 +433,7 @@ vector<vector<string>> UpdateMuseumMenu::getOptions() const {
     return vector<vector<string>>({{"N", "Update Name"},
                                    {"A", "Update Address"},
                                    {"C", "Update Capacity"},
+                                   {"P", "Update Position"},
                                    {"G", "Go Back"}});
 }
 
@@ -987,58 +1060,3 @@ vector<vector<string>> FinanceMenu::getOptions() const {
                                    {"R", "Return"}});
 }
 
-vector<vector<string>> VisitedMuseumsMenu::getOptions() const {
-    return vector<vector<string>>({{"V", "List Visited Museums by nr of visits"},
-                                   {"N", "List Visited Museums by name"},
-                                   {"F", "Filter"},
-                                   {"-", "Less visited Museum"},
-                                   {"+", "Most visited Museum"},
-                                   {"M", "Main Menu"},
-                                   {"Q", "Quit Program"}});
-}
-
-VisitedMuseumsMenu::VisitedMuseumsMenu(System *system) : Menu(system) {
-    BST<Museum> tree((Museum()));
-    while (true) {
-        this->nextMenu = this->option();
-        switch (this->nextMenu) {
-            case 'V' : {
-                clear();
-//                sys->visitedMuseumsByVisits(tree);
-
-            }
-                break;
-            case 'N' : {
-                clear();
-//                sys->visitedMuseumByName(tree);
-            }
-                break;
-            case 'F' : {
-
-            }
-                break;
-            case '-' : {
-//                clear();
-//                Museum mus = sys->getLessVisitedMuseum();
-//                vector<Museum *> musVec; musVec.push_back(&mus);
-//                Table<string> musTab = toTable(musVec);
-//                cout << musTab;
-            }
-                break;
-            case '+' : {
-//                clear();
-//                Museum mus = sys->getLessVisitedMuseum();
-//                vector<Museum *> musVec; musVec.push_back(&mus);
-//                Table<string> musTab = toTable(musVec);
-//                cout << musTab;            }
-                break;
-                case 'M':
-                    return;
-                case 'Q':
-                    return;
-                default:
-                    break;
-            }
-        }
-    }
-}

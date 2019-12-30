@@ -151,7 +151,7 @@ System::System(const string &fileName/*,const string pass*/) {
     Company *c;
     Companies toAvailCompanies;
     while(!file.eof()){
-        file >> *c;
+        file >> c;
         toAvailCompanies.push(*c);
     }
     setCompanies(toAvailCompanies);

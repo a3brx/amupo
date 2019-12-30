@@ -1,4 +1,5 @@
 #include "utils.h"
+#include "InvalidInput.h"
 
 #if defined(_WIN32)
 #define PLATFORM_NAME "windows" // Windows
@@ -180,6 +181,14 @@ bool isPosition(const string &toTest) {
     return !(stod(aux.at(0)) < -90 || stod(aux.at(1)) > 90);
 }
 
+pair<double, double> strToPair(string toPair) {
+    pair<double, double> pair;
+    if (!isPosition(toPair)) throw InvalidInput();
+    vector<string> aux = trim(split(toPair, ","));
+    pair.first = stod(aux[0]);
+    pair.second = stod(aux[1]);
+    return pair;
+}
 bool isInRange(pair<double,double> c1,pair<double,double> c2,unsigned distance){
     return sqrt(pow((c1.first-c2.first),2)+pow((c1.second-c2.second),2))<=distance;
 }

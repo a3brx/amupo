@@ -1,4 +1,4 @@
-1 | Museu do Teste | 20.5344, -30.1234 | 300 | 1
+0 | Museu do Teste | 20.5344, -30.1234 | 300 | 1
 Rua da FEUP, 213 2132-123 Paranhos 
 1 | Museu dos Biscainhos | 1, -3 | 10 | 122
 Rua dos Biscainhos, 0 4700-415 Braga 

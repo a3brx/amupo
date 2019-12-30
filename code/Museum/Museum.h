@@ -73,6 +73,8 @@ public:
 
     void setVisits(unsigned vis);
 
+    void setValid(bool valid);
+
     void visit();
 
     /// @brief Sends a museum information to a ostream object

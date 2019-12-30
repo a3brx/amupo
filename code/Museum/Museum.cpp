@@ -51,6 +51,10 @@ void Museum::setVisits(unsigned vis) {
     this->visits = vis;
 }
 
+void Museum::setValid(bool valid) {
+    this->valid = valid;
+}
+
 void Museum::visit() {
     this->visits++;
 }
@@ -104,12 +108,14 @@ bool Museum::isValid() const {
 }
 
 Table<string> toTable(const vector<Museum *> &container) {
-    vector<string> header = {"Name", "Capacity", "Address"};
+    vector<string> header = {"Name", "Capacity", "Address", "Position", "Visits"};
     vector<vector<string>> content;
     for (auto museum : container) {
         stringstream address;
         address << museum->getAddress();
-        content.push_back({museum->getName(), to_string(museum->getCapacity()), address.str()});
+        content.push_back({museum->getName(), to_string(museum->getCapacity()), address.str(),
+                           to_string(museum->getPosition().first) + ", " + to_string(museum->getPosition().second),
+                           to_string(museum->getVisits())});
     }
     Table<string> data(header, content);
     return data;
