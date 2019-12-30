@@ -129,7 +129,7 @@ public:
 
 };
 
-/// @brief invalid Museum Exception
+/// @brief invalid Museum ExceptiontoTable
 class InvalidMuseum : public exception {
 private:
     ///@brief Supposed address of the invalid museum
