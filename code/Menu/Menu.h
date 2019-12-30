@@ -189,6 +189,13 @@ public:
     vector<vector<string>> getOptions() const override;
 };
 
+///@brief Employee menu
+class EmployeeMenu : public Menu {
+public:
+    EmployeeMenu(System *system);
+
+    vector<vector<string>> getOptions() const override;
+};
 
 class VisitedMuseumsMenu : public Menu {
 public:

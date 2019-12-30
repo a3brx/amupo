@@ -66,6 +66,10 @@ MainMenu::MainMenu(System *system) : Menu(system) {
                 call = new FinanceMenu(system);
                 break;
             }
+            case 'W': {
+                call = new EmployeeMenu(system);
+                break;
+            }
             case 'Q':
                 return;
             default:
@@ -80,6 +84,7 @@ vector<vector<string>> MainMenu::getOptions() const {
                                    {"M", "Museum Menu"},
                                    {"S", "Sell Ticket"},
                                    {"F", "Finances Menu"},
+                                   {"W", "Employees Menu"},
                                    {"Q", "Quit Program"}});
 }
 
@@ -617,6 +622,55 @@ vector<vector<string>> HireCompanyMenu::getOptions() const {
                                    {"P", "Update Price"},
                                    {"C", "Update Time"},
                                    {"G", "Go Back"}});
+}
+
+EmployeeMenu::EmployeeMenu(System *system) : Menu(system) {
+    while (true) {
+        this->nextMenu = this->option();
+        switch (this->nextMenu) {
+            case 'C' : {
+                clear();
+                //sys->createMuseum();
+            }
+                break;
+            case 'R' : {
+                clear();
+                //new ReadMuseumMenu(system);
+            }
+                break;
+            case 'U' : {
+                clear();
+                //new UpdateMuseumMenu(system);
+            }
+                break;
+            case 'D' : {
+                clear();
+                //sys->deleteMuseum();
+            }
+                break;
+            case 'V' : {
+                clear();
+                //sys->readMuseum();
+            }
+                break;
+            case 'M':
+                return;
+            case 'Q':
+                return;
+            default:
+                break;
+        }
+    }
+}
+
+vector<vector<string>> EmployeeMenu::getOptions() const {
+    return vector<vector<string>>({{"C", "Create Employee"},
+                                   {"R", "Read Employees"},
+                                   {"U", "Update Employe"},
+                                   {"D", "Delete Employee"},
+                                   {"V", "View Employee"},
+                                   {"M", "Main Menu"},
+                                   {"Q", "Quit Program"}});
 }
 
 /// @brief Compares the name of two objects
