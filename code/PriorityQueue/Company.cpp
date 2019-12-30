@@ -2,7 +2,7 @@
 // Created by jbr on 27/12/19.
 //
 
-#include "../PriorityQueue/Company.h"
+#include "Company.h"
 
 #include <utility>
 

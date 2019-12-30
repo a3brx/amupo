@@ -11,7 +11,7 @@
 #include "../Museum/Museum.h"
 #include "../Ticket/Ticket.h"
 #include "../utils/InvalidInput.h"
-#include "../../BinaryTree/registoMuseum.h"
+#include "../BinaryTree/registoMuseum.h"
 
 
 /// The System Class

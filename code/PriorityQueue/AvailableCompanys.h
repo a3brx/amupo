@@ -8,7 +8,7 @@
 #endif //AMIGO_DOS_MUSEUS_AVAILABLECOMPANYS_H
 
 #include <queue>
-#include "../PriorityQueue/Company.h"
+#include "Company.h"
 
 class AvailableCompanys{
     priority_queue<Company> Companys;

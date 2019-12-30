@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "../code/Museum/Museum.h"
+#include "../Museum/Museum.h"
 #include "binaryTree.h"
 
 using namespace std;

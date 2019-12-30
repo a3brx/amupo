@@ -571,6 +571,54 @@ vector<vector<string>> UpdateEventMenu::getOptions() const {
                                    {"G", "Go Back"}});
 }
 
+HireCompanyMenu::HireCompanyMenu(System *system) : Menu(system) {
+    while (true) {
+        this->nextMenu = this->option();
+        switch (this->nextMenu) {
+            case 'C' : {
+                clear();
+                sys->createMuseum();
+            }
+                break;
+            case 'R' : {
+                clear();
+                new ReadMuseumMenu(system);
+            }
+                break;
+            case 'U' : {
+                clear();
+                new UpdateMuseumMenu(system);
+            }
+                break;
+            case 'D' : {
+                clear();
+                sys->deleteMuseum();
+            }
+                break;
+            case 'V' : {
+                clear();
+                sys->readMuseum();
+            }
+                break;
+            case 'M':
+                return;
+            case 'Q':
+                return;
+            default:
+                break;
+        }
+    }
+}
+
+vector<vector<string>> HireCompanyMenu::getOptions() const {
+    return vector<vector<string>>({{"N", "Update Name"},
+                                   {"D", "Update Date"},
+                                   {"L", "Update Location"},
+                                   {"P", "Update Price"},
+                                   {"C", "Update Time"},
+                                   {"G", "Go Back"}});
+}
+
 /// @brief Compares the name of two objects
 /// @tparam T The class of the objects
 /// @param left The first object to be tested
@@ -933,12 +981,13 @@ VisitedMuseumsMenu::VisitedMuseumsMenu(System *system) : Menu(system) {
 //                Table<string> musTab = toTable(musVec);
 //                cout << musTab;            }
                 break;
-            case 'M':
-                return;
-            case 'Q':
-                return;
-            default:
-                break;
+                case 'M':
+                    return;
+                case 'Q':
+                    return;
+                default:
+                    break;
+            }
         }
     }
 }

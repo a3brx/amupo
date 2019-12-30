@@ -178,6 +178,17 @@ public:
     vector<vector<string>> getOptions() const override;
 };
 
+///@brief Hiring menu
+class HireCompanyMenu : public Menu {
+public:
+    ///@brief FinanceMenu Constructor
+    HireCompanyMenu(System *system);
+
+    ///@brief Gets FinanceMenu in organized manner
+    ///@return Returns a matrix(n*2). The first column is a letter representing an option, and the second is the corresponding
+    vector<vector<string>> getOptions() const override;
+};
+
 
 class VisitedMuseumsMenu : public Menu {
 public:
