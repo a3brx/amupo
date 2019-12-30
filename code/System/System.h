@@ -13,8 +13,10 @@
 #include "../Ticket/Ticket.h"
 #include "../utils/InvalidInput.h"
 #include "../BinaryTree/registoMuseum.h"
+#include "../PriorityQueue/Company.h"
 
 typedef unordered_set<Employee*, employeeHash, employeeHash> EmployeeHash;
+typedef priority_queue<Company> Companies;
 
 /// The System Class
 class System {
@@ -44,9 +46,9 @@ public:
 
     MuseumRegister musReg;
 
-    //AvailableCompanies availableCompanies;
-
     EmployeeHash employees;
+
+     Companies availableCompanies;
 
     /// @brief Creates a new system with the information provided by the file.
     /// @param fileName The path to the file where the information is stored.
@@ -223,11 +225,15 @@ public:
     bool eligibleSilverClient(Person *person, Event *ev) const;
 
 
-    // 2nd Part
+    //----------------------------------------------- 2nd Part ----------------------------------------------
 
     void visitedMuseumsByVisits(BST<Museum> tree);
 
     void visitedMuseumByName(BST<Museum> tree);
+
+    bool requestService();
+
+    void setCompanies(Companies queue);
 
 
 };

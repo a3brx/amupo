@@ -8,20 +8,14 @@ System::System(const string &fileName/*,const string pass*/) {
     vector<string> aux = split(fileName, "/");
     aux.pop_back();
     string path = join(aux, '/');
-    string museumsFile, peopleFile, eventsFile, ticketsFile;
+    string museumsFile, peopleFile, eventsFile, ticketsFile,companiesFile;
     file.open(fileName);
-    /*if(file.fail()){
-        throw InvalidInput("Invalid login credentials!");
-    }
-    getline(file,this->pass);
-    if(this->pass!=pass){
-        throw InvalidInput("Invalid login credentials!");
-    }*/
-    file >> eventsFile >> peopleFile >> museumsFile >> ticketsFile;
+    file >> eventsFile >> peopleFile >> museumsFile >> ticketsFile>>companiesFile;
     eventsFile = path + eventsFile;
     peopleFile = path + peopleFile;
     museumsFile = path + museumsFile;
     ticketsFile = path + ticketsFile;
+    companiesFile=path + companiesFile;
     file.close();
 
     file.open(museumsFile);
@@ -153,6 +147,14 @@ System::System(const string &fileName/*,const string pass*/) {
         }
     }
     file.close();
+    file.open(companiesFile);
+    Company *c;
+    Companies toAvailCompanies;
+    while(!file.eof()){
+        file >> *c;
+        toAvailCompanies.push(*c);
+    }
+    setCompanies(toAvailCompanies);
 
     freeSilverClientTickets();
 }
@@ -296,15 +298,16 @@ System::~System() {
     vector<string> aux = split(this->fileName, "/");
     aux.pop_back();
     string path = join(aux, '/');
-    string museumsFile, peopleFile, eventsFile, ticketsFile;
+    string museumsFile, peopleFile, eventsFile, ticketsFile,companiesFile;
 
     file.open(this->fileName);
     //getline(file,this->pass);
-    file >> eventsFile >> peopleFile >> museumsFile >> ticketsFile;
+    file >> eventsFile >> peopleFile >> museumsFile >> ticketsFile>>companiesFile;
     eventsFile = path + eventsFile;
     peopleFile = path + peopleFile;
     museumsFile = path + museumsFile;
     ticketsFile = path + ticketsFile;
+    companiesFile=path + companiesFile;
     file.close();
 
     file.open(museumsFile, ofstream::out | ofstream::trunc);
@@ -356,6 +359,21 @@ System::~System() {
             continue;
         }
         file << endl << *(*itt);
+    }
+    file.close();
+
+    file.open(companiesFile,ofstream::out | ofstream::trunc);
+    size_t i =availableCompanies.size();
+    firstTime=true;
+    for (int k = 0; k < i; ++k) {
+        if (firstTime) {
+            file << availableCompanies.top();
+            availableCompanies.pop();
+            firstTime = false;
+            continue;
+        }
+        file << endl << availableCompanies.top();
+        availableCompanies.pop();
     }
     file.close();
 
@@ -859,7 +877,49 @@ bool System::eligibleSilverClient(Person *person, Event *ev) const {
     return (person->getAddress().getLocality() == ev->getMuseum()->getAddress().getLocality());
 }
 
-Table<string> toTable(const vector<Event *> &container, const System *sys) {
+bool System::requestService() {
+    string name;
+    while (true) {
+        cout << "Enter the Museum name: ";
+        getline(cin, name);
+        if (name == ":q") return false;
+        if (findMuseum(name) != museums.end()) {
+            cout << "Museum with that name already exists\n";
+            continue;
+        }
+        break;
+    }
+    Museum museumTemp=**findMuseum(name);
+    unsigned distance=stoul(getInput(isNum,"Input a maximum distance:"));
+    priority_queue<Company> companiesTemp=availableCompanies;
+    vector<Company> toSwap;
+    unsigned size=availableCompanies.size();
+    for (int j = 0; j < size; ++j) {
+        if(isInRange(companiesTemp.top().getPosition(),museumTemp.getPosition(),distance)){
+            Company companyTemp=companiesTemp.top();
+            companyTemp.addRepair();
+            companiesTemp.pop();
+            toSwap.push_back(companyTemp);
+            break;
+        }
+        toSwap.push_back(companiesTemp.top());
+        companiesTemp.pop();
+        if(j==size-1){
+            return false;
+        }
+    }
+    for(const auto& x:toSwap){
+        companiesTemp.push(x);
+    }
+    availableCompanies.swap(companiesTemp);
+    return true;
+}
+
+void System::setCompanies(Companies queue) {
+    this->availableCompanies=queue;
+}
+
+Table<string> toTable(const vector<Event *> &container, const System * sys){
     vector<string> header = {"Name", "Museum", "Date", "Time", "Sold Tickets", "Price"};
     vector<vector<string>> content;
     for (auto event : container) {

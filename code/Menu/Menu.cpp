@@ -58,7 +58,7 @@ MainMenu::MainMenu(System *system) : Menu(system) {
             case 'M':
                 call = new MuseumMenu(system);
                 break;
-            case 'S':
+            case 'T':
                 sys->sellTicket();
                 call = new MainMenu(system);
                 break;
@@ -66,6 +66,9 @@ MainMenu::MainMenu(System *system) : Menu(system) {
                 call = new FinanceMenu(system);
                 break;
             }
+            case 'S':
+                call = new HireCompanyMenu(system);
+                break;
             case 'W': {
                 call = new EmployeeMenu(system);
                 break;
@@ -82,8 +85,9 @@ vector<vector<string>> MainMenu::getOptions() const {
     return vector<vector<string>>({{"E", "Event Menu"},
                                    {"P", "Person Menu"},
                                    {"M", "Museum Menu"},
-                                   {"S", "Sell Ticket"},
+                                   {"T", "Sell Ticket"},
                                    {"F", "Finances Menu"},
+                                   {"S", "Manage Services"},
                                    {"W", "Employees Menu"},
                                    {"Q", "Quit Program"}});
 }
@@ -576,33 +580,26 @@ vector<vector<string>> UpdateEventMenu::getOptions() const {
                                    {"G", "Go Back"}});
 }
 
-HireCompanyMenu::HireCompanyMenu(System *system) : Menu(system) {
+HireCompanyMenu::HireCompaniesMenu(System *system) : Menu(system) {
     while (true) {
         this->nextMenu = this->option();
         switch (this->nextMenu) {
-            case 'C' : {
+            case 'S' : {
                 clear();
-                sys->createMuseum();
+
             }
                 break;
             case 'R' : {
                 clear();
-                new ReadMuseumMenu(system);
+
             }
                 break;
             case 'U' : {
                 clear();
-                new UpdateMuseumMenu(system);
             }
                 break;
             case 'D' : {
                 clear();
-                sys->deleteMuseum();
-            }
-                break;
-            case 'V' : {
-                clear();
-                sys->readMuseum();
             }
                 break;
             case 'M':
@@ -615,13 +612,13 @@ HireCompanyMenu::HireCompanyMenu(System *system) : Menu(system) {
     }
 }
 
-vector<vector<string>> HireCompanyMenu::getOptions() const {
-    return vector<vector<string>>({{"N", "Update Name"},
-                                   {"D", "Update Date"},
-                                   {"L", "Update Location"},
-                                   {"P", "Update Price"},
-                                   {"C", "Update Time"},
-                                   {"G", "Go Back"}});
+vector<vector<string>> HireCompaniesMenu::getOptions() const {
+    return vector<vector<string>>({{"S", "Request Service"},
+                                   {"R", "Read Companies"},
+                                   {"U", "Update Company"},
+                                   {"D", "Delete Company"},
+                                   {"M", "Main Menu"},
+                                   {"Q", "Quit Program"}});
 }
 
 EmployeeMenu::EmployeeMenu(System *system) : Menu(system) {

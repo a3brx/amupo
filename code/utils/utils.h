@@ -5,6 +5,7 @@
 #include <sstream>
 #include <utility>
 #include <functional>
+#include <cmath>
 using namespace std;
 
 ///@brief Clear the terminal of the computer the program is being executed on.
@@ -136,3 +137,5 @@ T* firstInSecond(T *first,vector<T*> second){
     return nullptr;
 }
 
+
+bool isInRange(pair<double,double> c1,pair<double,double> c2,unsigned distance);
