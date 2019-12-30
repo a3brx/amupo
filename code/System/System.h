@@ -144,6 +144,8 @@ public:
     /// @param container A vector of the museums to be showed
     void readMuseums(const vector<Museum *> &container) const;
 
+    void readEmployees(const EmployeeHash &hash) const;
+
     ///@brief Reads an event information via user input and removes it.
     void deleteEvent();
 
@@ -236,3 +238,5 @@ Table<string> toTable(const vector<Client *> &container, const System *sys);
 
 ///@brief Receives a vector of Person and transforms in a table.
 Table<string> toTable(const vector<Person *> &container, const System *sys);
+
+Table<string> toTable(const EmployeeHash &container) ;

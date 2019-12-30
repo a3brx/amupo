@@ -162,8 +162,8 @@ void System::readPerson() const {
     if (name == ":q") return;
     string birthday = getInput(isDate, "Type its birthday: ", "Invalid Date.");
     if (birthday == ":q") return;
-    Person * personPtr = * findPerson(name, Date(birthday));
-    if(personPtr == *this->people.end()) {
+    Person *personPtr = *findPerson(name, Date(birthday));
+    if (personPtr == *this->people.end()) {
         vector<Person *> aux = {};
         readPeople(aux);
     } else
@@ -171,8 +171,9 @@ void System::readPerson() const {
 }
 
 void System::readClients(const vector<Client *> &container) const {
-    if(container.empty()){
+    if (container.empty()) {
         cout << "The search is empty :(" << endl;
+        pause();
         return;
     }
     auto read = toTable(container, this);
@@ -180,7 +181,7 @@ void System::readClients(const vector<Client *> &container) const {
 }
 
 void System::readPeople(const vector<Person *> &container) const {
-    if(container.empty()){
+    if (container.empty()) {
         cout << "The search is empty :(" << endl;
         return;
     }
@@ -194,16 +195,17 @@ void System::readEvent() const {
     if (name == ":q") return;
     string date = getInput(isDate, "Type its date: ", "Invalid Date.");
     if (date == ":q") return;
-    Event * eventPtr = * findEvent(name, Date(date));
-    if(eventPtr == *this->events.end())
+    Event *eventPtr = *findEvent(name, Date(date));
+    if (eventPtr == *this->events.end())
         readEvents({});
     else
         readEvents({eventPtr});
 }
 
 void System::readEvents(const vector<Event *> &container) const {
-    if(container.empty()){
+    if (container.empty()) {
         cout << "The search is empty :(" << endl;
+        pause();
         return;
     }
     auto read = toTable(container, this);
@@ -213,19 +215,31 @@ void System::readEvents(const vector<Event *> &container) const {
 void System::readMuseum() const {
     string name = getInput(notEmptyString, "Type the name of the Museum: ", "Invalid name.");
     if (name == ":q") return;
-    Museum * museumPtr = * findMuseum(name);
-    if(museumPtr == *this->museums.end())
+    Museum *museumPtr = *findMuseum(name);
+    if (museumPtr == *this->museums.end())
         readMuseums({});
     else
         readMuseums({museumPtr});
 }
 
 void System::readMuseums(const vector<Museum *> &container) const {
-    if(container.empty()){
+    if (container.empty()) {
         cout << "The search is empty :(" << endl;
+        pause();
         return;
     }
     auto read = toTable(container);
+    cout << read;
+    pause();
+}
+
+void System::readEmployees(const EmployeeHash &hash) const {
+    if (hash.empty()) {
+        cout << "The search is empty :(" << endl;
+        pause();
+        return;
+    }
+    auto read = toTable(hash);
     cout << read;
     pause();
 }
@@ -293,7 +307,7 @@ System::~System() {
     ticketsFile = path + ticketsFile;
     file.close();
 
-    file.open(museumsFile,ofstream::out | ofstream::trunc);
+    file.open(museumsFile, ofstream::out | ofstream::trunc);
     auto itm = this->museums.begin(), itml = this->museums.end();
     bool firstTime = true;
     for (; itm != itml; itm++) {
@@ -306,7 +320,7 @@ System::~System() {
     }
     file.close();
 
-    file.open(peopleFile,ofstream::out | ofstream::trunc);
+    file.open(peopleFile, ofstream::out | ofstream::trunc);
     auto itp = this->people.begin(), itpl = this->people.end();
     firstTime = true;
     for (; itp != itpl; itp++) {
@@ -319,7 +333,7 @@ System::~System() {
     }
     file.close();
 
-    file.open(eventsFile,ofstream::out | ofstream::trunc);
+    file.open(eventsFile, ofstream::out | ofstream::trunc);
     auto ite = this->events.begin(), itel = this->events.end();
     firstTime = true;
     for (; ite != itel; ite++) {
@@ -332,7 +346,7 @@ System::~System() {
     }
     file.close();
 
-    file.open(ticketsFile,ofstream::out | ofstream::trunc);
+    file.open(ticketsFile, ofstream::out | ofstream::trunc);
     auto itt = this->soldTickets.begin(), ittl = this->soldTickets.end();
     firstTime = true;
     for (; itt != ittl; itt++) {
@@ -646,15 +660,15 @@ void System::sellTicket(Event *event, Person *person) {
 
 double System::anualRevenue() const {
     auto oneYearAgo = Date();
-    if(oneYearAgo.getMonth() == 2 && oneYearAgo.getDay() == 29)
+    if (oneYearAgo.getMonth() == 2 && oneYearAgo.getDay() == 29)
         oneYearAgo.setDay(28);
     oneYearAgo.setYear(oneYearAgo.getYear() - 1);
     double total = 0;
-    for (auto ticket : soldTickets){
-        if(ticket->getEvent()->getDate() >= oneYearAgo)
+    for (auto ticket : soldTickets) {
+        if (ticket->getEvent()->getDate() >= oneYearAgo)
             total += ticket->getPrice();
     }
-    for (auto client : clients){
+    for (auto client : clients) {
         total += client->getCost();
     }
     return total;
@@ -662,7 +676,7 @@ double System::anualRevenue() const {
 
 double System::totalRevenue() const {
     double total = 0;
-    for (auto ticket : soldTickets){
+    for (auto ticket : soldTickets) {
         total += ticket->getPrice();
     }
     for (auto client : clients) {
@@ -682,12 +696,12 @@ unsigned System::getEventSoldTickets(Event *ev) const {
     return counter;
 }
 
-vector<Ticket*> System::getEventTickets(Event *ev) {
-    vector<Ticket*> ticks;
+vector<Ticket *> System::getEventTickets(Event *ev) {
+    vector<Ticket *> ticks;
     auto it = soldTickets.begin();
     for (; it != soldTickets.end(); it++) {
         if (*(*it)->getEvent() == *ev) {
-            ticks.push_back(new Ticket (*it));
+            ticks.push_back(new Ticket(*it));
         }
     }
     return ticks;
@@ -802,7 +816,7 @@ void System::freeSilverClientTickets() {
 }
 
 vector<Ticket *>::const_iterator System::findTicket(Ticket *ticket) const {
-    for(auto tick=soldTickets.begin();tick!=soldTickets.end();tick++){
+    for (auto tick = soldTickets.begin(); tick != soldTickets.end(); tick++) {
         if (*(*tick) == *ticket) {
             return tick;
         }
@@ -824,7 +838,7 @@ bool System::eligibleSilverClient(Person *person, Event *ev) const {
     return (person->getAddress().getLocality() == ev->getMuseum()->getAddress().getLocality());
 }
 
-Table<string> toTable(const vector<Event *> &container, const System * sys){
+Table<string> toTable(const vector<Event *> &container, const System *sys) {
     vector<string> header = {"Name", "Museum", "Date", "Time", "Sold Tickets", "Price"};
     vector<vector<string>> content;
     for (auto event : container) {
@@ -833,13 +847,14 @@ Table<string> toTable(const vector<Event *> &container, const System * sys){
         time << event->getTime();
         date << event->getDate();
         price << fixed << setprecision(2) << event->getPrice();
-        content.push_back({event->getName(), event->getMuseum()->getName(), date.str(), time.str(), to_string(sold), price.str()});
+        content.push_back({event->getName(), event->getMuseum()->getName(), date.str(), time.str(), to_string(sold),
+                           price.str()});
     }
     Table<string> data(header, content);
     return data;
 }
 
-Table<string> toTable(const vector<Client *> &container, const System * sys){
+Table<string> toTable(const vector<Client *> &container, const System *sys) {
     vector<string> header = {"Name", "Birthday", "Address", "Contact"};
     vector<vector<string>> content;
     for (auto client : container) {
@@ -853,7 +868,21 @@ Table<string> toTable(const vector<Client *> &container, const System * sys){
     return data;
 }
 
-Table<string> toTable(const vector<Person *> &container, const System * sys){
+Table<string> toTable(const vector<Person *> &container, const System *sys) {
+    vector<string> header = {"Name", "Birthday", "Address", "Contact"};
+    vector<vector<string>> content;
+    for (auto client : container) {
+        stringstream address, birthday;
+        address << client->getAddress();
+        birthday << client->getBirthday();
+        vector<string> aux = {client->getName(), birthday.str(), address.str(), to_string(client->getContact())};
+        content.push_back(aux);
+    }
+    Table<string> data(header, content);
+    return data;
+}
+
+Table<string> toTable(const EmployeeHash &container) {
     vector<string> header = {"Name", "Birthday", "Address", "Contact"};
     vector<vector<string>> content;
     for (auto client : container) {

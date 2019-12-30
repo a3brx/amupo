@@ -635,7 +635,7 @@ EmployeeMenu::EmployeeMenu(System *system) : Menu(system) {
                 break;
             case 'R' : {
                 clear();
-                //new ReadMuseumMenu(system);
+                sys->readEmployees(system->employees);
             }
                 break;
             case 'U' : {
