@@ -107,7 +107,7 @@ public:
 class Employee : public Person {
     Museum *museum;
 public:
-    friend bool operator<(const Employee &lhs, const Employee &rhs);
+    friend bool operator==(const Employee &lhs, const Employee &rhs);
 };
 
 struct employeeHash {
@@ -116,7 +116,7 @@ struct employeeHash {
     }
 
     bool operator()(const Employee* left, const Employee* right) const {
-        return *left < *right;
+        return *left == *right;
     }
 };
 
