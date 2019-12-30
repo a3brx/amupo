@@ -18,6 +18,7 @@ class Company{
     unsigned numRepairs;
     pair<double,double> position;
 public:
+    Company();
     Company(string name,unsigned contact,pair<double,double> position);
     string getName();
     unsigned getNumRepairs();
