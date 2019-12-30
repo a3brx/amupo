@@ -3,8 +3,8 @@
 #include <utility>
 #include "../Table/Table.h"
 #include "../Address/Address.h"
+#include "../Person/Person.h"
 #include "../utils/InvalidInput.h"
-
 
 using namespace std;
 
@@ -101,6 +101,23 @@ public:
     friend bool compareCapacity(Museum *left, Museum *right);
 
 
+};
+
+///@brief The Employee Class
+class Employee : public Person {
+    Museum *museum;
+public:
+    friend bool operator<(const Employee &lhs, const Employee &rhs);
+};
+
+struct employeeHash {
+    int operator()(const Employee* &employee) const {
+        return employee->getContact();
+    }
+
+    bool operator()(const Employee* left, const Employee* right) const {
+        return *left < *right;
+    }
 };
 
 /// @brief Existing Museum Exception

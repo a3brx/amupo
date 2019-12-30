@@ -114,3 +114,11 @@ Table<string> toTable(const vector<Museum *> &container) {
     Table<string> data(header, content);
     return data;
 }
+
+bool operator<(const Employee &lhs, const Employee &rhs) {
+    if (lhs.getBirthday() < rhs.getBirthday())
+        return true;
+    if (lhs.getName() < rhs.getName())
+        return true;
+    return lhs.getContact() < rhs.getContact();
+}

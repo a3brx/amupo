@@ -5,6 +5,7 @@
 #include <fstream>
 #include <algorithm>
 #include <sstream>
+#include <unordered_set>
 #include "../Table/Table.h"
 #include "../Event/Event.h"
 #include "../Person/Person.h"
@@ -13,11 +14,13 @@
 #include "../utils/InvalidInput.h"
 #include "../BinaryTree/registoMuseum.h"
 
+typedef unordered_set<Employee*, employeeHash, employeeHash> EmployeeHash;
 
 /// The System Class
 class System {
 private:
     friend class Menu;
+
     /// @brief The file with the names of the other database files
     string fileName;
 public:
@@ -40,6 +43,10 @@ public:
     vector<Museum *> museums;
 
     MuseumRegister musReg;
+
+    //AvailableCompanies availableCompanies;
+
+    EmployeeHash employees;
 
     /// @brief Creates a new system with the information provided by the file.
     /// @param fileName The path to the file where the information is stored.
@@ -81,6 +88,7 @@ public:
     vector<Museum *>::const_iterator findMuseum(const string &name) const;
 
     vector<Museum *>::const_iterator findMuseum(const pair<double, double> pos) const;
+
     /// @brief Finds the memory position of a Ticket.
     /// @param ticket The ticket to be found.
     /// @return Returns an iterator ro the Ticket, tickets.end() otherwise.
