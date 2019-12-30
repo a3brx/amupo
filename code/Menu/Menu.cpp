@@ -67,7 +67,7 @@ MainMenu::MainMenu(System *system) : Menu(system) {
                 break;
             }
             case 'S':
-                call = new HireCompanyMenu(system);
+                call = new HireCompaniesMenu(system);
                 break;
             case 'W': {
                 call = new EmployeeMenu(system);
@@ -580,7 +580,7 @@ vector<vector<string>> UpdateEventMenu::getOptions() const {
                                    {"G", "Go Back"}});
 }
 
-HireCompanyMenu::HireCompaniesMenu(System *system) : Menu(system) {
+HireCompaniesMenu::HireCompaniesMenu(System *system) : Menu(system) {
     while (true) {
         this->nextMenu = this->option();
         switch (this->nextMenu) {
