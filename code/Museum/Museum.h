@@ -107,12 +107,13 @@ public:
 class Employee : public Person {
     Museum *museum;
 public:
+    Employee(string name, Date birthday, Address address, unsigned contact) : Person(name, birthday, address, contact) {};
     friend bool operator==(const Employee &lhs, const Employee &rhs);
 };
 
 struct employeeHash {
-    int operator()(const Employee* &employee) const {
-        return employee->getContact();
+    int operator()(const Employee* employee) const {
+        return (int) employee->getContact();
     }
 
     bool operator()(const Employee* left, const Employee* right) const {

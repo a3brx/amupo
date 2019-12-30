@@ -593,6 +593,27 @@ void System::createMuseum(Museum *mus) {
     throw ExistingMuseum(*mus);
 }
 
+void System::createEmployee(){
+    string name, birthday, contact;
+    Date bday;
+    Address address;
+    cout << "Name: ";
+    getline(cin, name);
+    if (name == ":q") return;
+    birthday = getInput(isDate, "Introduce a birthday (Format: DD/MM/YYYY): ", "Invalid Date");
+    if (birthday == ":q") return;
+    bday = Date(birthday);
+    inputAddress(address);
+    if (address.getStreet() == ":q") return;
+    do {
+        cout << "Contact: ";
+        getline(cin, contact);
+        if (contact == ":q") return;
+    } while (!isNum(contact) || contact.size() != 9);
+    auto aux = new Employee(name, bday, address, stoi(contact));
+    this->employees.insert(aux);
+}
+
 void System::sellTicket() {
     string buyerName, buyerDate, eventName, eventDate;
     Date buyerDt, eventDt;

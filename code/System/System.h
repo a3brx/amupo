@@ -115,6 +115,8 @@ public:
     /// @param mus The museum to be inserted
     void createMuseum(Museum *mus);
 
+    void createEmployee();
+
     /// @brief Asks information about the Event and shows the specified event.
     void readEvent() const;
 

@@ -630,7 +630,7 @@ EmployeeMenu::EmployeeMenu(System *system) : Menu(system) {
         switch (this->nextMenu) {
             case 'C' : {
                 clear();
-                //sys->createMuseum();
+                sys->createEmployee();
             }
                 break;
             case 'R' : {
