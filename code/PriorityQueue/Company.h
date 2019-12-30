@@ -30,6 +30,6 @@ public:
     void addRepair();
     bool operator<(const Company& c1) const;
 
-    friend istream &operator>>(istream &in, Company *company);
+    friend istream &operator>>(istream &in, Company **company);
     friend ostream &operator<<(ostream &on, Company company);
 };

@@ -147,11 +147,12 @@ System::System(const string &fileName/*,const string pass*/) {
         }
     }
     file.close();
+
     file.open(companiesFile);
     Company *c;
     Companies toAvailCompanies;
     while(!file.eof()){
-        file >> c;
+        file >> &c;
         toAvailCompanies.push(*c);
     }
     setCompanies(toAvailCompanies);

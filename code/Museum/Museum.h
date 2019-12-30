@@ -107,6 +107,7 @@ public:
 
 ///@brief The Employee Class
 class Employee : public Person {
+    bool working = true;
     Museum *museum;
 public:
     Employee(string name, Date birthday, Address address, unsigned contact) : Person(name, birthday, address, contact) {};

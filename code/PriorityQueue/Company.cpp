@@ -66,17 +66,18 @@ ostream &operator<<(ostream &on, Company company) {
     return on;
 }
 
-istream &operator>>(istream &in, Company *company) {
+istream &operator>>(istream &in, Company **company) {
     string temp;
     getline(in,temp);
     vector<string> vectorTemp=trim(split(temp,"|"));
-    company->name = vectorTemp.at(0);
-    company->contact = stoul(vectorTemp.at(1));
-    company->numRepairs = stoul(vectorTemp.at(2));
+    string name = vectorTemp.at(0);
+    unsigned contact = stoul(vectorTemp.at(1));
     pair<double,double> tempPair;
     tempPair.first = stod(trim(split(vectorTemp.at(3), ",")).at(0));
     tempPair.second = stod(trim(split(vectorTemp.at(3), ",")).at(1));
-    company->position = tempPair;
+    auto position = tempPair;
+    *company = new Company(name, contact, position);
+    (*company)->setNumRepairs(stoul(vectorTemp.at(2)));
     return in;
 }
 
