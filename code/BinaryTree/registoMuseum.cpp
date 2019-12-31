@@ -2,20 +2,24 @@
 #include <algorithm>
 
 MuseumRegister::MuseumRegister(vector<Museum> &mus) : museums(BST<Museum>(Museum())) {
-    this->sizeBst = mus.size();
+    this->sizeBst = 0;
     if (mus.empty()) return;
     sort(mus.begin(), mus.end());
     bool side = false;
     if (mus.size() % 2 == 1) {
         this->museums.insert(mus.at(mus.size() / 2));
-        for (int i = mus.size() / 2 + 1, j = mus.size() / 2 - 1; i < mus.size() && j > 0; i++, j--) {
+        for (int i = mus.size() / 2 + 1, j = mus.size() / 2 - 1; i < mus.size() && j >= 0; i++, j--) {
             if (!side) {
                 this->museums.insert(mus.at(i));
+                sizeBst++;
                 this->museums.insert(mus.at(j));
+                sizeBst++;
                 side = !side;
             } else {
                 this->museums.insert(mus.at(j));
+                sizeBst++;
                 this->museums.insert(mus.at(i));
+                sizeBst++;
                 side = !side;
             }
         }
@@ -23,11 +27,15 @@ MuseumRegister::MuseumRegister(vector<Museum> &mus) : museums(BST<Museum>(Museum
         for (int i = mus.size() / 2, j = mus.size() / 2 - 1; i < mus.size() && j >= 0; i++, j--) {
             if (!side) {
                 this->museums.insert(mus.at(i));
+                sizeBst++;
                 this->museums.insert(mus.at(j));
+                sizeBst++;
                 side = !side;
             } else {
                 this->museums.insert(mus.at(j));
+                sizeBst++;
                 this->museums.insert(mus.at(i));
+                sizeBst++;
                 side = !side;
             }
         }

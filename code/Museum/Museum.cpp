@@ -108,12 +108,15 @@ bool Museum::isValid() const {
 }
 
 Table<string> toTable(const vector<Museum *> &container) {
-    vector<string> header = {"Name", "Capacity", "Address", "Position", "Visits"};
+    vector<string> header = {"Valid", "Name", "Capacity", "Address", "Position", "Visits"};
     vector<vector<string>> content;
     for (auto museum : container) {
         stringstream address;
         address << museum->getAddress();
-        content.push_back({museum->getName(), to_string(museum->getCapacity()), address.str(),
+        string validStr;
+        if (museum->isValid()) validStr = "Valid";
+        else validStr = "Not Valid";
+        content.push_back({validStr, museum->getName(), to_string(museum->getCapacity()), address.str(),
                            to_string(museum->getPosition().first) + ", " + to_string(museum->getPosition().second),
                            to_string(museum->getVisits())});
     }

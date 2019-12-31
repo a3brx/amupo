@@ -229,7 +229,9 @@ public:
 
     void visitedMuseumsByVisits(BST<Museum> tree);
 
-    void visitedMuseumByName(BST<Museum> tree);
+    Museum getLessVisitedMuseum();
+
+    Museum getMostVisitedMuseum();
 
     bool requestService();
 

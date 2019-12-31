@@ -52,6 +52,8 @@ public:
     void printTree() const;
     void makeEmpty();
 
+    Comparable getRightMost();
+
     bool insert(const Comparable &x);
     bool remove(const Comparable &x);
 
@@ -85,6 +87,16 @@ private:
 };
 
 // Note that all "matching" is based on the < method.
+
+template<class Comparable>
+Comparable BST<Comparable>::getRightMost() {
+    if (this->root == NULL) return this->ITEM_NOT_FOUND;
+    BinaryNode<Comparable> node = *this->root;
+    while (node.right != NULL) {
+        node = *node.right;
+    }
+    return node.element;
+}
 
 template<class Comparable>
 BST<Comparable>::BST(const Comparable &notFound) :

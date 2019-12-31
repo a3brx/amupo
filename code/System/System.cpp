@@ -920,6 +920,27 @@ void System::setCompanies(Companies queue) {
     this->availableCompanies=queue;
 }
 
+void System::visitedMuseumsByVisits(BST<Museum> tree) {
+    vector<Museum *> toShow;
+    BSTItrIn<Museum> it(tree);
+    for (; !it.isAtEnd(); it.advance()) {
+        Museum *aux = new Museum(it.retrieve());
+        toShow.push_back(aux);
+    }
+    Table<string> data = toTable(toShow);
+    cout << data << endl;
+}
+
+Museum System::getLessVisitedMuseum() {
+    BSTItrIn<Museum> it(this->musReg.getMuseums());
+    return it.retrieve();
+}
+
+Museum System::getMostVisitedMuseum() {
+    return this->musReg.getMuseums().getRightMost();
+}
+
+
 Table<string> toTable(const vector<Event *> &container, const System * sys){
     vector<string> header = {"Name", "Museum", "Date", "Time", "Sold Tickets", "Price"};
     vector<vector<string>> content;
