@@ -28,6 +28,8 @@ System::System(const string &fileName/*,const string pass*/) {
             catch (InvalidInput &) {
                 throw InvalidInput("Error reading museums!");
             }
+            if (m->isValid())
+                m->generateVisits();
             this->museums.push_back(m);
         }
     }

@@ -1,6 +1,8 @@
 #include "Museum.h"
 
 #include <utility>
+#include <stdlib.h>
+#include <time.h>
 
 using namespace std;
 
@@ -55,10 +57,6 @@ void Museum::setValid(bool valid) {
     this->valid = valid;
 }
 
-void Museum::visit() {
-    this->visits++;
-}
-
 ostream &operator<<(ostream &out, const Museum &museum) {
     out << museum.valid << " | " << museum.name << " | " << museum.position.first << ", " << museum.position.second
         << " | " << museum.visits << " | " << museum.capacity << endl << museum.address;
@@ -105,6 +103,12 @@ bool Museum::operator==(const Museum rhs) const {
 
 bool Museum::isValid() const {
     return this->valid;
+}
+
+void Museum::generateVisits() {
+    srand(time(NULL));
+    int newVisits = rand() % 30;
+    this->visits += newVisits;
 }
 
 Table<string> toTable(const vector<Museum *> &container) {

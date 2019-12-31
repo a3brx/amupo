@@ -75,7 +75,7 @@ public:
 
     void setValid(bool valid);
 
-    void visit();
+    void generateVisits();
 
     /// @brief Sends a museum information to a ostream object
     /// @param out The ostream object to where the museum information is gonna be send
