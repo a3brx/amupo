@@ -528,6 +528,29 @@ void System::deleteMuseum(const string &name) {
         cout << "This Museum has already been deleted!\n";
         return;
     }
+    vector<Event *> futureEv;
+    for (auto it = this->events.begin(); it != this->events.end(); it++) {
+        if ((*it)->getMuseum() == *toRemove && futureDate((*it)->getDate(), (*it)->getTime())) {
+            futureEv.push_back(*it);
+        }
+    }
+    if (!futureEv.empty()) {
+        cout
+                << "This Museum will host an event that will happen in the future. List of events happening in this museum:\n";
+        Table<string> data = toTable(futureEv, this);
+        cout << data << "If you remove this Museum all these events are going to be deleted.";
+        string yorn = getInput(isYorN, "Are you sure you want to set delete this Museum?('y' or 'n'): ",
+                               "Invalid Answer!\n");
+        if (yorn == ":q")
+            return;
+        if (yorn == "Y" || yorn == "y") {
+            for (auto it = futureEv.begin(); it != futureEv.end(); it++) {
+                deleteEvent((*it)->getName(), (*it)->getDate());
+            }
+        }
+        if (yorn == "N" || yorn == "n")
+            return;
+    }
     (*toRemove)->valid = false;
 }
 
@@ -562,8 +585,13 @@ void System::createEvent() {
         cout << "Place of the event: ";
         getline(cin, musName);
         if (musName == ":q") return;
-        if (findMuseum(musName) == museums.end()) {
+        auto musItr = findMuseum(musName);
+        if (musItr == museums.end()) {
             cout << "That place doesn't exist\n";
+            continue;
+        }
+        if (!(*musItr)->isValid()) {
+            cout << "That place is not valid anymore!\n";
             continue;
         }
         break;
