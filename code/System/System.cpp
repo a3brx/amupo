@@ -518,8 +518,14 @@ void System::deleteMuseum() {
 
 void System::deleteMuseum(const string &name) {
     auto toRemove = findMuseum(name);
-    if (toRemove == museums.end())
+    if (toRemove == museums.end()) {
+        cout << "This Museum doesn't exists!\n";
         return;
+    }
+    if (!(*toRemove)->valid) {
+        cout << "This Museum has already been deleted!\n";
+        return;
+    }
     (*toRemove)->valid = false;
 }
 
