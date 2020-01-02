@@ -8,14 +8,15 @@ System::System(const string &fileName/*,const string pass*/) {
     vector<string> aux = split(fileName, "/");
     aux.pop_back();
     string path = join(aux, '/');
-    string museumsFile, peopleFile, eventsFile, ticketsFile,companiesFile;
+    string museumsFile, peopleFile, eventsFile, ticketsFile, companiesFile, employeesFile;
     file.open(fileName);
-    file >> eventsFile >> peopleFile >> museumsFile >> ticketsFile>>companiesFile;
+    file >> eventsFile >> peopleFile >> museumsFile >> ticketsFile >> companiesFile >> employeesFile;
     eventsFile = path + eventsFile;
     peopleFile = path + peopleFile;
     museumsFile = path + museumsFile;
     ticketsFile = path + ticketsFile;
-    companiesFile=path + companiesFile;
+    companiesFile = path + companiesFile;
+    employeesFile = path + employeesFile;
     file.close();
 
     file.open(museumsFile);
@@ -157,7 +158,27 @@ System::System(const string &fileName/*,const string pass*/) {
         file >> &c;
         toAvailCompanies.push(*c);
     }
+    file.close();
     setCompanies(toAvailCompanies);
+
+    file.open(employeesFile);
+    Employee *ep;
+
+    while (!file.eof()) {
+        bool valid;
+        try {
+            file >> &ep;
+            string museumName;
+            getline(file, museumName);
+            ep->museum = *findMuseum(museumName);
+        }
+        catch (...) {
+            throw InvalidInput("Error reading employees!");
+        }
+        this->employees.insert(ep);
+    }
+
+    file.close();
 
     freeSilverClientTickets();
 }
@@ -310,16 +331,17 @@ System::~System() {
     vector<string> aux = split(this->fileName, "/");
     aux.pop_back();
     string path = join(aux, '/');
-    string museumsFile, peopleFile, eventsFile, ticketsFile,companiesFile;
+    string museumsFile, peopleFile, eventsFile, ticketsFile, companiesFile, employeesFile;
 
     file.open(this->fileName);
     //getline(file,this->pass);
-    file >> eventsFile >> peopleFile >> museumsFile >> ticketsFile>>companiesFile;
+    file >> eventsFile >> peopleFile >> museumsFile >> ticketsFile >> companiesFile >> employeesFile ;
     eventsFile = path + eventsFile;
     peopleFile = path + peopleFile;
     museumsFile = path + museumsFile;
     ticketsFile = path + ticketsFile;
-    companiesFile=path + companiesFile;
+    companiesFile = path + companiesFile;
+    employeesFile = path + employeesFile;
     file.close();
 
     file.open(museumsFile, ofstream::out | ofstream::trunc);
@@ -386,6 +408,18 @@ System::~System() {
         }
         file << endl << availableCompanies.top();
         availableCompanies.pop();
+    }
+    file.close();
+
+    file.open(employeesFile,ofstream::out | ofstream::trunc);
+    firstTime = true;
+    for (auto employee : employees) {
+        if (firstTime) {
+            file << *employee;
+            firstTime = false;
+            continue;
+        }
+        file << endl << *employee;
     }
     file.close();
 

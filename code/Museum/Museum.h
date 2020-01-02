@@ -115,6 +115,8 @@ public:
         this->museum = museum;
     };
     friend bool operator==(const Employee &lhs, const Employee &rhs);
+    friend ostream &operator<<(ostream &out, const Employee &employee);
+    friend istream &operator>>(istream &in, Employee **employee);
     Museum *museum;
 };
 
