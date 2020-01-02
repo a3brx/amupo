@@ -682,8 +682,8 @@ HireCompaniesMenu::HireCompaniesMenu(System *system) : Menu(system) {
             }
                 break;
             case 'R' : {
+                sys->readCompanies(sys->availableCompanies);
                 clear();
-
             }
                 break;
             case 'U' : {
@@ -725,19 +725,6 @@ vector<vector<string>> HireCompaniesMenu::getOptions() const {
                                    {"D", "Delete Company"},
                                    {"M", "Main Menu"},
                                    {"Q", "Quit Program"}});
-}
-
-ReadCompaniesMenu::ReadCompaniesMenu(System *system) : Menu(system) {
-
-}
-
-vector<vector<string>> ReadCompaniesMenu::getOptions() const {
-    return vector<vector<string>>({{"N", "Update Name"},
-                                   {"D", "Update Date"},
-                                   {"L", "Update Location"},
-                                   {"P", "Update Price"},
-                                   {"C", "Update Time"},
-                                   {"G", "Go Back"}});
 }
 
 EmployeeMenu::EmployeeMenu(System *system) : Menu(system) {

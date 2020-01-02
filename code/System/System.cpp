@@ -286,6 +286,17 @@ void System::readEmployees(const EmployeeHash &hash) const {
     pause();
 }
 
+void System::readCompanies(const priority_queue<Company> &Companies) const {
+    if (Companies.empty()) {
+        cout << "The search is empty :(" << endl;
+        pause();
+        return;
+    }
+    auto read = toTable(Companies);
+    cout << read;
+    pause();
+}
+
 vector<Museum *> System::getMuseums() const {
     return this->museums;
 }
@@ -1179,6 +1190,7 @@ Table<string> toTable(const Companies &container) {
                               to_string(aux.top().getNumRepairs()), to_string(aux.top().getPosition().first) + ", " +
                                                                     to_string(aux.top().getPosition().second)};
         content.push_back(vec);
+        aux.pop();
     }
     Table<string> data(header, content);
     return data;

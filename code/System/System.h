@@ -248,7 +248,7 @@ public:
 
     bool eraseCompany(string name);
 
-    void readCompanies();
+    void readCompanies(const priority_queue<Company> &Companies) const;
 
 };
 
