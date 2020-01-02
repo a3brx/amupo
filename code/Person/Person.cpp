@@ -90,6 +90,10 @@ void Person::printData(ostream &out) {
         " | " << this->contact << endl << this->address;
 }
 
+string Person::getType() {
+    return "Not a Client";
+}
+
 //Client
 Date Client::getAcquisitionDate() const {
     return acquisitionDate;
@@ -141,6 +145,10 @@ void SilverClient::printData(ostream &out) {
     Client::printData(out);
 }
 
+string SilverClient::getType() {
+    return "Silver";
+}
+
 
 //Uni
 
@@ -174,6 +182,10 @@ void UniClient::printData(ostream &out) {
     Client::printData(out);
 }
 
+string UniClient::getType() {
+    return "Uni";
+}
+
 
 //Individual
 
@@ -205,5 +217,9 @@ istream &operator>>(istream &in, IndividualClient **client) {
 void IndividualClient::printData(ostream &out) {
     out << "0 ";
     Client::printData(out);
+}
+
+string IndividualClient::getType() {
+    return "Individual";
 }
 

@@ -783,21 +783,21 @@ ReadEventMenu::ReadEventMenu(System *system) : ReadMenu<Event>(system) {
                 clear();
                 sort(this->toRead.begin(), this->toRead.end(), compareName<Event *>);
                 sys->readEvents(this->toRead);
-//                pause();
+                pause();
             }
                 break;
             case 'D' : {
                 clear();
                 sort(this->toRead.begin(), this->toRead.end(), compareDate);
                 sys->readEvents(this->toRead);
-//                pause();
+                pause();
             }
                 break;
             case 'P' : {
                 clear();
                 sort(this->toRead.begin(), this->toRead.end(), comparePrice);
                 sys->readEvents(this->toRead);
-//                pause();
+                pause();
             }
                 break;
             case 'B' : {
@@ -846,6 +846,9 @@ ReadEventMenu::ReadEventMenu(System *system) : ReadMenu<Event>(system) {
 //                pause();
             }
                 break;
+            case '\b': {
+                this->toRead = sys->events;
+            }
             case 'G':
                 return;
             default:
@@ -876,14 +879,14 @@ ReadPersonMenu::ReadPersonMenu(System *system) : ReadMenu<Client>(system) {
                 clear();
                 sort(this->toRead.begin(), this->toRead.end(), compareName<Person *>);
                 sys->readClients(this->toRead);
-//                pause();
+                pause();
             }
                 break;
             case 'B' : {
                 clear();
                 sort(this->toRead.begin(), this->toRead.end(), compareBirthday);
                 sys->readClients(this->toRead);
-//                pause();
+                pause();
             }
                 break;
             case 'F' : {
@@ -925,6 +928,10 @@ ReadPersonMenu::ReadPersonMenu(System *system) : ReadMenu<Client>(system) {
 //                pause();
             }
                 break;
+            case '\b' : {
+                this->toRead = sys->clients;
+            }
+                break;
             case 'G':
                 return;
             default:
@@ -934,11 +941,12 @@ ReadPersonMenu::ReadPersonMenu(System *system) : ReadMenu<Client>(system) {
 }
 
 vector<vector<string>> ReadPersonMenu::getOptions() const {
-    return vector<vector<string>>({{"N", "Sort by Name"},
-                                   {"B", "Sort by Birthday"},
-                                   {"F", "Filter by Born Between Two Dates"},
-                                   {"L", "Filter by Locality"},
-                                   {"G", "Go Back"}});
+    return vector<vector<string>>({{"N",         "Sort by Name"},
+                                   {"B",         "Sort by Birthday"},
+                                   {"F",         "Filter by Born Between Two Dates"},
+                                   {"L",         "Filter by Locality"},
+                                   {"Backspace", "Clear Filters"},
+                                   {"G",         "Go Back"}});
 }
 
 bool compareCapacity(Museum *left, Museum *right) {
@@ -958,18 +966,21 @@ ReadMuseumMenu::ReadMuseumMenu(System *system) : ReadMenu<Museum>(system) {
                 clear();
                 sort(this->toRead.begin(), this->toRead.end(), compareName<Museum *>);
                 sys->readMuseums(this->toRead);
+                pause();
             }
                 break;
             case 'C' : {
                 clear();
                 sort(this->toRead.begin(), this->toRead.end(), compareCapacity);
                 sys->readMuseums(this->toRead);
+                pause();
             }
                 break;
             case 'S' : {
                 clear();
                 sort(this->toRead.begin(), this->toRead.end(), compareVisits);
                 sys->readMuseums(this->toRead);
+                pause();
             }
                 break;
             case 'F' : {
@@ -1041,6 +1052,10 @@ ReadMuseumMenu::ReadMuseumMenu(System *system) : ReadMenu<Museum>(system) {
 //                sys->readMuseums(this->toRead);
             }
                 break;
+            case '\b' : {
+                this->toRead = sys->museums;
+            }
+                break;
             case 'G':
                 return;
             default:
@@ -1050,14 +1065,15 @@ ReadMuseumMenu::ReadMuseumMenu(System *system) : ReadMenu<Museum>(system) {
 }
 
 vector<vector<string>> ReadMuseumMenu::getOptions() const {
-    return vector<vector<string>>({{"N", "Sort by Name"},
-                                   {"C", "Sort by Capacity"},
-                                   {"S", "Sort by Visits"},
-                                   {"F", "Filter by Capacity"},
-                                   {"L", "Filter by Locality"},
-                                   {"-", "Filter by Minimum Visits"},
-                                   {"+", "Filter by Maximum Visits"},
-                                   {"G", "Go Back"}});
+    return vector<vector<string>>({{"N",         "Sort by Name"},
+                                   {"C",         "Sort by Capacity"},
+                                   {"S",         "Sort by Visits"},
+                                   {"F",         "Filter by Capacity"},
+                                   {"L",         "Filter by Locality"},
+                                   {"-",         "Filter by Minimum Visits"},
+                                   {"+",         "Filter by Maximum Visits"},
+                                   {"Backspace", "Clear Filters"},
+                                   {"G",         "Go Back"}});
 }
 
 FinanceMenu::FinanceMenu(System *system) : Menu(system) {
