@@ -692,6 +692,19 @@ HireCompaniesMenu::HireCompaniesMenu(System *system) : Menu(system) {
             }
                 break;
             case 'D' : {
+                string aux;
+                cout << "Please insert the name of the Company you are looking to update:";
+                getline(cin, aux);
+                if (aux == ":q") return;
+                if (sys->findCompany(aux).getName().empty()) {
+                    cout << "This company doesn't exist!";
+                    pause();
+                    clear();
+                    return;
+                }
+                sys->eraseCompany(aux);
+                cout<<"Erased "<<aux<<"."<<endl;
+                pause();
                 clear();
             }
                 break;
@@ -1303,5 +1316,6 @@ vector<vector<string>> UpdateCompaniesMenu::getOptions() const {
     return vector<vector<string>>({{"N", "Update Name"},
                                    {"C", "Update Contact"},
                                    {"L", "Update Location"},
+                                   {"D","Delete Company"},
                                    {"G", "Go Back"}});
 }
