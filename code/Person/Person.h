@@ -97,6 +97,8 @@ public:
     ///@param person2 Person whose birthday will be compared.
     ///@return True if the birthdays are the same. False otherwise.
     friend bool compareBirthday(const Person *person1, const Person *person2);
+
+    virtual string getType();
 };
 
 ///@brief The Client Class
@@ -129,6 +131,8 @@ public:
     ///@brief Gets a client's card cost. It is a pure virtual function.
     ///@return Return a client's card cost.
     virtual float getCost() const = 0;
+
+    virtual string getType() = 0;
 };
 
 ///@brief The SilverClient class
@@ -164,6 +168,8 @@ public:
     ///@param client Pointer to pointer to a client that will be read.
     ///@return Input Stream.
     friend istream &operator>>(istream &in, SilverClient **client);
+
+    string getType();
 };
 
 ///@brief The UniClient class
@@ -199,6 +205,8 @@ public:
     ///@param client Pointer to pointer to a client that will be read.
     ///@return Input Stream.
     friend istream &operator>>(istream &in, UniClient **client);
+
+    string getType();
 };
 
 ///@brief The IndividualClient class
@@ -234,6 +242,8 @@ public:
     ///@param client Pointer to pointer to a client that will be read.
     ///@return Input Stream.
     friend istream &operator>>(istream &in, IndividualClient **client);
+
+    string getType();
 };
 
 ///@brief The ExistingPerson exception

@@ -1044,13 +1044,14 @@ Table<string> toTable(const vector<Client *> &container, const System *sys) {
 }
 
 Table<string> toTable(const vector<Person *> &container, const System *sys) {
-    vector<string> header = {"Name", "Birthday", "Address", "Contact"};
+    vector<string> header = {"Type", "Name", "Birthday", "Address", "Contact"};
     vector<vector<string>> content;
     for (auto client : container) {
         stringstream address, birthday;
         address << client->getAddress();
         birthday << client->getBirthday();
-        vector<string> aux = {client->getName(), birthday.str(), address.str(), to_string(client->getContact())};
+        vector<string> aux = {client->getType(), client->getName(), birthday.str(), address.str(),
+                              to_string(client->getContact())};
         content.push_back(aux);
     }
     Table<string> data(header, content);
