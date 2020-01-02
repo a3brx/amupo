@@ -23,6 +23,8 @@ public:
     void setContact(unsigned int contact);
     Company(string name,unsigned contact,pair<double,double> position);
     string getName() const;
+
+    unsigned getNumRepairs() const;
     unsigned getNumRepairs() const;
     pair<double,double> getPosition() const;
     void setName(string n);

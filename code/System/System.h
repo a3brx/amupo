@@ -251,7 +251,6 @@ public:
     void readCompanies(const priority_queue<Company> &Companies) const;
 
 };
-
 ///@brief Receives a vector of Event and transforms in a table.
 Table<string> toTable(const vector<Event *> &container, const System *sys);
 
