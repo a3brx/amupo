@@ -19,8 +19,11 @@ class Company{
     pair<double,double> position;
 public:
     Company();
+
+    void setContact(unsigned int contact);
+
     Company(string name,unsigned contact,pair<double,double> position);
-    string getName();
+    string getName() const;
     unsigned getNumRepairs();
     pair<double,double> getPosition() const;
     void setName(string n);

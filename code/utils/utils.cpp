@@ -67,23 +67,6 @@ void trim(vector<string> *toTrim){
     }
 }
 
-vector<string> split(const string& toSplit){
-    vector<string> splitVec;
-    string temp;
-    string toremovechars = " .-_*^`'+&%$#:;,/|=(){}[]?!«»<>";
-    for(char i : toSplit){
-        if(toremovechars.find(i)!=string::npos){
-            if(temp.empty())continue;
-            splitVec.push_back(trim(temp));
-            temp="";
-        }else{
-            temp+=i;
-        }
-    }
-    if(!temp.empty())splitVec.push_back(trim(temp));
-    return splitVec;
-}
-
 vector<string> split(const string& toSplit,const string& splitPoint){
     vector<string> splitVec;
     string temp;

@@ -678,7 +678,7 @@ HireCompaniesMenu::HireCompaniesMenu(System *system) : Menu(system) {
         switch (this->nextMenu) {
             case 'S' : {
                 clear();
-
+                sys->requestService();
             }
                 break;
             case 'R' : {
@@ -687,6 +687,7 @@ HireCompaniesMenu::HireCompaniesMenu(System *system) : Menu(system) {
             }
                 break;
             case 'U' : {
+                new UpdateCompaniesMenu(system);
                 clear();
             }
                 break;
@@ -711,6 +712,19 @@ vector<vector<string>> HireCompaniesMenu::getOptions() const {
                                    {"D", "Delete Company"},
                                    {"M", "Main Menu"},
                                    {"Q", "Quit Program"}});
+}
+
+ReadCompaniesMenu::ReadCompaniesMenu(System *system) : Menu(system) {
+
+}
+
+vector<vector<string>> ReadCompaniesMenu::getOptions() const {
+    return vector<vector<string>>({{"N", "Update Name"},
+                                   {"D", "Update Date"},
+                                   {"L", "Update Location"},
+                                   {"P", "Update Price"},
+                                   {"C", "Update Time"},
+                                   {"G", "Go Back"}});
 }
 
 EmployeeMenu::EmployeeMenu(System *system) : Menu(system) {
@@ -755,6 +769,8 @@ vector<vector<string>> EmployeeMenu::getOptions() const {
                                    {"M", "Main Menu"},
                                    {"Q", "Quit Program"}});
 }
+
+
 
 /// @brief Compares the name of two objects
 /// @tparam T The class of the objects
@@ -1118,3 +1134,83 @@ vector<vector<string>> FinanceMenu::getOptions() const {
                                    {"R", "Return"}});
 }
 
+UpdateCompaniesMenu::UpdateCompaniesMenu(System *system) : Menu(system) {
+    string aux, aux2;
+    cout << "Please insert the name of the Company you are looking to update:";
+    getline(cin, aux);
+    if (aux == ":q") return;
+    if (sys->findCompany(aux).getName().empty()) {
+        cout << "This company doesn't exist!";
+        pause();
+        clear();
+        return;
+    }
+    auto cmp = sys->findCompany(aux);
+    while (true) {
+        this->nextMenu = this->option();
+        switch (this->nextMenu) {
+            case 'N' : {
+                string name;
+                cout << "Introduce the company name: ";
+                getline(cin, name);
+                if (name == ":q") {
+                    clear();
+                    break;
+                }
+                sys->eraseCompany(cmp.getName());
+                cmp.setName(name);
+                cout << "Person name changed to : " << name << " successfully!" << endl;
+                sys->availableCompanies.push(cmp);
+                pause();
+                clear();
+            }
+                break;
+            case 'C' : {
+                string contact=getInput(isContact,"Input the new contact: ","Invalid Contact");
+                if (contact == ":q") {
+                    clear();
+                    break;
+                }
+                sys->eraseCompany(cmp.getName());
+                cmp.setContact(stoul(contact));
+                cout << "Company contact updated successfully!" << endl;
+                sys->availableCompanies.push(cmp);
+                pause();
+                clear();
+            }
+                break;
+            case 'L' : {
+                string X = getInput(isNum, "Enter the X coordinate: ", "Invalid coord!");
+                if (X == ":q") {
+                    clear();
+                    break;
+                }
+                string Y = getInput(isNum, "Enter the Y coordinate: ", "Invalid coord!");
+                if (Y == ":q") {
+                    clear();
+                    break;
+                }
+                sys->eraseCompany(cmp.getName());
+                cmp.setPosition(stod(X),stod(Y));
+                cout << "Company location changed successfully!" << endl;
+                sys->availableCompanies.push(cmp);
+                pause();
+                clear();
+            }
+                break;
+            case 'G' : {
+                clear();
+                return;
+            }
+            default:
+                break;
+        }
+    }
+}
+
+vector<vector<string>> UpdateCompaniesMenu::getOptions() const {
+    return vector<vector<string>>({{"N", "Update Name"},
+                                   {"C", "Update Contact"},
+                                   {"L", "Update Location"},
+                                   {"G", "Go Back"}});
+}

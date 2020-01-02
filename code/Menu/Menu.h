@@ -206,3 +206,23 @@ public:
     ///@return Returns a matrix(n*2). The first column is a letter representing an option, and the second is the corresponding
     vector<vector<string>> getOptions() const override;
 };
+
+class ReadCompaniesMenu : public Menu {
+public:
+    ///@brief UpdateMuseumMenu Constructor
+    ReadCompaniesMenu(System *system);
+
+    ///@brief Gets UpdateMuseunMenu in organized manner
+    ///@return Returns a matrix(n*2). The first column is a letter representing an option, and the second is the corresponding
+    vector<vector<string>> getOptions() const override;
+};
+
+class UpdateCompaniesMenu : public Menu {
+public:
+    ///@brief UpdateMuseumMenu Constructor
+    UpdateCompaniesMenu(System *system);
+
+    ///@brief Gets UpdateMuseunMenu in organized manner
+    ///@return Returns a matrix(n*2). The first column is a letter representing an option, and the second is the corresponding
+    vector<vector<string>> getOptions() const override;
+};

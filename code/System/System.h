@@ -89,7 +89,7 @@ public:
     /// @return Returns a iterator to the Museum, museums.end() otherwise.
     vector<Museum *>::const_iterator findMuseum(const string &name) const;
 
-    vector<Museum *>::const_iterator findMuseum(const pair<double, double> pos) const;
+    vector<Museum *>::const_iterator findMuseum(pair<double, double> pos) const;
 
     EmployeeHash::const_iterator findEmployee(string name, const Date &birthday) const;
 
@@ -232,15 +232,19 @@ public:
 
     //----------------------------------------------- 2nd Part ----------------------------------------------
 
-    void visitedMuseumsByVisits(BST<Museum> tree);
+    static void visitedMuseumsByVisits(const BST<Museum>& tree);
 
     Museum getLessVisitedMuseum();
 
     Museum getMostVisitedMuseum();
-
+    //---------------------------------------------Priority Queues------------------------------------------
     bool requestService();
 
     void setCompanies(Companies queue);
+
+    Company findCompany(const string& name);
+
+    bool eraseCompany(string name);
 
 
 };

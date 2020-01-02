@@ -1,5 +1,7 @@
 #include "System.h"
 
+#include <utility>
+
 using namespace std;
 
 System::System(const string &fileName/*,const string pass*/) {
@@ -538,9 +540,9 @@ void System::deleteMuseum(const string &name) {
         return;
     }
     vector<Event *> futureEv;
-    for (auto it = this->events.begin(); it != this->events.end(); it++) {
-        if ((*it)->getMuseum() == *toRemove && futureDate((*it)->getDate(), (*it)->getTime())) {
-            futureEv.push_back(*it);
+    for (auto & event : this->events) {
+        if (event->getMuseum() == *toRemove && futureDate(event->getDate(), event->getTime())) {
+            futureEv.push_back(event);
         }
     }
     if (!futureEv.empty()) {
@@ -553,8 +555,8 @@ void System::deleteMuseum(const string &name) {
         if (yorn == ":q")
             return;
         if (yorn == "Y" || yorn == "y") {
-            for (auto it = futureEv.begin(); it != futureEv.end(); it++) {
-                deleteEvent((*it)->getName(), (*it)->getDate());
+            for (auto & it : futureEv) {
+                deleteEvent(it->getName(), it->getDate());
             }
         }
         if (yorn == "N" || yorn == "n")
@@ -952,24 +954,34 @@ bool System::eligibleSilverClient(Person *person, Event *ev) const {
 
 bool System::requestService() {
     string name;
+    Museum museumTemp;
     while (true) {
         cout << "Enter the Museum name: ";
         getline(cin, name);
         if (name == ":q") return false;
-        if (findMuseum(name) != museums.end()) {
-            cout << "Museum with that name already exists\n";
+        if (findMuseum(name) == museums.end()) {
+            cout << "That museum doesn't exist!\n";
+            pause();
             continue;
+        }else{
+            museumTemp=**findMuseum(name);
+            if(!museumTemp.isValid()) {
+                cout << "That museum isn't available at the moment!\n";
+                pause();
+                continue;
+            }
         }
         break;
     }
-    Museum museumTemp=**findMuseum(name);
+
     unsigned distance=stoul(getInput(isNum,"Input a maximum distance:"));
     priority_queue<Company> companiesTemp=availableCompanies;
     vector<Company> toSwap;
+    Company companyTemp;
     unsigned size=availableCompanies.size();
     for (int j = 0; j < size; ++j) {
         if(isInRange(companiesTemp.top().getPosition(),museumTemp.getPosition(),distance)){
-            Company companyTemp=companiesTemp.top();
+            companyTemp=companiesTemp.top();
             companyTemp.addRepair();
             companiesTemp.pop();
             toSwap.push_back(companyTemp);
@@ -978,6 +990,8 @@ bool System::requestService() {
         toSwap.push_back(companiesTemp.top());
         companiesTemp.pop();
         if(j==size-1){
+            cout<<"There are no available repair services withing the specified range!"<<endl;
+            pause();
             return false;
         }
     }
@@ -985,14 +999,16 @@ bool System::requestService() {
         companiesTemp.push(x);
     }
     availableCompanies.swap(companiesTemp);
+    cout<<"The following company: "<<companyTemp.getName() <<", has been notified and sent to repair: "<<museumTemp.getName()<<"."<<endl;
+    pause();
     return true;
 }
 
 void System::setCompanies(Companies queue) {
-    this->availableCompanies=queue;
+    this->availableCompanies=move(queue);
 }
 
-void System::visitedMuseumsByVisits(BST<Museum> tree) {
+void System::visitedMuseumsByVisits(const BST<Museum>& tree) {
     vector<Museum *> toShow;
     BSTItrIn<Museum> it(tree);
     for (; !it.isAtEnd(); it.advance()) {
@@ -1012,6 +1028,32 @@ Museum System::getMostVisitedMuseum() {
     return this->musReg.getMuseums().getRightMost();
 }
 
+Company System::findCompany(const string& name) {
+    int size=availableCompanies.size();
+    priority_queue<Company> companiesTemp=availableCompanies;
+    for(int i=0;i<size;++i){
+        if(companiesTemp.top().getName()==name){
+            return companiesTemp.top();
+        }else{
+            companiesTemp.pop();
+        }
+    }
+    Company temp;
+    return temp;
+}
+
+bool System::eraseCompany(string name) {
+    int size=availableCompanies.size();
+    priority_queue<Company> temp;
+    for(size_t i=0;i<size;++i){
+        if(availableCompanies.top().getName()!=name){
+            temp.push(availableCompanies.top());
+        }
+        availableCompanies.pop();
+    }
+    swap(availableCompanies,temp);
+    return size != availableCompanies.size();
+}
 
 Table<string> toTable(const vector<Event *> &container, const System * sys){
     vector<string> header = {"Name", "Museum", "Date", "Time", "Sold Tickets", "Price"};

@@ -41,14 +41,9 @@ void trim(vector<string> *toTrim);
 
 ///@brief Creates a vector split by the string the user entered.
 ///@param toSplit String to be separated.
-///@return Vector of strings
-vector<string> split(const string& toSplit);
-
-///@brief Creates a vector split by the string the user entered.
-///@param toSplit String to be separated.
 ///@param splitPoint Set of char that decides how the string should be split.
-///@return Vector of strings.
-vector<string> split(const string& toSplit,const string& splitPoint);
+///@return Vector of strings
+vector<string> split(const string& toSplit,const string& splitPoint=" .-_*^`'+&%$#:;,/|=(){}[]?!«»<>");
 
 ///@brief Recognizes if a string is a number.
 ///@param toConvert String to check if it's a number.

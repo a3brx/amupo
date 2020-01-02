@@ -23,7 +23,7 @@ Company::Company(string name, unsigned contact, pair<double, double> position) {
     this->numRepairs=0;
 }
 
-string Company::getName() {
+string Company::getName() const {
     return name;
 }
 
@@ -79,6 +79,10 @@ istream &operator>>(istream &in, Company **company) {
     *company = new Company(name, contact, position);
     (*company)->setNumRepairs(stoul(vectorTemp.at(2)));
     return in;
+}
+
+void Company::setContact(unsigned int contact) {
+    Company::contact = contact;
 }
 
 
