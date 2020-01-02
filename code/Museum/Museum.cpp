@@ -150,6 +150,7 @@ ostream &operator<<(ostream &out, const Employee &employee){
     out << employee.getContact() << endl;
     out << employee.getAddress() << endl;
     out << employee.museum->getName();
+    return out;
 }
 
 istream &operator>>(istream &in, Employee **employee) {

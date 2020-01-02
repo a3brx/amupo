@@ -150,6 +150,8 @@ public:
     /// @param container A vector of the museums to be showed
     void readMuseums(const vector<Museum *> &container) const;
 
+    void readEmployee() const;
+
     void readEmployees(const EmployeeHash &hash) const;
 
     ///@brief Reads an event information via user input and removes it.
