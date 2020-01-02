@@ -175,6 +175,9 @@ public:
     ///@param name The name of the museum to be deleted.
     void deleteMuseum(const string &name);
 
+    void deleteEmployee();
+    void deleteEmployee(const string &name, const Date &birthday);
+
     ///@brief Reads an address information via user input.
     ///@param address Address to be changed by reference.
     void inputAddress(Address &address);

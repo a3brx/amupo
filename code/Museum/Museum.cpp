@@ -134,3 +134,11 @@ bool operator==(const Employee &lhs, const Employee &rhs) {
     equal = (equal && (lhs.getBirthday() == rhs.getBirthday()));
     return equal;
 }
+
+bool Employee::isWorking() const {
+    return working;
+}
+
+void Employee::invalidate() {
+    this->working = false;
+}

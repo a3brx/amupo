@@ -563,6 +563,27 @@ void System::deleteMuseum(const string &name) {
     (*toRemove)->valid = false;
 }
 
+void System::deleteEmployee() {
+    string name = getInput(isName, "Type the name of the Employee: ");
+    if (name == ":q") return;
+    string date = getInput(isDate, "Type their birthday: ", "Invalid Date.");
+    if (date == ":q") return;
+    deleteEmployee(name, Date(date));
+}
+
+void System::deleteEmployee(const string &name, const Date &birthday) {
+    auto toRemove = findEmployee(name, birthday);
+    if (toRemove == employees.end()) {
+        cout << "This Employee doesn't exist!\n";
+        return;
+    }
+    if (!(*toRemove)->isWorking()) {
+        cout << "This employee has already been deleted!\n";
+        return;
+    }
+    (*toRemove)->invalidate();
+}
+
 void System::createEvent(Event *ev) {
     if (findEvent(ev->getName(), ev->getDate()) == events.end()) {
         this->events.push_back(ev);
@@ -1040,6 +1061,8 @@ Table<string> toTable(const EmployeeHash &container) {
     vector<string> header = {"Name", "Birthday", "Address", "Contact", "Museum"};
     vector<vector<string>> content;
     for (auto employee : container) {
+        if(!employee->isWorking())
+            continue;
         stringstream address, birthday;
         address << employee->getAddress();
         birthday << employee->getBirthday();

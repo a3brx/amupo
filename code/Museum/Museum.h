@@ -109,11 +109,12 @@ public:
 class Employee : public Person {
     bool working = true;
 public:
+    bool isWorking() const;
+    void invalidate();
     Employee(string name, Date birthday, Address address, unsigned contact, Museum *museum) : Person(name, birthday, address, contact) {
         this->museum = museum;
     };
     friend bool operator==(const Employee &lhs, const Employee &rhs);
-
     Museum *museum;
 };
 
