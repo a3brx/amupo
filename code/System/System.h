@@ -248,6 +248,7 @@ public:
 
     bool eraseCompany(string name);
 
+    void readCompanies();
 
 };
 
