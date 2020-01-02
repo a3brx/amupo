@@ -26,7 +26,8 @@ public:
 
     Company(string name,unsigned contact,pair<double,double> position);
     string getName() const;
-    unsigned getNumRepairs();
+
+    unsigned getNumRepairs() const;
     pair<double,double> getPosition() const;
     void setName(string n);
     void setNumRepairs(unsigned numRep);

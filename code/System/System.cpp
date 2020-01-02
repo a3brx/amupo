@@ -1179,6 +1179,7 @@ Table<string> toTable(const Companies &container) {
                               to_string(aux.top().getNumRepairs()), to_string(aux.top().getPosition().first) + ", " +
                                                                     to_string(aux.top().getPosition().second)};
         content.push_back(vec);
+        aux.pop();
     }
     Table<string> data(header, content);
     return data;
