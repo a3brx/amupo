@@ -256,4 +256,8 @@ Table<string> toTable(const vector<Client *> &container, const System *sys);
 ///@brief Receives a vector of Person and transforms in a table.
 Table<string> toTable(const vector<Person *> &container, const System *sys);
 
-Table<string> toTable(const EmployeeHash &container) ;
+Table<string> toTable(const EmployeeHash &container);
+
+Table<string> toTable(const Companies &container);
+
+

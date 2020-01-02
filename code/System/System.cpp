@@ -1078,13 +1078,14 @@ Table<string> toTable(const vector<Event *> &container, const System *sys) {
 }
 
 Table<string> toTable(const vector<Client *> &container, const System *sys) {
-    vector<string> header = {"Name", "Birthday", "Address", "Contact"};
+    vector<string> header = {"Type", "Name", "Birthday", "Address", "Contact"};
     vector<vector<string>> content;
     for (auto client : container) {
         stringstream address, birthday;
         address << client->getAddress();
         birthday << client->getBirthday();
-        vector<string> aux = {client->getName(), birthday.str(), address.str(), to_string(client->getContact())};
+        vector<string> aux = {client->getType(), client->getName(), birthday.str(), address.str(),
+                              to_string(client->getContact())};
         content.push_back(aux);
     }
     Table<string> data(header, content);
@@ -1125,3 +1126,19 @@ Table<string> toTable(const EmployeeHash &container) {
     Table<string> data(header, content);
     return data;
 }
+
+Table<string> toTable(const Companies &container) {
+    vector<string> header = {"Name", "Contact", "Number of Reparis", "Position"};
+    vector<vector<string>> content;
+    int size = container.size();
+    Companies aux = container;
+    for (int i = 0; i < size; i++) {
+        vector<string> vec = {aux.top().getName(), to_string(aux.top().getContact()),
+                              to_string(aux.top().getNumRepairs()), to_string(aux.top().getPosition().first) + ", " +
+                                                                    to_string(aux.top().getPosition().second)};
+        content.push_back(vec);
+    }
+    Table<string> data(header, content);
+    return data;
+}
+
