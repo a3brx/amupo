@@ -27,7 +27,7 @@ string Company::getName() const {
     return name;
 }
 
-unsigned Company::getNumRepairs() {
+unsigned Company::getNumRepairs() const {
     return numRepairs;
 }
 
@@ -79,6 +79,10 @@ istream &operator>>(istream &in, Company **company) {
     *company = new Company(name, contact, position);
     (*company)->setNumRepairs(stoul(vectorTemp.at(2)));
     return in;
+}
+
+unsigned int Company::getContact() const {
+    return contact;
 }
 
 void Company::setContact(unsigned int contact) {

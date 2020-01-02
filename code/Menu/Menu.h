@@ -146,7 +146,7 @@ public:
 };
 
 ///@brief Read person menu
-class ReadPersonMenu : public ReadMenu<Client> {
+class ReadPersonMenu : public ReadMenu<Person> {
 public:
     ///@brief ReadPersonMenu Constructor
     explicit ReadPersonMenu(System *system);

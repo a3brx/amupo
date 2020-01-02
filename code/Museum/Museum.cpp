@@ -142,3 +142,29 @@ bool Employee::isWorking() const {
 void Employee::invalidate() {
     this->working = false;
 }
+
+ostream &operator<<(ostream &out, const Employee &employee){
+    out << (employee.isWorking() ? "1" : "0") << " ";
+    out << employee.getName() << " | ";
+    out << employee.getBirthday() << " | ";
+    out << employee.getContact() << endl;
+    out << employee.getAddress() << endl;
+    out << employee.museum->getName();
+    return out;
+}
+
+istream &operator>>(istream &in, Employee **employee) {
+    signed short type;
+    in >> type;
+    if (in.eof() || type == '\n') throw InvalidInput();
+    string aux;
+    getline(in, aux);
+    cout << aux << endl;
+    Address *ad;
+    in >> &ad;
+    vector<string> auxvec = trim(split(aux, "|"));
+    *employee = new Employee(auxvec.at(0), Date(auxvec.at(1)), *ad, stoi(auxvec.at(2)), nullptr);
+    if(!type)
+        (*employee)->invalidate();
+    return in;
+}

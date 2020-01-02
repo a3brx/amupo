@@ -18,6 +18,8 @@ class Company{
     unsigned numRepairs;
     pair<double,double> position;
 public:
+    unsigned int getContact() const;
+
     Company();
 
     void setContact(unsigned int contact);

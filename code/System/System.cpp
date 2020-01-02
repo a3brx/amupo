@@ -10,14 +10,15 @@ System::System(const string &fileName/*,const string pass*/) {
     vector<string> aux = split(fileName, "/");
     aux.pop_back();
     string path = join(aux, '/');
-    string museumsFile, peopleFile, eventsFile, ticketsFile,companiesFile;
+    string museumsFile, peopleFile, eventsFile, ticketsFile, companiesFile, employeesFile;
     file.open(fileName);
-    file >> eventsFile >> peopleFile >> museumsFile >> ticketsFile>>companiesFile;
+    file >> eventsFile >> peopleFile >> museumsFile >> ticketsFile >> companiesFile >> employeesFile;
     eventsFile = path + eventsFile;
     peopleFile = path + peopleFile;
     museumsFile = path + museumsFile;
     ticketsFile = path + ticketsFile;
-    companiesFile=path + companiesFile;
+    companiesFile = path + companiesFile;
+    employeesFile = path + employeesFile;
     file.close();
 
     file.open(museumsFile);
@@ -155,11 +156,31 @@ System::System(const string &fileName/*,const string pass*/) {
     file.open(companiesFile);
     Company *c;
     Companies toAvailCompanies;
-    while(!file.eof()){
+    while (!file.eof()) {
         file >> &c;
         toAvailCompanies.push(*c);
     }
+    file.close();
     setCompanies(toAvailCompanies);
+
+    file.open(employeesFile);
+    Employee *ep;
+
+    while (!file.eof()) {
+        bool valid;
+        try {
+            file >> &ep;
+            string museumName;
+            getline(file, museumName);
+            ep->museum = *findMuseum(museumName);
+        }
+        catch (...) {
+            throw InvalidInput("Error reading employees!");
+        }
+        this->employees.insert(ep);
+    }
+
+    file.close();
 
     freeSilverClientTickets();
 }
@@ -240,6 +261,20 @@ void System::readMuseums(const vector<Museum *> &container) const {
     pause();
 }
 
+void System::readEmployee() const {
+    string name = getInput(isName, "Type the name of the Employee: ", "Invalid name.");
+    if (name == ":q") return;
+    string birthday = getInput(isDate, "Type its birthday: ", "Invalid Date.");
+    if (birthday == ":q") return;
+    if (this->employees.end() == findEmployee(name, Date(birthday))) {
+        EmployeeHash aux;
+        readEmployees(aux);
+        return;
+    }
+    Employee *personPtr = *findEmployee(name, Date(birthday));
+    readEmployees({personPtr});
+}
+
 void System::readEmployees(const EmployeeHash &hash) const {
     if (hash.empty()) {
         cout << "The search is empty :(" << endl;
@@ -289,7 +324,7 @@ vector<Museum *>::const_iterator System::findMuseum(const pair<double, double> p
     return museums.end();
 }
 
-EmployeeHash::const_iterator System::findEmployee(string name, const Date &birthday) const{
+EmployeeHash::const_iterator System::findEmployee(string name, const Date &birthday) const {
     auto *tempP = new Employee(move(name), birthday, Address(), 0, NULL);
     for (auto employee = employees.begin(); employee != employees.end(); ++employee) {
         if (*tempP == **employee)
@@ -312,16 +347,17 @@ System::~System() {
     vector<string> aux = split(this->fileName, "/");
     aux.pop_back();
     string path = join(aux, '/');
-    string museumsFile, peopleFile, eventsFile, ticketsFile,companiesFile;
+    string museumsFile, peopleFile, eventsFile, ticketsFile, companiesFile, employeesFile;
 
     file.open(this->fileName);
     //getline(file,this->pass);
-    file >> eventsFile >> peopleFile >> museumsFile >> ticketsFile>>companiesFile;
+    file >> eventsFile >> peopleFile >> museumsFile >> ticketsFile >> companiesFile >> employeesFile;
     eventsFile = path + eventsFile;
     peopleFile = path + peopleFile;
     museumsFile = path + museumsFile;
     ticketsFile = path + ticketsFile;
-    companiesFile=path + companiesFile;
+    companiesFile = path + companiesFile;
+    employeesFile = path + employeesFile;
     file.close();
 
     file.open(museumsFile, ofstream::out | ofstream::trunc);
@@ -376,9 +412,9 @@ System::~System() {
     }
     file.close();
 
-    file.open(companiesFile,ofstream::out | ofstream::trunc);
-    size_t i =availableCompanies.size();
-    firstTime=true;
+    file.open(companiesFile, ofstream::out | ofstream::trunc);
+    size_t i = availableCompanies.size();
+    firstTime = true;
     for (int k = 0; k < i; ++k) {
         if (firstTime) {
             file << availableCompanies.top();
@@ -388,6 +424,18 @@ System::~System() {
         }
         file << endl << availableCompanies.top();
         availableCompanies.pop();
+    }
+    file.close();
+
+    file.open(employeesFile, ofstream::out | ofstream::trunc);
+    firstTime = true;
+    for (auto employee : employees) {
+        if (firstTime) {
+            file << *employee;
+            firstTime = false;
+            continue;
+        }
+        file << endl << *employee;
     }
     file.close();
 
@@ -680,7 +728,7 @@ void System::createMuseum(Museum *mus) {
     throw ExistingMuseum(*mus);
 }
 
-void System::createEmployee(){
+void System::createEmployee() {
     string name, birthday, contact;
     Date bday;
     Address address;
@@ -995,7 +1043,7 @@ bool System::requestService() {
             return false;
         }
     }
-    for(const auto& x:toSwap){
+    for (const auto &x:toSwap) {
         companiesTemp.push(x);
     }
     availableCompanies.swap(companiesTemp);
@@ -1055,7 +1103,7 @@ bool System::eraseCompany(string name) {
     return size != availableCompanies.size();
 }
 
-Table<string> toTable(const vector<Event *> &container, const System * sys){
+Table<string> toTable(const vector<Event *> &container, const System *sys) {
     vector<string> header = {"Name", "Museum", "Date", "Time", "Sold Tickets", "Price"};
     vector<vector<string>> content;
     for (auto event : container) {
@@ -1072,13 +1120,14 @@ Table<string> toTable(const vector<Event *> &container, const System * sys){
 }
 
 Table<string> toTable(const vector<Client *> &container, const System *sys) {
-    vector<string> header = {"Name", "Birthday", "Address", "Contact"};
+    vector<string> header = {"Type", "Name", "Birthday", "Address", "Contact"};
     vector<vector<string>> content;
     for (auto client : container) {
         stringstream address, birthday;
         address << client->getAddress();
         birthday << client->getBirthday();
-        vector<string> aux = {client->getName(), birthday.str(), address.str(), to_string(client->getContact())};
+        vector<string> aux = {client->getType(), client->getName(), birthday.str(), address.str(),
+                              to_string(client->getContact())};
         content.push_back(aux);
     }
     Table<string> data(header, content);
@@ -1086,13 +1135,14 @@ Table<string> toTable(const vector<Client *> &container, const System *sys) {
 }
 
 Table<string> toTable(const vector<Person *> &container, const System *sys) {
-    vector<string> header = {"Name", "Birthday", "Address", "Contact"};
+    vector<string> header = {"Type", "Name", "Birthday", "Address", "Contact"};
     vector<vector<string>> content;
     for (auto client : container) {
         stringstream address, birthday;
         address << client->getAddress();
         birthday << client->getBirthday();
-        vector<string> aux = {client->getName(), birthday.str(), address.str(), to_string(client->getContact())};
+        vector<string> aux = {client->getType(), client->getName(), birthday.str(), address.str(),
+                              to_string(client->getContact())};
         content.push_back(aux);
     }
     Table<string> data(header, content);
@@ -1103,17 +1153,34 @@ Table<string> toTable(const EmployeeHash &container) {
     vector<string> header = {"Name", "Birthday", "Address", "Contact", "Museum"};
     vector<vector<string>> content;
     for (auto employee : container) {
-        if(!employee->isWorking())
+        if (!employee->isWorking())
             continue;
         stringstream address, birthday;
         address << employee->getAddress();
         birthday << employee->getBirthday();
         string mname = "";
-        if(employee->museum != nullptr)
+        if (employee->museum != nullptr)
             mname = employee->museum->getName();
-        vector<string> aux = {employee->getName(), birthday.str(), address.str(), to_string(employee->getContact()), mname};
+        vector<string> aux = {employee->getName(), birthday.str(), address.str(), to_string(employee->getContact()),
+                              mname};
         content.push_back(aux);
     }
     Table<string> data(header, content);
     return data;
 }
+
+Table<string> toTable(const Companies &container) {
+    vector<string> header = {"Name", "Contact", "Number of Reparis", "Position"};
+    vector<vector<string>> content;
+    int size = container.size();
+    Companies aux = container;
+    for (int i = 0; i < size; i++) {
+        vector<string> vec = {aux.top().getName(), to_string(aux.top().getContact()),
+                              to_string(aux.top().getNumRepairs()), to_string(aux.top().getPosition().first) + ", " +
+                                                                    to_string(aux.top().getPosition().second)};
+        content.push_back(vec);
+    }
+    Table<string> data(header, content);
+    return data;
+}
+
