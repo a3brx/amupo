@@ -91,6 +91,8 @@ public:
 
     vector<Museum *>::const_iterator findMuseum(const pair<double, double> pos) const;
 
+    EmployeeHash::const_iterator findEmployee(string name, const Date &birthday) const;
+
     /// @brief Finds the memory position of a Ticket.
     /// @param ticket The ticket to be found.
     /// @return Returns an iterator ro the Ticket, tickets.end() otherwise.

@@ -734,12 +734,7 @@ EmployeeMenu::EmployeeMenu(System *system) : Menu(system) {
                 break;
             case 'D' : {
                 clear();
-                //sys->deleteMuseum();
-            }
-                break;
-            case 'V' : {
-                clear();
-                //sys->readMuseum();
+                //sys->deleteEmployee();
             }
                 break;
             case 'M':
@@ -757,7 +752,6 @@ vector<vector<string>> EmployeeMenu::getOptions() const {
                                    {"R", "Read Employees"},
                                    {"U", "Update Employe"},
                                    {"D", "Delete Employee"},
-                                   {"V", "View Employee"},
                                    {"M", "Main Menu"},
                                    {"Q", "Quit Program"}});
 }

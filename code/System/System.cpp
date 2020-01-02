@@ -287,6 +287,15 @@ vector<Museum *>::const_iterator System::findMuseum(const pair<double, double> p
     return museums.end();
 }
 
+EmployeeHash::const_iterator System::findEmployee(string name, const Date &birthday) const{
+    auto *tempP = new Employee(move(name), birthday, Address(), 0, NULL);
+    for (auto employee = employees.begin(); employee != employees.end(); ++employee) {
+        if (*tempP == **employee)
+            return employee;
+    }
+    return employees.end();
+}
+
 vector<Client *>::const_iterator System::findClient(string name, const Date &birthday) const {
     auto *tempP = new Person(move(name), birthday, Address(), 0);
     for (auto person = clients.begin(); person != clients.end(); ++person) {
@@ -665,7 +674,13 @@ void System::createEmployee(){
         getline(cin, contact);
         if (contact == ":q") return;
     } while (!isNum(contact) || contact.size() != 9);
-    auto aux = new Employee(name, bday, address, stoi(contact));
+    string mname;
+    do {
+        cout << "Museum name: ";
+        getline(cin, mname);
+        if (contact == ":q") return;
+    } while (findMuseum(mname) == this->museums.end());
+    auto aux = new Employee(name, bday, address, stoi(contact), *findMuseum(mname));
     this->employees.insert(aux);
 }
 
@@ -1022,13 +1037,16 @@ Table<string> toTable(const vector<Person *> &container, const System *sys) {
 }
 
 Table<string> toTable(const EmployeeHash &container) {
-    vector<string> header = {"Name", "Birthday", "Address", "Contact"};
+    vector<string> header = {"Name", "Birthday", "Address", "Contact", "Museum"};
     vector<vector<string>> content;
-    for (auto client : container) {
+    for (auto employee : container) {
         stringstream address, birthday;
-        address << client->getAddress();
-        birthday << client->getBirthday();
-        vector<string> aux = {client->getName(), birthday.str(), address.str(), to_string(client->getContact())};
+        address << employee->getAddress();
+        birthday << employee->getBirthday();
+        string mname = "";
+        if(employee->museum != nullptr)
+            mname = employee->museum->getName();
+        vector<string> aux = {employee->getName(), birthday.str(), address.str(), to_string(employee->getContact()), mname};
         content.push_back(aux);
     }
     Table<string> data(header, content);
