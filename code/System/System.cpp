@@ -1111,3 +1111,19 @@ Table<string> toTable(const EmployeeHash &container) {
     Table<string> data(header, content);
     return data;
 }
+
+Table<string> toTable(const Companies &container) {
+    vector<string> header = {"Name", "Contact", "Number of Reparis", "Position"};
+    vector<vector<string>> content;
+    int size = container.size();
+    Companies aux = container;
+    for (int i = 0; i < size; i++) {
+        vector<string> vec = {aux.top().getName(), to_string(aux.top().getContact()),
+                              to_string(aux.top().getNumRepairs()), to_string(aux.top().getPosition().first) + ", " +
+                                                                    to_string(aux.top().getPosition().second)};
+        content.push_back(vec);
+    }
+    Table<string> data(header, content);
+    return data;
+}
+

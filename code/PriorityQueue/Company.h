@@ -18,10 +18,14 @@ class Company{
     unsigned numRepairs;
     pair<double,double> position;
 public:
+    unsigned int getContact() const;
+
     Company();
     Company(string name,unsigned contact,pair<double,double> position);
-    string getName();
-    unsigned getNumRepairs();
+
+    string getName() const const;
+
+    unsigned getNumRepairs() const;
     pair<double,double> getPosition() const;
     void setName(string n);
     void setNumRepairs(unsigned numRep);
