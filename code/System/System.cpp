@@ -1067,12 +1067,16 @@ void System::setCompanies(Companies queue) {
     this->availableCompanies=move(queue);
 }
 
-void System::visitedMuseumsByVisits(const BST<Museum>& tree) {
+void System::visitedMuseumsByVisits(const BST<Museum> &tree, vector<bool> toRead) {
     vector<Museum *> toShow;
     BSTItrIn<Museum> it(tree);
+    int i = 0;
     for (; !it.isAtEnd(); it.advance()) {
-        Museum *aux = new Museum(it.retrieve());
-        toShow.push_back(aux);
+        if (toRead.at(i)) {
+            Museum *aux = new Museum(it.retrieve());
+            toShow.push_back(aux);
+        }
+        i++;
     }
     Table<string> data = toTable(toShow);
     cout << data << endl;

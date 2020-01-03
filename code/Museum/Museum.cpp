@@ -13,23 +13,23 @@ Museum::Museum(Address adr, pair<double, double> pos, unsigned cap, string name,
                                                                                                  visits(vis) {
 }
 
-string Museum::getName() {
+string Museum::getName() const {
     return this->name;
 }
 
-Address Museum::getAddress() {
+Address Museum::getAddress() const {
     return this->address;
 }
 
-unsigned Museum::getCapacity() {
+unsigned Museum::getCapacity() const {
     return this->capacity;
 }
 
-pair<double, double> Museum::getPosition() {
+pair<double, double> Museum::getPosition() const {
     return this->position;
 }
 
-unsigned Museum::getVisits() {
+unsigned Museum::getVisits() const {
     return this->visits;
 }
 

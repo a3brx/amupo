@@ -25,7 +25,6 @@ public:
     string getName() const;
 
     unsigned getNumRepairs() const;
-    unsigned getNumRepairs() const;
     pair<double,double> getPosition() const;
     void setName(string n);
     void setNumRepairs(unsigned numRep);

@@ -39,19 +39,19 @@ public:
 
     ///@brief Gets the museum name
     ///@return Returns the name of the Musuem
-    string getName();
+    string getName() const;
 
     ///@brief Gets the museum address
     ///@return Returns the address of the Musuem
-    Address getAddress();
+    Address getAddress() const;
 
     ///@brief Gets the museum capacity
     ///@return Returns the capacity of the Musuem
-    unsigned getCapacity();
+    unsigned getCapacity() const;
 
-    pair<double, double> getPosition();
+    pair<double, double> getPosition() const;
 
-    unsigned getVisits();
+    unsigned getVisits() const;
 
     /// @brief Verifies if a museum is active in the system
     /// @return Returns true if the museum is valid

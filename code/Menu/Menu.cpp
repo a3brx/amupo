@@ -253,18 +253,21 @@ vector<vector<string>> VisitedMuseumsMenu::getOptions() const {
     return vector<vector<string>>({{"V", "List Visited Museums by nr of visits"},
                                    {"-", "Less visited Museum"},
                                    {"+", "Most visited Museum"},
-//                                   {"F", "Find a Museum by nr of name"},
+                                   {"N", "Filter by minimum visits"},
+                                   {"F", "Filter by maximum visits"},
+                                   {"C", "Clear Filters"},
                                    {"M", "Main Menu"},
                                    {"Q", "Quit Program"}});
 }
 
 VisitedMuseumsMenu::VisitedMuseumsMenu(System *system) : Menu(system) {
+    vector<bool> toRead(sys->musReg.size(), true);
     while (true) {
         this->nextMenu = this->option();
         switch (this->nextMenu) {
             case 'V' : {
                 clear();
-                sys->visitedMuseumsByVisits(sys->musReg.getMuseums());
+                sys->visitedMuseumsByVisits(sys->musReg.getMuseums(), toRead);
             }
                 break;
             case '-' : {
@@ -284,36 +287,50 @@ VisitedMuseumsMenu::VisitedMuseumsMenu(System *system) : Menu(system) {
                 Table<string> musTab = toTable(musVec);
                 cout << musTab << endl;
             }
-//            case 'F' : {
-//                clear();
-//                string name = getInput(isName, "Name: ", "Invalid Name!\n");
-//                if (name == ":q") {
-//                    clear();
-//                    break;
-//                }
-//                string visitsStr = getInput(isNum, "Visits: ", "Invalid Number!\n");
-//                if (visitsStr == ":q") {
-//                    clear();
-//                    break;
-//                }
-//                Museum aux;
-//                aux.setName(name);
-//                aux.setVisits(stoi(visitsStr));
-//                Museum mus = sys->musReg.getMuseums().find(aux);
-//                if (mus == Museum()) cout << "That Museum doesn't exists!" << endl;
-//                else {
-//                    vector<Museum*> vecMus; vecMus.push_back(&mus);
-//                    Table<string> data = toTable(vecMus);
-//                    cout << data;
-//                }
-//                }
-//                break;
-                case 'M':
-                    return;
-                case 'Q':
-                    return;
-                default:
+                break;
+            case 'F' : {
+                string maxVisStr = getInput(isNum, "Enter the Maximum number of visits: ", "Invalid Number!\n");
+                if (maxVisStr == ":q") {
+                    clear();
                     break;
+                }
+                unsigned maxVis = stoi(maxVisStr);
+                int i = 0;
+                for (BSTItrIn<Museum> it(sys->musReg.getMuseums()); !it.isAtEnd(); it.advance()) {
+                    if (it.retrieve().getVisits() > maxVis) {
+                        toRead.at(i) = false;
+                    }
+                    i++;
+                }
+            }
+                break;
+            case 'N' : {
+                string minVisStr = getInput(isNum, "Enter the Minimum number of visits: ", "Invalid Number!\n");
+                if (minVisStr == ":q") {
+                    clear();
+                    break;
+                }
+                unsigned minVis = stoi(minVisStr);
+                int i = 0;
+                for (BSTItrIn<Museum> it(sys->musReg.getMuseums()); !it.isAtEnd(); it.advance()) {
+                    if (it.retrieve().getVisits() < minVis) {
+                        toRead.at(i) = false;
+                    }
+                    i++;
+                }
+            }
+                break;
+            case 'C' : {
+                vector<bool> temp(sys->musReg.size(), true);
+                toRead = temp;
+            }
+                break;
+            case 'M':
+                return;
+            case 'Q':
+                return;
+            default:
+                break;
 
         }
     }
