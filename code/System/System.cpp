@@ -1067,19 +1067,19 @@ void System::setCompanies(Companies queue) {
     this->availableCompanies=move(queue);
 }
 
-void System::visitedMuseumsByVisits(const BST<Museum> &tree, vector<bool> toRead) {
+void System::visitedMuseumsByVisits(const BST<Museum> &tree) {
+    if (tree.isEmpty()) { cout << "The Listing is empty!\n" << endl; pause(); return; }
     vector<Museum *> toShow;
     BSTItrIn<Museum> it(tree);
     int i = 0;
     for (; !it.isAtEnd(); it.advance()) {
-        if (toRead.at(i)) {
-            Museum *aux = new Museum(it.retrieve());
-            toShow.push_back(aux);
-        }
+        Museum *aux = new Museum(it.retrieve());
+        toShow.push_back(aux);
         i++;
     }
     Table<string> data = toTable(toShow);
     cout << data << endl;
+    pause();
 }
 
 Museum System::getLessVisitedMuseum() {

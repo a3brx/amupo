@@ -1,12 +1,12 @@
-1 | Museu dos Biscainhos | 1, -3 | 276 | 122
+1 | Museu dos Biscainhos | 1, -3 | 332 | 122
 Rua dos Biscainhos, 0 4700-415 Braga 
-1 | Altice Arena | 25, -1 | 277 | 10000
+1 | Altice Arena | 25, -1 | 333 | 10000
 Rua de Lisboa, 115 1100-281 Lisboa 
-1 | Museu Nacional Machado de Castro | 2, -30.1234 | 289 | 400
+1 | Museu Nacional Machado de Castro | 2, -30.1234 | 345 | 400
 Largo Dr. Jose Rodrigues, 0 3000-248 Coimbra 
-1 | Museu Soares dos Reis | 7, -5 | 293 | 2000
+1 | Museu Soares dos Reis | 7, -5 | 349 | 2000
 Rua de Dom Manuel II, 44 4050-342 Porto 
-1 | Museu Romantico da Quinta da Macieirinha | 20.5344, -3 | 329 | 200
+1 | Museu Romantico da Quinta da Macieirinha | 20.5344, -3 | 385 | 200
 Rua de Entre-Quintas, 220 4050-240 Porto 
-1 | Museu do Teste | 20.5344, -30.1234 | 482 | 1
+1 | Museu do Teste | 20.5344, -30.1234 | 538 | 1
 Rua da FEUP, 213 2132-123 Paranhos 

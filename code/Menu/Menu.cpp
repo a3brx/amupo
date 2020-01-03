@@ -261,13 +261,13 @@ vector<vector<string>> VisitedMuseumsMenu::getOptions() const {
 }
 
 VisitedMuseumsMenu::VisitedMuseumsMenu(System *system) : Menu(system) {
-    vector<bool> toRead(sys->musReg.size(), true);
+    BST<Museum> toRead = sys->musReg.getMuseums();
     while (true) {
         this->nextMenu = this->option();
         switch (this->nextMenu) {
             case 'V' : {
                 clear();
-                sys->visitedMuseumsByVisits(sys->musReg.getMuseums(), toRead);
+                sys->visitedMuseumsByVisits(toRead);
             }
                 break;
             case '-' : {
@@ -295,13 +295,13 @@ VisitedMuseumsMenu::VisitedMuseumsMenu(System *system) : Menu(system) {
                     break;
                 }
                 unsigned maxVis = stoi(maxVisStr);
-                int i = 0;
-                for (BSTItrIn<Museum> it(sys->musReg.getMuseums()); !it.isAtEnd(); it.advance()) {
-                    if (it.retrieve().getVisits() > maxVis) {
-                        toRead.at(i) = false;
-                    }
-                    i++;
+                BST<Museum> tree((Museum()));
+                BSTItrLevel<Museum> it(toRead);
+                for (;!it.isAtEnd(); it.advance()) {
+                    if (it.retrieve().getVisits() < maxVis)
+                        tree.insert(it.retrieve());
                 }
+                toRead = tree;
             }
                 break;
             case 'N' : {
@@ -311,18 +311,17 @@ VisitedMuseumsMenu::VisitedMuseumsMenu(System *system) : Menu(system) {
                     break;
                 }
                 unsigned minVis = stoi(minVisStr);
-                int i = 0;
-                for (BSTItrIn<Museum> it(sys->musReg.getMuseums()); !it.isAtEnd(); it.advance()) {
-                    if (it.retrieve().getVisits() < minVis) {
-                        toRead.at(i) = false;
-                    }
-                    i++;
+                BST<Museum> tree((Museum()));
+                BSTItrLevel<Museum> it(toRead);
+                for (;!it.isAtEnd(); it.advance()) {
+                    if (it.retrieve().getVisits() > minVis)
+                        tree.insert(it.retrieve());
                 }
+                toRead = tree;
             }
                 break;
             case 'C' : {
-                vector<bool> temp(sys->musReg.size(), true);
-                toRead = temp;
+                toRead = sys->musReg.getMuseums();
             }
                 break;
             case 'M':

@@ -234,7 +234,7 @@ public:
 
     //----------------------------------------------- 2nd Part ----------------------------------------------
 
-    static void visitedMuseumsByVisits(const BST<Museum> &tree, vector<bool> toRead);
+    static void visitedMuseumsByVisits(const BST<Museum> &tree);
 
     Museum getLessVisitedMuseum();
 
