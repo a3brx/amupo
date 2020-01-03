@@ -622,6 +622,7 @@ void System::deleteMuseum(const string &name) {
             return;
     }
     (*toRemove)->valid = false;
+    musReg.remove(**toRemove);
 }
 
 void System::deleteEmployee() {
@@ -727,6 +728,7 @@ void System::createMuseum() {
     inputAddress(address);
     if (address.getStreet() == ":q") return;
     auto *tempM = new Museum(address, pos, stoi(capStr), name);
+    musReg.insert(*tempM);
     museums.push_back(tempM);
     cout << "Created Museum with success!" << endl;
 }
