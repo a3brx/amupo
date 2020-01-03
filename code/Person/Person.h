@@ -98,6 +98,8 @@ public:
     ///@return True if the birthdays are the same. False otherwise.
     friend bool compareBirthday(const Person *person1, const Person *person2);
 
+    ///@brief Gets the type of the Person.
+    ///@return A string specifing the type of client/person. If the object is a Person and not a client, it returns "Not a Client".
     virtual string getType();
 };
 
@@ -171,6 +173,8 @@ public:
     ///@return Input Stream.
     friend istream &operator>>(istream &in, SilverClient **client);
 
+    ///@brief Gets the type of the Person.
+    ///@return A string specifing the type of client/person. If the Person and not a client, it returns "Silver".
     string getType();
 };
 
@@ -208,6 +212,8 @@ public:
     ///@return Input Stream.
     friend istream &operator>>(istream &in, UniClient **client);
 
+    ///@brief Gets the type of the Person.
+    ///@return A string specifing the type of client/person. If the object is a Person and not a client, it returns "Uni".
     string getType();
 };
 
@@ -245,6 +251,8 @@ public:
     ///@return Input Stream.
     friend istream &operator>>(istream &in, IndividualClient **client);
 
+    ///@brief Gets the type of the Person.
+    ///@return A string specifing the type of client/person. If the object is a Person and not a client, it returns "Individual".
     string getType();
 };
 

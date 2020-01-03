@@ -24,8 +24,10 @@ class Museum {
     /// @brief The capacity of the museum
     unsigned capacity;
 
+    ///@brief The position of the museum
     pair<double, double> position;
 
+    ///@brief The number of visits of the museum
     unsigned visits;
 
 public:
@@ -33,8 +35,11 @@ public:
     ///@param adr Address of the museum
     ///@param cap Capacity of the museum
     ///@param name Name of the museum
+    ///@param pos Position of the museum
+    ///@param vis Number of visits of the museum
     Museum(Address adr, pair<double, double> pos, unsigned cap, string name, unsigned vis = 0);
 
+    ///@brief Museum default Constructor
     Museum() : position({360, 360}) {}
 
     ///@brief Gets the museum name
@@ -49,8 +54,12 @@ public:
     ///@return Returns the capacity of the Musuem
     unsigned getCapacity() const;
 
+    ///@brief Gets the museum position
+    ///@return Returns the position of the Musuem
     pair<double, double> getPosition() const;
 
+    ///@brief Gets the museum visits
+    ///@return Returns the visits of the Musuem
     unsigned getVisits() const;
 
     /// @brief Verifies if a museum is active in the system
@@ -69,12 +78,19 @@ public:
     /// @param cap The new capacity of the museum
     void setCapacity(unsigned cap);
 
+    /// @brief Sets the position of the museum
+    /// @param pos The new position of the museum
     void setPosition(pair<double, double> pos);
 
+    /// @brief Sets the visits of the museum
+    /// @param vis The new visits of the museum
     void setVisits(unsigned vis);
 
+    /// @brief Sets the valid of the museum
+    /// @param valid The new valid of the museum
     void setValid(bool valid);
 
+    /// @brief Adds a random number of visits between 0 and 20 to the Museum.
     void generateVisits();
 
     /// @brief Sends a museum information to a ostream object
@@ -89,8 +105,14 @@ public:
     /// @return Returns the istream itself
     friend istream &operator>>(istream &in, Museum **museum);
 
+    /// @brief Compares two Museums.
+    /// @param rhs The museum on the right hand side of the operator
+    /// @return Returns true if the object has less visits than rhs
     bool operator<(const Museum rhs) const;
 
+    /// @brief Compares two Museums.
+    /// @param rhs The museum on the right hand side of the operator
+    /// @return Returns true if the object has the same visits as rhs
     bool operator==(const Museum rhs) const;
 
     template<class T>

@@ -44,6 +44,7 @@ public:
     /// @brief All Museums memory positions in a vector
     vector<Museum *> museums;
 
+    /// @brief BST of visited and valid Museums
     MuseumRegister musReg;
 
     /// @brief All museums' employees in a hash table
@@ -90,6 +91,9 @@ public:
     /// @return Returns a iterator to the Museum, museums.end() otherwise.
     vector<Museum *>::const_iterator findMuseum(const string &name) const;
 
+    /// @brief Finds the memory position of a Museum by its position.
+    /// @param pos A pair equal to the position of the museum.
+    /// @return Returns a iterator to the Museum, museums.end() otherwise.
     vector<Museum *>::const_iterator findMuseum(pair<double, double> pos) const;
 
     /// @brief Finds the memory position of an Employee.
@@ -248,10 +252,14 @@ public:
 
     //----------------------------------------------- 2nd Part ----------------------------------------------
 
+    ///@brief Outputs the museums inside the BST tree to cout.
+    ///@param tree Tree to be printed
     static void visitedMuseumsByVisits(const BST<Museum> &tree);
 
+    ///@brief Returns the less visited Museum using a BST.
     Museum getLessVisitedMuseum();
 
+    ///@brief Returns the most visited Museum using a BST.
     Museum getMostVisitedMuseum();
     //---------------------------------------------Priority Queues------------------------------------------
     bool requestService();
