@@ -148,6 +148,7 @@ public:
     friend istream &operator>>(istream &in, Employee **employee);
 };
 
+/// @brief The struct that will be passed as template to the hash table of employees
 struct employeeHash {
     /// @brief The hash table of the Employee Hash Table, that returns the contact of the employee
     int operator()(const Employee* employee) const {
