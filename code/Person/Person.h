@@ -132,6 +132,8 @@ public:
     ///@return Return a client's card cost.
     virtual float getCost() const = 0;
 
+    /// @brief Gets the type of the client
+    /// @return Returns the type of the client as a string
     virtual string getType() = 0;
 };
 

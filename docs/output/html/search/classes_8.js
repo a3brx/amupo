@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['pastevent_198',['PastEvent',['../class_past_event.html',1,'']]],
-  ['person_199',['Person',['../class_person.html',1,'']]],
-  ['personmenu_200',['PersonMenu',['../class_person_menu.html',1,'']]]
+  ['mainmenu_233',['MainMenu',['../class_main_menu.html',1,'']]],
+  ['menu_234',['Menu',['../class_menu.html',1,'']]],
+  ['museum_235',['Museum',['../class_museum.html',1,'']]],
+  ['museummenu_236',['MuseumMenu',['../class_museum_menu.html',1,'']]],
+  ['museumregister_237',['MuseumRegister',['../class_museum_register.html',1,'']]]
 ];

@@ -192,8 +192,11 @@ public:
 ///@brief Employee menu
 class EmployeeMenu : public Menu {
 public:
+    /// @brief EmployeeMenu Constructor
     EmployeeMenu(System *system);
 
+    ///@brief Gets EmployeeMenu in organized manner
+    ///@return Returns a matrix(n*2). The first column is a letter representing an option, and the second is the corresponding
     vector<vector<string>> getOptions() const override;
 };
 

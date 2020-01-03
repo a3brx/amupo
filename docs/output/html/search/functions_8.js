@@ -1,15 +1,9 @@
 var searchData=
 [
-  ['operator_21_3d_292',['operator!=',['../class_date.html#aca089c2b36cc384dfa7902d64383a193',1,'Date::operator!=()'],['../class_person.html#a68afceb6d98338b7b7d454abf6d7cab4',1,'Person::operator!=()']]],
-  ['operator_2b_293',['operator+',['../class_date.html#a95ee06bbb5f83cc57bee03224296dcc8',1,'Date']]],
-  ['operator_2b_3d_294',['operator+=',['../class_date.html#a3d72b37493c4e6393b72a5945d405a61',1,'Date']]],
-  ['operator_2d_295',['operator-',['../class_date.html#a66aee7889e49204ad68619efa5a3b2cc',1,'Date::operator-(unsigned n) const'],['../class_date.html#a65012b4e9136060e962de596bcb51017',1,'Date::operator-(const Date argument) const']]],
-  ['operator_2d_3d_296',['operator-=',['../class_date.html#a63f3a52b0561bcfab6f723a0e108f64e',1,'Date']]],
-  ['operator_3c_297',['operator&lt;',['../class_date.html#a931e536af8cdda20dd9f13be4a1b1eaa',1,'Date']]],
-  ['operator_3c_3d_298',['operator&lt;=',['../class_date.html#ad4d1bf445fe1fa901f9f64ce7a0761d4',1,'Date']]],
-  ['operator_3d_3d_299',['operator==',['../class_address.html#ad90b427f462e73c0af4aafe743fd7c02',1,'Address::operator==()'],['../class_date.html#a7d37117367e4067ca6ff8acaf5016703',1,'Date::operator==()'],['../class_person.html#a5ceb6218ceb356fb8b6ebdd16f45716e',1,'Person::operator==()']]],
-  ['operator_3e_300',['operator&gt;',['../class_date.html#a8c20d34bc39224293930711da08c4230',1,'Date']]],
-  ['operator_3e_3d_301',['operator&gt;=',['../class_date.html#a8dd74549b9a54b1b91b965cc3bfdcce0',1,'Date']]],
-  ['option_302',['option',['../class_menu.html#a39f672a50f11f6c605ebb936424154f9',1,'Menu']]],
-  ['overbookedevent_303',['OverBookedEvent',['../class_over_booked_event.html#a2614dc45ef3d350aa4cdc68e79ac29e9',1,'OverBookedEvent']]]
+  ['mainmenu_336',['MainMenu',['../class_main_menu.html#a168526d2bd8dce54ce6f87bfaf1181ad',1,'MainMenu']]],
+  ['makeempty_337',['makeEmpty',['../class_b_s_t.html#a5582f1066a084181d6a79ec0a6e9f9f2',1,'BST']]],
+  ['menu_338',['Menu',['../class_menu.html#ab8064f479eb7ef83ba493a7ec752f7a8',1,'Menu']]],
+  ['moneyspentperson_339',['moneySpentPerson',['../class_system.html#a98158b56cd078754a07c585d7a1ad03c',1,'System']]],
+  ['museum_340',['Museum',['../class_museum.html#a378a597f2ebd4ca3afd6be903812ae1e',1,'Museum']]],
+  ['museummenu_341',['MuseumMenu',['../class_museum_menu.html#a9dd7fff2a3f8b8dc61aeac593dbe7686',1,'MuseumMenu']]]
 ];

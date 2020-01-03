@@ -107,24 +107,54 @@ public:
 
 ///@brief The Employee Class
 class Employee : public Person {
+    /// @brief The state of the employee, true is it's working in a museum
     bool working = true;
 public:
+    /// @brief The memory address of the Museum where the employee works, NULL if they are not working
+    Museum *museum;
+
+    /// @return Returns true if the object is employed in the museum
     bool isWorking() const;
+
+    /// @bried Sets the working attribute to false
     void invalidate();
+
+    /// @brief Constructs a new Employee from the arguments
+    /// @param name The name of the new Employee
+    /// @param birthday The birthday of the new Employee
+    /// @param address The Address of the new Employee
+    /// @param contact The contact of the new Employee
+    /// @param museum The memory address of the Museum where the employee works
     Employee(string name, Date birthday, Address address, unsigned contact, Museum *museum) : Person(name, birthday, address, contact) {
         this->museum = museum;
     };
+
+    /// @brief Compares two Employee objects
+    /// @param lhs The first Employee that will be compared
+    /// @param rhs The second Employee that will be compared
+    /// @return Returns true if both arguments have the same name and birthday
     friend bool operator==(const Employee &lhs, const Employee &rhs);
+
+    /// @brief Sends a employee information to a ostream object
+    /// @param out The ostream object to where the employee information is gonna be send
+    /// @param employee The employee object that is gonna be printed on the ostream object
+    /// @return Returns the ostream itself
     friend ostream &operator<<(ostream &out, const Employee &employee);
+
+    /// @brief Creates a new employee from a istream
+    /// @param in A istream object from where the information of the employee is gonna be acquired
+    /// @param employee A pointer to a pointer of employee, that will point to the new employee created inside the function
+    /// @return Returns the istream itself
     friend istream &operator>>(istream &in, Employee **employee);
-    Museum *museum;
 };
 
 struct employeeHash {
+    /// @brief The hash table of the Employee Hash Table, that returns the contact of the employee
     int operator()(const Employee* employee) const {
         return (int) employee->getContact();
     }
 
+    /// @brief The equality operator of the Employee Hash Table
     bool operator()(const Employee* left, const Employee* right) const {
         return *left == *right;
     }

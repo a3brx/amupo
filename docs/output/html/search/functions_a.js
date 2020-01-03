@@ -1,15 +1,7 @@
 var searchData=
 [
-  ['readclients_308',['readClients',['../class_system.html#a2d59fd26720caf7b520722890c10c215',1,'System']]],
-  ['readevent_309',['readEvent',['../class_system.html#a2965050eced0c327b3689fb11f172adb',1,'System::readEvent() const'],['../class_system.html#a5b7f5f8b004d0b2fd332aa856093d927',1,'System::readEvent(Event *ev) const']]],
-  ['readeventmenu_310',['ReadEventMenu',['../class_read_event_menu.html#a64da9891dd496e091ce31ea7300f13bd',1,'ReadEventMenu']]],
-  ['readevents_311',['readEvents',['../class_system.html#aec4835a9eb7e62e61d513cb02c72bc18',1,'System']]],
-  ['readmenu_312',['ReadMenu',['../class_read_menu.html#a4484151635cf62507ad1bc2ead84e85b',1,'ReadMenu']]],
-  ['readmuseum_313',['readMuseum',['../class_system.html#a19584e50422d313bcf90147523787c86',1,'System']]],
-  ['readmuseummenu_314',['ReadMuseumMenu',['../class_read_museum_menu.html#a0025f3b910fba7a00c837f4c1268d4b6',1,'ReadMuseumMenu']]],
-  ['readmuseums_315',['readMuseums',['../class_system.html#a7ee56d6c97cf71a4e25dfb4dc7cbfd9d',1,'System']]],
-  ['readoption_316',['readOption',['../class_menu.html#a6a506a40f560eb0435b479652fb83374',1,'Menu']]],
-  ['readpeople_317',['readPeople',['../class_system.html#a97ec8f5f6024a57454dcd3a3e4be938c',1,'System']]],
-  ['readperson_318',['readPerson',['../class_system.html#ab72ed1c71cc5cd96144516101d089dc9',1,'System']]],
-  ['readpersonmenu_319',['ReadPersonMenu',['../class_read_person_menu.html#ae7cd411fb8caf5ffc9d7175a9e7ec92c',1,'ReadPersonMenu']]]
+  ['pastevent_355',['PastEvent',['../class_past_event.html#ab6d9cc4c4c7f523553e9fc377d1ac097',1,'PastEvent']]],
+  ['person_356',['Person',['../class_person.html#ab6f209a531c1e0dd3b8a1173197500d8',1,'Person::Person(string name, Date birthday, Address address, unsigned contact)'],['../class_person.html#abe388d6f6a62e242be446f7028ef78e9',1,'Person::Person(const Person &amp;person)']]],
+  ['personmenu_357',['PersonMenu',['../class_person_menu.html#acb9b2747eb215352960c678330bc1ef9',1,'PersonMenu']]],
+  ['printdata_358',['printData',['../class_person.html#a8e81fe7131aa6c6cdaf3000c2f10b927',1,'Person::printData()'],['../class_client.html#a474d1316212ff5d1d0c7b764954605e4',1,'Client::printData()'],['../class_silver_client.html#a17801c3a442dc853ee5cba845b52f363',1,'SilverClient::printData()'],['../class_uni_client.html#a1120284a33915d9b9b62619743401c48',1,'UniClient::printData()'],['../class_individual_client.html#acbf8e407fa2b24aa5ae5edccf6e3879a',1,'IndividualClient::printData()']]]
 ];

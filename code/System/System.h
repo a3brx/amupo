@@ -46,9 +46,10 @@ public:
 
     MuseumRegister musReg;
 
+    /// @brief All museums' employees in a hash table
     EmployeeHash employees;
 
-     Companies availableCompanies;
+    Companies availableCompanies;
 
     /// @brief Creates a new system with the information provided by the file.
     /// @param fileName The path to the file where the information is stored.
@@ -91,6 +92,10 @@ public:
 
     vector<Museum *>::const_iterator findMuseum(pair<double, double> pos) const;
 
+    /// @brief Finds the memory position of an Employee.
+    /// @param name A string equal to the name of the employee. Not case sensitive.
+    /// @param birthday A date equal to the employee's birthday.
+    /// @return Returns a iterator to the Employee, employee.end() otherwise.
     EmployeeHash::const_iterator findEmployee(string name, const Date &birthday) const;
 
     /// @brief Finds the memory position of a Ticket.
@@ -150,8 +155,11 @@ public:
     /// @param container A vector of the museums to be showed
     void readMuseums(const vector<Museum *> &container) const;
 
+    /// @brief Asks information about the Employee and shows the specified employee.
     void readEmployee() const;
 
+    /// @brief Shows a list of employees in a Table
+    /// @param container A hash table of the employees to be showed
     void readEmployees(const EmployeeHash &hash) const;
 
     ///@brief Reads an event information via user input and removes it.
@@ -177,7 +185,12 @@ public:
     ///@param name The name of the museum to be deleted.
     void deleteMuseum(const string &name);
 
+    ///@brief Reads an Employee information via user input and removes it.
     void deleteEmployee();
+
+    ///@brief It's called by deleteEmployee() and deletes an Employee.
+    ///@param name The name of the employee to be deleted.
+    ///@param birthday The birthday of the employee to be deleted.
     void deleteEmployee(const string &name, const Date &birthday);
 
     ///@brief Reads an address information via user input.

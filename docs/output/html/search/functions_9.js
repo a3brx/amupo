@@ -1,7 +1,16 @@
 var searchData=
 [
-  ['pastevent_304',['PastEvent',['../class_past_event.html#ab6d9cc4c4c7f523553e9fc377d1ac097',1,'PastEvent']]],
-  ['person_305',['Person',['../class_person.html#ab6f209a531c1e0dd3b8a1173197500d8',1,'Person::Person(string name, Date birthday, Address address, unsigned contact)'],['../class_person.html#abe388d6f6a62e242be446f7028ef78e9',1,'Person::Person(const Person &amp;person)']]],
-  ['personmenu_306',['PersonMenu',['../class_person_menu.html#acb9b2747eb215352960c678330bc1ef9',1,'PersonMenu']]],
-  ['printdata_307',['printData',['../class_person.html#a8e81fe7131aa6c6cdaf3000c2f10b927',1,'Person::printData()'],['../class_client.html#a474d1316212ff5d1d0c7b764954605e4',1,'Client::printData()'],['../class_silver_client.html#a17801c3a442dc853ee5cba845b52f363',1,'SilverClient::printData()'],['../class_uni_client.html#a1120284a33915d9b9b62619743401c48',1,'UniClient::printData()'],['../class_individual_client.html#acbf8e407fa2b24aa5ae5edccf6e3879a',1,'IndividualClient::printData()']]]
+  ['operator_21_3d_342',['operator!=',['../class_date.html#aca089c2b36cc384dfa7902d64383a193',1,'Date::operator!=()'],['../class_person.html#a68afceb6d98338b7b7d454abf6d7cab4',1,'Person::operator!=()']]],
+  ['operator_28_29_343',['operator()',['../structemployee_hash.html#a746c036fed88e7a3a7b1489b7f8f4ab5',1,'employeeHash::operator()(const Employee *employee) const'],['../structemployee_hash.html#a7e41c38f649fa58373b03f4bfd32db9b',1,'employeeHash::operator()(const Employee *left, const Employee *right) const']]],
+  ['operator_2b_344',['operator+',['../class_date.html#a95ee06bbb5f83cc57bee03224296dcc8',1,'Date']]],
+  ['operator_2b_3d_345',['operator+=',['../class_date.html#a3d72b37493c4e6393b72a5945d405a61',1,'Date']]],
+  ['operator_2d_346',['operator-',['../class_date.html#a66aee7889e49204ad68619efa5a3b2cc',1,'Date::operator-(unsigned n) const'],['../class_date.html#a65012b4e9136060e962de596bcb51017',1,'Date::operator-(const Date argument) const']]],
+  ['operator_2d_3d_347',['operator-=',['../class_date.html#a63f3a52b0561bcfab6f723a0e108f64e',1,'Date']]],
+  ['operator_3c_348',['operator&lt;',['../class_date.html#a931e536af8cdda20dd9f13be4a1b1eaa',1,'Date']]],
+  ['operator_3c_3d_349',['operator&lt;=',['../class_date.html#ad4d1bf445fe1fa901f9f64ce7a0761d4',1,'Date']]],
+  ['operator_3d_3d_350',['operator==',['../class_address.html#ad90b427f462e73c0af4aafe743fd7c02',1,'Address::operator==()'],['../class_date.html#a7d37117367e4067ca6ff8acaf5016703',1,'Date::operator==()'],['../class_person.html#a5ceb6218ceb356fb8b6ebdd16f45716e',1,'Person::operator==()']]],
+  ['operator_3e_351',['operator&gt;',['../class_date.html#a8c20d34bc39224293930711da08c4230',1,'Date']]],
+  ['operator_3e_3d_352',['operator&gt;=',['../class_date.html#a8dd74549b9a54b1b91b965cc3bfdcce0',1,'Date']]],
+  ['option_353',['option',['../class_menu.html#a39f672a50f11f6c605ebb936424154f9',1,'Menu']]],
+  ['overbookedevent_354',['OverBookedEvent',['../class_over_booked_event.html#a2614dc45ef3d350aa4cdc68e79ac29e9',1,'OverBookedEvent']]]
 ];
