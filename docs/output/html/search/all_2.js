@@ -13,7 +13,8 @@ var searchData=
   ['content_23',['content',['../class_table.html#a120894b021aa442ba7acd45e75774975',1,'Table']]],
   ['cost_24',['cost',['../class_silver_client.html#a506c0e64e7232cd534aebe1efaab5e64',1,'SilverClient::cost()'],['../class_uni_client.html#a3ae6f4647ad33057b2f86f5ef27fa36d',1,'UniClient::cost()'],['../class_individual_client.html#a518acdfce96537dea9a0e6f3bffb692f',1,'IndividualClient::cost()']]],
   ['createclient_25',['createClient',['../class_system.html#a1d7e4ced2d84ed8db0ab6cca1ed3ba8b',1,'System']]],
-  ['createevent_26',['createEvent',['../class_system.html#aba43ded846c92e87c2cc4adcb306ac83',1,'System::createEvent()'],['../class_system.html#a2645eb29031aae9da87e2b236ccb02e1',1,'System::createEvent(Event *ev)']]],
-  ['createmuseum_27',['createMuseum',['../class_system.html#a87401889892230b062baac6da6d79f5d',1,'System::createMuseum()'],['../class_system.html#a685ab9b010f7e04c7878233254510692',1,'System::createMuseum(Museum *mus)']]],
-  ['createperson_28',['createPerson',['../class_system.html#ac2d9caa8fc4e68922e3463ca08044cf2',1,'System']]]
+    ['createemployee_26', ['createEmployee', ['../class_system.html#a0780ddc273e65e984b0eb2d7ba7185cc', 1, 'System']]],
+    ['createevent_27', ['createEvent', ['../class_system.html#aba43ded846c92e87c2cc4adcb306ac83', 1, 'System::createEvent()'], ['../class_system.html#a2645eb29031aae9da87e2b236ccb02e1', 1, 'System::createEvent(Event *ev)']]],
+    ['createmuseum_28', ['createMuseum', ['../class_system.html#a87401889892230b062baac6da6d79f5d', 1, 'System::createMuseum()'], ['../class_system.html#a685ab9b010f7e04c7878233254510692', 1, 'System::createMuseum(Museum *mus)']]],
+    ['createperson_29', ['createPerson', ['../class_system.html#ac2d9caa8fc4e68922e3463ca08044cf2', 1, 'System']]]
 ];
