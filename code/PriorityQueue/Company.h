@@ -1,11 +1,4 @@
-//
-// Created by jbr on 27/12/19.
-//
-
-#ifndef AMIGO_DOS_MUSEUS_COMPANY_H
-#define AMIGO_DOS_MUSEUS_COMPANY_H
-
-#endif //AMIGO_DOS_MUSEUS_COMPANY_H
+#pragma once
 
 #include <iostream>
 #include <iomanip>

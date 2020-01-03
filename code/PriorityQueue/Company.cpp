@@ -1,7 +1,3 @@
-//
-// Created by jbr on 27/12/19.
-//
-
 #include "Company.h"
 #include "../utils/utils.h"
 
