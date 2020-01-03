@@ -124,6 +124,7 @@ public:
     /// @param mus The museum to be inserted
     void createMuseum(Museum *mus);
 
+    /// @brief Reads the information via console and creates a new Employee with those attributes.
     void createEmployee();
 
     /// @brief Asks information about the Event and shows the specified event.
@@ -159,7 +160,7 @@ public:
     void readEmployee() const;
 
     /// @brief Shows a list of employees in a Table
-    /// @param container A hash table of the employees to be showed
+    /// @param hash A hash table of the employees to be showed
     void readEmployees(const EmployeeHash &hash) const;
 
     ///@brief Reads an event information via user input and removes it.
