@@ -116,7 +116,7 @@ public:
     /// @return Returns true if the object is employed in the museum
     bool isWorking() const;
 
-    /// @bried Sets the working attribute to false
+    /// @brief Sets the working attribute to false
     void invalidate();
 
     /// @brief Constructs a new Employee from the arguments
