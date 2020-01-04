@@ -1,4 +1,4 @@
 var searchData=
 [
-    ['financemenu_255', ['FinanceMenu', ['../class_finance_menu.html', 1, '']]]
+    ['hirecompaniesmenu_238', ['HireCompaniesMenu', ['../class_hire_companies_menu.html', 1, '']]]
 ];

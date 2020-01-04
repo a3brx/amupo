@@ -2,7 +2,7 @@
 
 #include <vector>
 #include "../Museum/Museum.h"
-#include "binaryTree.h"
+#include "../BinaryTree/binaryTree.h"
 
 using namespace std;
 

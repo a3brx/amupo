@@ -12,7 +12,7 @@
 #include "../Museum/Museum.h"
 #include "../Ticket/Ticket.h"
 #include "../utils/InvalidInput.h"
-#include "../BinaryTree/registoMuseum.h"
+#include "../MuseumRegister/registoMuseum.h"
 #include "../PriorityQueue/Company.h"
 
 typedef unordered_set<Employee*, employeeHash, employeeHash> EmployeeHash;
