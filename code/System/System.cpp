@@ -1130,6 +1130,53 @@ void System::readCompanies(const vector<Company> &container) const {
     cout << read;
 }
 
+void System::createCompany() {
+    string name, repStr;
+    Address address;
+    while (true) {
+        cout << "Enter the Company name: ";
+        getline(cin, name);
+        if (name == ":q") return;
+        if (findCompany(name) != Company()) {
+            cout << "Company with that name already exists!";
+            continue;
+        }
+        break;
+    }
+    repStr = getInput(isNum, "Enter the number of repairs done by the company: ", "Invalid Number!");
+    if (repStr == ":q") return;
+    pair<double, double> pos;
+    while (true) {
+        string posStr = getInput(isPosition, "Enter the Company's Coordinates in the format(x , y): ",
+                                 "Invalid Position!");
+        if (posStr == ":q") return;
+        vector<string> aux = trim(split(posStr, ","));
+        pos = {stod(aux.at(0)), stod(aux.at(1))};
+        if (findCompany(pos) != Company()) {
+            cout << "Company in that position already exists!";
+            continue;
+        }
+        break;
+    }
+    string contactStr = getInput(isContact, "Enter the Company's contact: ", "Invalid Contact!");
+    if (contactStr == ":q") return;
+    unsigned contact = stoi(contactStr);
+    Company temp(name, contact, pos, stoi(repStr));
+    this->availableCompanies.push(temp);
+    cout << "Created Company with success!" << endl;
+}
+
+Company System::findCompany(const pair<double, double> pos) const {
+    auto aux = this->availableCompanies;
+    int size = aux.size();
+    for (int i = 0; i < size; i++) {
+        if (pos == aux.top().getPosition())
+            return aux.top();
+        aux.pop();
+    }
+    return Company();
+}
+
 Table<string> toTable(const vector<Event *> &container, const System *sys) {
     vector<string> header = {"Name", "Museum", "Date", "Time", "Sold Tickets", "Price"};
     vector<vector<string>> content;
@@ -1218,7 +1265,8 @@ Table<string> toTable(const vector<Company> &container) {
     for (auto company : container) {
         vector<string> aux = {company.getName(), to_string(company.getContact()),
                               to_string(company.getNumRepairs()),
-                              to_string(company.getPosition().first) + ", " + to_string(company.getPosition().second)};
+                              strPrecision(to_string(company.getPosition().first)) + ", " +
+                              strPrecision(to_string(company.getPosition().second))};
         content.push_back(aux);
     }
     Table<string> data(header, content);

@@ -697,6 +697,11 @@ HireCompaniesMenu::HireCompaniesMenu(System *system) : Menu(system) {
                 sys->requestService();
             }
                 break;
+            case 'C' : {
+                clear();
+                sys->createCompany();
+            }
+                break;
             case 'R' : {
                 new ReadCompaniesMenu(system);
                 break;
@@ -735,6 +740,7 @@ HireCompaniesMenu::HireCompaniesMenu(System *system) : Menu(system) {
 
 vector<vector<string>> HireCompaniesMenu::getOptions() const {
     return vector<vector<string>>({{"S", "Request Service"},
+                                   {"C", "Create Company"},
                                    {"R", "Read Companies"},
                                    {"U", "Update Company"},
                                    {"D", "Delete Company"},

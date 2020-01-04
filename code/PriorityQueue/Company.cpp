@@ -14,11 +14,11 @@ Company::Company(){
     this->numRepairs=0;
 }
 
-Company::Company(string name, unsigned contact, pair<double, double> position) {
+Company::Company(string name, unsigned contact, pair<double, double> position, unsigned repairs) {
     this->position=move(position);
     this->contact=contact;
     this->name=move(name);
-    this->numRepairs=0;
+    this->numRepairs = repairs;
 }
 
 string Company::getName() const {
@@ -90,6 +90,13 @@ void Company::generateRepairs() {
     this->numRepairs += added;
 }
 
+bool Company::operator==(const Company &c1) const {
+    return this->name == c1.name;
+}
+
+bool Company::operator!=(const Company &c1) const {
+    return !(*this == c1);
+}
 
 
 

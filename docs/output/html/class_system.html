@@ -165,6 +165,22 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
             with those attributes. <br/></td>
     </tr>
 <tr class="separator:a0780ddc273e65e984b0eb2d7ba7185cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+    <tr class="memitem:ac49ec6b7d9278886097fd818fc41dd4b">
+        <td class="memItemLeft" align="right" valign="top"><a id="ac49ec6b7d9278886097fd818fc41dd4b"></a>
+            void&#160;
+        </td>
+        <td class="memItemRight" valign="bottom"><a class="el"
+                                                    href="class_system.html#ac49ec6b7d9278886097fd818fc41dd4b">createCompany</a>
+            ()
+        </td>
+    </tr>
+    <tr class="memdesc:ac49ec6b7d9278886097fd818fc41dd4b">
+        <td class="mdescLeft">&#160;</td>
+        <td class="mdescRight">Creates a new company by input of the user. <br/></td>
+    </tr>
+    <tr class="separator:ac49ec6b7d9278886097fd818fc41dd4b">
+        <td class="memSeparator" colspan="2">&#160;</td>
+    </tr>
 <tr class="memitem:a2965050eced0c327b3689fb11f172adb"><td class="memItemLeft" align="right" valign="top"><a id="a2965050eced0c327b3689fb11f172adb"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_system.html#a2965050eced0c327b3689fb11f172adb">readEvent</a> () const</td></tr>
 <tr class="memdesc:a2965050eced0c327b3689fb11f172adb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Asks information about the <a class="el" href="class_event.html" title="The Event Class.">Event</a> and shows the specified event. <br /></td></tr>
@@ -334,6 +350,22 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
         </td>
     </tr>
 <tr class="separator:acc6ee3e5d61112553d630c54920bb8f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+    <tr class="memitem:a8166115c0e76e16159f589ec80414aed">
+        <td class="memItemLeft" align="right" valign="top"><a class="el" href="class_company.html">Company</a>&#160;
+        </td>
+        <td class="memItemRight" valign="bottom"><a class="el"
+                                                    href="class_system.html#a8166115c0e76e16159f589ec80414aed">findCompany</a>
+            (const pair&lt; double, double &gt; pos) const
+        </td>
+    </tr>
+    <tr class="memdesc:a8166115c0e76e16159f589ec80414aed">
+        <td class="mdescLeft">&#160;</td>
+        <td class="mdescRight">Finds a company by position. <a
+                href="class_system.html#a8166115c0e76e16159f589ec80414aed">More...</a><br/></td>
+    </tr>
+    <tr class="separator:a8166115c0e76e16159f589ec80414aed">
+        <td class="memSeparator" colspan="2">&#160;</td>
+    </tr>
     <tr class="memitem:a6c647edd7086ff1f2860888a62f938bb">
         <td class="memItemLeft" align="right" valign="top">bool&#160;</td>
         <td class="memItemRight" valign="bottom"><a class="el"
@@ -854,9 +886,50 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Menu</b></td></tr>
 
 </div>
 </div>
+    <a id="a8166115c0e76e16159f589ec80414aed"></a>
+    <h2 class="memtitle"><span class="permalink"><a href="#a8166115c0e76e16159f589ec80414aed">&#9670;&nbsp;</a></span>findCompany()
+        <span class="overload">[1/2]</span></h2>
+
+    <div class="memitem">
+        <div class="memproto">
+            <table class="memname">
+                <tr>
+                    <td class="memname"><a class="el" href="class_company.html">Company</a> System::findCompany</td>
+                    <td>(</td>
+                    <td class="paramtype">const pair&lt; double, double &gt;&#160;</td>
+                    <td class="paramname"><em>pos</em></td>
+                    <td>)</td>
+                    <td> const</td>
+                </tr>
+            </table>
+        </div>
+        <div class="memdoc">
+
+            <p>Finds a company by position. </p>
+            <dl class="params">
+                <dt>Parameters</dt>
+                <dd>
+                    <table class="params">
+                        <tr>
+                            <td class="paramname">pos</td>
+                            <td>Position of the company to search for.</td>
+                        </tr>
+                    </table>
+                </dd>
+            </dl>
+            <dl class="section return">
+                <dt>Returns</dt>
+                <dd>If found returns the <a class="el" href="class_company.html" title="Company Class.">Company</a>,
+                    else returns the default <a class="el" href="class_company.html" title="Company Class.">Company</a>,
+                    obtained by the default constructor.
+                </dd>
+            </dl>
+
+        </div>
+</div>
     <a id="acc6ee3e5d61112553d630c54920bb8f1"></a>
     <h2 class="memtitle"><span class="permalink"><a href="#acc6ee3e5d61112553d630c54920bb8f1">&#9670;&nbsp;</a></span>findCompany()
-    </h2>
+        <span class="overload">[2/2]</span></h2>
 
     <div class="memitem">
         <div class="memproto">

@@ -132,6 +132,9 @@ public:
     /// @brief Reads the information via console and creates a new Employee with those attributes.
     void createEmployee();
 
+    /// @brief Creates a new company by input of the user.
+    void createCompany();
+
     /// @brief Asks information about the Event and shows the specified event.
     void readEvent() const;
 
@@ -276,6 +279,11 @@ public:
     ///@param name Name of the company to search for.
     ///@return If found returns the Company, else returns the default Company, obtained by the default constructor.
     Company findCompany(const string& name);
+
+    ///@brief Finds a company by position.
+    ///@param pos Position of the company to search for.
+    ///@return If found returns the Company, else returns the default Company, obtained by the default constructor.
+    Company findCompany(const pair<double, double> pos) const;
 
     ///@brief Erases a Company from the priority queue availableCompanies by name.
     ///@param name Name of the company to be erased

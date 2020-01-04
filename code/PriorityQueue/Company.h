@@ -37,7 +37,8 @@ public:
     ///@param name Name of the Company
     ///@param contact Contact of the Company
     ///@param position Position of the Company
-    Company(string name, unsigned contact, pair<double,double> position);
+    ///@param repairs Repairs done by the Company
+    Company(string name, unsigned contact, pair<double, double> position, unsigned repairs = 0);
 
     ///@brief Getter of the name data member
     ///@return Name of the company
@@ -71,8 +72,19 @@ public:
     void generateRepairs();
 
     ///@brief Relational operator <
+    ///@param c1 Company to compare with the calling object
     ///@return true if numRepairs of the object is less than numRepairs of the right hand side of the operator Company.
     bool operator<(const Company& c1) const;
+
+    ///@brief Relational operator ==
+    ///@param c1 Company to compare with the calling object
+    ///@return true if name of the object is the same name of the right hand side of the operator Company.
+    bool operator==(const Company &c1) const;
+
+    ///@brief Relational operator !=
+    ///@param c1 Company to compare with the calling object
+    ///@return true if the name of the object is not the same as the name of the right hand side of the operator Company.
+    bool operator!=(const Company &c1) const;
 
     ///@brief Input stream operator
     ///@param in Input stream
