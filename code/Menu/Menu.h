@@ -225,6 +225,7 @@ public:
     vector<vector<string>> getOptions() const override;
 };
 
+///@brief UpdateCompaniesMenu Class
 class UpdateCompaniesMenu : public Menu {
 public:
     ///@brief UpdateMuseumMenu Constructor
