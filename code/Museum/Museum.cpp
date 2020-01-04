@@ -159,7 +159,6 @@ istream &operator>>(istream &in, Employee **employee) {
     if (in.eof() || type == '\n') throw InvalidInput();
     string aux;
     getline(in, aux);
-    cout << aux << endl;
     Address *ad;
     in >> &ad;
     vector<string> auxvec = trim(split(aux, "|"));

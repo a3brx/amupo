@@ -168,7 +168,6 @@ System::System(const string &fileName/*,const string pass*/) {
     Employee *ep;
 
     while (!(file.peek() == -1)) {
-        bool valid;
         try {
             file >> &ep;
             string museumName;
@@ -287,16 +286,16 @@ void System::readEmployees(const EmployeeHash &hash) const {
     pause();
 }
 
-void System::readCompanies(const priority_queue<Company> &Companies) const {
-    if (Companies.empty()) {
-        cout << "The search is empty :(" << endl;
-        pause();
-        return;
-    }
-    auto read = toTable(Companies);
-    cout << read;
-    pause();
-}
+//void System::readCompanies(const priority_queue<Company> &Companies) const {
+//    if (Companies.empty()) {
+//        cout << "The search is empty :(" << endl;
+//        pause();
+//        return;
+//    }
+//    auto read = toTable(Companies);
+//    cout << read;
+//    pause();
+//}
 
 vector<Museum *> System::getMuseums() const {
     return this->museums;
