@@ -272,6 +272,8 @@ public:
 
     void readCompanies(const priority_queue<Company> &Companies) const;
 
+    void readCompanies(const vector<Company> &container) const;
+
 };
 ///@brief Receives a vector of Event and transforms in a table.
 Table<string> toTable(const vector<Event *> &container, const System *sys);
@@ -282,8 +284,13 @@ Table<string> toTable(const vector<Client *> &container, const System *sys);
 ///@brief Receives a vector of Person and transforms in a table.
 Table<string> toTable(const vector<Person *> &container, const System *sys);
 
+///@brief Receives an unordered_set of Employee and transforms in a table.
 Table<string> toTable(const EmployeeHash &container);
 
+///@brief Receives a prority_queue of Company and transforms in a table.
 Table<string> toTable(const Companies &container);
+
+///@brief Receives a vector of Company and transforms in a table.
+Table<string> toTable(const vector<Company> &container);
 
 

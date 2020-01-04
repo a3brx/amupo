@@ -211,12 +211,14 @@ public:
     vector<vector<string>> getOptions() const override;
 };
 
+///@brief Read Companies Menu. Works with priority queue.
 class ReadCompaniesMenu : public Menu {
+    vector<Company> toRead;
 public:
-    ///@brief UpdateMuseumMenu Constructor
+    ///@brief ReadCompaniesMenu Constructor
     ReadCompaniesMenu(System *system);
 
-    ///@brief Gets UpdateMuseunMenu in organized manner
+    ///@brief Gets ReadCompaniesMenu in organized manner
     ///@return Returns a matrix(n*2). The first column is a letter representing an option, and the second is the corresponding
     vector<vector<string>> getOptions() const override;
 };

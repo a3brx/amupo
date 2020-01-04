@@ -698,10 +698,9 @@ HireCompaniesMenu::HireCompaniesMenu(System *system) : Menu(system) {
             }
                 break;
             case 'R' : {
-                sys->readCompanies(sys->availableCompanies);
-                clear();
-            }
+                new ReadCompaniesMenu(system);
                 break;
+            }
             case 'U' : {
                 new UpdateCompaniesMenu(system);
                 clear();
@@ -1320,5 +1319,46 @@ vector<vector<string>> UpdateCompaniesMenu::getOptions() const {
                                    {"C", "Update Contact"},
                                    {"L", "Update Location"},
                                    {"D","Delete Company"},
+                                   {"G", "Go Back"}});
+}
+
+ReadCompaniesMenu::ReadCompaniesMenu(System *system) : Menu(system) {
+    int size = sys->availableCompanies.size();
+    for (int i = 0; i < size; i++) {
+        toRead.push_back(sys->availableCompanies.top());
+        sys->availableCompanies.pop();
+    }
+    do {
+        this->nextMenu = this->option();
+        switch (this->nextMenu) {
+            case 'R' : {
+                clear();
+                sort(this->toRead.begin(), this->toRead.end());
+                sys->readCompanies(this->toRead);
+                pause();
+            }
+            case 'P' : {
+                pause();
+            }
+            case 'M' : {
+                pause();
+            }
+            case 'C' : {
+                pause();
+            }
+                break;
+            case 'G':
+                return;
+            default:
+                break;
+        }
+    } while (true);
+}
+
+vector<vector<string>> ReadCompaniesMenu::getOptions() const {
+    return vector<vector<string>>({{"R", "Sort Companies by nr of repairs"},
+                                   {"P", "Sort Companies by distance to a point"},
+                                   {"M", "Sort Companies by distance to a museum"},
+                                   {"C", "Closest Company to a museum"},
                                    {"G", "Go Back"}});
 }

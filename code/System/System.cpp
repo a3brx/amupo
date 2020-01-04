@@ -1120,6 +1120,17 @@ bool System::eraseCompany(string name) {
     return size != availableCompanies.size();
 }
 
+void System::readCompanies(const vector<Company> &container) const {
+    if (container.empty()) {
+        cout << "The search is empty! :(\n";
+        pause();
+        return;
+    }
+    auto read = toTable(container);
+    cout << read;
+    pause();
+}
+
 Table<string> toTable(const vector<Event *> &container, const System *sys) {
     vector<string> header = {"Name", "Museum", "Date", "Time", "Sold Tickets", "Price"};
     vector<vector<string>> content;
@@ -1187,7 +1198,7 @@ Table<string> toTable(const EmployeeHash &container) {
 }
 
 Table<string> toTable(const Companies &container) {
-    vector<string> header = {"Name", "Contact", "Number of Reparis", "Position"};
+    vector<string> header = {"Name", "Contact", "Number of Repairs", "Position"};
     vector<vector<string>> content;
     int size = container.size();
     Companies aux = container;
@@ -1197,6 +1208,19 @@ Table<string> toTable(const Companies &container) {
                                                                     to_string(aux.top().getPosition().second)};
         content.push_back(vec);
         aux.pop();
+    }
+    Table<string> data(header, content);
+    return data;
+}
+
+Table<string> toTable(const vector<Company> &container) {
+    vector<string> header = {"Name", "Contact", "Number of Repairs", "Position"};
+    vector<vector<string>> content;
+    for (auto company : container) {
+        vector<string> aux = {company.getName(), to_string(company.getContact()),
+                              to_string(company.getNumRepairs()),
+                              to_string(company.getPosition().first) + ", " + to_string(company.getPosition().second)};
+        content.push_back(aux);
     }
     Table<string> data(header, content);
     return data;
