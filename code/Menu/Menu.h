@@ -213,6 +213,8 @@ public:
 
 ///@brief Read Companies Menu. Works with priority queue.
 class ReadCompaniesMenu : public Menu {
+
+    ///@brief Vector to be printed in different manners.
     vector<Company> toRead;
 public:
     ///@brief ReadCompaniesMenu Constructor

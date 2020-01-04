@@ -50,6 +50,7 @@ public:
     /// @brief All museums' employees in a hash table
     EmployeeHash employees;
 
+    /// @brief All available companies to hire in a priority queue
     Companies availableCompanies;
 
     /// @brief Creates a new system with the information provided by the file.
@@ -262,16 +263,26 @@ public:
     ///@brief Returns the most visited Museum using a BST.
     Museum getMostVisitedMuseum();
     //---------------------------------------------Priority Queues------------------------------------------
+
+    ///@brief Requests a service to the most adequate Company for a museum.
+    ///@return true if succesful, false otherwise.
     bool requestService();
 
+    ///@brief Sets the data member availableCompanies to queue.
+    ///@param queue New availableCompanies.
     void setCompanies(Companies queue);
 
+    ///@brief Finds a company by name.
+    ///@param name Name of the company to search for.
+    ///@return If found returns the Company, else returns the default Company, obtained by the default constructor.
     Company findCompany(const string& name);
 
+    ///@brief Erases a Company from the priority queue availableCompanies by name.
+    ///@param name Name of the company to be erased
+    ///@return true if succesful, false otherwise.
     bool eraseCompany(string name);
 
-    void readCompanies(const priority_queue<Company> &Companies) const;
-
+    /// @brief Prints the companies of a vector in a table
     void readCompanies(const vector<Company> &container) const;
 
 };

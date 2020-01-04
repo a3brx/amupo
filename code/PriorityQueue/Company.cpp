@@ -41,9 +41,6 @@ void Company::setNumRepairs(unsigned numRep) {
     this->numRepairs=numRep;
 }
 
-void Company::setPosition(pair<double,double> newPos){
-    position=move(newPos);
-}
 void Company::setPosition(double x,double y){
     pair<double,double> temp;
     temp.first=x; temp.second=y;
