@@ -136,3 +136,6 @@ T* firstInSecond(T *first,vector<T*> second){
 
 
 bool isInRange(pair<double,double> c1,pair<double,double> c2,unsigned distance);
+
+double distance(pair<double, double> p1, pair<double, double> p2);
+

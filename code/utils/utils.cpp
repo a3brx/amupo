@@ -172,7 +172,11 @@ pair<double, double> strToPair(string toPair) {
     pair.second = stod(aux[1]);
     return pair;
 }
+
 bool isInRange(pair<double,double> c1,pair<double,double> c2,unsigned distance){
     return sqrt(pow((c1.first-c2.first),2)+pow((c1.second-c2.second),2))<=distance;
 }
 
+double distance(pair<double, double> p1, pair<double, double> p2) {
+    return sqrt(pow((p1.first - p2.first), 2) + pow((p1.second - p2.second), 2));
+}

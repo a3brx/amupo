@@ -883,7 +883,7 @@ ReadEventMenu::ReadEventMenu(System *system) : ReadMenu<Event>(system) {
 //                pause();
             }
                 break;
-            case '\b': {
+            case 'W': {
                 this->toRead = sys->events;
             }
             case 'G':
@@ -900,6 +900,7 @@ vector<vector<string>> ReadEventMenu::getOptions() const {
                                    {"P", "Sort by Price"},
                                    {"B", "Filter Between Two Dates"},
                                    {"R", "Filter in a Price Range"},
+                                   {"W", "Clear Filters"},
                                    {"G", "Go Back"}});
 }
 
@@ -1021,7 +1022,7 @@ ReadPersonMenu::ReadPersonMenu(System *system) : ReadMenu<Person>(system) {
                 }
             }
                 break;
-            case '\b' : {
+            case 'W' : {
                 this->toRead = {};
                 if (readingClients) {
                     for (auto cl : sys->clients) {
@@ -1041,18 +1042,18 @@ ReadPersonMenu::ReadPersonMenu(System *system) : ReadMenu<Person>(system) {
 }
 
 vector<vector<string>> ReadPersonMenu::getOptions() const {
-    return vector<vector<string>>({{"N",         "Sort by Name"},
-                                   {"B",         "Sort by Birthday"},
-                                   {"F",         "Filter by birthday between two dates"},
-                                   {"L",         "Filter by Locality"},
-                                   {"M",         "Filter non-clients"},
-                                   {"C",         "Filter clients"},
-                                   {"I",         "Filter Individual clients"},
-                                   {"U",         "Filter University clients"},
-                                   {"S",         "Filter Silver clients"},
-                                   {"P",         "Change view mode and Clear Filters"},
-                                   {"Backspace", "Clear Filters"},
-                                   {"G",         "Go Back"}});
+    return vector<vector<string>>({{"N", "Sort by Name"},
+                                   {"B", "Sort by Birthday"},
+                                   {"F", "Filter by birthday between two dates"},
+                                   {"L", "Filter by Locality"},
+                                   {"M", "Filter non-clients"},
+                                   {"C", "Filter clients"},
+                                   {"I", "Filter Individual clients"},
+                                   {"U", "Filter University clients"},
+                                   {"S", "Filter Silver clients"},
+                                   {"P", "Change view mode and Clear Filters"},
+                                   {"W", "Clear Filters"},
+                                   {"G", "Go Back"}});
 }
 
 bool compareCapacity(Museum *left, Museum *right) {
@@ -1158,7 +1159,7 @@ ReadMuseumMenu::ReadMuseumMenu(System *system) : ReadMenu<Museum>(system) {
 //                sys->readMuseums(this->toRead);
             }
                 break;
-            case '\b' : {
+            case 'W' : {
                 this->toRead = sys->museums;
             }
                 break;
@@ -1171,15 +1172,15 @@ ReadMuseumMenu::ReadMuseumMenu(System *system) : ReadMenu<Museum>(system) {
 }
 
 vector<vector<string>> ReadMuseumMenu::getOptions() const {
-    return vector<vector<string>>({{"N",         "Sort by Name"},
-                                   {"C",         "Sort by Capacity"},
-                                   {"S",         "Sort by Visits"},
-                                   {"F",         "Filter by Capacity"},
-                                   {"L",         "Filter by Locality"},
-                                   {"-",         "Filter by Minimum Visits"},
-                                   {"+",         "Filter by Maximum Visits"},
-                                   {"Backspace", "Clear Filters"},
-                                   {"G",         "Go Back"}});
+    return vector<vector<string>>({{"N", "Sort by Name"},
+                                   {"C", "Sort by Capacity"},
+                                   {"S", "Sort by Visits"},
+                                   {"F", "Filter by Capacity"},
+                                   {"L", "Filter by Locality"},
+                                   {"-", "Filter by Minimum Visits"},
+                                   {"+", "Filter by Maximum Visits"},
+                                   {"W", "Clear Filters"},
+                                   {"G", "Go Back"}});
 }
 
 FinanceMenu::FinanceMenu(System *system) : Menu(system) {
@@ -1324,9 +1325,10 @@ vector<vector<string>> UpdateCompaniesMenu::getOptions() const {
 
 ReadCompaniesMenu::ReadCompaniesMenu(System *system) : Menu(system) {
     int size = sys->availableCompanies.size();
+    auto aux = sys->availableCompanies;
     for (int i = 0; i < size; i++) {
-        toRead.push_back(sys->availableCompanies.top());
-        sys->availableCompanies.pop();
+        toRead.push_back(aux.top());
+        aux.pop();
     }
     do {
         this->nextMenu = this->option();
@@ -1337,14 +1339,94 @@ ReadCompaniesMenu::ReadCompaniesMenu(System *system) : Menu(system) {
                 sys->readCompanies(this->toRead);
                 pause();
             }
-            case 'P' : {
-                pause();
-            }
+                break;
             case 'M' : {
+                string musName = getInput(isName, "Enter the Museum name: ", "Invalid Name!\n");
+                if (musName == ":q") {
+                    clear();
+                    break;
+                }
+                Museum mus = **(sys->findMuseum(musName));
+                auto compareDistance = [&](Company c1, Company c2) {
+                    return distance(c1.getPosition(), mus.getPosition()) <
+                           distance(c2.getPosition(), mus.getPosition());
+                };
+                sort(this->toRead.begin(), this->toRead.end(), compareDistance);
+                sys->readCompanies(this->toRead);
                 pause();
             }
-            case 'C' : {
+                break;
+            case 'P' : {
+                string posStr = getInput(isPosition, "Enter the position of the point in the format (x, y): ",
+                                         "Invalid Position!\n");
+                if (posStr == ":q") {
+                    clear();
+                    break;
+                }
+                pair<double, double> pos = strToPair(posStr);
+                auto compareDistance = [&](Company p1, Company p2) {
+                    return distance(p1.getPosition(), pos) < distance(p2.getPosition(), pos);
+                };
+                sort(this->toRead.begin(), this->toRead.end(), compareDistance);
+                sys->readCompanies(this->toRead);
                 pause();
+            }
+                break;
+            case 'C' : {
+                string musName = getInput(isName, "Enter the Museum name: ", "Invalid Name!\n");
+                if (musName == ":q") {
+                    clear();
+                    break;
+                }
+                Museum mus = **(sys->findMuseum(musName));
+                auto compareDistance = [&](Company c1, Company c2) {
+                    return distance(c1.getPosition(), mus.getPosition()) <
+                           distance(c2.getPosition(), mus.getPosition());
+                };
+                auto aux = toRead;
+                sort(aux.begin(), aux.end(), compareDistance);
+                vector<Company> vec = {aux.at(0)};
+                sys->readCompanies(vec);
+                pause();
+            }
+                break;
+            case '-': {
+                string minRepStr = getInput(isNum, "Enter minimum number of repairs: ", "Invalid Number!\n");
+                if (minRepStr == ":q") {
+                    clear();
+                    break;
+                }
+                unsigned minRep = stoi(minRepStr);
+                vector<Company> newVec;
+                for (auto company : this->toRead) {
+                    if (company.getNumRepairs() < minRep) continue;
+                    newVec.push_back(company);
+                }
+                toRead = newVec;
+            }
+                break;
+            case '+': {
+                string maxRepStr = getInput(isNum, "Enter maximum number of repairs: ", "Invalid Number!\n");
+                if (maxRepStr == ":q") {
+                    clear();
+                    break;
+                }
+                unsigned maxRep = stoi(maxRepStr);
+                vector<Company> newVec;
+                for (auto company : this->toRead) {
+                    if (company.getNumRepairs() > maxRep) continue;
+                    newVec.push_back(company);
+                }
+                toRead = newVec;
+            }
+                break;
+            case 'W': {
+                toRead = {};
+                aux = sys->availableCompanies;
+                for (int i = 0; i < size; i++) {
+                    toRead.push_back(aux.top());
+                    aux.pop();
+                }
             }
                 break;
             case 'G':
@@ -1360,5 +1442,8 @@ vector<vector<string>> ReadCompaniesMenu::getOptions() const {
                                    {"P", "Sort Companies by distance to a point"},
                                    {"M", "Sort Companies by distance to a museum"},
                                    {"C", "Closest Company to a museum"},
+                                   {"-", "Filter by minimum nr of repairs"},
+                                   {"+", "Filter by maximum nr of repairs"},
+                                   {"W", "Clear Filters"},
                                    {"G", "Go Back"}});
 }

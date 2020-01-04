@@ -24,6 +24,8 @@ public:
     void setPosition(pair<double,double> newPos);
     void setPosition(double x,double y);
     void addRepair();
+
+    void generateRepairs();
     bool operator<(const Company& c1) const;
 
     friend istream &operator>>(istream &in, Company **company);

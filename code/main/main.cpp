@@ -18,6 +18,7 @@ int main(){
         sys = new System("../database/files.txt"/*,pass*/);
     } catch (InvalidInput &error) {
         cout << error.getMsg() << endl;
+        pause();
         return 1;
     }
     try {

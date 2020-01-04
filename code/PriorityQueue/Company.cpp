@@ -3,6 +3,8 @@
 
 #include <utility>
 #include <vector>
+#include <random>
+#include <ctime>
 
 Company::Company(){
     this->position.first=0;
@@ -83,6 +85,12 @@ unsigned int Company::getContact() const {
 
 void Company::setContact(unsigned int contact) {
     Company::contact = contact;
+}
+
+void Company::generateRepairs() {
+    srand(time(NULL));
+    int added = rand() % 10;
+    this->numRepairs += added;
 }
 
 

@@ -48,7 +48,7 @@ System::System(const string &fileName/*,const string pass*/) {
 
     file.open(peopleFile);
 
-    while (!file.eof()) {
+    while (!(file.peek() == -1)) {
         char type = file.peek();
         Date now;
         switch (type) {
@@ -105,7 +105,7 @@ System::System(const string &fileName/*,const string pass*/) {
     file.open(eventsFile);
     Event *e;
 
-    while (!file.eof()) {
+    while (!(file.peek() == -1)) {
         try {
             file >> &e;
         }
@@ -125,7 +125,7 @@ System::System(const string &fileName/*,const string pass*/) {
     string auxStr;
     vector<string> vecPerson, vecEvent;
     Ticket *ticket;
-    while (!file.eof()) {
+    while (!(file.peek() == -1)) {
         getline(file, auxStr);
         try {
             if (auxStr.empty()) throw InvalidInput();
@@ -156,8 +156,9 @@ System::System(const string &fileName/*,const string pass*/) {
     file.open(companiesFile);
     Company *c;
     Companies toAvailCompanies;
-    while (!file.eof()) {
+    while (!(file.peek() == -1)) {
         file >> &c;
+        c->generateRepairs();
         toAvailCompanies.push(*c);
     }
     file.close();
@@ -166,7 +167,7 @@ System::System(const string &fileName/*,const string pass*/) {
     file.open(employeesFile);
     Employee *ep;
 
-    while (!file.eof()) {
+    while (!(file.peek() == -1)) {
         bool valid;
         try {
             file >> &ep;
@@ -1128,7 +1129,6 @@ void System::readCompanies(const vector<Company> &container) const {
     }
     auto read = toTable(container);
     cout << read;
-    pause();
 }
 
 Table<string> toTable(const vector<Event *> &container, const System *sys) {
